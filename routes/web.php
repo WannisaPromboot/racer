@@ -187,52 +187,25 @@ Route::get('viewslide/{id}','Admin\SlidesController@ViewSlide');
 Route::post('/saveslide', 'Admin\SlidesController@SaveSlide')->name('SaveSlide');
 Route::post('/updateslide/{id}', 'Admin\SlidesController@UpdateSlide')->name('UpdateSlide');
 
-//////product type
-/////->type1
-Route::get('/addtype', 'Admin\TypeController@Addtype');
-Route::get('/typecontent', 'Admin\TypeController@ShowtypeContent');
-Route::get('/edittype/{id}', 'Admin\TypeController@Edittype');
-Route::post('/savetype', 'Admin\TypeController@SaveType');
-Route::post('/updatetype', 'Admin\TypeController@UpdateType');
-Route::get('/displaytype', 'Admin\TypeController@DisplayType');
-Route::get('/geticon','Admin\TypeController@getIcon');
-Route::get('/viewtype/{id}', 'Admin\TypeController@ViewType');
+//////product categoryController
+/////->categoryController1
+Route::get('/addcategory', 'Admin\categoryController@Addcategory');
+Route::get('/categorycontent', 'Admin\categoryController@ShowcategoryContent');
+Route::get('/editcategory/{id}', 'Admin\categoryController@Editcategory');
+Route::post('/savecategory', 'Admin\categoryController@Savecategory');
+Route::post('/updatecategory/{id}', 'Admin\categoryController@Updatecategory');
+Route::get('/displaycategory', 'Admin\categoryController@Displaycategory');
 
 /////->type2
-Route::get('/addsubtype', 'Admin\TypeController@Addsubtype');
-Route::get('/subtypecontent', 'Admin\TypeController@ShowsubtypeContent');
-Route::get('/editsubtype/{id}', 'Admin\TypeController@Editsubtype');
-Route::post('/savesubtype', 'Admin\TypeController@SaveSubType');
-Route::post('/updatesubtype', 'Admin\TypeController@UpdateSubType');
-Route::get('/gettype', 'Admin\TypeController@GetType');
-Route::get('/viewsubtype/{id}', 'Admin\TypeController@ViewSubtype');
-
-/////->type3
-Route::get('/addsubsubtype', 'Admin\TypeController@Addsubsubtype');
-Route::get('/subsubtypecontent', 'Admin\TypeController@ShowsubsubtypeContent');
-Route::get('/editsubsubtype/{id}', 'Admin\TypeController@Editsubsubtype');
-Route::get('/getsubtype', 'Admin\TypeController@GetSubType');
-Route::post('/savesubsubtype', 'Admin\TypeController@SaveSubSubType');
-Route::post('/updatesubsubtype', 'Admin\TypeController@UpdateSubSubType');
-Route::get('/viewsubsubtype/{id}', 'Admin\TypeController@ViewSubSubtype');
+Route::get('/addsubcategory', 'Admin\categoryController@Addsubcategory');
+Route::get('/subcategorycontent', 'Admin\categoryController@ShowsubcategoryContent');
+Route::get('/editsubcategory/{id}', 'Admin\categoryController@Editsubcategory');
+Route::post('/savesubcategory', 'Admin\categoryController@SaveSubcategory');
+Route::post('/updatesubcategory/{id}', 'Admin\categoryController@UpdateSubcategory');
+Route::get('/getcategory', 'Admin\categoryController@Getcategory');
 
 
-/////->main
-Route::get('/addmainmenu', 'Admin\TypeController@AddMainmenu');
-Route::get('/mainmenucontent', 'Admin\TypeController@ShowMainmenuContent');
-Route::get('/editmainmenu/{id}', 'Admin\TypeController@EditMainmenu');
-Route::post('/savemainmenu', 'Admin\TypeController@SaveMainmenu');
-Route::post('/updatemainmenu', 'Admin\TypeController@UpdateMainmenu');
-Route::get('/displaymainmenu', 'Admin\TypeController@DisplayMainmenu');
-Route::get('/viewmenu/{id}', 'Admin\TypeController@ViewMenu');
 
-////// -> icon
-Route::get('/addicon', 'Admin\TypeController@AddIcon');
-Route::get('/iconcontent', 'Admin\TypeController@ShowIconContent');
-Route::get('/editicon/{id}', 'Admin\TypeController@EditIcon');
-Route::post('/saveicon', 'Admin\TypeController@SaveIcon');
-Route::post('/updateicon', 'Admin\TypeController@UpdateIcon');
-Route::get('/viewicon/{id}', 'Admin\TypeController@ViewIcon');
 
 ////////////////////blog///////////////////////////
 Route::get('/addblog', 'Admin\BlogController@AddBlog');
