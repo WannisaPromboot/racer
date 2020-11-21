@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="robot" content="index, follow" />
+<meta name="generator" content="Brackets">
+<meta name='copyright' content='Orange Technology Solution co.,ltd.'>
+<meta name='designer' content='Sudarat Tu.'>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link type="image/ico" rel="shortcut icon" href="images/favicon.ico">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Prompt&display=swap" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/jquery-ui.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="flexslider/flexslider.css" type="text/css" media="screen" />
+
+
+<link rel="stylesheet" href="master/css/libs/animate.css">
+
+<script src="js/jquery.min.js"></script>
+<script defer src="flexslider/jquery.flexslider.js"></script>
+<script type="text/javascript" src="flexslider/js/shCore.js"></script>
+<script type="text/javascript" src="flexslider/js/shBrushJScript.js"></script>
+<script src="flexslider/js/modernizr.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/tether.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="master/dist/wow.js"></script>
+<script>
+    wow = new WOW({
+        animateClass: 'animated',
+        offset: 100,
+        callback: function(box) {
+            console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+        }
+    });
+    wow.init();
+</script>
+<title>
+    mahorimusic</title></head>
+
+<body>
+    <div class="container-fluid">
+        <link rel="stylesheet" href="secondary-expandable-navigation-master/css/style.css">
+<!-- Resource style -->
+<script src="secondary-expandable-navigation-master/js/modernizr.js"></script>
+<!-- Modernizr -->
+<style>
+    
+    .bg-dark {
+        background-color: #fff !important;
+    }
+    .go-top i:hover{
+        color: #fff;
+    }
+    
+    .go-top {
+        position: fixed;
+        bottom: 6em;
+        right: 2em;
+        border: 2px solid #5e6069;
+        font-size: 12px;
+        text-align: center;
+        z-index: 3;
+        color: #5e6069;
+        border-radius: 68%;
+        padding: 15px 18px 15px 18px;
+    }
+
+    .text-logo {
+        display: inline-block;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .wrap_logo {
+        text-align: center;
+    }
+
+    .wrap_mainmenu {
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        width: 100%;
+    }
+
+    .wrap_mainmenu.sticky {
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+        background-color: #000;
+        border-bottom: 1.5px solid #efefef;
+        left: 0;
+        right: 0;
+        box-shadow: 0px 1px 1px 1px rgba(50, 50, 50, 0.09);
+    }
+
+    .mainmenu-align {
+        text-align: left;
+        margin: 0;
+        border-top: 1.5px solid #efefef;
+        padding: 0;
+    }
+
+    .mainmenu>li {
+        display: inline-block;
+    }
+
+    .mainmenu>li>a.active {
+        color: #ffffffa1;
+        text-decoration: none;
+        background-color: #ffffff36;
+    }
+
+    .mainmenu li a {
+        display: block;
+        padding: 15px 30px 15px 30px;
+        text-align: left;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 300;
+        font-size: 17px;
+    }
+
+    .text-logo img {
+        width: 30%;
+    }
+
+
+    .flexslider {
+        margin: 0 0 0px;
+        border: 0px solid #fff;
+    }
+
+    .flex-control-paging li a.flex-active {
+        background: #fff;
+    }
+
+    .flex-control-paging li a:hover {
+        background: #fff;
+    }
+
+    .flex-control-paging li a {
+        background: #ffffff69;
+        box-shadow: none;
+    }
+    .dic_i{
+        padding-right: 20px;
+    }
+    .language{
+        display: inline-flex;
+        float: right;
+    }
+    .language .active{
+        color: #ffffffa1;
+    }
+    .language a{
+        padding: 15px 10px 15px 10px;
+        color: #fff;
+        text-decoration: none;
+    }
+    .language div{
+        padding: 15px 10px;
+    }
+    .social{
+        float: right;
+        padding: 55px 0 0;
+    }
+    .social img{
+        width: 40px;
+        padding-left: 5px;
+    }
+    .pad_social{
+        padding-right: 0;
+    }
+    @media (max-width: 1199px) {
+        .go-top{
+            padding: 10px 14px 10px 14px;
+        }
+        
+        .mainmenu li a {
+            padding: 10px 15px 10px 10px;
+            font-size: 14px;
+        }
+        .language div {
+            padding: 7px 5px;
+        }
+        .social img{
+            width: 32px;
+        }
+        .social{
+            padding: 43px 0 10px;
+        }
+        .language a{
+            font-size: 13px;
+            padding: 10px 10px 10px 10px;
+        }
+        .dic_i {
+            padding-right: 5px;
+        }
+        .text-logo img {
+            width: 30%;
+        }
+        .text-logo {
+            margin: 20px 0 10px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .social{
+            display: none;
+        }
+        .text-logo {
+            display: none;
+        }
+        .wrap_mainmenu {
+            display: none;
+        }
+        .btn-secondary {
+            color: #000;
+            font-size: 14px;
+        }
+        .social_xs{
+            display: flex;
+            padding-left: 32px;
+        }
+        .social_xs a{
+            padding: 8px 10px 0 0px !important;
+            width: 40px;
+        }
+        .language_xs{
+            display: flex;
+            padding-left: 22px;
+        }
+        .language_xs div{
+            color: #000;
+            padding-top: 17px;
+        }
+        .language_xs a{
+            padding: 8px 10px 0 10px !important;
+            font-size: 14px !important;
+        }
+    }
+</style>
+<header>
+    <a id="cd-logo" href="{{url('/')}}"><img src="images/logo_mahormobile.png" alt="Homepage"></a>
+    <nav id="cd-top-nav">
+        <ul>
+            <li><a href="#0">Tour</a></li>
+            <li><a href="#0">Login</a></li>
+        </ul>
+    </nav>
+    <a id="cd-menu-trigger" href="#0"><span class="cd-menu-text">Menu</span><span class="cd-menu-icon"></span></a>
+</header>
+<nav id="cd-lateral-nav">
+    <ul class="cd-navigation cd-single-item-wrapper">
+        <li><a href="{{url('/')}}">{{Session::get('lang')=='th'?'หน้าแรก':'Home'}}</a></li>
+        <li><a href="{{url('about')}}">เกี่ยวกับเรา</a></li>
+        <li><a href="artist.php">ศิลปินของเรา</a></li>
+        <li><a href="new.php">ข่าวสารและแกลลอรี่</a></li>
+        <li><a href="{{url('contact')}}">ติดต่อเรา</a></li>
+    </ul>
+    <div class="language_xs"><a href="" class="active">TH</a><div>I</div><a href="">EN</a></div>
+    <div class="social_xs"><a href=""><img src="images/icon_facebook_black.png" class="img-fluid"></a> <a href=""><img src="images/icon_youtube_black.png" class="img-fluid"></a> <a href=""><img src="images/icon_insta_black.png" class="img-fluid"></a></div>
+</nav>
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="container">
+        
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6 wrap_logo">
+                        <div class="text-logo wow fadeInDown">
+                            <a href="{{url('/')}}"><img src="images/logo_mahor.png" class="img-responsive"></a>
+                        </div>
+                    </div>
+                    <div class="col-3 pad_social">
+                        <div class="social"><a href=""><img src="images/icon_facebook.png" class="img-fluid"></a> <a href=""><img src="images/icon_youtube.png" class="img-fluid"></a> <a href=""><img src="images/icon_insta.png" class="img-fluid"></a></div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="col-12">
+                <div class="row">
+                    <nav class="wrap_mainmenu wow fadeInDown">
+                    <ul class="mainmenu mainmenu-align">
+                        <li>
+                            <a href="{{url('/')}}">
+                        {{Session::get('lang')=='th'?'หน้าแรก':'Home'}}</a>
+                        </li>
+                        <li class="dic_i">I</li>
+                        <li>
+                            <a href="{{url('about')}}">
+                        เกี่ยวกับเรา</a>
+                        </li>
+                        <li class="dic_i">I</li>
+                        <li>
+                            <a href="artist.php">
+                        ศิลปินของเรา</a>
+                        </li>
+                        <li class="dic_i">I</li>
+                        <li>
+                            <a href="new.php">
+                        ข่าวสารและแกลลอรี่</a>
+                        </li>
+                        <li class="dic_i">I</li>
+                        <li>
+                            <a href="{{url('contact')}}">
+                        ติดต่อเรา</a>
+                        </li>
+                        <div class="language"><a href="" class="active">TH</a><div>I</div><a href="">EN</a></div>
+                    </ul>
+
+                </nav>
+                </div>
+            </div>
+        
+        
+    </div>
+
+</div>
+<a href="#" class="go-top"> <i class="fa fa-chevron-up"></i></a>
+<script src="secondary-expandable-navigation-master/js/main.js"></script>
+<!-- Resource jQuery -->
+<script>
+    $(document).ready(function() {
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('.go-top').fadeIn(300);
+            } else {
+                $('.go-top').fadeOut(300);
+            }
+        });
+
+        // Animate the scroll to top
+        $('.go-top').click(function(event) {
+            event.preventDefault();
+
+            $('html, body').animate({
+                scrollTop: 0
+            }, 800);
+        })
+    });
+</script>
+<script>
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('.wrap_mainmenu').addClass("sticky");
+        } else {
+            $('.wrap_mainmenu').removeClass("sticky");
+        }
+    });
+</script>        <div class="row bg_readmoreartist">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 pad_profile_ae wow fadeInDown">
+                        <div class="row">
+                            <div class="col-3"></div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="">
+                                    <img src="images/img_profile_ae.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+                        <div class="text_ae">
+                            <h1>Aea</h1>
+                            <img src="images/text_ae.png" class="img-fluid">
+                        </div>
+                        <h6>ประวัติส่วนตัว</h6>
+                        <p>เอ้ อุเทน หรือ เอ้ อุเทน พักพา หนุ่มนักร้องสู้ชีวิต สัญชาติไทยแท้ หลังจากที่เดินสายร้องเพลงแสวงโชคมาทั้งชีวิต ในปี 2018 นี้เขามาพร้อมกับโอกาสได้ปล่อย ซิงเกิ้ลแรกในชีวิตกับค่าย มโหรีมิวสิค ค่ายเพลงน้องใหม่ในเพลงชื่อว่า “ผู้หญิงก็ควาย ผู้ชายก็ควายกว่า” กับแนวดนตรีป็อปร็อคฟังสบายๆ เนื้อเพลงแรงๆตรงๆ มีเมโลดี้ที่จำได้ง่าย
+                        </p>
+                        <p> รวมกับคุณภาพเสียงหวานที่เป็นเอกลักษณ์ของหนุ่มเอ้ จากการฝึกฝนอย่างหนักด้วยตนเอง ทำให้เพลงนี้โดนใจทุกเพศทุกวัย โดยที่จำนวนวิวใน Youtube กำลังเพิ่มขึ้นอย่างรวดเร็ว</p>
+                        <!-- <div class="row pad_img_profile">
+                            <div class="col-12 col-md-6 col-lg-6 pad_xs_profile">
+                                <div class="">
+                                    <img src="images/img_profile_ae1.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="">
+                                    <img src="images/img_profile_ae2.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                        </div> -->
+                        <table class="table table-bordered"><tbody><tr><td><p><iframe frameborder="0" src="//www.youtube.com/embed/015aJWY-N7U" width="640" height="360" class="note-video-clip"></iframe><br></p></td><td><p><iframe frameborder="0" src="//www.youtube.com/embed/2eGun2xOMZc" width="640" height="360" class="note-video-clip"></iframe><br></p></td></tr><tr><td><p><iframe frameborder="0" src="//www.youtube.com/embed/mv4YeGRjLo8" width="640" height="360" class="note-video-clip"></iframe><br></p></td><td><p><iframe frameborder="0" src="//www.youtube.com/embed/wB96ndTp0gM" width="640" height="360" class="note-video-clip"></iframe><br></p></td></tr><tr><td><br></td><td><br></td></tr><tr><td><br></td><td><br></td></tr></tbody></table>
+                        <p>ซึ่งในบทเพลงผู้หญิงก็ควาย ผู้ชายก็ควายกว่านั้น จะเป็นเรื่องราวชีวิตสู่เส้นทางอันเป็นจุดจบของผู้ชายเจ้าชู้ ที่มองข้ามความรักที่ดีที่สุด เพียงแค่คิดว่าเจอสิ่ง ที่ดีกว่า แต่กลับมองข้ามสิ่งที่ดีที่สุดแท้จริงไป</p>
+                        <p>โดยมีรูปแบบการนำเสนอที่น่าสนใจและมีความเกี่ยวข้องกับเพศที่ 3 และเป็นบทเรียนสำคัญให้กับผู้ชายเจ้าชู้หลายๆคน ให้ได้เตือนสติเตือนใจไว้ว่า หากมีความรักที่ดี แล้ว ก็ควรรักษามันไว้ให้ดี อย่าไปหลงระเริงต่อสิ่งเร้าภายนอกหรืออะไรที่ฉายฉวย ควรจะมั่นคงกับความรัก มิฉะนั้นอาจจะมีจุดจบแบบในเอ็มวีเพลงนี้ก็ได้</p>
+                        <p>มาถึงเพลงที่สอง “เป เท เย” ซิงเกิ้ลใหม่ล่าสุด พร้อมจังหวะสนุกๆ เนื้อหาทะเส้นๆ มาพร้อมกับแรปเปอร์ในตำนานของเมืองไทย “ดาจิม” กับนางเอกสารสุดเซ็กซี่ “เจสซี่ วาร์ด และ DJ อาร์กี้ ฐิติวรดา”</p>
+                        <p>ซึ่งเนื้อเพลงจะเป็นภาษาวัยรุ่นที่ทุกคนพูดกันพร้อมด้วยเมโลดี้ที่ติดหู จึงทำให้เพลงนี้เป็นเพลงที่นักดนตรี กลางคืนชองนำไปเล่นกันตามร้านอาหาร หรือร้านเหล้า อย่างมากมาย
+                        </p>
+                        <div class="line"></div>
+                        <h6>ผลงานที่ผ่านมา</h6>
+                        <div class="row wow fadeInDown">
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="vedio_img">
+                                    <iframe width="100%" height="345" src="https://www.youtube.com/embed/015aJWY-N7U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <p>รางวัลรองชนะเลิศ Cyberry Music Contest season 1</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="vedio_img">
+                                    <iframe width="100%" height="345" src="https://www.youtube.com/embed/2eGun2xOMZc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <p>รายการ Singer Auction</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="vedio_img">
+                                    <iframe width="100%" height="345" src="https://www.youtube.com/embed/mv4YeGRjLo8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <p>รายการ Stage Fighter</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="vedio_img">
+                                    <iframe width="100%" height="345" src="https://www.youtube.com/embed/wB96ndTp0gM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <p>รายการ ดันดารา</p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="vedio_img">
+                                    <iframe width="100%" height="345" src="https://www.youtube.com/embed/5GnV9G4xg4E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <p>Single กับค่าย Mahori Music “ผู้หญิงก็ควาย ผู้ชายก็ควายกว่า” และ “เป เท เย”</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg_footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="menu_footer">
+                    <li><a href="{{url('/')}}">{{Session::get('lang')=='th'?'หน้าแรก':'Home'}}</a></li>
+                    <li class="line_footer">I</li>
+                    <li><a href="{{url('about')}}">เกี่ยวกับเรา</a></li>
+                    <li class="line_footer">I</li>
+                    <li><a href="artist.php">ศิลปินของเรา</a></li>
+                    <li class="line_footer">I</li>
+                    <li><a href="new.php">ข่าวสารและแกลลอรี่</a></li>
+                    <li class="line_footer">I</li>
+                    <li><a href="{{url('contact')}}">ติดต่อเรา</a></li>
+                </ul>
+                <div class="copyright"><p>Copyright © 2020 Mahorimusic | All Rights Reserved.</p></div>
+            </div>
+        </div>
+    </div>
+</div>    </div>
+    <script>
+        $('.mainmenu li:nth-child(5) a').addClass('active');
+    </script>
+</body>
+
+</html>

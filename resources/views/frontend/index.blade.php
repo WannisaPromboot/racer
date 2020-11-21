@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Racer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{asset('frontend/css/open-iconic-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/animate.css')}}">
+    
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/magnific-popup.css')}}">
+
+    <link rel="stylesheet" href="{{asset('frontend/css/aos.css')}}">
+
+    <link rel="stylesheet" href="{{asset('frontend/css/ionicons.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/jquery.timepicker.css')}}">
+
+    
+    <link rel="stylesheet" href="{{asset('frontend/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/icomoon.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+  </head>
+
+  <style>
+	.img-logo {
+	  width: 60%;
+}
+.site-section {
+    padding: 3rem 0;
+}
+.pro-img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+}
+.pro-img2 {
+	width: 100%;
+    height: 225px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.pro-img3 {
+    width: 100%;
+    height: 460px;
+	object-fit: cover;
+	margin-bottom: 10px;
+}
+.title-num{
+	font-size: 40px;
+	color: #00b9e9;
+	font-family: 'Prompt', sans-serif;
+	font-weight: 600;
+}
+.pro-title{
+	font-size: 20px;
+	color: #00b9e9;
+	font-family: 'Prompt', sans-serif;
+	font-weight: 400;
+}
+.popular{
+	font-size: 18px;
+	color:#777;
+	font-family: 'Prompt', sans-serif;
+	font-weight: 400;
+}
+.next-pro{
+	font-size: 16px;
+	color:#777;
+	font-family: 'Prompt', sans-serif;
+}
+.pro-index{
+	margin: 0px 0px;
+}
+#box{
+	background-color: #fff;
+    padding: 10px 20px 10px 20px;
+	margin-top: 20px;
+	width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+#margin-pro{
+	margin: 0px 15px;
+}
+#pro-mar{
+    /* margin-left: -30px;
+	margin-right: -30px; */
+	padding-left: 5px;
+    padding-right: 5px;
+
+}
+.line-index{
+	border-top: 1px solid #00b9e9;
+	margin-top: 0rem;
+    margin-bottom: 20px;
+}
+a:hover, a:focus {
+    text-decoration: none;
+    color: #00b9e9;
+}
+#box2 {
+    background-color: #fff;
+    padding: 40px 0px 40px 0px;
+    margin-top: 20px;
+    width: 100%;
+    /* margin-left: 15px; */
+    /* margin-right: 15px; */
+    margin-bottom: -50px;
+}
+.pro-img4{
+	width: 100%;
+    margin-top: 25px;
+}
+.owl-carousel.home-slider .owl-dots {
+    display: block;
+}
+
+
+@media (max-width: 1300px){
+	#margin-pro {
+    margin: 0px 7px;
+}
+
+}
+
+@media (max-width: 768px){
+	.pro-img3 {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.pro-img2 {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+#margin-pro {
+    margin: 0px 3px;
+}
+.next-pro {
+    font-size: 12px;
+}
+.popular {
+    font-size: 14px;
+}
+.pro-title {
+    font-size: 18px;
+}
+.title-num {
+    font-size: 28px;
+}
+.pro-img {
+    width: 100%;
+    height: 205px;
+    object-fit: cover;
+}
+.owl-carousel.home-slider .slider-item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* height: 650px; */
+    height: 290px;
+    position: relative;
+    z-index: 0;
+}
+.owl-carousel.home-slider {
+    position: relative;
+    /* height: 650px; */
+    height: 290px;
+    z-index: 0;
+}
+
+}
+
+@media (max-width: 525px){
+	.pro-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.owl-carousel.home-slider .slider-item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* height: 650px; */
+    height: 165px;
+    position: relative;
+    z-index: 0;
+}
+.owl-carousel.home-slider {
+    position: relative;
+    /* height: 650px; */
+    height: 165px;
+    z-index: 0;
+}
+.pro-img2 {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+#con-pro{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+#pro-mar {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+}
+
+@media (max-width: 375px){
+	.pro-img2 {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.pro-img3 {
+    width: 100%;
+    height: 238px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+
+}
+
+</style>
+
+  <body class="goto-here">
+	<div class="py-1 bg-primary">
+	<div class="container">
+		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+			<div class="col-lg-12 d-block">
+				<div class="row d-flex">
+
+					<div class="col-md-8 pr-4 d-flex topper align-items-center">
+						<div class="icon mr-2 d-flex justify-content-center align-items-center">
+							<span class="icon-phone2" style="color:#00b9e9"></span>
+						<span class="text"> : xx xxx xxxx</span></div>
+						<div class="icon mr-2 d-flex justify-content-center align-items-center">
+							<span class="icon icon-envelope" style="color:#00b9e9"></span>
+						<span class="text"> : Racer.co.th</span></div>
+						<div class="icon mr-2 d-flex justify-content-center align-items-center">
+							<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
+						<span class="text"> : วันจันทร์ - วันเสาร์ : 08.00น. - 19.00น.</span></div>
+					</div>
+					<div class="col-md-4">
+						<div class="icon mr-2 d-flex justify-content-center" id="social">
+							<a href="#" style="color: #00b9e9;"><span class="icon-twitter"></span></a>
+						</div>
+						<div class="icon mr-2 d-flex justify-content-center" id="social">
+							<a href="#" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+						</div>
+						<div class="icon mr-2 d-flex justify-content-center" id="social">
+							<a href="#" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+					   </div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	  </div>
+</div>
+{{-- start nav --}}
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	<div class="container">
+	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="oi oi-menu"></span> Menu
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="ftco-nav">
+
+		  <div class="col-md-8">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
+		  <li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+		  <div class="dropdown-menu" aria-labelledby="dropdown04">
+			  <a class="dropdown-item" href="{{url('/product')}}">Lighting</a>
+			  <a class="dropdown-item" href="{{url('/product')}}">Decorative</a>
+			<a class="dropdown-item" href="{{url('/product')}}">Innovation</a>
+			<a class="dropdown-item" href="{{url('/product')}}">Equipment</a>
+			<a class="dropdown-item" href="{{url('/product')}}">Cable</a>
+		  </div>
+		</li>
+		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
+		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+		  <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
+			<div class="dropdown-menu" aria-labelledby="dropdown04">
+				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
+				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+			</div>
+		  </li>
+		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
+		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
+
+		</ul>
+	</div>
+	<div class="col-md-4" id="pay-nemu">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
+		</ul>
+	</div>
+
+
+	  </div>
+	</div>
+  </nav>
+    <!-- END nav -->
+
+    <section id="home-section" class="hero">
+		  <div class="home-slider owl-carousel">
+	      <div class="slider-item" style="background-image: url({{asset('frontend/images/pro004.jpg')}});">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+	            <!-- <div class="col-md-12 ftco-animate text-center">
+	              <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
+	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+	              <p><a href="#" class="btn btn-primary">View Details</a></p>
+	            </div> -->
+
+	          </div>
+	        </div>
+	      </div>
+
+	      <div class="slider-item" style="background-image: url({{asset('frontend/images/pro001.jpg')}});">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+	            <!-- <div class="col-sm-12 ftco-animate text-center">
+	              <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
+	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+	              <p><a href="#" class="btn btn-primary">View Details</a></p>
+	            </div> -->
+
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+    </section>
+
+	<div class="section-back">
+
+		<div class="site-section bg-light">
+
+		<div class="container">
+			<div class="row">
+			   
+				<div class="col-md-6" id="">
+					<a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a>
+				</div>
+				<div class="col-md-6" id="">
+					<a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                        
+				</div>
+
+
+	
+			</div>
+		</div>
+		
+
+			<div class="container">
+				<div class="row">
+				   <div id="box">
+
+
+					<div class="container">
+						<div class="row">
+
+					<div class="col-md-12" >
+						<p class="pro-index"><span class="title-num" id="margin-pro">01</span> <span class="pro-title" id="margin-pro">Lighting</span><span class="popular" id="margin-pro"> #Popular searches</span><a href="#" class="next-pro" id="margin-pro"> Light Bulb</a><a href="#" class="next-pro" id="margin-pro"> Light Bulb</a> <a href="#" class="next-pro" id="margin-pro"> Light Bulb</a> <a href="#" class="next-pro" id="margin-pro"> Light test</a> <a href="#" class="next-pro" id="margin-pro"> Free Delivery</a></p>
+						<hr class="line-index">
+					</div>
+
+					</div>
+					</div>
+
+					<div class="container" >
+						<div class="row">
+
+					<div class="col-md-6" id="pro-mar">
+						<a href="{{url('/detail-product')}}"><img class="pro-img3" src="{{asset('frontend/images/pro01.jpg')}}"></a>
+					</div>
+					<div class="col-md-6" id="pro-mar">
+						
+						<div class="container" id="con-pro">
+							<div class="row" >
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro02.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro03.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro04.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro05.jpg')}}"></a>
+						</div>
+						</div>
+						</div>
+
+					</div>
+
+					</div>
+					</div>
+
+
+				</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+				   <div id="box">
+
+
+					<div class="container">
+						<div class="row">
+
+					<div class="col-md-12" >
+						<p class="pro-index"><span class="title-num" id="margin-pro">02</span> <span class="pro-title" id="margin-pro">Decorative</span><span class="popular" id="margin-pro"> #Popular searches</span><a href="#" class="next-pro" id="margin-pro"> Decorative</a><a href="#" class="next-pro" id="margin-pro"> Decorative</a> <a href="#" class="next-pro" id="margin-pro"> Decorative</a> <a href="#" class="next-pro" id="margin-pro"> Decorative</a> <a href="#" class="next-pro" id="margin-pro"> Free Delivery</a></p>
+						<hr class="line-index">
+					</div>
+
+					</div>
+					</div>
+
+					<div class="container" >
+						<div class="row">
+
+					<div class="col-md-6" id="pro-mar">
+						<a href="#"><img class="pro-img3" src="{{asset('frontend/images/pro01.jpg')}}"></a>
+					</div>
+					<div class="col-md-6" id="pro-mar">
+						
+						<div class="container" id="con-pro">
+							<div class="row" >
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro02.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro03.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro04.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro05.jpg')}}"></a>
+						</div>
+						</div>
+						</div>
+
+					</div>
+
+					</div>
+					</div>
+
+
+				</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+				   <div id="box">
+
+
+					<div class="container">
+						<div class="row">
+
+					<div class="col-md-12" >
+						<p class="pro-index"><span class="title-num" id="margin-pro">03</span> <span class="pro-title" id="margin-pro">Innovation</span><span class="popular" id="margin-pro"> #Popular searches</span><a href="#" class="next-pro" id="margin-pro"> Innovation</a><a href="#" class="next-pro" id="margin-pro"> Innovation</a> <a href="#" class="next-pro" id="margin-pro"> Innovation</a><a href="#" class="next-pro" id="margin-pro"> Free Delivery</a></p>
+						<hr class="line-index">
+					</div>
+
+					</div>
+					</div>
+
+					<div class="container" >
+						<div class="row">
+
+					<div class="col-md-6" id="pro-mar">
+						<a href="#"><img class="pro-img3" src="{{asset('frontend/images/pro01.jpg')}}"></a>
+					</div>
+					<div class="col-md-6" id="pro-mar">
+						
+						<div class="container" id="con-pro">
+							<div class="row" >
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro02.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro03.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro04.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro05.jpg')}}"></a>
+						</div>
+						</div>
+						</div>
+
+					</div>
+
+					</div>
+					</div>
+
+
+				</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+				   <div id="box">
+
+
+					<div class="container">
+						<div class="row">
+
+					<div class="col-md-12" >
+						<p class="pro-index"><span class="title-num" id="margin-pro">04</span> <span class="pro-title" id="margin-pro">Lighting</span><span class="popular" id="margin-pro"> #Popular searches</span><a href="#" class="next-pro" id="margin-pro"> Light Bulb</a><a href="#" class="next-pro" id="margin-pro"> Light Bulb</a> <a href="#" class="next-pro" id="margin-pro"> Light Bulb</a> <a href="#" class="next-pro" id="margin-pro"> Light test</a> <a href="#" class="next-pro" id="margin-pro"> Free Delivery</a></p>
+						<hr class="line-index">
+					</div>
+
+					</div>
+					</div>
+
+					<div class="container" >
+						<div class="row">
+
+					<div class="col-md-6" id="pro-mar">
+						<a href="#"><img class="pro-img3" src="{{asset('frontend/images/pro01.jpg')}}"></a>
+					</div>
+					<div class="col-md-6" id="pro-mar">
+						
+						<div class="container" id="con-pro">
+							<div class="row" >
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro02.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro03.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro04.jpg')}}"></a>
+						</div>
+						<div class="col-md-6" id="pro-mar">
+							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro05.jpg')}}"></a>
+						</div>
+						</div>
+						</div>
+
+					</div>
+
+					</div>
+					</div>
+
+
+				</div>
+				</div>
+			</div>
+
+
+       <div id="box2">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-12" >
+						<a href="promotion.php"><img class="pro-img2" src="{{asset('frontend/images/product01.jpg')}}"></a>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-12" >
+						<center><img class="pro-img4" src="{{asset('frontend/images/icon.JPG')}}"></center>
+					</div>
+				
+
+				</div>
+			</div>
+
+		</div>
+		
+
+
+
+
+	</div>
+
+	</div>
+
+
+
+
+
+
+	    <footer class="ftco-footer ftco-section">
+      <div class="container">
+      	<!-- <div class="row">
+      		<div class="mouse">
+						<a href="#" class="mouse-icon">
+							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+						</a>
+					</div>
+      	</div> -->
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Vegefoods</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+              <!-- <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul> -->
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Menu</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Shop</a></li>
+                <li><a href="#" class="py-2 d-block">About</a></li>
+                <li><a href="#" class="py-2 d-block">Journal</a></li>
+                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Help</h2>
+              <div class="d-flex">
+	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+	              </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+	                <li><a href="#" class="py-2 d-block">Contact</a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+    <footer class="ftco-footer2 ftco-section2">
+        <div class="container">
+            <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p class="copyright-text">
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
+						 
+						</p>
+          </div>
+        </div>
+        </div>
+        </footer>
+
+
+  <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
+  <script src="{{asset('frontend/js/jquery-migrate-3.0.1.min.js')}}"></script>
+  <script src="{{asset('frontend/js/popper.min.js')}}"></script>
+  <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('frontend/js/jquery.easing.1.3.js')}}"></script>
+  <script src="{{asset('frontend/js/jquery.waypoints.min.js')}}"></script>
+  <script src="{{asset('frontend/js/jquery.stellar.min.js')}}"></script>
+  <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
+  <script src="{{asset('frontend/js/jquery.magnific-popup.min.js')}}"></script>
+  <script src="{{asset('frontend/js/aos.js')}}"></script>
+  <script src="{{asset('frontend/js/jquery.animateNumber.min.js')}}"></script>
+  <script src="{{asset('frontend/js/bootstrap-datepicker.js')}}"></script>
+  <script src="{{asset('frontend/js/scrollax.min.js')}}"></script>
+  <script src="{{asset('frontend/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false')}}"></script>
+  <script src="{{asset('frontend/js/google-map.js')}}"></script>
+  <script src="{{asset('frontend/js/main.js')}}"></script>
+    
+  </body>
+</html>
