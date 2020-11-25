@@ -5,6 +5,9 @@
     #sidebar-menu .has-arrow:after {
         color: black !important;
     }
+    li .mm-active .active {
+                color: #000000 !important;
+            }
 </style>
 <!-- ========== Left Sidebar Start ========== -->
 <div class="vertical-menu" style="background-color: white">
