@@ -15,7 +15,7 @@ class categoryController extends Controller
     public function ShowcategoryContent(){
 
         $data = array(
-            'category'  => \App\Category::all(),
+            'category'  => \App\Category::orderby('sort','asc')->get(),
         );
         return view('Admin.category.category-content',$data);
     }
@@ -29,10 +29,18 @@ class categoryController extends Controller
     }
 
     public function savecategory(Request $request){
+        $checksort = Category::orderby('sort','desc')->first();
+        if(empty( $checksort)){
+            $sort = 1;
+        }else{
+            $sort =  $checksort->sort + 1;
+        }
+
         $NewCategory = New Category;
 
         $NewCategory->category_name_th = $request->category_th;
         $NewCategory->category_name_en = $request->category_en;
+        $NewCategory->sort = $sort;
 
         $NewCategory->save();
 
@@ -53,6 +61,13 @@ class categoryController extends Controller
         $UpdateCategory->save();
 
         return redirect('categorycontent')->with('Save','บันทึกข้อมูลสำเร็จ');
+    }
+
+
+    public function changsortcate(Request $request){
+        $updateCate =  Category::where('id_category',$request->id)->first();
+        $updateCate->sort = $request->sort;
+        $updateCate->save();
     }
 
     //////////////sub 
@@ -85,11 +100,21 @@ class categoryController extends Controller
     }
 
     public function SaveSubcategory(Request $request){
+        //dd($request->all());
+        // $checksort = SubCategory::orderby('sort','desc')->first();
+        // // if(empty( $checksort)){
+        // //     $sort = 1;
+        // // }else{
+        // //     $sort =  $checksort->sort + 1;
+        // // }
+        
         $NewSubCategory = New SubCategory;
 
         $NewSubCategory->id_category = $request->category;
         $NewSubCategory->subcategory_name_th = $request->subcategory_name_th;
         $NewSubCategory->subcategory_name_en = $request->subcategory_name_en;
+
+        //dd($NewSubCategory);
 
         $NewSubCategory->save();
 
@@ -98,7 +123,6 @@ class categoryController extends Controller
 
 
     public function UpdateSubcategory(Request $request,$id){
-        dd($request->all());
         $updateSubCategory = SubCategory::where('id_subcategory',$id)->first();
         if(isset( $request->category)){
             $updateSubCategory->id_category = $request->category;
@@ -115,6 +139,7 @@ class categoryController extends Controller
 
         return redirect('subcategorycontent')->with('Save','บันทึกข้อมูลสำเร็จ');
     }
+
 
    
 

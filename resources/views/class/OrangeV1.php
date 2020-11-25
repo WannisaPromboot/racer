@@ -592,9 +592,9 @@ class OrangeV1
                                 // only validate the inputs that have the required attribute
                                 if(inputs[i].hasAttribute("required")){
                                     if(inputs[i].value == ""){
-                                        // found an empty field that is required
+                                         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
                                         inputs[i].focus();
-                                        // alert("Please fill all required fields");
+                                   
                                         return false;
                                     }
                                 }

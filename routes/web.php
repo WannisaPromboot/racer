@@ -194,7 +194,7 @@ Route::get('/categorycontent', 'Admin\categoryController@ShowcategoryContent');
 Route::get('/editcategory/{id}', 'Admin\categoryController@Editcategory');
 Route::post('/savecategory', 'Admin\categoryController@Savecategory');
 Route::post('/updatecategory/{id}', 'Admin\categoryController@Updatecategory');
-Route::get('/displaycategory', 'Admin\categoryController@Displaycategory');
+Route::get('/changsortcate', 'Admin\categoryController@changsortcate');
 
 /////->type2
 Route::get('/addsubcategory', 'Admin\categoryController@Addsubcategory');
@@ -205,6 +205,13 @@ Route::post('/updatesubcategory/{id}', 'Admin\categoryController@UpdateSubcatego
 Route::get('/getcategory', 'Admin\categoryController@Getcategory');
 
 
+///////////////product
+Route::get('/productcontent', 'Admin\ProductController@ProductContent');
+Route::get('/addproduct', 'Admin\ProductController@AddProduct');
+Route::get('/editproduct/{id}', 'Admin\ProductController@EditProduct');
+Route::post('/saveproduct', 'Admin\ProductController@SaveProduct');
+Route::post('/updateproduct', 'Admin\ProductController@UpdateProduct');
+Route::get('/getsubcate', 'Admin\ProductController@GetSubCate');
 
 
 ////////////////////blog///////////////////////////

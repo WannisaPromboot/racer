@@ -42,7 +42,7 @@
                 <table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
-                        <th>{{Session::get('lang')=='th'?'ลำดับที่' :'No.'}}</th>
+                        <th>{{Session::get('lang')=='th'?'#' :'No.'}}</th>
                         <th>{{Session::get('lang')=='th'?'เมนูหลัก ' :'Category'}}</th>
                         <th>{{Session::get('lang')=='th'?'หมวดหมู่ย่อย 1' :'Sub Category 1'}}</th>
                     </tr>
@@ -59,7 +59,7 @@
                                         <?php  $subcate = \App\SubCategory::where('id_category',$_category->id_category)->get(); ?>
                                         @foreach ($subcate as $_subcate)
                                         <tr>
-                                            <td>{{$_subcate->subcategory_name_th}}</td>
+                                            <td style="width: 65%;">{{$_subcate->subcategory_name_th}}</td>
                                             <td>
                                                 <a href="{{url('editsubcategory/'.$_subcate->id_subcategory.'')}}" class="btn btn-warning" >{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
                                             </td>
@@ -68,8 +68,6 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                       
-                                    
                                 </table>
                             </td>
 
@@ -115,24 +113,18 @@
 </script>
 
 <script>
-    var A = "{{Session::get('Save')}}";
-    if(A){
-        swal(A);
-    }
-            
-    function viewmenu (id){
-        console.log(id);
-        $.ajax({
-            url: '{{ url("viewtype")}}/'+ encodeURIComponent(id),
-            type: 'GET',
-            dataType: 'HTML',
-            success: function(data) {
-                $('#sub').html(data);
-                $('#main').modal('show');
-            }
-        });
-    }
-    
+
+    $(document).ready(function(){
+        var A = "{{Session::get('Save')}}";
+        if(A){
+            Swal.fire({
+                text: A,
+                type: "success",,
+            });
+        }
+    });
+
+        
     function deldata(id){
         Swal.fire({
         text: "คุณต้องการลบข้อมูลใช่หรือไม่",

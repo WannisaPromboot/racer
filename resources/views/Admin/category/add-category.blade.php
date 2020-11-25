@@ -63,12 +63,28 @@
                                 </div>
                             </div>
                             <br>
+                            <div class="row">
+                                <?php     $checksort = \App\Category::orderby('sort','desc')->first();
+                                
+                                            if(empty( $checksort)){
+                                                $sort = 1;
+                                            }else{
+                                                $sort =  $checksort->sort + 1;
+                                            }
+
+                                 ?>
+                                <div class="col-3">
+                                    <b>ลำดับการแสดง</b>
+                                </div>
+                                <div class="col-6">{{$sort}}</div>
+                            </div>
                             <div class="row mt-5">
                                 <div class="col-sm text-left">
                                     <a  href="{{url('categorycontent')}}" class="btn btn-danger">กลับ</a>
                                 </div>
                                 <div class="col-sm text-right">
                                     <button  type="button" onclick="save('savemain')" class="btn btn-success" >ยืนยัน</button>
+                                    {!! OrangeV1::AlertMessage('savemain') !!}
                                 </div>
                             </div>
                         </div>

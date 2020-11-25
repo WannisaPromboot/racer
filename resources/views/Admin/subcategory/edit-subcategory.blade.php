@@ -82,6 +82,7 @@
                                         </div>
                                         <div class="col-sm text-right">
                                             <button  type="button" onclick="save('updatetype')" class="btn btn-success" >{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
+                                            {!! OrangeV1::AlertMessage('updatetype') !!}
                                         </div>
                                     </div>
                             </div>
@@ -133,22 +134,6 @@ $('.icon').change(function(){
         });
  });
 
- function save(formname){
-    Swal.fire({
-        text: "คุณต้องการบันทึกข้อมูลใช้หรือไม่",
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'save'
-        }).then((result)=>{
-            if (result.value) {
-                console.log(formname);
-                $('#'+formname+'').submit();
-                }
-        });
-    }
-
     function canclebtn(){
     Swal.fire({
         text: "คุณต้องการยกเลิกการแก้ไขข้อมูลใช่หรือไม่",
@@ -160,7 +145,7 @@ $('.icon').change(function(){
         cancelButtonText: 'ไม่ใช่',
         }).then((result)=>{
             if (result.value) {
-                    window.location.href = "{{ url('typecontent')}}";
+                    window.location.href = "{{ url('subcategorycontent')}}";
                 }
         });
     }

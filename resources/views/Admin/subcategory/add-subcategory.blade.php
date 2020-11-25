@@ -76,10 +76,11 @@
                                 <br>
                                 <div class="row mt-5">
                                     <div class="col-sm text-left">
-                                        <a  href="{{url('typecontent')}}" class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
+                                        <a  href="{{url('subcategorycontent')}}" class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
                                     </div>
                                     <div class="col-sm text-right">
                                         <button  type="button" onclick="save('savetype')" class="btn btn-success" >{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
+                                        {!! OrangeV1::AlertMessage('savetype') !!}
                                     </div>
                                 </div>
                         </div>
@@ -114,44 +115,5 @@
 
 <!-- tag input -->
 <script  src="{{ asset('assets/libs/bootstrap-tagsinput/src/bootstrap-tagsinput.js') }}"></script> 
-
-<script>
-$('.icon').change(function(){
-    value = $(this).val();
-    $.ajax({
-                url: "{{ url('geticon') }}",
-                method : 'GET',
-                data : { 'value' : value  },
-                dataType : 'html', 
-                success:function(result){
-                    $('#icon').html(result)
-
-                }
-        });
- });
-
- function save(formname){
-    Swal.fire({
-        text: "คุณต้องการบันทึกข้อมูลใช้หรือไม่",
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'save'
-        }).then((result)=>{
-            if (result.value) {
-                console.log(formname);
-                $('#'+formname+'').submit();
-                }
-        });
-    }
-
-</script>
-<script>
-    var B = "{{Session::get('Save')}}";
-    if(B){
-        swal(B);
-    }
-</script>
 
 @endsection
