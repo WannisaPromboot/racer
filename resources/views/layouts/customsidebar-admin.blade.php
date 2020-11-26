@@ -23,7 +23,7 @@
                     </a> 
                 </li>
                 <li>
-                    <a href="{{url('usercontent')}}" class="waves-effect">
+                    <a href="javascript:void(0)" class="waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/contact-us.png')}}">
                         <span>การจัดการสิทธิ์และบทบาท</span>
                     </a> 
@@ -45,13 +45,16 @@
                         <img src="{{asset('assets/images/b2b/icon/grid.png')}}">
                         <span>{{Session::get('lang')=='th'?'การจัดการหมวดหมู่':'Category Management'}}</span>
                     </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{url('mainmenucontent')}}">{{Session::get('lang')=='th'?'เมนูหลัก':'Category'}}</a></li>
-                            <li><a href="{{url('typecontent')}}">{{Session::get('lang')=='th'?'หมวดหมู่ย่อย 1':'Sub Category 1'}}</a></li>
-                            <li><a href="{{url('subtypecontent')}}">{{Session::get('lang')=='th'?'หมวดหมู่ย่อย 2':'Sub Category 2'}}</a></li>
-                            <li><a href="{{url('subsubtypecontent')}}">{{Session::get('lang')=='th'?'หมวดหมู่ย่อย 3':'Sub Category 3'}}</a></li>
-                            <li><a href="{{url('iconcontent')}}">{{Session::get('lang')=='th'?'ไอคอน':'Icon'}}</a></li>
-                        </ul> 
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{url('categorycontent')}}">{{Session::get('lang')=='th'?'เมนูหลัก':'Category'}}</a></li>
+                        <li><a href="{{url('subcategorycontent')}}">{{Session::get('lang')=='th'?'หมวดหมู่ย่อย 1':'Sub Category 1'}}</a></li>
+                    </ul> 
+                </li>
+                <li>
+                    <a href="{{url('productcontent')}}" class=" waves-effect">
+                        <img src="{{asset('assets/images/b2b/icon/lightbulb.png')}}">
+                        <span>{{Session::get('lang')=='th'?'สินค้า':'product'}}</span>
+                    </a> 
                 </li>
                 <li>
                     <a href="{{url('bankaccountcontent')}}" class=" waves-effect">
