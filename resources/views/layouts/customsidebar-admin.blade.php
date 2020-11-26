@@ -7,7 +7,10 @@
     }
     li .mm-active .active {
                 color: #000000 !important;
-            }
+     }
+     #sidebar-menu ul li {
+        color: #a6b0cf !important;
+     }
 </style>
 <!-- ========== Left Sidebar Start ========== -->
 <div class="vertical-menu" style="background-color: white">

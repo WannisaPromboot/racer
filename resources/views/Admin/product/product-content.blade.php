@@ -50,6 +50,7 @@
                     <tr>
                         <th>#</th>
                         <th style="width: 100px">ไม่แสดง</th>
+                        <th>SAP CODE</th>
                         <th>ชื่อสินค้าภาษาไทย</th>
                         <th>ชื่อสินค้าภาษาอังกฤษ</th>
                         <th>แก้ไข</th>
@@ -62,12 +63,13 @@
                         <tr>
                             <td>{{$i}}</td>
                             <td>
-                                <input type="checkbox" name="display" class="form-control text-center" value="{{$item->sort}}" ref="{{$item->id_product}}" >
+                                <input type="checkbox" name="display" class="form-control text-center display" value="{{$item->sort}}" ref="{{$item->id_product}}" {{$item->product_display == 1 ? 'checked':''}}>
                             </td>
+                            <td>{{$item->sap_code}}</td>
                             <td>{{$item->product_name_th}}</td>
                             <td>{{$item->product_name_en}}</td>
                             <td>
-                                <a href="{{url('editcategory/'.$item->id_product.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
+                                <a href="{{url('editproduct/'.$item->id_product.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
                             </td>
                             <td>
                                 <a href="javascript:void(0)" class="btn btn-danger btn-sm">{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>
@@ -121,36 +123,88 @@
     });
     
 
-    function updatesort(value,id){
-        $.ajax({
-            url: '{{ url("changsortcate")}}',
-            type: 'GET',
-            dataType: 'HTML',
-            data : {'id' : id , 'sort' : value },
-            success: function(data) {
+    // function updatesort(value,id){
+    //     $.ajax({
+    //         url: '{{ url("changsortcate")}}',
+    //         type: 'GET',
+    //         dataType: 'HTML',
+    //         data : {'id' : id , 'sort' : value },
+    //         success: function(data) {
 
-               // window.location.reload();
-            }
-        });
-    }
+    //            // window.location.reload();
+    //         }
+    //     });
+    // }
     
-</script>
-
-<script>
-    var A = "{{Session::get('Save')}}";
+    var A = "{{Session::get('save')}}";
     if(A){
         
         Swal.fire({
             text: A,
             type: "success",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "ใช่",
-            cancelButtonText: "ไม่ใช่",
         });
 
     }
+
+
+    /////display product 
+    $('.display').click(function(){
+    console.log($(this).text());
+        if($(this).is(':checked')){
+            Swal.fire({
+                text: "คุณต้องการปิดการแสดงของสินค้าใช่หรือไม่",
+                type: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "ใช่",
+                cancelButtonText: "ไม่ใช่",
+                }).then((result)=>{
+                    if (result.value) {
+                        $.ajax({
+                                url: '{{ url("displayproduct")}}',
+                                type: 'GET',
+                                dataType: 'HTML',
+                                data : {'id' : $(this).attr('ref') , 'check' : 1 },
+                                success: function(data) {
+                                    Swal.fire({
+                                        text: "ปิดการแสดงสินค้าเรียบร้อย",
+                                        type: "success",
+                                    });
+                            
+                                }
+                            });
+                        }
+                });
+
+        }else{
+            Swal.fire({
+                text: "คุณต้องการเปิดการแสดงของสินค้าใช่หรือไม่",
+                type: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "ใช่",
+                cancelButtonText: "ไม่ใช่",
+                }).then((result)=>{
+                    if (result.value) {
+                        $.ajax({
+                                url: '{{ url("displayproduct")}}',
+                                type: 'GET',
+                                dataType: 'HTML',
+                                data : {'id' : $(this).attr('ref') , 'check' : 0 },
+                                success: function(data) {
+                                    Swal.fire({
+                                        text: "ปิดการแสดงสินค้าเรียบร้อย",
+                                        type: "success",
+                                    });
+                            
+                                }
+                            });
+                        }
+                });
+        }   
+    });
 
 </script>
 

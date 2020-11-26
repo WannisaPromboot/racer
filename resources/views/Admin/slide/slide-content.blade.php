@@ -19,10 +19,10 @@
         text-align: center;
     }
 
-    .active{
+    /* .active{
         background-color: #ffc186  !important;
         color:white !important;
-    }
+    } */
 </style>
 <!-- start page title -->
 <div class="row">

@@ -210,8 +210,9 @@ Route::get('/productcontent', 'Admin\ProductController@ProductContent');
 Route::get('/addproduct', 'Admin\ProductController@AddProduct');
 Route::get('/editproduct/{id}', 'Admin\ProductController@EditProduct');
 Route::post('/saveproduct', 'Admin\ProductController@SaveProduct');
-Route::post('/updateproduct', 'Admin\ProductController@UpdateProduct');
+Route::post('/updateproduct/{id}', 'Admin\ProductController@UpdateProduct');
 Route::get('/getsubcate', 'Admin\ProductController@GetSubCate');
+Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
 
 
 ////////////////////blog///////////////////////////
