@@ -49,7 +49,7 @@ Route::get('/detail-news', function(){
 });
 
 
-Route::get('/detail-product', function(){
+Route::get('/detail-product/{id}', function($id){
     return view('frontend.detail-product');
 });
 
@@ -71,7 +71,10 @@ Route::get('/payment', function(){
 });
 
 
-Route::get('/product', function(){
+Route::get('/product/{id}', function($id){
+    $data = array(
+        'products'  => \App\Product::where('id_category',$id)->get(),
+    );
     return view('frontend.product');
 });
 

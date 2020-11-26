@@ -135,6 +135,7 @@ a, a:hover, a:visited, a:active, a:link {
     background-color: #fff;
     color: #777;
     font-family: 'Prompt', sans-serif;
+
 }
 .faq-nav .nav-link i.mdi {
     margin-right: 5px;
@@ -310,7 +311,34 @@ div {
                             <div class="content">
                                 <div class="panel-group" id="accordion" role="tablist"
                                      aria-multiselectable="true">
-        
+                                    {{-- menu --}}
+                                    <?php $i = 1; ?>
+                                    @foreach ($menu as $item)
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" id="heading{{$i}}" role="tab">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{$item->category_name_th}}<i class="pull-right fa fa-plus"></i></a>
+                                                </h4>
+                                            </div>
+                                            <div class="panel-collapse collapse" id="collapse{{$i}}" role="tabpanel"
+                                                aria-labelledby="heading{{$i}}">
+                                                <div class="panel-body pxlr-faq-body">
+                                                    <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
+                                                        <?php  $subcate = \App\Subcategory::where('id_category',$item->id_category)->get();?>
+                                                        @foreach ($subcate as $_sub)
+                                                        <button type="button" class="nav-link" data-toggle="pill" role="tab" onclick="selectproduct({{$_sub->id_subcategory}})" aria-selected="true">
+                                                            <i class="mdi mdi-help-circle"></i> {{$_sub->subcategory_name_th}}
+                                                        </button>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php $i++; ?>
+                                    @endforeach
+
+                                     {{-- end --}}
+{{--         
                                     <div class="panel panel-default">
                                         <div class="panel-heading" id="headingOne" role="tab">
                                             <h4 class="panel-title">
@@ -463,15 +491,13 @@ div {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
         
                                 </div>
                             </div>
                         </div>
-                        
-        
-        
                     </div>
+                    {{-- start  --}}
                     <div class="col-lg-8">
                         <div class="tab-content" id="faq-tab-content">
                             <div class="tab-pane active show" id="tab1" role="tabpanel" aria-labelledby="tab1">
@@ -479,7 +505,7 @@ div {
                                     <div class="card">
                                         <div class="card-header" id="accordion-tab-1-heading-1">
                                             <h5>
-                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-1-content-1" aria-expanded="false" aria-controls="accordion-tab-1-content-1">Lighting</button>
+                                                <button class="btn btn-link" type="button" data-toggle="collapse"  aria-expanded="false" >Lighting</button>
                                             </h5>
                                         </div>
                                         <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
@@ -535,7 +561,7 @@ div {
                          
                                 </div>
                             </div>
-                            <div class="tab-pane" id="tab2" role="tabpanel" aria-labelledby="tab2">
+                            {{-- <div class="tab-pane" id="tab2" role="tabpanel" aria-labelledby="tab2">
                                 <div class="accordion" id="accordion-tab-2">
                                     <div class="card">
                                         <div class="card-header" id="accordion-tab-2-heading-1">
@@ -750,7 +776,7 @@ div {
                                     </div>
         
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -866,6 +892,10 @@ div {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
-    
+   <script>
+            function selectproduct(id){
+                    console.log(id);
+            }   
+    </script> 
   </body>
 </html>
