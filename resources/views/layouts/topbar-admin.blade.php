@@ -5,9 +5,13 @@
         }
 
         .active{
-            background-color: #87d1a0 !important;
+            background-color: #d4d4d4 !important;
             color: black !important;
         }
+
+        .mm-active .active {
+                color: #000000 !important;
+            }
 
         li a .active{
             color: black !important;
@@ -20,7 +24,7 @@
     </style>
 </head>
 <header id="page-topbar">
-    <div class="navbar-header" style="background-color: #ffc186 !important;">
+    <div class="navbar-header" style="background-color: #95ced4 !important">
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box" style="background-color: white">

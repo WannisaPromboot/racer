@@ -1,4 +1,4 @@
-<footer class="footer" style="background-color: #ffc186 !important">
+{{-- <footer class="footer" style="background-color: #ffc186 !important">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm">
@@ -8,4 +8,4 @@
             </div>
         </div>
     </div>
-</footer>
+</footer> --}}
