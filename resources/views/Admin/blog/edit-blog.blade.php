@@ -30,141 +30,96 @@
         <div class="card">
             <div class="card-body">
                 <div id="edit">
-                    <form action="{{url('updateblog/'.$item->blog_id.'')}}" method="post" enctype="multipart/form-data" id="updateblog">
+                    <form action="{{url('updateblog/'.$item->id_blog.'')}}" method="post" enctype="multipart/form-data" id="updateblog">
                         @csrf
                         <div class="row">
-                            <div class="col-3">
-                                <b>{{Session::get('lang')=='th'?'หัวข้อ (ภาษาไทย) : ' :'Title (Thailand) : '}}</b>
+                            <div class="col-2">
+                                <b>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}} : </b>
                             </div>
-                            <div class="col-5">
-                                <input type="text" class="form-control" name="title_th" value="{{$item->title_th}}" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3">
-                                <b>{{Session::get('lang')=='th'?'หัวข้อ (อังกฤษ) : ' :'Title (English) : '}}</b>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" class="form-control" name="title_en" value="{{$item->title_en}}" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3">
-                                <b>{{Session::get('lang')=='th'?'หัวข้อ (ภาษาจีน) : ' :'Title (Chainese) : '}}</b>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" class="form-control" name="title_ch" value="{{$item->title_ch}}" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3">
-                                <b>{{Session::get('lang')=='th'?'หมวดหมู่ : ' :'Category : '}} </b>
-                            </div>
-                            <div class="col-5">
-                               <select class="form-control" name="catagory">
-                                   <option>{{Session::get('lang')=='th'?'กรุณาเลือก ' :'Please Select'}}</option>
-                                   <?php  $menu = \App\Mainmenu::all(); ?>
-                                   @foreach ($menu as $_item)
-                                        <option value="{{$_item->menu_id}}" {{$item->catagory==$_item->menu_id?'selected':''}}>{{$_item->menu_th}}</option>
-                                   @endforeach
-                               </select>
-                            </div>
-                        </div>
-                        {{-- <div id="newlanguage"></div>
-                        <button type="button" class="btn" style="background-color: #03dc74 !important;color:white !important;" onclick="addtitlelanguage()">เพิ่มหัวข้อ</button> --}}
-                        <hr style=" border-top: 1px solid #556ee6;">
-                        <div class="row">
-                            <div class="col-3">
-                                <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาไทย) : ':'Detail (Thailand) : '}}</b>
-                            </div>
-                            <div class="col-sm">
-                                <textarea type="text" id="description_th"  name="description_th"  required>{{$item->description_th}}</textarea>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3">
-                                <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาอังกฤษ) : ':'Detail (English) : '}}</b>
-                            </div>
-                            <div class="col-sm">
-                                <textarea type="text" id="description_en" name="description_en" required>{{$item->description_en}}</textarea>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3">
-                                <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาจีน) : ':'Detail (Chainese) : '}}</b>
-                            </div>
-                            <div class="col-sm">
-                                <textarea type="text" id="description_ch" name="description_ch" required>{{$item->description_ch}}</textarea>
-                            </div>
-                        </div>
-                        {{-- <div id="newdeslanguage"></div>
-                        <button type="button" class="btn" style="background-color: #03dc74 !important;color:white !important;" onclick="adddeslanguage()">เพิ่มรายละเอียด</button> --}}
-                        <hr style=" border-top: 1px solid #556ee6;">
-                        <div class="row">
-                            <div class="col-sm">
-                                <h5>
-                                    <b>{{Session::get('lang')=='th'?'รูปภาพหรือลิงค์หรือวิดีโอ':'Image/Link/Video '}}</b>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2">{{Session::get('lang')=='th'?'รูปภาพ':'Image'}} : </div>
                             <div class="col-8">
-                                <input type="file" class="form-control" name="filepath" id="filepath" value="{{$item->filepath}}" onchange="readImage(this,'filepath');" >
-                                <img src="{{!empty($item->filepath)?url('storage/app/'.$item->filepath):''}}" id="imgpreview_filepath" style="max-height:200px;">
+                                <input type="file" class="form-control" name="filepath" id="filepath" value="{{$item->blog_image}}" onchange="readImage(this,'filepath');" >
+                                <img src="{{!empty($item->blog_image)?url('storage/app/'.$item->blog_image):''}}" id="imgpreview_filepath" style="max-height:200px;">
                                 {!! OrangeV1::ImagePreviewJs() !!}
                             </div>
                         </div>
-                        <br>
+                         <br>
                         <div class="row">
-                            <div class="col-2">{{Session::get('lang')=='th'?'ลิงค์':'Link'}} : </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="link" name="link" value="{{$item->link}}" >
+                            <div class="col-2">
+                                <b>{{Session::get('lang')=='th'?'หัวข้อ (ภาษาไทย) : ' :'Title (Thailand) : '}}</b>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="form-control" name="blog_th" value="{{$item->blog_th}}" required>
                             </div>
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-2">{{Session::get('lang')=='th'?'วิดิโอ':'Video'}} : </div>
-                            <div class="col-8">
-                                <input type="text" class="form-control" placeholder="video" value="{{$item->video}}" name="video" >
-                                @if(!empty($item->video))
-                                <iframe src="{{$item->video}}?autoplay=1&controls=0" allowfullscreen allow="autoplay;"></iframe>
-                                @endif
+                            <div class="col-2">
+                                <b>{{Session::get('lang')=='th'?'หัวข้อ (อังกฤษ) : ' :'Title (English) : '}}</b>
                             </div>
-                        </div>  
+                            <div class="col-5">
+                                <input type="text" class="form-control" name="blog_en" value="{{$item->blog_en}}" required>
+                            </div>
+                        </div>
+                        
+                        <br>
                         <hr style=" border-top: 1px solid #556ee6;">
                         <div class="row">
+                            <div class="col-2">
+                                <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาไทย) : ':'Detail (Thailand) : '}}</b>
+                            </div>
                             <div class="col-sm">
-                                <h5>
-                                    <b>{{Session::get('lang')=='th'?'ระยะเวลาแสดง Blog (ค่าเริ่มต้นคือไม่มีเวลากำหนด)':'Period'}}</b>
-                                </h5>
+                                <textarea type="text" id="description_th"  name="blog_description_th"  required>{{$item->blog_description_th}}</textarea>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-2 mt-2">
-                                <b>{{Session::get('lang')=='th'?'จากวันที่':'From'}} : </b>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาอังกฤษ) : ':'Detail (English) : '}}</b>
                             </div>
-                            <div class="col-3">
-                                <input type="date" class="form-control datefrom" name="datefrom" value="{{$item->datefrom}}"  min="{{$item->datefrom}}">
-                            </div>
-                            <div class="col-1 mt-2">
-                                <b>{{Session::get('lang')=='th'?'ถึงวันที่':'To'}} : </b>
-                            </div>
-                            <div class="col-3">
-                                <input type="date" class="form-control dateto" name="dateto" value="{{$item->dateto}}" >
+                            <div class="col-sm">
+                                <textarea type="text" id="description_en" name="blog_description_en" required>{{$item->blog_description_en}}</textarea>
                             </div>
                         </div>
+                        <br>
+                        
+                        <hr style=" border-top: 1px solid #556ee6;">
+                       
+                        <div class="row">
+                            <div class="col-2">Blog gallery : </div>
+                            <div class="col-8">
+                                @foreach($image as $key => $picture)
+                                    <div id="gal{{$picture->id_blog_gallery}}">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input type="file" name="sub_gallery[{{$picture->id_blog_gallery}}]" class="form-control" id="slidepicture{{$picture->id_blog_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_blog_gallery}})">
+                                                    <img id="gallerypreview{{$picture->id_blog_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->blog_gallery_image)}}" />
+                                                
+                                                </div>
+                                                <div class="col-sm mt-4 pt-2">
+                                                    <button  type="button" class="btn btn-danger" onclick="deleteimagegallery({{$picture->id_blog_gallery}})">ลบภาพ</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            <div id="delete"></div>
+                            <div id="newgallery"></div>
+                            
+                            <button type="button" class="btn btn-primary" onclick="addimagegallery()">เพิ่มภาพ</button>
+
+                            <br><br>
+                            </div>
+                        </div>
+                        <div id="formgallery"></div>
+                        <hr style=" border-top: 1px solid #556ee6;">
+                        
                         <div data-repeater-item class="row mt-5"> 
                             <div class="col-6">
                                 <a href="javascript:void(0)"  onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'ยกเลิก ':'Cancel'}}</a>
                             </div>
                             <div class="col-6 text-right">
-                                <button type="submit"  formaction="{{url('viewupdateblog/'.$item->blog_id.'')}}"  class="btn btn-info">  <i class="bx bx-show" style="font-size:18px ="></i>{{Session::get('lang')=='th'?'มุมมองของลูกค้า ' :'Customer View'}}</button>
+                                {{-- <button type="submit"  formaction="{{url('viewupdateblog/'.$item->id_blog.'')}}"  class="btn btn-info">  <i class="bx bx-show" style="font-size:18px ="></i>{{Session::get('lang')=='th'?'มุมมองของลูกค้า ' :'Customer View'}}</button> --}}
                                 <button type="button" class="btn btn-success" onclick="save('updateblog')" style="">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
                                
                             </div>
@@ -223,16 +178,7 @@
             }
         }
     });
-    $("#description_ch").summernote({
-        height:500,
-        callbacks: {
-            onImageUpload: function(files, editor, welEditable) {
-                
-                sendFile(files[0], $(this), welEditable);
-            }
-        }
-    });
-
+    
         
     $('.functional').select2({
         tags: true,
@@ -242,12 +188,50 @@
         placeholder: "-select target-",
     });
            
+    ///////////image
+    count = 0;
+    gallery = 0;
+    function addimagegallery(){
+
+        gallery++;
+        newimage = '<div class="col-md-12" id="gal'+gallery+'">'+
+        '<div class="form-group">'+
+        '<label for="usr">ภาพ Gallery</label>'+
+        '<input type="file" name="sub_gallery['+(gallery).toString()+']" class="form-control" id="slidepicture'+gallery+'" onchange="readGalleryURL2(this,'+gallery+')">'+
+        '<img id="gallerypreview'+gallery+'" style="max-height:400px ;" src="{{url('no-image.jpg')}}" alt="No image" />'+
+        '</div>'+ 
+        '<button style="float: right;" type="button" class="btn btn-danger" onclick="deleteimagegallery('+gallery+')">ลบภาพ</button><br><br>'
+        '</div>';
+
+
+        $('#newgallery').append(newimage);
+    }
+
+    function deleteimagegallery(num){
+
+        $('#gal'+num).remove();
+        //gallery--;
+        $('#formgallery').append('<input type="hidden" name="deleted_id[]" value="'+num+'">')
+
+    }
+    function readGalleryURL2(input,id) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#gallerypreview'+id).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
                     
 </script>
 <script>
     var A = "{{Session::get('Update')}}";
     if(A){
-        swal(A);
+        Swal.fire({
+            text:A,
+            type: 'success',
+        });
     }
 
 
@@ -269,33 +253,32 @@
         
         document.getElementById("description_th").required;
         document.getElementById("description_en").required;
-        document.getElementById("description_ch").required;
 
         
-    Swal.fire({
-        text: "คุณต้องการบันทึกข้อมูลใช้หรือไม่",
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'save'
-        }).then((result)=>{
-            if (result.value) {
-                console.log(formname);
-                $('#'+formname+'').submit();
+        Swal.fire({
+            text: "คุณต้องการบันทึกข้อมูลใช่หรือไม่",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'save'
+            }).then((result)=>{
+                if (result.value) {
+                    // console.log(formname);
+                    $('#'+formname+'').submit();
                 }
-        });
+            });
     }
 
     function canclebtn(){
-    Swal.fire({
-        text: "คุณต้องการยกเลิกการแก้ไขข้อมูลใช่หรือไม่",
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ใช่',
-        cancelButtonText: 'ไม่ใช่',
+        Swal.fire({
+            text: "คุณต้องการยกเลิกการแก้ไขข้อมูลใช่หรือไม่",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ใช่',
+            cancelButtonText: 'ไม่ใช่',
         }).then((result)=>{
             if (result.value) {
                     window.location.href = "{{ url('blogcontent')}}";
@@ -303,21 +286,7 @@
         });
     }
 
-    $('.edit').click(function(){
-        
-        $('#view').hide();
-        $('#edit').removeAttr('style');
-    });
-
-    $('.cancle').click(function(){
-        $('#view').show();
-        $('#edit').hide();
-  
-    });
-
-    $('.datefrom').change(function(){
-        $('.dateto').attr('min',$(this).val());
-    });
+    
     
 </script>
 

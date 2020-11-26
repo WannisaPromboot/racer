@@ -236,9 +236,11 @@ Route::get('/viewicon/{id}', 'Admin\TypeController@ViewIcon');
 
 ////////////////////blog///////////////////////////
 Route::get('/addblog', 'Admin\BlogController@AddBlog');
+Route::get('/deleteblog/{id}', 'Admin\BlogController@DeleteBlog');
 Route::get('/editblog/{id}', 'Admin\BlogController@EditBlog');
 Route::get('/blogcontent', 'Admin\BlogController@ShowBlogContent');
 Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
+Route::get('/detailblog/{id}', 'Admin\BlogController@DetailBlog');
 
 Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
 
