@@ -38,7 +38,7 @@
                 </a>
                 <a href="index" class="logo logo-light">
                     <span class="logo-lg">
-                        <img src="{{asset('frontend/images/SVG/logo.svg')}}" alt="" height="19" style="width: 50%;height: auto;">
+                        <img src="{{asset('frontend/images/logo-menu.png')}}" alt="" height="19" style="width: 100%;height: auto;">
                     </span>
                 </a>
             </div>

@@ -642,11 +642,10 @@ a:hover {
 		  <li class="nav-item dropdown">
 		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
 		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-			  <a class="dropdown-item" href="{{url('/product')}}">Lighting</a>
-			  <a class="dropdown-item" href="{{url('/product')}}">Decorative</a>
-			<a class="dropdown-item" href="{{url('/product')}}">Innovation</a>
-			<a class="dropdown-item" href="{{url('/product')}}">Equipment</a>
-			<a class="dropdown-item" href="{{url('/product')}}">Cable</a>
+			  <?php $menu = \App\Category::orderby('sort')->get(); ?>
+                @foreach ($menu as $_menu)
+                    <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
+                @endforeach
 		  </div>
 		</li>
 		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>

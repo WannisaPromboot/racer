@@ -41,7 +41,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{url('saveproduct')}}" method="post" id="saveproduct">            
+                <form action="{{url('saveproduct')}}" method="post" id="saveproduct" enctype="multipart/form-data">            
                     @csrf
                     <div data-repeater-list="outer-group" class="outer">
                         <div data-repeater-item class="outer"> 
@@ -50,7 +50,7 @@
                                     <b>รหัสสินค้า</b>
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" name="id_product" required>
+                                    <input type="text" class="form-control" name="sap_code" required>
                                 </div>
                             </div>
                             <br>
@@ -77,7 +77,7 @@
                                     <b>หมวดหมู่หลัก </b>
                                 </div>
                                 <div class="col-2">
-                                    <select class="form-control cate">
+                                    <select class="form-control cate" name="id_category">
                                         <option>-เลือกหมวดหมู่หลัก-</option>
                                         @foreach ($cate as $_cate)
                                             <option value="{{$_cate->id_category}}">{{$_cate->category_name_th}}</option>
@@ -88,7 +88,7 @@
                                     <b>หมวดหมู่ย่อย</b>
                                 </div>
                                 <div class="col-2">
-                                    <select class="form-control" id="subcate">
+                                    <select class="form-control" id="subcate" name="id_subcategory">
                                         
                                     </select>
                                 </div>
@@ -131,7 +131,7 @@
                                     <b>วิธีใช้สนค้า (ภาษาไทย)</b>
                                 </div>
                                 <div class="col-sm">
-                                    <textarea type="texe" class="form-control" id="product_method_th" name="product_method_en" ></textarea>
+                                    <textarea type="texe" class="form-control" id="product_method_th" name="product_method_th" ></textarea>
                                 </div>
                             </div>
                             <br>
@@ -213,7 +213,7 @@
                                     <b>ความกว้าง</b>
                                 </div>
                                 <div class="col-1">
-                                    <input type="number" class="form-control" name="product_weight" required>
+                                    <input type="number" class="form-control" name="product_width" required>
                                 </div>
                                 <div class="col-1  mt-2">ซม.</div>
                                 <div class="col-1  mt-2">
@@ -408,11 +408,6 @@
         });
     });
 
-
-    var B = "{{Session::get('Save')}}";
-    if(B){
-        swal(B);
-    }
 </script>
 
 @endsection

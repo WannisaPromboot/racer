@@ -145,11 +145,6 @@
         Swal.fire({
             text: A,
             type: "success",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "ใช่",
-            cancelButtonText: "ไม่ใช่",
         });
 
     }

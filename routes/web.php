@@ -70,7 +70,7 @@ Route::get('/detail-news/{id}', function($id){
 });
 
 
-Route::get('/detail-product', function(){
+Route::get('/detail-product/{id}', function($id){
     return view('frontend.detail-product');
 });
 
@@ -96,7 +96,10 @@ Route::get('/payment', function(){
 });
 
 
-Route::get('/product', function(){
+Route::get('/product/{id}', function($id){
+    $data = array(
+        'products'  => \App\Product::where('id_category',$id)->get(),
+    );
     return view('frontend.product');
 });
 
@@ -238,8 +241,9 @@ Route::get('/productcontent', 'Admin\ProductController@ProductContent');
 Route::get('/addproduct', 'Admin\ProductController@AddProduct');
 Route::get('/editproduct/{id}', 'Admin\ProductController@EditProduct');
 Route::post('/saveproduct', 'Admin\ProductController@SaveProduct');
-Route::post('/updateproduct', 'Admin\ProductController@UpdateProduct');
+Route::post('/updateproduct/{id}', 'Admin\ProductController@UpdateProduct');
 Route::get('/getsubcate', 'Admin\ProductController@GetSubCate');
+Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
 
 
 ////////////////////blog///////////////////////////
