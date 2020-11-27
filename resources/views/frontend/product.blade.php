@@ -326,7 +326,7 @@ div {
                                                     <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
                                                         <?php  $subcate = \App\Subcategory::where('id_category',$item->id_category)->get();?>
                                                         @foreach ($subcate as $_sub)
-                                                        <button type="button" class="nav-link" data-toggle="pill" role="tab" onclick="selectproduct({{$_sub->id_subcategory}})" aria-selected="true">
+                                                        <button style="cursor: pointer;" type="button" class="nav-link text-left" data-toggle="pill" role="tab" onclick="selectproduct({{$_sub->id_subcategory}})" aria-selected="true">
                                                             <i class="mdi mdi-help-circle"></i> {{$_sub->subcategory_name_th}}
                                                         </button>
                                                         @endforeach
@@ -336,163 +336,6 @@ div {
                                         </div>
                                         <?php $i++; ?>
                                     @endforeach
-
-                                     {{-- end --}}
-{{--         
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" id="headingOne" role="tab">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Lighting<i class="pull-right fa fa-plus"></i></a>
-                                            </h4>
-                                        </div>
-                                        <div class="panel-collapse collapse" id="collapseOne" role="tabpanel"
-                                             aria-labelledby="headingOne">
-                                            <div class="panel-body pxlr-faq-body">
-                                                <!-- <a href="#"><p>Anim pariatur</p></a>
-                                                 <a href="#"><p>Anim pariatur</p></a> -->
-                                                 <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
-                                                    <a href="#tab1" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
-                                                        <i class="mdi mdi-help-circle"></i> Lighting
-                                                    </a>
-                                                    <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
-                                                        <i class="mdi mdi-account"></i> เสื้อผู้หญิง
-                                                    </a>
-                                                    <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
-                                                        <i class="mdi mdi-account-settings"></i> เสื้อแฟชั่น
-                                                    </a>
-                                                    <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
-                                                        <i class="mdi mdi-heart"></i> แม่และเด็ก
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" id="headingTwo" role="tab">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse"
-                                                   data-parent="#accordion" href="#collapseTwo"
-                                                   aria-expanded="false" aria-controls="collapseTwo">บ้านและส่วน<i
-                                                            class="pull-right fa fa-plus"></i></a>
-                                            </h4>
-                                        </div>
-                                        <div class="panel-collapse collapse" id="collapseTwo" role="tabpanel"
-                                             aria-labelledby="headingTwo">
-                                            <div class="panel-body pxlr-faq-body">
-                                                <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
-                                                    <a href="#tab5" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab5" aria-selected="true">
-                                                        <i class="mdi mdi-help-circle"></i> ต้นไม้/ดอกไม้
-                                                    </a>
-                                                    <a href="#tab6" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab6" aria-selected="false">
-                                                        <i class="mdi mdi-account"></i> อุปกรณ์ทำความสะอาด
-                                                    </a>
-                                                    <!-- <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
-                                                        <i class="mdi mdi-account-settings"></i> เครื่องใช้ในครัว
-                                                    </a>
-                                                    <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
-                                                        <i class="mdi mdi-heart"></i> แม่และเด็ก
-                                                    </a> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" id="headingThree" role="tab">
-                                            <h4 class="panel-title"><a class="collapsed" role="button"
-                                                                       data-toggle="collapse"
-                                                                       data-parent="#accordion"
-                                                                       href="#collapseThree"
-                                                                       aria-expanded="false"
-                                                                       aria-controls="collapseThree">เครื่องใช้ในครัว <i
-                                                            class="pull-right fa fa-plus"></i></a></h4>
-                                        </div>
-                                        <div class="panel-collapse collapse" id="collapseThree" role="tabpanel"
-                                             aria-labelledby="headingThree">
-                                            <div class="panel-body pxlr-faq-body">
-                                                <div class="panel-body pxlr-faq-body">
-                                                    <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
-                                                        <a href="#tab1" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
-                                                            <i class="mdi mdi-help-circle"></i> อุปกรณ์ทำอาหาร
-                                                        </a>
-                                                        <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
-                                                            <i class="mdi mdi-account"></i> ชุดอุปกรณ์ใส่อาหาร
-                                                        </a>
-                                                        <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
-                                                            <i class="mdi mdi-account-settings"></i> ชุดตกแต่งห้องครัว
-                                                        </a>
-                                                        <!-- <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
-                                                            <i class="mdi mdi-heart"></i> แม่และเด็ก
-                                                        </a> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" id="headingFour" role="tab">
-                                            <h4 class="panel-title"><a class="collapsed" role="button"
-                                                                       data-toggle="collapse"
-                                                                       data-parent="#accordion"
-                                                                       href="#collapseFour"
-                                                                       aria-expanded="false"
-                                                                       aria-controls="collapseFour">แม่และเด็ก <i
-                                                            class="pull-right fa fa-plus"></i></a></h4>
-                                        </div>
-                                        <div class="panel-collapse collapse" id="collapseFour" role="tabpanel"
-                                             aria-labelledby="headingFour">
-                                            <div class="panel-body pxlr-faq-body">
-                                                <div class="panel-body pxlr-faq-body">
-                                                    <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
-                                                        <a href="#tab1" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
-                                                            <i class="mdi mdi-help-circle"></i> เสื้อผ้า 
-                                                        </a>
-                                                        <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
-                                                            <i class="mdi mdi-account"></i> ร้องเท้า
-                                                        </a>
-                                                        <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
-                                                            <i class="mdi mdi-account-settings"></i> แป้ง
-                                                        </a>
-                                                        <!-- <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
-                                                            <i class="mdi mdi-heart"></i> แม่และเด็ก
-                                                        </a> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" id="headingFive" role="tab">
-                                            <h4 class="panel-title"><a class="collapsed" role="button"
-                                                                       data-toggle="collapse"
-                                                                       data-parent="#accordion"
-                                                                       href="#collapseFive"
-                                                                       aria-expanded="false"
-                                                                       aria-controls="collapseFive">เครื่องใช้ไฟฟ้า <i
-                                                            class="pull-right fa fa-plus"></i></a></h4>
-                                        </div>
-                                        <div class="panel-collapse collapse" id="collapseFive" role="tabpanel"
-                                             aria-labelledby="headingFive">
-                                            <div class="panel-body pxlr-faq-body">
-                                                <div class="panel-body pxlr-faq-body">
-                                                    <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
-                                                        <a href="#tab1" class="nav-link active show" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
-                                                            <i class="mdi mdi-help-circle"></i> เครื่องดูดฝุ่น
-                                                        </a>
-                                                        <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
-                                                            <i class="mdi mdi-account"></i> เครื่องซักผ้า
-                                                        </a>
-                                                        <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
-                                                            <i class="mdi mdi-account-settings"></i> เครื่องทำความเย็น
-                                                        </a>
-                                                        <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
-                                                            <i class="mdi mdi-heart"></i> อุปกรณ์ไอที
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-        
                                 </div>
                             </div>
                         </div>
@@ -502,281 +345,32 @@ div {
                         <div class="tab-content" id="faq-tab-content">
                             <div class="tab-pane active show" id="tab1" role="tabpanel" aria-labelledby="tab1">
                                 <div class="accordion" id="accordion-tab-1">
-                                    <div class="card">
+                                    <div class="card" id="showhtml">
                                         <div class="card-header" id="accordion-tab-1-heading-1">
                                             <h5>
-                                                <button class="btn btn-link" type="button" data-toggle="collapse"  aria-expanded="false" >Lighting</button>
+                                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >ทั้งหมด</button>
                                             </h5>
                                         </div>
                                         <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
                                             <div class="card-body">
         
                                                 <div class="container">
-                                                    <div class="row">
-                                          
+                                                    <div class="row" id="contentproduct">
+                                                      <?php   $products = \App\Product::where('product_display',0)->orderby('sap_code')->get(); ?>
+                                                      @foreach ($products as $item)
+                                                      <?php $img = \App\ProductGallery::where('id_product',$item->id_product)->orderby('sort')->first(); ?>
                                                       <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="{{url('/detail-product')}}"><img class="pro-img" src="{{asset('frontend/images/pro01.jpg')}}"></a>
+                                                            <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$img->filepath)}}"></a>
                                                       </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro02.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro05.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro06.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro08.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro09.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro10.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro11.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro12.jpg')}}"></a>
-                                                    </div>
-        
+                                                      @endforeach
                                                     </div>
                                                 </div>
-        
-                                            
                                             </div>
                                         </div>
                                     </div>
                          
                                 </div>
                             </div>
-                            {{-- <div class="tab-pane" id="tab2" role="tabpanel" aria-labelledby="tab2">
-                                <div class="accordion" id="accordion-tab-2">
-                                    <div class="card">
-                                        <div class="card-header" id="accordion-tab-2-heading-1">
-                                            <h5>
-                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-2-content-1" aria-expanded="false" aria-controls="accordion-tab-2-content-1">เสื้อผู้หญิง</button>
-                                            </h5>
-                                        </div>
-                                        <div class="collapse show" id="accordion-tab-2-content-1" aria-labelledby="accordion-tab-2-heading-1" data-parent="#accordion-tab-2">
-                                            <div class="card-body">
-                                               
-                                                <div class="container">
-                                                    <div class="row">
-                                          
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro01.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro02.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro05.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro06.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro08.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro09.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro10.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro11.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro12.jpg')}}"></a>
-                                                    </div>
-        
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tab3" role="tabpanel" aria-labelledby="tab3">
-                                <div class="accordion" id="accordion-tab-3">
-                                    <div class="card">
-                                        <div class="card-header" id="accordion-tab-3-heading-1">
-                                            <h5>
-                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-3-content-1" aria-expanded="true" aria-controls="accordion-tab-3-content-1">เสื้อแฟชั่น</button>
-                                            </h5>
-                                        </div>
-                                        <div class="collapse show" id="accordion-tab-3-content-1" aria-labelledby="accordion-tab-3-heading-1" data-parent="#accordion-tab-3">
-                                            <div class="card-body">
-                                                
-                                                <div class="container">
-                                                    <div class="row">
-                                          
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro01.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro02.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro05.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro06.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro08.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro09.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro10.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro11.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro12.jpg')}}"></a>
-                                                    </div>
-        
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tab4" role="tabpanel" aria-labelledby="tab4">
-                                <div class="accordion" id="accordion-tab-4">
-                                    <div class="card">
-                                        <div class="card-header" id="accordion-tab-4-heading-1">
-                                            <h5>
-                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-4-content-1" aria-expanded="false" aria-controls="accordion-tab-4-content-1">แม่และเด็ก</button>
-                                            </h5>
-                                        </div>
-                                        <div class="collapse show" id="accordion-tab-4-content-1" aria-labelledby="accordion-tab-4-heading-1" data-parent="#accordion-tab-4">
-                                            <div class="card-body">
-                                                
-                                                <div class="container">
-                                                    <div class="row">
-                                          
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro01.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro02.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro05.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro06.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro08.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro09.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro10.jpg')}}"></a>
-                                                      </div>
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro11.jpg')}}"></a>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4 mb-4" >
-                                                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro12.jpg')}}"></a>
-                                                    </div>
-        
-                                                    </div>
-                                                </div>
-        
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tab5" role="tabpanel" aria-labelledby="tab5">
-                                <div class="accordion" id="accordion-tab-5">
-                                    <div class="card">
-                                        <div class="card-header" id="accordion-tab-5-heading-1">
-                                            <h5>
-                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-5-content-1" aria-expanded="false" aria-controls="accordion-tab-5-content-1">ต้นไม้/ดอกไม้</button>
-                                            </h5>
-                                        </div>
-                                        <div class="collapse show" id="accordion-tab-5-content-1" aria-labelledby="accordion-tab-5-heading-1" data-parent="#accordion-tab-5">
-                                            <div class="card-body">
-                                                <p>That could be 'my' beautiful soul sitting naked on a couch. If I could just learn to play this stupid thing. Oh, I don't have time for this. I have to go and buy a single piece of fruit with a coupon and then return it, making people wait behind me while I complain. I'm just glad my fat, ugly mama isn't alive to see this day. For one beautiful night I knew what it was like to be a grandmother. Subjugated, yet honored. But existing is basically all I do! I never loved you.</p>
-                                                <p><strong>Example: </strong>A sexy mistake. And I'd do it again!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tab6" role="tabpanel" aria-labelledby="tab6">
-                                <div class="accordion" id="accordion-tab-6">
-                                    <div class="card">
-                                        <div class="card-header" id="accordion-tab-6-heading-1">
-                                            <h5>
-                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accordion-tab-6-content-1" aria-expanded="false" aria-controls="accordion-tab-6-content-1">อุปกรณ์ทำความสะอาด</button>
-                                            </h5>
-                                        </div>
-                                        <div class="collapse show" id="accordion-tab-6-content-1" aria-labelledby="accordion-tab-6-heading-1" data-parent="#accordion-tab-6">
-                                            <div class="card-body">
-                                                <p>Ah, now the ball's in Farnsworth's court! We'll need to have a look inside you with this camera. Stop it, stop it. It's fine. I will 'destroy' you! Bender! Ship! Stop bickering or I'm going to come back there and change your opinions manually!</p>
-                                                <p><strong>Example: </strong>So I really am important? How I feel when I'm drunk is correct?</p>
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -893,9 +487,21 @@ div {
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
    <script>
-            function selectproduct(id){
-                    console.log(id);
-            }   
+    function selectproduct(id){
+            console.log(id);
+        $.ajax({
+            url: '{{ url("showproduct")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id':id},
+            success: function(data) {
+               console.log(data == 0);
+                    $('#showhtml').html(data);
+                               
+            }
+        });
+    } 
+
     </script> 
   </body>
 </html>

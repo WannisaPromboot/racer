@@ -50,7 +50,11 @@ Route::get('/detail-news', function(){
 
 
 Route::get('/detail-product/{id}', function($id){
-    return view('frontend.detail-product');
+    $data = array(
+        'item'  => \App\Product::where('id_product',$id)->first(),
+        'imgs'  => \App\ProductGallery::where('id_product',$id)->orderby('sort')->get(),
+    );
+    return view('frontend.detail-product',$data);
 });
 
 
@@ -198,6 +202,7 @@ Route::get('/editcategory/{id}', 'Admin\categoryController@Editcategory');
 Route::post('/savecategory', 'Admin\categoryController@Savecategory');
 Route::post('/updatecategory/{id}', 'Admin\categoryController@Updatecategory');
 Route::get('/changsortcate', 'Admin\categoryController@changsortcate');
+Route::get('/viewcategory', 'Admin\categoryController@ViewCategory');
 
 /////->type2
 Route::get('/addsubcategory', 'Admin\categoryController@Addsubcategory');
@@ -206,6 +211,7 @@ Route::get('/editsubcategory/{id}', 'Admin\categoryController@Editsubcategory');
 Route::post('/savesubcategory', 'Admin\categoryController@SaveSubcategory');
 Route::post('/updatesubcategory/{id}', 'Admin\categoryController@UpdateSubcategory');
 Route::get('/getcategory', 'Admin\categoryController@Getcategory');
+Route::get('/viewsubcategory', 'Admin\categoryController@ViewSubCategory');
 
 
 ///////////////product
@@ -216,7 +222,8 @@ Route::post('/saveproduct', 'Admin\ProductController@SaveProduct');
 Route::post('/updateproduct/{id}', 'Admin\ProductController@UpdateProduct');
 Route::get('/getsubcate', 'Admin\ProductController@GetSubCate');
 Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
-
+Route::get('/viewproduct', 'Admin\ProductController@ViewProduct');
+Route::get('/showproduct', 'Admin\ProductController@ShowProduct');
 
 ////////////////////blog///////////////////////////
 Route::get('/addblog', 'Admin\BlogController@AddBlog');

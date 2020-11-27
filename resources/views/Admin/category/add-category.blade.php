@@ -95,7 +95,23 @@
     </div>
 </div>
 <!-- end row -->
-                     
+{{-- modaL --}}
+<div class="modal fade bd-example-modal-lg" id="main" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document">
+        
+        <div class="modal-content" >
+            <div class="modal-body" id="sub">
+            
+                </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{{Session::get('lang')=='th'?'ปิด' :'Close'}}</button>
+            
+                </div>
+        </div>
+        
+    </div>
+</div>                
 
 @endsection
 
@@ -137,12 +153,13 @@ function save(formname){
                 }
         });
     }
-</script>
-<script>
+
     var B = "{{Session::get('Save')}}";
     if(B){
         swal(B);
     }
+
+    
 </script>
 
 @endsection

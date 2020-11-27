@@ -51,8 +51,10 @@
                         <th>#</th>
                         <th style="width: 100px">ไม่แสดง</th>
                         <th>SAP CODE</th>
+                        <th>หมวดหมู่หลัก</th>
                         <th>ชื่อสินค้าภาษาไทย</th>
                         <th>ชื่อสินค้าภาษาอังกฤษ</th>
+                        <th>รายละเอียด</th>
                         <th>แก้ไข</th>
                         <th>ลบ</th>
                     </tr>
@@ -66,8 +68,13 @@
                                 <input type="checkbox" name="display" class="form-control text-center display" value="{{$item->sort}}" ref="{{$item->id_product}}" {{$item->product_display == 1 ? 'checked':''}}>
                             </td>
                             <td>{{$item->sap_code}}</td>
+                            <?php $cate = \App\Category::where('id_category',$item->id_category)->first(); ?>
+                            <td>{{$cate->category_name_th}}</td>
                             <td>{{$item->product_name_th}}</td>
                             <td>{{$item->product_name_en}}</td>
+                            <td>
+                                <a href="javascript:void(0)" onclick="view({{$item->id_product}})" class="btn btn-secondary btn-sm">{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</a>
+                            </td>
                             <td>
                                 <a href="{{url('editproduct/'.$item->id_product.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
                             </td>
@@ -205,6 +212,21 @@
                 });
         }   
     });
+
+    ///view////
+
+    function view(id){
+        $.ajax({
+            url: '{{ url("viewproduct")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id':id},
+            success: function(data) {
+                $('#sub').html(data);
+                $('#main').modal('show');
+            }
+        });
+    }
 
 </script>
 

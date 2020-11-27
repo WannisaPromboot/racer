@@ -50,29 +50,33 @@
                     <?php $i=1; ?>
                     <tbody>
                         @foreach ($category as $_category)
-                         <tr>
-                            <td>{{$i}}</td>
-                            <td>{{$_category->category_name_th}}</td>
-                            <td style="padding: 0px !important;">
-                                <table style="width: 100%;">
-                                   
-                                        <?php  $subcate = \App\SubCategory::where('id_category',$_category->id_category)->get(); ?>
-                                        @foreach ($subcate as $_subcate)
-                                        <tr>
-                                            <td style="width: 65%;">{{$_subcate->subcategory_name_th}}</td>
-                                            <td>
-                                                <a href="{{url('editsubcategory/'.$_subcate->id_subcategory.'')}}" class="btn btn-warning" >{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
-                                            </td>
-                                            <td>
-                                                <a type="#" class="btn btn-danger" >{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                </table>
-                            </td>
+                        <?php $subcate = \App\SubCategory::where('id_category',$_category->id_category)->get(); ?>
+                        @if(count($subcate) > 0)
+                            <tr>
+                                <td>{{$i}}</td>
+                                <td>{{$_category->category_name_th}}</td>
+                                <td style="padding: 0px !important;">
+                                    <table style="width: 100%;">
+                                            @foreach ($subcate as $_subcate)
+                                            <tr>
+                                                <td style="width: 65%;">{{$_subcate->subcategory_name_th}}</td>
+                                                <td>
+                                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm" onclick="view({{$_subcate->id_subcategory}})">{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{url('editsubcategory/'.$_subcate->id_subcategory.'')}}" class="btn btn-warning btn-sm" >{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0)" class="btn btn-danger btn-sm" >{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                    </table>
+                                </td>
 
-                            <?php $i++; ?>
-                         </tr>
+                                <?php $i++; ?>
+                            </tr>
+                         @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -110,16 +114,14 @@
         });
 
     });
-</script>
 
-<script>
 
     $(document).ready(function(){
         var A = "{{Session::get('Save')}}";
         if(A){
             Swal.fire({
                 text: A,
-                type: "success",,
+                type: "success",
             });
         }
     });
@@ -152,6 +154,20 @@
                 }
         });
 
+    }
+
+        
+    function view(id){
+        $.ajax({
+            url: '{{ url("viewsubcategory")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id':id},
+            success: function(data) {
+                $('#sub').html(data);
+                $('#main').modal('show');
+            }
+        });
     }
 </script>
 

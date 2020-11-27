@@ -255,4 +255,230 @@ class ProductController extends Controller
         $updateProduct->save();
 
     }
+
+
+    public function ViewProduct(Request  $request){
+        $product = Product::where('id_product',$request->id)->first();
+        $cate = \App\Category::where('id_category',$product->id_category)->first();
+        $subcate = \App\SubCategory::where('id_subcategory',$product->id_subcategory)->first();
+        $img = \App\ProductGallery::where('id_product',$product->id_product)->orderby('sort')->first();
+        echo '<div class="row">
+                    <div class="col-7">
+                        <div class="row">
+                            <div class="col-3">
+                                <b>รหัสสินค้า</b>
+                            </div>
+                            <div class="col-3">'.$product->sap_code.'
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <b>ชื่อสินค้า (ภาษาไทย)</b>
+                            </div>
+                            <div class="col-8">'.$product->product_name_th.'
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <b>ชื่อสินค้า (ภาษาอังกฤษ)</b>
+                            </div>
+                            <div class="col-8">'.$product->product_name_en.'
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" >
+                            <div class="col-3 ">
+                                <b>หมวดหมู่ย่อย</b>
+                            </div>
+                            <div class="col-5">'.$subcate->subcategory_name_th.'</div>
+                        </div>
+                    </div>
+                    <div class="col-5"><img src="'.url('storage/app/'.$img->filepath).'" width="70%"></div>
+                </div>
+                
+                <br>
+                <div class="row" >
+                    <div class="col-3 ">
+                        <b>หมวดหมู่ย่อย</b>
+                    </div>
+                    <div class="col-5">'.$subcate->subcategory_name_en.'</div>
+                </div>
+                <br>
+                <div class="row" >
+                    <div class="col-3">
+                        <b>ราคาปกติ </b>
+                    </div>
+                    <div class="col-2">'.$product->product_normal_price.'</div>
+                    <div class="col-1">บาท</div>
+                    <div class="col-2 text-right">
+                        <b>ราคาพิเศษ</b>
+                    </div>
+                    <div class="col-2">
+                        '.$product->product_special_price.'</div>
+                    <div class="col-1">บาท</div>
+                </div>
+                <br>
+                 <div class="row">
+                    <div class="col-3">
+                        <b>วันที่เริ่ม </b>
+                    </div>
+                    <div class="col-3">'.$product->product_start.'</div>
+                    <div class="col-2 text-right">
+                        <b>ถึง</b>
+                    </div>
+                    <div class="col-2">'.$product->product_start.'</div>
+                </div>
+                <br>
+                <div class="row" id="date">
+                    <div class="col-3">
+                        <b>จำนวนสินค้า </b>
+                    </div>
+                    <div class="col-2">'.$product->product_count.'</div>
+                    <div class="col-">ชิ้น</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>วิธีใช้สนค้า (ภาษาไทย)</b>
+                    </div>
+                    <div class="col-sm">'.$product->product_method_th.'
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>วิธีใช้สนค้า (ภาษาอังกฤษ)</b>
+                    </div>
+                    <div class="col-sm">'.$product->product_method_en.'
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>รายละเอียดสินค้า (ภาษาไทย)</b>
+                    </div>
+                    <div class="col-sm">'.$product->product_description_th.'
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>รายละเอียดสินค้า (ภาษาอังกฤษ)</b>
+                    </div>
+                    <div class="col-sm">'.$product->product_description_en.'
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <h4>ขนาดและการจัดส่ง</h4>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>น้ำหนัก</b>
+                    </div>
+                        <div class="col-1">'.$product->product_kg.'</div>
+                    <div class="col-1">กก.</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>ความกว้าง</b>
+                    </div>
+                    <div class="col-1">'.$product->product_width.'</div>
+                    <div class="col-1">ซม.</div>
+                    <div class="col-1">
+                        <b>ความยาว</b>
+                    </div>
+                    <div class="col-1">'.$product->product_lenght.'
+                    </div>
+                    <div class="col-1">ซม.</div>
+                    <div class="col-1">
+                        <b>ความสูง</b>
+                    </div>
+                    <div class="col-1">'.$product->product_height.'
+                    </div>
+                    <div class="col-1">ซม.</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>ส่งฟรี </b>
+                    </div>
+                    <div class="col-1">'.$product->product_distance_free.'</div>
+                    <div class="col-1">กม.</div>
+                    <div class="col-1">
+                        <b>กิโลเมตรละ</b>
+                    </div>
+                    <div class="col-1">'.$product->product_distance_km.'
+                    </div>
+                    <div class="col-1">บาท</div>
+                </div>
+        ';
+    }
+
+
+    public function ShowProduct(Request $request){
+        $products = Product::where('id_subcategory',$request->id)->get();
+        $subcate = \App\SubCategory::where('id_subcategory',$request->id)->first();
+        $html= '';
+
+        if(count($products) > 0){
+            $html.='
+            <div class="card-header" id="accordion-tab-1-heading-1">
+                <h5>
+                    <button class="btn btn-link" type="button" data-toggle="collapse"  aria-expanded="false" >'.$subcate->subcategory_name_th.'</button>
+                </h5>
+            </div>
+            <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
+                <div class="card-body">
+
+                    <div class="container">
+                        <div class="row">';
+                    foreach( $products as $product){
+                        $img = \App\ProductGallery::where('id_product',$product->id_product)->orderby('sort')->first();
+                $html.=              '<div class="col-md-4 col-lg-4 mb-4" >
+                                            <a href="'.url('detail-product/'.$product->id_product.'').'"><img class="pro-img" src="'.url('storage/app/'.$img->filepath).'"></a>
+                                        </div>';
+                                    }
+                                        
+
+
+                $html.=              '</div>
+                                    </div>
+
+                                
+                                </div>
+                            </div>
+                ';
+        }else{
+            $html.=  '   <div class="card-header" id="accordion-tab-1-heading-1">
+                            <h5>
+                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >ทั้งหมด</button>
+                            </h5>
+                        </div>
+                        <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
+                            <div class="card-body">
+
+                                <div class="container">
+                                    <div class="row" id="contentproduct">
+                                    <div class="col-sm text-center" >
+                                          ไม่พบสินค้า
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+        }
+     
+
+        
+
+        return $html;
+    }
 }

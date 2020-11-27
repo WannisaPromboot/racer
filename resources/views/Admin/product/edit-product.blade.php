@@ -116,37 +116,48 @@
                                     <div class="col-1  mt-2">บาท</div>
                                 </div>
                                 <br>
-                                @if($product->product_start != '0000-00-00')
-                                    <div class="row" >
-                                        <div class="col-3  mt-2">
-                                            <b>วันที่เริ่ม </b>
-                                        </div>
-                                        <div class="col-3">
-                                            <input type="date" class="form-control" name="product_start" value="{{$product->product_start}}" min="{{date('Y-m-d')}}" >
-                                        </div>
-                                        <div class="col-2 text-right  mt-2">
-                                            <b>ถึง</b>
-                                        </div>
-                                        <div class="col-3">
-                                            <input type="date" class="form-control" name="product_end" value="{{$product->product_end}}" min="{{date('Y-m-d')}}" >
-                                        </div>
-                                    </div>
-                                @else 
-                                <div class="row" id="date" style="display: none">
+                                @if($product->product_start == '0000-00-00' ||  $product->product_start == NULL)
+                                <div class="row mt-2" id="date" style="display: none">
                                     <div class="col-3  mt-2">
                                         <b>วันที่เริ่ม </b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="date" class="form-control" name="product_start" value="" min="{{date('Y-m-d')}}" >
+                                        <input type="date" class="form-control datefrom" name="product_start" value="" min="{{date('Y-m-d')}}" >
                                     </div>
                                     <div class="col-2 text-right  mt-2">
                                         <b>ถึง</b>
                                     </div>
                                     <div class="col-2">
-                                        <input type="date" class="form-control" name="product_end" value="" min="{{date('Y-m-d')}}" >
+                                        <input type="date" class="form-control dateto" name="product_end" value="" min="{{date('Y-m-d')}}" >
+                                        <div class="text-danger"  id="notidate" style="display: none">ควรใส่วันสิ้นสุดมากกว่าหรือเท่ากับวันที่เริ่มต้น</div>
+                                    </div>
+                                </div>
+                                @else 
+                                <div class="row" >
+                                    <div class="col-3  mt-2">
+                                        <b>วันที่เริ่ม </b>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="date" class="form-control datefrom" name="product_start" value="{{$product->product_start}}" min="{{date('Y-m-d')}}" >
+                                    </div>
+                                    <div class="col-2 text-right  mt-2">
+                                        <b>ถึง</b>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="date" class="form-control dateto" name="product_end" value="{{$product->product_end}}" min="{{date('Y-m-d')}}" >
+                                        <div class="text-danger"  id="notidate" style="display: none">ควรใส่วันสิ้นสุดมากกว่าหรือเท่ากับวันที่เริ่มต้น</div>
                                     </div>
                                 </div>
                                 @endif
+                                <div class="row" id="date">
+                                    <div class="col-3  mt-2">
+                                        <b>จำนวนสินค้า </b>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="number" class="form-control" name="product_count" min="0" value="{{$product->product_count}}" >
+                                    </div>
+                                    <div class="col-1 mt-2">ชิ้น</div>
+                                </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-3  mt-2">
@@ -199,8 +210,8 @@
                                         <div id="gal{{$picture->id_product_gallery}}">
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <input type="file" style="display: none;" name="sub_gallery[{{$picture->id_product_gallery}}]" class="form-control" id="slidepicture{{$picture->id_product_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_product_gallery}})">
-                                                    <img id="gallerypreview{{$picture->id_product_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->filepath)}}" />
+                                                <input type="file" style="display: none;" name="sub_gallery[{{$picture->id_product_gallery}}]" class="form-control chooseImage{{$picture->id_product_gallery}}" id="slidepicture{{$picture->id_product_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_product_gallery}})">
+                                                    <img id="gallerypreview{{$picture->id_product_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->filepath)}}" onclick="browsImage({{$picture->id_product_gallery}})" />
                                                     <input type="text" name="sub_sort[{{$picture->id_product_gallery}}]"  class="form-control text-center" value="{{$picture->sort}}" />
                                                     <button  type="button" class="btn btn-danger" onclick="deletegallery({{$picture->id_product_gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>
                                                 </div>
@@ -211,7 +222,7 @@
                                 </div>
                                 <div id="delete"></div>
                                 <div id="newgallery" class="row"></div>
-                                <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
+                                {{-- <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button> --}}
                                 {{-- end --}}
                                 <hr>
                                 <div class="row">
@@ -446,6 +457,16 @@
                 }
         });
     }
+
+        /////////////////check date
+        $('.dateto').change(function(){
+          if($(this).val() < $('.datefrom').val() ){
+                $('#notidate').removeAttr('style');
+          }else{
+            $('#notidate').css('display','none');
+          }  
+    });
+
 
 </script>
 

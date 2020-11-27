@@ -49,7 +49,7 @@
                                 <div class="col-3 mt-2">
                                     <b>รหัสสินค้า</b>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-3">
                                     <input type="text" class="form-control" name="sap_code" required>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                 <div class="col-3 mt-2">
                                     <b>ชื่อสินค้า (ภาษาไทย)</b>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-8">
                                     <input type="text" class="form-control" name="product_name_th" required>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                 <div class="col-3  mt-2">
                                     <b>ชื่อสินค้า (ภาษาอังกฤษ)</b>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-8">
                                     <input type="text" class="form-control" name="product_name_en" required>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <div class="col-3  mt-2">
                                     <b>หมวดหมู่หลัก </b>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     <select class="form-control cate" name="id_category">
                                         <option>-เลือกหมวดหมู่หลัก-</option>
                                         @foreach ($cate as $_cate)
@@ -87,7 +87,7 @@
                                 <div class="col-2 text-right  mt-2">
                                     <b>หมวดหมู่ย่อย</b>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-3">
                                     <select class="form-control" id="subcate" name="id_subcategory">
                                         
                                     </select>
@@ -98,32 +98,42 @@
                                 <div class="col-3  mt-2">
                                     <b>ราคาปกติ </b>
                                 </div>
-                                <div class="col-2">
-                                    <input type="number" class="form-control" name="product_normal_price" required>
+                                <div class="col-3">
+                                    <input type="number" class="form-control" name="product_normal_price" min="0" required>
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                                 <div class="col-1 text-right  mt-2">
                                     <b>ราคาพิเศษ</b>
                                 </div>
-                                <div class="col-2">
-                                    <input type="number" class="form-control specialprice" name="product_special_price" >
+                                <div class="col-3">
+                                    <input type="number" class="form-control specialprice" min="0" name="product_special_price" >
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                             </div>
                             <br>
-                            <div class="row" id="date" style="display: none">
+                            <div class="row mb-4" id="date" style="display: none">
                                 <div class="col-3  mt-2">
                                     <b>วันที่เริ่ม </b>
                                 </div>
-                                <div class="col-2">
-                                    <input type="date" class="form-control" name="product_start" min="{{date('Y-m-d')}}" >
+                                <div class="col-3">
+                                    <input type="date" class="form-control datefrom" name="product_start" min="{{date('Y-m-d')}}" >
                                 </div>
                                 <div class="col-2 text-right  mt-2">
                                     <b>ถึง</b>
                                 </div>
-                                <div class="col-2">
-                                    <input type="date" class="form-control" name="product_end" min="{{date('Y-m-d')}}" >
+                                <div class="col-3">
+                                    <input type="date" class="form-control dateto" name="product_end" min="{{date('Y-m-d')}}" >
+                                    <div class="text-danger"  id="notidate" style="display: none">ควรใส่วันสิ้นสุดมากกว่าหรือเท่ากับวันที่เริ่มต้น</div>
                                 </div>
+                            </div>
+                            <div class="row" id="date">
+                                <div class="col-3  mt-2">
+                                    <b>จำนวนสินค้า </b>
+                                </div>
+                                <div class="col-3">
+                                    <input type="number" class="form-control" name="product_count" min="0" >
+                                </div>
+                                <div class="col-1 mt-2">ชิ้น</div>
                             </div>
                             <br>
                             <div class="row">
@@ -165,6 +175,7 @@
                             <hr>
                             <br>
                             {{-- image --}}
+                           
                             <div class="row">
                                 <div class="col">
                                     <h4>รูปภาพ</h4>
@@ -172,20 +183,38 @@
                             </div>
                             <br>
                             <div class="row">
-                                {{-- @if(!empty($img))
-                                    @foreach($img as $key => $picture)
-                                    <div id="gal{{$picture->id_store_gallery}}">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <input type="file" style="display: none;" name="sub_gallery[{{$picture->id_store_gallery}}]" class="form-control" id="slidepicture{{$picture->id_store_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_store_gallery}})">
-                                                <img id="gallerypreview{{$picture->id_store_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->filepath)}}" />
-                                                <input type="text" name="sub_sort[{{$picture->id_store_gallery}}]"  class="form-control text-center" value="{{$picture->sort}}" />
-                                                <button  type="button" class="btn btn-danger" onclick="deletegallery({{$picture->id_store_gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[1]" class="form-control chooseImage1" id="slidepicture1" multiple="multiple" onchange="readGalleryURL2(this,1)">
+                                        <img id="gallerypreview1"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(1)" />
+                                        <input type="text" name="sub_sort[1]" class="form-control text-center" required>
+                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery({{$gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
                                     </div>
-                                    @endforeach
-                                @endif --}}
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[2]" class="form-control chooseImage2" id="slidepicture2" multiple="multiple" onchange="readGalleryURL2(this,2)">
+                                        <img id="gallerypreview2"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(2)" />
+                                        <input type="text" name="sub_sort[2]" class="form-control text-center" required>
+                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(2)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[3]" class="form-control chooseImage3" id="slidepicture3" multiple="multiple" onchange="readGalleryURL2(this,3)">
+                                        <img id="gallerypreview3"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(3)" />
+                                        <input type="text" name="sub_sort[3]" class="form-control text-center" required>
+                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(3)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[4]" class="form-control chooseImage4" id="slidepicture4" multiple="multiple" onchange="readGalleryURL2(this,4)">
+                                        <img id="gallerypreview4"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(4)" />
+                                        <input type="text" name="sub_sort[4]" class="form-control text-center" required>
+                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                    </div>
+                                </div>
                             </div>
                             <div id="delete"></div>
                             <div id="newgallery" class="row"></div>
@@ -406,6 +435,16 @@
                // window.location.reload();
             }
         });
+    });
+
+
+    /////////////////check date
+    $('.dateto').change(function(){
+          if($(this).val() < $('.datefrom').val() ){
+                $('#notidate').removeAttr('style');
+          }else{
+            $('#notidate').css('display','none');
+          }  
     });
 
 </script>

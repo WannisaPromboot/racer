@@ -71,6 +71,7 @@
                                     </div>
                                     <div class="col-sm text-right">
                                         <button type="button" onclick="save('editmain')" class="btn btn-success" >{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
+                                        {!! OrangeV1::AlertMessage('editmain') !!}
                                     </div>
                                 </div>
                                

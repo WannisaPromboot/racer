@@ -481,11 +481,10 @@ a:hover {
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
           <div class="dropdown-menu" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="{{url('/product')}}">Lighting</a>
-              <a class="dropdown-item" href="{{url('/product')}}">Decorative</a>
-            <a class="dropdown-item" href="{{url('/product')}}">Innovation</a>
-            <a class="dropdown-item" href="{{url('/product')}}">Equipment</a>
-            <a class="dropdown-item" href="{{url('/product')}}">Cable</a>
+            <?php $menu = \App\Category::orderby('sort')->get(); ?>
+            @foreach ($menu as $_menu)
+                <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
+            @endforeach
           </div>
         </li>
           <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
@@ -537,47 +536,38 @@ a:hover {
                     <div class="col-md-6" id="col-md-6">
 
                         <div class="container2">
-                          <div class="mySlides" style="display: block;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro02.jpg')}}" style="width:100%">
-                          </div>
-  
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}" style="width:100%">
-                          </div>
-  
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}" style="width:100%">
-                          </div>
+                          @foreach ($imgs as $img)
+                            <div class="mySlides" style="display: block;">
+                                <img class="pro-img" src="{{url('storage/app/'.$img->filepath)}}" style="width:100%">
+                            </div>
+                          @endforeach
   
   
                           <div class="caption-container">
                             <p id="caption"></p>
                           </div>
-  
+                          <?php $i=1; ?>
                           <div class="row">
+                            @foreach ($imgs as $img)
                             <div class="column">
-                              <img class="demo cursor active" src="{{asset('frontend/images/pro02.jpg')}}" style="width:100%" onclick="currentSlide(1)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro03.jpg')}}" style="width:100%" onclick="currentSlide(2)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro04.jpg')}}" style="width:100%" onclick="currentSlide(3)">
-                            </div>
-  
+                                <img class="demo cursor active" src="{{url('storage/app/'.$img->filepath)}}" style="width:100%" onclick="currentSlide({{$i}})">
+                              </div>
+                              <?php $i++; ?>
+                            @endforeach
                           </div>
                         </div>
   
                       </div>
                       <div class="col-md-6" id="col-md-6">
-                                                  <p class="title-pro">STANDARD DUMMY TEXT</p>
-                        <p class="sub-pro">(Dietary supplement product)</p>
+                                                  <p class="title-pro">{{$item->product_name_th}}</p>
+                        <?php $cate = \App\Category::where('id_category',$item->id_category)->first(); ?>
+                        <p class="sub-pro">({{$cate->category_name_th}})</p>
                         <hr class="line-height">
-                        <p class="price">฿350.00</p>
+                        <p class="price">฿{{number_format($item->product_normal_price)}}</p>
                         <p class="text-detial">เกี่ยวกับสินค้า :</p>
-                        <p class="sub-detial">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset.</p>
+                        <p class="sub-detial"><?php echo $item->product_description_th; ?></p>
                           <p class="text-detial">วิธีใช้ :</p>
-                          <p class="sub-detial2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
+                          <p class="sub-detial2"><?php echo $item->product_method_th; ?></p>
                             <center><a href="{{url('cart')}}" ><p class="button">ADD TO CART</p></a></center>
   
                       </div>
@@ -589,9 +579,9 @@ a:hover {
                 <div class="row">
                     <div class="col-md-12" id="back-col">
                     <p class="text-detial">เกี่ยวกับสินค้า :</p>
-                    <p class="sub-detial">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset.</p>
+                    <p class="sub-detial"><?php echo $item->product_description_th; ?></p>
                       <p class="text-detial">วิธีใช้ :</p>
-                      <p class="sub-detial2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
+                      <p class="sub-detial2"><?php echo $item->product_method_th; ?></p>
                     </div>
     
                 </div>

@@ -48,14 +48,15 @@ class categoryController extends Controller
     }
 
     public function Updatecategory(Request $request,$id){
+      //  dd($request->all());
         $UpdateCategory = Category::where('id_category',$id)->first();
 
         if(isset($request->category_th)){
-            $UpdateCategory->category_name_th = $request->subcategory_name_th;
+            $UpdateCategory->category_name_th = $request->category_th;
         }
 
         if(isset($request->category_en)){
-            $UpdateCategory->category_name_en = $request->subcategory_name_th;
+            $UpdateCategory->category_name_en = $request->category_en;
         }
       
         $UpdateCategory->save();
@@ -68,6 +69,28 @@ class categoryController extends Controller
         $updateCate =  Category::where('id_category',$request->id)->first();
         $updateCate->sort = $request->sort;
         $updateCate->save();
+    }
+
+    public function ViewCategory(Request $request){
+        $item = Category::where('id_category',$request->id)->first();
+         echo   '
+                    <div class="row">
+                        <div class="col-3">
+                            <b>ชื่อหมวดหมู่ (ภาษาไทย)</b>
+                        </div>
+                        <div class="col-6">
+                            '.$item->category_name_th.'
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-3">
+                            <b>ชื่อหมวดหมู่ (ภาษาอังกฤษ)</b>
+                        </div>
+                        <div class="col-6">
+                            '.$item->category_name_en.'
+                        </div>
+                    </div>';
     }
 
     //////////////sub 
@@ -100,13 +123,7 @@ class categoryController extends Controller
     }
 
     public function SaveSubcategory(Request $request){
-        //dd($request->all());
-        // $checksort = SubCategory::orderby('sort','desc')->first();
-        // // if(empty( $checksort)){
-        // //     $sort = 1;
-        // // }else{
-        // //     $sort =  $checksort->sort + 1;
-        // // }
+
         
         $NewSubCategory = New SubCategory;
 
@@ -138,6 +155,27 @@ class categoryController extends Controller
         $updateSubCategory->save();
 
         return redirect('subcategorycontent')->with('Save','บันทึกข้อมูลสำเร็จ');
+    }
+
+
+    public function ViewSubCategory(Request $request){
+        $item      = \App\SubCategory::where('id_subcategory',$request->id)->first();
+        $category =  \App\Category::where('id_category',$item->id_category)->first();
+           
+
+        echo  '
+                <div class="row"> 
+                    <div class="col-6"><b>หมวดหมู่หลัก:</b></div>
+                    <div class="col-6">'.$category->category_name_th.'</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-6 "><b>ชื่อหมวดหมู่ย่อย 1 (ภาษาไทย) :</b></div>
+                    <div class="col-5">'.$item->subcategory_name_th.'</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-6 "><b>ชื่อหมวดหมู่ย่อย 1 (ภาษาอังกฤษ) :</b></div>
+                    <div class="col-5">'.$item->subcategory_name_en.'</div>
+                </div>';
     }
 
 

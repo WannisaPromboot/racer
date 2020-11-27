@@ -52,8 +52,7 @@
                         <th style="width: 100px">ลำดับ</th>
                         <th>หมวดหมู่ภาษาไทย</th>
                         <th>หมวดหมู่ภาษาอังกฤษ</th>
-                        {{-- <th>เมนูภาษาจีน</th>
-                        <th>รายละเอียด</th> --}}
+                        <th>รายละเอียด</th>
                         <th>แก้ไข</th>
                         <th>ลบ</th>
                     </tr>
@@ -68,6 +67,9 @@
                             </td>
                             <td>{{$item->category_name_th}}</td>
                             <td>{{$item->category_name_en}}</td>
+                            <td>
+                                <a href="jacascript:void(0)" onclick="view({{$item->id_category}})" class="btn btn-secondary btn-sm">{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</a>
+                            </td>
                             <td>
                                 <a href="{{url('editcategory/'.$item->id_category.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
                             </td>
@@ -136,9 +138,7 @@
         });
     }
     
-</script>
 
-<script>
     var A = "{{Session::get('Save')}}";
     if(A){
         
@@ -147,6 +147,21 @@
             type: "success",
         });
 
+    }
+
+
+    
+    function view(id){
+        $.ajax({
+            url: '{{ url("viewcategory")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id':id},
+            success: function(data) {
+                $('#sub').html(data);
+                $('#main').modal('show');
+            }
+        });
     }
 
 </script>
