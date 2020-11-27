@@ -225,6 +225,11 @@ Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
 Route::get('/viewproduct', 'Admin\ProductController@ViewProduct');
 Route::get('/showproduct', 'Admin\ProductController@ShowProduct');
 
+
+///////////////production
+Route::get('/production', 'Admin\ProductionController@productioncontent');
+Route::get('/updateproduction', 'Admin\ProductionController@updateproduction');
+
 ////////////////////blog///////////////////////////
 Route::get('/addblog', 'Admin\BlogController@AddBlog');
 Route::get('/editblog/{id}', 'Admin\BlogController@EditBlog');

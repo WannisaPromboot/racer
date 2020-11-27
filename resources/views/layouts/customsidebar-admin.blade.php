@@ -63,6 +63,12 @@
                     </a> 
                 </li>
                 <li>
+                    <a href="{{url('production')}}" class=" waves-effect">
+                        <img src="{{asset('assets/images/b2b/icon/box.png')}}">
+                        <span>Production</span>
+                    </a> 
+                </li>
+                <li>
                     <a href="{{url('bankaccountcontent')}}" class=" waves-effect">
                          <img src="{{asset('assets/images/b2b/icon/bankbook.png')}}">
                         <span>การจัดการชำระเงินออนไลน์(การโอนเงิน)</span>

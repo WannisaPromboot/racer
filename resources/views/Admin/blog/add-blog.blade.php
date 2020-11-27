@@ -360,7 +360,7 @@ function save(formname){
         document.getElementById("description_ch").required;
         
     Swal.fire({
-        text: "คุณต้องการบันทึกข้อมูลใช้หรือไม่",
+        text: "คุณต้องการบันทึกข้อมูลใช่หรือไม่",
         type: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
