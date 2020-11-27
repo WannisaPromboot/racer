@@ -629,82 +629,20 @@ a:hover {
         <div class="site-section bg-light">
             <div class="container">
                 <div class="row">
-                   
-                    <div class="col-md-4" id="">
-                        <a href="{{url('detail-news')}}"><img class="pro-img" src="{{asset('frontend/images/pro02.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="{{url('detail-news')}}" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
+                   {{-- {{ dd($data)}} --}}
+                    @foreach($data as $item)
+                        <div class="col-md-4" id="">
+                            <a href="{{url('detail-news')}}"><img class="pro-img" src="{{url('storage/app/'.$item->new_image)}}"></a>
                         </div>
-                        
-                    </div>
+                        <div class="col-md-8" id="">
+                            <div class="welcome_docmed_info">
+                                <h3 class="title-pan">{{$item->new_th}}</h3>
+                                <p class="sub-pan">{!!$item->description_new_th!!}</p>
 
-                    <div class="col-md-4" id="">
-                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="#" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
+                                <a href="{{url('detail-news')}}/{{$item->id_new}}" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
                         </div>
-                        
-                    </div>
-
-                    <div class="col-md-4" id="">
-                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="#" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-md-4" id="">
-                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro05.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="#" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-md-4" id="">
-                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro06.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="#" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
-                        </div>
-                        
-                    </div>
-
+                    @endforeach
         
                 </div>
             </div>
@@ -714,19 +652,32 @@ a:hover {
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-lg-12">
-            <center><div class="pagination">
-                <a href="#"><i class="fas fa-arrow-left" style="color: #00b9e9;" aria-hidden="true"></i></a>
-                <a href="#">1</a>
-                <a href="#" class="active">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#"><i class="fas fa-arrow-right" style="color: #00b9e9;" aria-hidden="true"></i></a>
-              </div></center>
+                            <center>
+                                <div class="pagination">
+                                    @if(!empty($data))
+                                        @if ($data->lastPage() > 1)
+                                            <ul>
+                                                <li class="{{ ($data->currentPage() == 1) ? ' disabled' : '' }}">
+                                                    <a href="{{ $data->url(1) }}" class="current"><i class="fas fa-arrow-left" style="color: #00b9e9;" aria-hidden="true"></i></a>
+                                                </li>
+                                                @for ($i = 1; $i <= $data->lastPage(); $i++)
+                                                    <li class="{{ ($data->currentPage() == $i) ? ' active' : '' }}">
+                                                        <a href="{{ $data->url($i) }}" >{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+                                                <li class="{{ ($data->currentPage() == $data->lastPage()) ? ' disabled' : '' }}">
+                                                    <a href="{{ $data->url($data->currentPage()+1) }}" class="current"><i class="fas fa-arrow-right" style="color: #00b9e9;" aria-hidden="true"></i></a>
+                                                </li>
+                                            </ul>
+                                        @endif
+                                    @endif
+                                </div>
+                            </center>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
-        
-              </div>
-              </div>
-              </div>
 
         
         </div>

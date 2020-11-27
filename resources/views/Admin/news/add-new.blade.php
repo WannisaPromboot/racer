@@ -39,7 +39,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'เพิ่มบทความ':' Add Blog'}}</h4>
+        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'เพิ่มบทความ':' Add news'}}</h4>
         </div>
     </div>
 </div>     
@@ -50,7 +50,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form  action="{{url('saveblog')}}" method="POST" enctype="multipart/form-data" id="saveblog">
+                <form  action="{{url('savenew')}}" method="POST" enctype="multipart/form-data" id="savenews">
                         @csrf
                         
                         <div class="row">
@@ -58,7 +58,7 @@
                                 <b>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}} : </b>
                             </div>
                             <div class="col-8">
-                                <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');" style="width: 478px;">
+                                <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');" style="width: 478px;" required>
                                 <img src="" id="imgpreview_filepath" style="max-height:150px;">
                                 {!! OrangeV1::ImagePreviewJs() !!}
                         
@@ -71,7 +71,7 @@
                                 <b>{{Session::get('lang')=='th'?'หัวข้อ (ภาษาไทย) : ' :'Title (Thailand) : '}} </b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="blog_th" value="{{!empty($id)?$blog->title_th:''}}" required>
+                                <input type="text" class="form-control" name="new_th" value="{{!empty($id)?$blog->title_th:''}}" required>
                             </div>
                         </div>
                         <br>
@@ -80,7 +80,7 @@
                                 <b>{{Session::get('lang')=='th'?'หัวข้อ (อังกฤษ) : ' :'Title (English) : '}}</b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="blog_en" value="{{!empty($id)?$blog->title_en:''}}" required>
+                                <input type="text" class="form-control" name="new_en" value="{{!empty($id)?$blog->title_en:''}}" required>
                             </div>
                         </div>
                         <br>
@@ -93,7 +93,7 @@
                                 <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาไทย) : ':'Detail (Thailand) : '}}</b>
                             </div>
                             <div class="col-sm">
-                                <textarea type="text" id="description_th"  name="blog_description_th" required>{{!empty($id)?$blog->description_th:''}}</textarea>
+                                <textarea type="text" id="description_th"  name="description_new_th" required>{{!empty($id)?$blog->description_th:''}}</textarea>
                             </div>
                         </div>
                         <br>
@@ -102,7 +102,7 @@
                                 <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาอังกฤษ) : ':'Detail (English) : '}} </b>
                             </div>
                             <div class="col-sm">
-                                <textarea type="text" id="description_en" name="blog_description_en" required>{{!empty($id)?$blog->description_en:''}}</textarea>
+                                <textarea type="text" id="description_en" name="description_new_en" required>{{!empty($id)?$blog->description_en:''}}</textarea>
                             </div>
                         </div>
                         <br>
@@ -127,12 +127,12 @@
                         
                         <div data-repeater-item class="row mt-5"> 
                             <div class="col-9">
-                                <a href="{{url('blogcontent')}}" style="float:left;"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
+                                <a href="{{url('newcontent')}}" style="float:left;"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
                             </div>
                             <div class="col-3 text-right">
                                 {{-- <button type="submit" formaction="{{url('saveviewblog')}}"  class="btn btn-info mr-2" >  <i class="bx bx-show" style="font-size:18px ="></i>{{Session::get('lang')=='th'?'มุมมองของลูกค้า ' :'Customer View'}}</button> --}}
-                                <button type="button" class="btn" onclick="save('saveblog')"  style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
-                                {!! OrangeV1:: AlertMessage ('saveblog') !!}
+                                <button type="button" class="btn" onclick="save('savenews')"  style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
+                                {!! OrangeV1:: AlertMessage ('savenews') !!}
                             </div>
                         </div>
                     </form>
@@ -259,5 +259,6 @@
         placeholder: "-select target-",
     });
 
+    
 </script>
 @endsection

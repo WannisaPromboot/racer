@@ -4,69 +4,69 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Blog;
-use App\Blog_gallery;
+use App\News;
+use App\News_gallery;
 use Storage;
 use Config;
 
-class BlogController extends Controller
+class NewsController extends Controller
 {
-    public function AddBlog(){
-        return view('Admin.blog.add-blog');
+    public function Addnew(){
+        return view('Admin.news.add-new');
     }
 
-    public function ShowBlogContent(){
+    public function ShownewContent(){
         $data = array(
-            'data' => Blog::get(),
+            'data' => News::get(),
         );
-        return view('Admin.blog.blog-content',$data);
+        return view('Admin.news.new-content',$data);
     }
 
-    public function EditBlog($id){
+    public function Editnew($id){
         $data = array(
-            'item' => Blog::where('id_blog',$id)->first(),
-            'image' => Blog_gallery::where('id_blog',$id)->get(),
+            'item' => News::where('id_new',$id)->first(),
+            'image' => News_gallery::where('id_new',$id)->get(),
 
         );
         
-        return view('Admin.blog.edit-blog',$data);
+        return view('Admin.news.edit-new',$data);
     }
 
-    public function DeleteBlog($id){
-        Blog_gallery::where('id_blog_gallery',$id)->delete();
-        Blog::where('id_blog',$id)->delete();
+    public function Deletenew($id){
+        News_gallery::where('id_new',$id)->delete();
+        News::where('id_new',$id)->delete();
        
-        return redirect('blogcontent')->with('success','บันทึกข้อมูลเรียบร้อยแล้ว');
+        return redirect('newcontent')->with('success','บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
 
-    public function SaveBlog(Request $request){
-        $Blog = new Blog();
-        $Blog->blog_th	 = $request->blog_th;
-        $Blog->blog_en	 = $request->blog_en;
-        $Blog->description_blog_th	 = $request->description_blog_th;
-        $Blog->description_blog_en	 = $request->description_blog_en;
+    public function Savenew(Request $request){
+        $New = new News();
+        $New->new_th	 = $request->new_th;
+        $New->new_en	 = $request->new_en;
+        $New->description_new_th	 = $request->description_new_th;
+        $New->description_new_en	 = $request->description_new_en;
         if($request->filepath !== null){
-            $blog_image = 'Blog/'.time().$request->filepath->getClientOriginalName();
-            Storage::put($blog_image, file_get_contents($request->filepath));
-            $Blog->blog_image = $blog_image;
+            $new_image = 'News/'.time().$request->filepath->getClientOriginalName();
+            Storage::put($new_image, file_get_contents($request->filepath));
+            $New->new_image = $new_image;
         }
 
-        $Blog->save();
-        // dd($Blog);
+        $New->save();
+        // dd($new);
         if(isset($request["sub_gallery"])){      
-            $foreignId = $Blog->id_blog;
+            $foreignId = $New->id_new;
             foreach($request["sub_gallery"] as $key => $subgallery){
-                $gallery = new Blog_gallery;
-                $gallery->id_blog = $foreignId;
-                $newFilename = 'Blog_Gallery/'.time().$subgallery->getClientOriginalName();
+                $gallery = new News_gallery;
+                $gallery->id_new = $foreignId;
+                $newFilename = 'News_Gallery/'.time().$subgallery->getClientOriginalName();
                 Storage::put($newFilename, file_get_contents($subgallery));
-                $gallery->blog_gallery_image = $newFilename;
+                $gallery->new_gallery_image = $newFilename;
                 
                 $gallery->save();
             }
         }
-        return redirect('blogcontent')->with('Save','บันทึกข้อมูลสำเร็จ');
+        return redirect('newcontent')->with('Save','บันทึกข้อมูลสำเร็จ');
         
     }
 
@@ -146,43 +146,53 @@ class BlogController extends Controller
         return view('Admin.blog.add-blog',['id'=>$id]);
     }
 
-    public function UpdateBlog(Request $request,$id){
-        $updateBlog = Blog::where('id_blog',$id)->first();
-
-        $updateBlog->blog_th	 = $request->blog_th;
-        $updateBlog->blog_en	 = $request->blog_en;
-        $updateBlog->description_blog_th	 = $request->description_blog_th;
-        $updateBlog->description_blog_en	 = $request->description_blog_en;
+    public function Updatenew(Request $request,$id){
+        $updateNew = News::where('id_new',$id)->first();
+        if(isset($request->new_th)){
+            $updateNew->new_th	 = $request->new_th;
+        }
+        if(isset($request->new_en)){
+            $updateNew->new_en	 = $request->new_en;
+        }
+        if(isset($request->description_new_th)){
+            $updateNew->description_new_th	 = $request->description_new_th;
+        }
+        if(isset($request->description_new_en)){
+            $updateNew->description_new_en	 = $request->description_new_en;
+        }
+        
+        
+        
         if($request->filepath !== null){
-            $blog_image = 'Blog/'.time().$request->filepath->getClientOriginalName();
-            Storage::put($blog_image, file_get_contents($request->filepath));
-            $updateBlog->blog_image = $blog_image;
+            $new_image = 'News/'.time().$request->filepath->getClientOriginalName();
+            Storage::put($new_image, file_get_contents($request->filepath));
+            $updateNew->new_image = $new_image;
         }
 
-        $updateBlog->save();
-        // dd($Blog);
+        $updateNew->save();
+        // dd($new);
         if(isset($request["deleted_id"])){
             foreach($request["deleted_id"] as $delete_picture_id){
-                Blog_gallery::where('id_blog_gallery',$delete_picture_id)->delete();
+                News_gallery::where('id_new_gallery',$delete_picture_id)->delete();
             }
         }
         if(isset($request["sub_gallery"])){      
-            $foreignId = $updateBlog->id_blog;
+            $foreignId = $updateNew->id_new;
             foreach($request["sub_gallery"] as $key => $subgallery){
-                $gallery = new Blog_gallery;
-                $gallery->id_blog = $foreignId;
-                $newFilename = 'Blog_Gallery/'.time().$subgallery->getClientOriginalName();
+                $gallery = new News_gallery;
+                $gallery->id_new = $foreignId;
+                $newFilename = 'News_Gallery/'.time().$subgallery->getClientOriginalName();
                 Storage::put($newFilename, file_get_contents($subgallery));
-                $gallery->blog_gallery_image = $newFilename;
+                $gallery->new_gallery_image = $newFilename;
                 
                 $gallery->save();
             }
         }
         
-        return redirect('blogcontent')->with('Save','บันทึกข้อมูลสำเร็จ');
+        return redirect('newcontent')->with('Save','บันทึกข้อมูลสำเร็จ');
     }
 
-    public function ViewUpdateBlog(Request $request,$id){
+    public function ViewUpdatenew(Request $request,$id){
 
                 $BlogContent = Blog::where('blog_id',$id)->first();
 
@@ -386,56 +396,56 @@ class BlogController extends Controller
 
 
 
-    public function DetailBlog($id){
-        $blog = Blog::where('id_blog',$id)->first();
+    public function Detailnew($id){
+        $new = News::where('id_new',$id)->first();
   
-        echo '
-        <div class="row">
-            <div class="col-sm text-center">
-                <p><b>รูปภาพ </b></p>
-                   <img src="'.url('storage/app/'.$blog->blog_image).'" width="300px" >
-            </div>
-
-
-            <div class="col-sm">
-
+            echo '
                 <div class="row">
-                    <div class="col-5 mt-4">
-                        <b> หัวข้อ (ภาษาไทย) : </b>
+                    <div class="col-sm text-center">
+                        <p><b>รูปภาพ </b></p>
+                           <img src="'.url('storage/app/'.$new->new_image).'" width="300px" >
                     </div>
-                    <div class="col-7 mt-4" >'.$blog->blog_th.'</div> 
-                </div>
-                <br>
 
-                <div class="row">
-                    <div class="col-5">
-                        <b>หัวข้อ (ภาษาอังกฤษ) : </b>
-                    </div>
-                    <div class="col-7">'.$blog->blog_en.'</div>  
-                </div>
-                <br>
 
-                <div class="row">
-                    <div class="col-sm-5"><b>รายละเอียด<br> (ภาษาไทย) :</b></div>
                     <div class="col-sm">
-                        '.strip_tags($blog->description_blog_th).'
+
+                        <div class="row">
+                            <div class="col-5 mt-4">
+                                <b> หัวข้อ (ภาษาไทย) : </b>
+                            </div>
+                            <div class="col-7 mt-4" >'.$new->new_th.'</div> 
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-5">
+                                <b>หัวข้อ (ภาษาอังกฤษ) : </b>
+                            </div>
+                            <div class="col-7">'.$new->new_en.'</div>  
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-sm-5"><b>รายละเอียด<br> (ภาษาไทย) :</b></div>
+                            <div class="col-sm">
+                                '.strip_tags($new->description_new_th).'
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-5"><b>รายละเอียด <br>(ภาษาอังกฤษ) :</b></div>
+                            <div class="col-sm">
+                            '.strip_tags($new->description_new_en).'
+                            </div>
+                        </div>
+                        
                     </div>
-                    
                 </div>
                 <br>
-                <div class="row">
-                    <div class="col-sm-5"><b>รายละเอียด <br>(ภาษาอังกฤษ) :</b></div>
-                    <div class="col-sm">
-                    '.strip_tags($blog->description_blog_en).'
-                    </div>
-                </div>
+              
                 
-            </div>
-        </div>
-        <br>
-      
-        
-    ';
+            ';
     }
 
 

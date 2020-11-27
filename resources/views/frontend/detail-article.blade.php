@@ -698,7 +698,7 @@ a:hover {
                    
                     <div class="col-md-12" id="">
                         <center>
-                            <img class="img-fluid img-prod" src="{{asset('frontend/images/pro02.jpg')}}" alt="Colorlib Template">
+                            <img class="img-fluid img-prod" src="{{url('storage/app/'.$data->blog_image)}}" alt="Colorlib Template">
                         </center>
                     </div>
         
@@ -710,9 +710,9 @@ a:hover {
                    
                     <div class="col-md-12" id="">
                         <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง มันได้รับความนิยมมากขึ้นในยุค ค.ศ. 1960 เมื่อแผ่น Letraset วางจำหน่ายโดยมีข้อความบนนั้นเป็น Lorem Ipsum และล่าสุดกว่านั้น คือเมื่อซอฟท์แวร์การทำสื่อสิ่งพิมพ์ (Desktop Publishing) อย่าง Aldus PageMaker ได้รวมเอา Lorem Ipsum เวอร์ชั่นต่างๆ เข้าไว้ในซอฟท์แวร์ด้วย มีหลักฐานที่เป็นข้อเท็จจริงยืนยันมานานแล้ว ว่าเนื้อหาที่อ่านรู้เรื่องนั้นจะไปกวนสมาธิของคนอ่านให้เขวไปจากส่วนที้เป็น Layout เรานำ Lorem Ipsum มาใช้เพราะความที่มันมีการกระจายของตัวอักษรธรรมดาๆ แบบพอประมาณ ซึ่งเอามาใช้แทนการเขียนว่า ‘ตรงนี้เป็นเนื้อหา, ตรงนี้เป็นเนื้อหา' ได้ และยังทำให้มองดูเหมือนกับภาษาอังกฤษที่อ่านได้ปกติ ปัจจุบันมีแพ็กเกจของซอฟท์แวร์การทำสื่อสิ่งพิมพ์ และซอฟท์แวร์การสร้างเว็บเพจ (Web Page Editor) หลายตัวที่ใช้ Lorem Ipsum เป็นแบบจำลองเนื้อหาที่เป็นค่าตั้งต้น และเวลาที่เสิร์ชด้วยคำว่า 'lorem ipsum' ผลการเสิร์ชที่ได้ก็จะไม่พบบรรดาเว็บไซต์ที่ยังคงอยู่ในช่วงเริ่มสร้างด้วย โดยหลายปีที่ผ่านมาก็มีการคิดค้นเวอร์ชั่นต่างๆ ของ Lorem Ipsum ขึ้นมาใช้ บ้างก็เป็นความบังเอิญ บ้างก็เป็นความตั้งใจ (เช่น การแอบแทรกมุกตลก)</p>
-                            <p class="sub-pan">มีท่อนต่างๆ ของ Lorem Ipsum ให้หยิบมาใช้งานได้มากมาย แต่ส่วนใหญ่แล้วจะถูกนำไปปรับให้เป็นรูปแบบอื่นๆ อาจจะด้วยการสอดแทรกมุกตลก หรือด้วยคำที่มั่วขึ้นมาซึ่งถึงอย่างไรก็ไม่มีทางเป็นเรื่องจริงได้เลยแม้แต่น้อย ถ้าคุณกำลังคิดจะใช้ Lorem Ipsum สักท่อนหนึ่ง คุณจำเป็นจะต้องตรวจให้แน่ใจว่าไม่มีอะไรน่าอับอายซ่อนอยู่ภายในท่อนนั้นๆ ตัวสร้าง Lorem Ipsum บนอินเทอร์เน็ตทุกตัวมักจะเอาท่อนที่แน่ใจแล้วมาใช้ซ้ำๆ ทำให้กลายเป็นที่มาของตัวสร้างที่แท้จริงบนอินเทอร์เน็ต ในการสร้าง Lorem Ipsum ที่ดูเข้าท่า ต้องใช้คำจากพจนานุกรมภาษาละตินถึงกว่า 200 คำ ผสมกับรูปแบบโครงสร้างประโยคอีกจำนวนหนึ่ง เพราะฉะนั้น Lorem Ipsum ที่ถูกสร้างขึ้นใหม่นี้ก็จะไม่ซ้ำไปซ้ำมา ไม่มีมุกตลกซุกแฝงไว้ภายใน หรือไม่มีคำใดๆ ที่ไม่บ่งบอกความหมาย</p>
+                            <h3 class="title-pan">{{$data->blog_th}}</h3>
+                            <p class="sub-pan">{!!$data->description_blog_th!!}</p>
+                            {{-- <p class="sub-pan">มีท่อนต่างๆ ของ Lorem Ipsum ให้หยิบมาใช้งานได้มากมาย แต่ส่วนใหญ่แล้วจะถูกนำไปปรับให้เป็นรูปแบบอื่นๆ อาจจะด้วยการสอดแทรกมุกตลก หรือด้วยคำที่มั่วขึ้นมาซึ่งถึงอย่างไรก็ไม่มีทางเป็นเรื่องจริงได้เลยแม้แต่น้อย ถ้าคุณกำลังคิดจะใช้ Lorem Ipsum สักท่อนหนึ่ง คุณจำเป็นจะต้องตรวจให้แน่ใจว่าไม่มีอะไรน่าอับอายซ่อนอยู่ภายในท่อนนั้นๆ ตัวสร้าง Lorem Ipsum บนอินเทอร์เน็ตทุกตัวมักจะเอาท่อนที่แน่ใจแล้วมาใช้ซ้ำๆ ทำให้กลายเป็นที่มาของตัวสร้างที่แท้จริงบนอินเทอร์เน็ต ในการสร้าง Lorem Ipsum ที่ดูเข้าท่า ต้องใช้คำจากพจนานุกรมภาษาละตินถึงกว่า 200 คำ ผสมกับรูปแบบโครงสร้างประโยคอีกจำนวนหนึ่ง เพราะฉะนั้น Lorem Ipsum ที่ถูกสร้างขึ้นใหม่นี้ก็จะไม่ซ้ำไปซ้ำมา ไม่มีมุกตลกซุกแฝงไว้ภายใน หรือไม่มีคำใดๆ ที่ไม่บ่งบอกความหมาย</p> --}}
                                                           
                             
                         </div>
@@ -738,32 +738,11 @@ a:hover {
 
             <div class="container">
                 <div class="row">
-                   
-                    <div class="col-md-3" id="">
-                        <a data-fancybox="gallery" href="{{asset('frontend/images/pro01.jpg')}}"><img class="img-gallery" src="{{asset('frontend/images/pro01.jpg')}}" alt="Colorlib Template"></a>
-                    </div>
-                    <div class="col-md-3" id="">
-                        <a data-fancybox="gallery" href="{{asset('frontend/images/pro02.jpg')}}"><img class="img-gallery" src="{{asset('frontend/images/pro02.jpg')}}" alt="Colorlib Template"></a>
-                    </div>
-                    <div class="col-md-3" id="">
-                        <a data-fancybox="gallery" href="{{asset('frontend/images/pro03.jpg')}}"><img class="img-gallery" src="{{asset('frontend/images/pro03.jpg')}}" alt="Colorlib Template"></a>
-                    </div>
-                    <div class="col-md-3" id="">
-                        <a data-fancybox="gallery" href="{{asset('frontend/images/pro04.jpg')}}"><img class="img-gallery" src="{{asset('frontend/images/pro04.jpg')}}" alt="Colorlib Template"></a>
-                    </div>
-
-                    <div class="col-md-3" id="">
-                        <a data-fancybox="gallery" href="{{asset('frontend/images/pro05.jpg')}}"><img class="img-gallery" src="{{asset('frontend/images/pro05.jpg')}}" alt="Colorlib Template"></a>
-                    </div>
-                    <div class="col-md-3" id="">
-                        <a data-fancybox="gallery" href="{{asset('frontend/images/pro06.jpg')}}"><img class="img-gallery" src="{{asset('frontend/images/pro06.jpg')}}" alt="Colorlib Template"></a>
-                    </div>
-                    <div class="col-md-3" id="">
-                        <a data-fancybox="gallery" href="{{asset('frontend/images/pro07.jpg')}}"><img class="img-gallery" src="{{asset('frontend/images/pro07.jpg')}}" alt="Colorlib Template"></a>
-                    </div>
-                    <div class="col-md-3" id="">
-                        <a data-fancybox="gallery" href="{{asset('frontend/images/pro08.jpg')}}"><img class="img-gallery" src="{{asset('frontend/images/pro08.jpg')}}" alt="Colorlib Template"></a>
-                    </div>
+                    @foreach($img as $imgs)
+                        <div class="col-md-3" id="">
+                            <a data-fancybox="gallery" href="{{url('storage/app/'.$imgs->blog_gallery_image)}}"><img class="img-gallery" src="{{url('storage/app/'.$imgs->blog_gallery_image)}}" alt="Colorlib Template"></a>
+                        </div>
+                    @endforeach
         
                 </div>
             </div>
