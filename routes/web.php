@@ -231,6 +231,7 @@ Route::post('/savecategory', 'Admin\categoryController@Savecategory');
 Route::post('/updatecategory/{id}', 'Admin\categoryController@Updatecategory');
 Route::get('/changsortcate', 'Admin\categoryController@changsortcate');
 Route::get('/viewcategory', 'Admin\categoryController@ViewCategory');
+Route::get('/iewvcategory', 'Admin\categoryController@ViewCategory');
 
 /////->type2
 Route::get('/addsubcategory', 'Admin\categoryController@Addsubcategory');
@@ -252,7 +253,7 @@ Route::get('/getsubcate', 'Admin\ProductController@GetSubCate');
 Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
 Route::get('/viewproduct', 'Admin\ProductController@ViewProduct');
 Route::get('/showproduct', 'Admin\ProductController@ShowProduct');
-
+Route::get('deleteproduct/{id}','Admin\ProductController@DeleteProduct');
 
 ///////////////production
 Route::get('/production', 'Admin\ProductionController@productioncontent');
@@ -347,7 +348,7 @@ Route::get('template/{any}', 'HomeController@index');
 
 
 /////delete
-Route::post('delete/{model}/{submodel1}/{submodel2}/{id}/{fr}','Admin\ContentController@Delete')->name('Delete');
+Route::get('delete/{model}/{submodel1}/{submodel2}/{id}/{fr}','Admin\ContentController@Delete')->name('Delete');
 
 /////delete 1 table with image
 Route::get('delete1table/{model}/{id}/{imagename}','Admin\ContentController@Delete1Table')->name('Delete1Table');

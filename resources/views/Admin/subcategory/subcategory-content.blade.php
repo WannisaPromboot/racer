@@ -67,7 +67,7 @@
                                                     <a href="{{url('editsubcategory/'.$_subcate->id_subcategory.'')}}" class="btn btn-warning btn-sm" >{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0)" class="btn btn-danger btn-sm" >{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>
+                                                    <a href="javascript:void(0)" onclick="deldata({{$_subcate->id_subcategory}})" class="btn btn-danger btn-sm" >{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -127,36 +127,6 @@
     });
 
         
-    function deldata(id){
-        Swal.fire({
-        text: "คุณต้องการลบข้อมูลใช่หรือไม่",
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'yes'
-        }).then((result)=>{
-            if (result.value) {
-                $.ajax({
-                        url: '{{ url("delete1table")}}/Type/'+ id +'/NULL',
-                        type: 'GET',
-                        dataType: 'HTML',
-                        success: function(data) {
-                            Swal.fire({
-                            html: "<h1>ลบข้อมูลเรียบร้อย</h1>",
-                            showCancelButton: false,
-                            showConfirmButton: false,
-                            });
-
-                            window.location.reload();
-                        }
-                    });
-                }
-        });
-
-    }
-
-        
     function view(id){
         $.ajax({
             url: '{{ url("viewsubcategory")}}',
@@ -169,6 +139,37 @@
             }
         });
     }
+
+
+    function deldata(id){
+        console.log(id);
+        Swal.fire({
+        text: "คุณต้องการลบข้อมูลใช่หรือไม่",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'yes'
+        }).then((result)=>{
+            if (result.value) {
+                $.ajax({
+                    url: '{{ url("delete1table")}}/SubCategory/'+ id +'/NULL',
+                    type: 'GET',
+                    dataType: 'HTML',
+                    success: function(data) {
+                        Swal.fire({
+                            text: "ลบข้อมูลเรียบร้อย",
+                            type: 'success'
+                        });
+
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+
+    }
+
 </script>
 
 @endsection

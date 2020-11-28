@@ -218,7 +218,7 @@
                             </div>
                             <div id="delete"></div>
                             <div id="newgallery" class="row"></div>
-                            <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
+                            {{-- <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button> --}}
                             {{-- end --}}
                             <hr>
                             <div class="row">

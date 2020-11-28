@@ -37,12 +37,20 @@
                                 <b>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}} : </b>
                             </div>
                             <div class="col-8">
-                                <input type="file" class="form-control" name="filepath" id="filepath" value="{{$item->blog_image}}" onchange="readImage(this,'filepath');" >
+                                {{-- <input type="file" class="form-control" name="filepath" id="filepath" value="{{$item->blog_image}}" onchange="readImage(this,'filepath');" >
                                 <img src="{{!empty($item->blog_image)?url('storage/app/'.$item->blog_image):''}}" id="imgpreview_filepath" style="max-height:200px;">
-                                {!! OrangeV1::ImagePreviewJs() !!}
+                                {!! OrangeV1::ImagePreviewJs() !!} --}}
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;" name="filepath[{{$item->id_blog}}]" class="form-control chooseImage{{$item->id_blog}}" id="slidepicture{{$item->id_blog}}" multiple="multiple" onchange="readGalleryURL3(this,{{$item->id_blog}})">
+                                        <img id="gallerypreview2{{$item->id_blog}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$item->blog_image)}}" onclick="browsImage({{$item->id_blog}})" />
+                                        {{-- <input type="text" name="sub_sort[{{$item->id_blog}}]"  class="form-control text-center" value="{{$item->id_blog}}" /> --}}
+                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery({{$item->id_blog}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                         <br>
+                        <br>
                         <div class="row">
                             <div class="col-2">
                                 <b>{{Session::get('lang')=='th'?'หัวข้อ (ภาษาไทย) : ' :'Title (Thailand) : '}}</b>
@@ -68,7 +76,7 @@
                                 <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาไทย) : ':'Detail (Thailand) : '}}</b>
                             </div>
                             <div class="col-sm">
-                                <textarea type="text" id="description_th"  name="blog_description_th"  required>{{$item->blog_description_th}}</textarea>
+                                <textarea type="text" id="description_th"  name="blog_description_th"  required>{{$item->description_blog_th}}</textarea>
                             </div>
                         </div>
                         <br>
@@ -77,40 +85,41 @@
                                 <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาอังกฤษ) : ':'Detail (English) : '}}</b>
                             </div>
                             <div class="col-sm">
-                                <textarea type="text" id="description_en" name="blog_description_en" required>{{$item->blog_description_en}}</textarea>
+                                <textarea type="text" id="description_en" name="blog_description_en" required>{{$item->description_blog_en}}</textarea>
                             </div>
                         </div>
                         <br>
                         
                         <hr style=" border-top: 1px solid #556ee6;">
-                       
+                        <br>
                         <div class="row">
-                            <div class="col-2">Blog gallery : </div>
-                            <div class="col-8">
-                                @foreach($image as $key => $picture)
-                                    <div id="gal{{$picture->id_blog_gallery}}">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <input type="file" name="sub_gallery[{{$picture->id_blog_gallery}}]" class="form-control" id="slidepicture{{$picture->id_blog_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_blog_gallery}})">
-                                                    <img id="gallerypreview{{$picture->id_blog_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->blog_gallery_image)}}" />
-                                                
-                                                </div>
-                                                <div class="col-sm mt-4 pt-2">
-                                                    <button  type="button" class="btn btn-danger" onclick="deleteimagegallery({{$picture->id_blog_gallery}})">ลบภาพ</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            <div id="delete"></div>
-                            <div id="newgallery"></div>
-                            
-                            <button type="button" class="btn btn-primary" onclick="addimagegallery()">เพิ่มภาพ</button>
-
-                            <br><br>
+                            <div class="col-sm">
+                                <h5>
+                                    <b>{{Session::get('lang')=='th'?'แกลลอรี่':'Gallery '}}</b>
+                                </h5>
                             </div>
                         </div>
+                        <br>
+                        <div class="row">
+                                @foreach($image as $key => $picture)
+                                <div id="gal{{$picture->id_blog_gallery}}">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                        <input type="file" style="display: none;" name="sub_gallery[{{$picture->id_blog_gallery}}]" class="form-control chooseImage{{$picture->id_blog_gallery}}" id="slidepicture{{$picture->id_blog_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_blog_gallery}})">
+                                            <img id="gallerypreview{{$picture->id_blog_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->blog_gallery_image	)}}" onclick="browsImage({{$picture->id_blog_gallery}})" />
+                                            {{-- <input type="text" name="sub_sort[{{$picture->id_blog_gallery}}]"  class="form-control text-center" value="{{$picture->sort}}" /> --}}
+                                            <div></div>
+                                            <button  type="button" class="btn btn-danger" onclick="deletegallery({{$picture->id_blog_gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                               
+                        </div>
+                        <div id="delete"></div>
+                        <div id="newgallery" class="row"></div>
+                        <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
+
                         <div id="formgallery"></div>
                         <hr style=" border-top: 1px solid #556ee6;">
                         
@@ -136,7 +145,7 @@
 </div>
 <!-- end row -->
                         
-
+<?php $count = DB::table('blog_gallery')->where('id_blog',$item->id_blog)->max('id_blog_gallery'); ?>
 @endsection
 
 @section('script')
@@ -188,42 +197,66 @@
         placeholder: "-select target-",
     });
            
-    ///////////image
-    count = 0;
-    gallery = 0;
+   /////////////รูปภาพ
+   count = 0;
+    gallery = '{{$count + 1000}}';
+
     function addimagegallery(){
 
         gallery++;
-        newimage = '<div class="col-md-12" id="gal'+gallery+'">'+
-        '<div class="form-group">'+
-        '<label for="usr">ภาพ Gallery</label>'+
-        '<input type="file" name="sub_gallery['+(gallery).toString()+']" class="form-control" id="slidepicture'+gallery+'" onchange="readGalleryURL2(this,'+gallery+')">'+
-        '<img id="gallerypreview'+gallery+'" style="max-height:400px ;" src="{{url('no-image.jpg')}}" alt="No image" />'+
-        '</div>'+ 
-        '<button style="float: right;" type="button" class="btn btn-danger" onclick="deleteimagegallery('+gallery+')">ลบภาพ</button><br><br>'
+
+        newimage =  '<div id="gal'+gallery+'">'+
+            '<div class="form-group">'+
+                '<div class="col-sm-12">'+
+                    '<input type="file" style="display: none;"  name="sub_gallery['+(gallery).toString()+']" class="form-control chooseImage'+gallery+'" id="slidepicture'+gallery+'" multiple="multiple" onchange="readGalleryURL2(this,'+gallery+')">'+
+                    '<img id="gallerypreview'+gallery+'" style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage('+gallery+')" />'+
+                    '<div></div>'+
+                    '<!--input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center"-->'+
+                    '<button  type="button" class="btn btn-danger" onclick="deletegallery('+gallery+')" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>'+
+                '</div>'+
+            '</div>'+
         '</div>';
-
-
         $('#newgallery').append(newimage);
     }
 
-    function deleteimagegallery(num){
+    function browsImage(id){
+        $('.chooseImage'+id).click();
+    }
+
+    function deletegallery(num){
 
         $('#gal'+num).remove();
         //gallery--;
-        $('#formgallery').append('<input type="hidden" name="deleted_id[]" value="'+num+'">')
+        $('#delete').append('<input type="hidden" name="deletedkey[]" value="'+num+'">');
 
     }
+
     function readGalleryURL2(input,id) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#gallerypreview'+id).attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#gallerypreview'+id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
         }
     }
-                    
+
+    ////////////สำหรับรูปหน้าปก
+
+    function readGalleryURL3(input,id) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#gallerypreview2'+id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    /////end image    
 </script>
 <script>
     var A = "{{Session::get('Update')}}";

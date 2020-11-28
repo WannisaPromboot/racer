@@ -58,9 +58,14 @@
                                 <b>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}} : </b>
                             </div>
                             <div class="col-8">
-                                <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');" style="width: 478px;" required>
-                                <img src="" id="imgpreview_filepath" style="max-height:150px;">
-                                {!! OrangeV1::ImagePreviewJs() !!}
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="filepath[0]" class="form-control chooseImage10" id="slidepicture0" multiple="multiple" onchange="readGalleryURL3(this,0)">
+                                        <img id="gallerypreview20"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage1(0)" />
+                                        {{-- <input type="text" name="sub_sort[2]" class="form-control text-center" required> --}}
+                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(2)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                    </div>
+                                </div>
                         
                             </div>
                         </div>
@@ -111,14 +116,13 @@
                         <div class="row">
                             <div class="col-sm">
                                 <h5>
-                                    <b>{{Session::get('lang')=='th'?'แกลลอรี่':'Gallery '}} (อัพได้หลายภาพ)</b>
+                                    <b>{{Session::get('lang')=='th'?'แกลลอรี่':'Gallery '}}</b>
                                 </h5>
                             </div>
                         </div>
-                        <div id="newgallery">
-                    
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="addimagegallery()">เพิ่มภาพ</button>
+                        <div id="delete"></div>
+                        <div id="newgallery" class="row"></div>
+                        <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
         
                         <br><br>
                         
@@ -143,7 +147,7 @@
 </div>
 <!-- end row -->
                      
-
+<?php $count = DB::table('new_gallery')->max('id_new_gallery'); ?>
 @endsection
 
 @section('script')
@@ -217,48 +221,70 @@
 
     ///////////image
     count = 0;
-    gallery = 0;
+    gallery = '{{$count + 1000}}';
+
     function addimagegallery(){
 
         gallery++;
-        newimage = '<div class="col-md-12" id="gal'+gallery+'">'+
-        '<div class="form-group">'+
-        '<label for="usr">ภาพ Gallery</label>'+
-        '<input type="file" name="sub_gallery['+(gallery).toString()+']" class="form-control" id="slidepicture'+gallery+'" onchange="readGalleryURL2(this,'+gallery+')">'+
-        '<img id="gallerypreview'+gallery+'" style="max-height:400px ;" src="{{url('no-image.jpg')}}" alt="No image" />'+
-        '</div>'+ 
-        '<button style="float: right;" type="button" class="btn btn-danger" onclick="deleteimagegallery('+gallery+')">ลบภาพ</button><br><br>'
+
+        newimage =  '<div id="gal'+gallery+'">'+
+            '<div class="form-group">'+
+                '<div class="col-sm-12">'+
+                    '<input type="file" style="display: none;"  name="sub_gallery['+(gallery).toString()+']" class="form-control chooseImage'+gallery+'" id="slidepicture'+gallery+'" multiple="multiple" onchange="readGalleryURL2(this,'+gallery+')">'+
+                    '<img id="gallerypreview'+gallery+'" style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage('+gallery+')" />'+
+                    '<!--input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center"-->'+
+                    '<div></div>'+
+                    '<button  type="button" class="btn btn-danger" onclick="deletegallery('+gallery+')" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>'+
+                '</div>'+
+            '</div>'+
         '</div>';
-
-
         $('#newgallery').append(newimage);
     }
 
-    function deleteimagegallery(num){
+    function browsImage(id){
+        $('.chooseImage'+id).click();
+    }
+
+    function deletegallery(num){
 
         $('#gal'+num).remove();
         //gallery--;
-        $('#formgallery').append('<input type="hidden" name="deletedkey[]" value="'+num+'">')
+        $('#delete').append('<input type="hidden" name="deletedkey[]" value="'+num+'">');
 
     }
+
     function readGalleryURL2(input,id) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#gallerypreview'+id).attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#gallerypreview'+id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
         }
     }
-        
-    $('.functional').select2({
-        tags: true,
-        minimumResultsForSearch: -1,
-        maximumSelectionLength: 10,
-        tokenSeparators: [',', ' '],
-        placeholder: "-select target-",
-    });
 
+     ////////////สำหรับรูปหน้าปก
+
+     function browsImage1(id){
+        $('.chooseImage1'+id).click();
+    }
+
+
+
+    function readGalleryURL3(input,id) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#gallerypreview2'+id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+    //////////end
     
 </script>
 @endsection

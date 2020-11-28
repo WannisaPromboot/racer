@@ -74,7 +74,7 @@
                                 <a href="{{url('editcategory/'.$item->id_category.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-sm">{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>
+                                <a href="javascript:void(0)" onclick="deldata({{$item->id_category}})" class="btn btn-danger btn-sm">{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>
                             </td>
                         </tr>
                         
@@ -162,6 +162,36 @@
                 $('#main').modal('show');
             }
         });
+    }
+
+    ///delete
+    
+    function deldata(id){
+        Swal.fire({
+        text: "คุณต้องการลบข้อมูลใช่หรือไม่",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'yes'
+        }).then((result)=>{
+            if (result.value) {
+                $.ajax({
+                    url: '{{ url("delete1table")}}/Category/'+ id +'/NULL',
+                    type: 'GET',
+                    dataType: 'HTML',
+                    success: function(data) {
+                        Swal.fire({
+                            text: "ลบข้อมูลเรียบร้อย",
+                            type: 'success'
+                        });
+
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+
     }
 
 </script>

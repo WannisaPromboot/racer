@@ -41,17 +41,19 @@ class BlogController extends Controller
 
 
     public function SaveBlog(Request $request){
-        $Blog = new Blog();
+
+        $Blog = new Blog;
         $Blog->blog_th	 = $request->blog_th;
         $Blog->blog_en	 = $request->blog_en;
-        $Blog->description_blog_th	 = $request->description_blog_th;
-        $Blog->description_blog_en	 = $request->description_blog_en;
-        if($request->filepath !== null){
-            $blog_image = 'Blog/'.time().$request->filepath->getClientOriginalName();
-            Storage::put($blog_image, file_get_contents($request->filepath));
+        $Blog->description_blog_th	 = $request->blog_description_th;
+        $Blog->description_blog_en	 = $request->blog_description_en;
+
+        if($request["filepath"][0] !== null){
+            $blog_image = 'Blog/'.time().$request["filepath"][0]->getClientOriginalName();
+            Storage::put($blog_image, file_get_contents($request["filepath"][0]));
             $Blog->blog_image = $blog_image;
         }
-
+     
         $Blog->save();
         // dd($Blog);
         if(isset($request["sub_gallery"])){      
@@ -71,76 +73,6 @@ class BlogController extends Controller
     }
 
 
-    public function SaveViewBlog(Request $request){
-        
-        if(!empty($request->id)){
-            $updateBlog = \App\Blog::where('blog_id',$request->id)->first();
-
-            $updateBlog->title_th	 = $request->title_th;
-            $updateBlog->title_en	 = $request->title_en;
-            $updateBlog->title_ch	 = $request->title_ch;
-            $updateBlog->catagory	 = $request->catagory;
-            $updateBlog->description_th	 = $request->description_th;
-            $updateBlog->description_en	 = $request->description_en;
-            $updateBlog->description_ch	 = $request->description_ch;
-            $updateBlog->datefrom	 = $request->datefrom;
-            $updateBlog->dateto	 = $request->dateto;
-            $updateBlog->title_th	 = $request->title_th;
-            $updateBlog->title_th	 = $request->title_th;
-            $updateBlog->title_th	 = $request->title_th;
-            $updateBlog->link	 = $request->link;
-            $updateBlog->status  = 1; 
-
-            ////video youtube
-            $youtube =  str_replace("watch?v=", "embed/",$request->video);
-            $updateBlog->video = $youtube;
-
-            if(isset($request->filepath)){
-                $newFilename = 'Blog/'.time().$request->filepath->getClientOriginalName();
-                Storage::put($newFilename, file_get_contents($request->filepath));
-                $updateBlog->filepath = $newFilename;
-            }
-    
-            $updateBlog->save();
-
-            return view('Admin.store_customer.viewblog_1',['id' =>$updateBlog->id_store_review]); 
-
-        }else{
-            
-            $BlogContent = new  Blog;
-
-            $BlogContent->title_th	 = $request->title_th;
-            $BlogContent->title_en	 = $request->title_en;
-            $BlogContent->title_ch	 = $request->title_ch;
-            $BlogContent->catagory	 = $request->catagory;
-            $BlogContent->description_th	 = $request->description_th;
-            $BlogContent->description_en	 = $request->description_en;
-            $BlogContent->description_ch	 = $request->description_ch;
-            $BlogContent->datefrom	 = $request->datefrom;
-            $BlogContent->dateto	 = $request->dateto;
-            $BlogContent->title_th	 = $request->title_th;
-            $BlogContent->title_th	 = $request->title_th;
-            $BlogContent->title_th	 = $request->title_th;
-            $BlogContent->link	 = $request->link;
-            $BlogContent->status  = 1; 
-
-            ////video youtube
-            $youtube =  str_replace("watch?v=", "embed/",$request->video);
-            $BlogContent->video = $youtube;
-            if(isset($request->filepath)){
-                $newFilename = 'Blog/'.time().$request->filepath->getClientOriginalName();
-                Storage::put($newFilename, file_get_contents($request->filepath));
-                $BlogContent->filepath = $newFilename;
-            }
-    
-            $BlogContent->save();
-
-            
-            return redirect('viewblogascustomer/'.$BlogContent->blog_id.''); 
-        }
-    }
-
-
 
     public function viewaddblog($id){
         return view('Admin.blog.add-blog',['id'=>$id]);
@@ -151,18 +83,19 @@ class BlogController extends Controller
 
         $updateBlog->blog_th	 = $request->blog_th;
         $updateBlog->blog_en	 = $request->blog_en;
-        $updateBlog->description_blog_th	 = $request->description_blog_th;
-        $updateBlog->description_blog_en	 = $request->description_blog_en;
-        if($request->filepath !== null){
-            $blog_image = 'Blog/'.time().$request->filepath->getClientOriginalName();
-            Storage::put($blog_image, file_get_contents($request->filepath));
+        $updateBlog->description_blog_th	 = $request->blog_description_th;
+        $updateBlog->description_blog_en	 = $request->blog_description_en;
+
+        if(isset($request["filepath"][$id])){
+            $blog_image = 'Blog/'.time().$request["filepath"][$id]->getClientOriginalName();
+            Storage::put($blog_image, file_get_contents($request["filepath"][$id]));
             $updateBlog->blog_image = $blog_image;
         }
 
         $updateBlog->save();
-        // dd($Blog);
-        if(isset($request["deleted_id"])){
-            foreach($request["deleted_id"] as $delete_picture_id){
+
+        if(isset($request["deletedkey"])){
+            foreach($request["deletedkey"] as $delete_picture_id){
                 Blog_gallery::where('id_blog_gallery',$delete_picture_id)->delete();
             }
         }
@@ -182,57 +115,7 @@ class BlogController extends Controller
         return redirect('blogcontent')->with('Save','บันทึกข้อมูลสำเร็จ');
     }
 
-    public function ViewUpdateBlog(Request $request,$id){
 
-                $BlogContent = Blog::where('blog_id',$id)->first();
-
-                $BlogContent->title_th	 = $request->title_th;
-                $BlogContent->title_en	 = $request->title_en;
-                $BlogContent->title_ch	 = $request->title_ch;
-                $BlogContent->catagory	 = $request->catagory;
-                $BlogContent->description_th	 = $request->description_th;
-                $BlogContent->description_en	 = $request->description_en;
-                $BlogContent->description_ch	 = $request->description_ch;
-                $BlogContent->datefrom	 = $request->datefrom;
-                $BlogContent->dateto	 = $request->dateto;
-                $BlogContent->title_th	 = $request->title_th;
-                $BlogContent->title_th	 = $request->title_th;
-                $BlogContent->title_th	 = $request->title_th;
-                $BlogContent->link	 = $request->link;
-                $BlogContent->status = 1;
-                ////video youtube
-                $youtube =  str_replace("watch?v=", "embed/",$request->video);
-                $BlogContent->video = $youtube;
-        
-                if(isset($request["filepath"])){
-                    if(!empty($BlogContent->filepath)){
-                        Storage::delete($BlogContent->filepath);
-                    }
-        
-                    $newFilename = 'Blog/'.time().$request->filepath->getClientOriginalName();
-                    Storage::put($newFilename, file_get_contents($request->filepath));
-                    $BlogContent->filepath = $newFilename;
-                }
-        
-                $BlogContent->save();
-        
-                return redirect('viewblogascustomer/'.$id.''); 
-      
-        
-    }
-
-    public function ViewSaveBlog($id){
-        $BlogContent = Blog::where('blog_id',$id)->first();
-        $BlogContent->status = 2;
-        $BlogContent->save();
-
-        return redirect('blogcontent'); 
-
-    }
-
-    public function ViewBlogAscustomer($id){
-        return view('Admin.blog.viewblogedit',['id' => $id]); 
-    }
 
     public function ViewBlog($id){
         $item = Blog::where('blog_id',$id)->first();

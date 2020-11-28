@@ -481,4 +481,14 @@ class ProductController extends Controller
 
         return $html;
     }
+
+    public function DeleteProduct($id){
+        Product::where('id_product',$id)->delete();
+        $items =  ProductGallery::where('id_product',$id)->get();
+
+        foreach($items as $item){
+            ProductGallery::where('id_product_gallery',$item->id_product_gallery)->delete();
+            Storage::delete($item->filepath);
+        }   
+    }
 }

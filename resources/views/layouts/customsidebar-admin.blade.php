@@ -69,13 +69,13 @@
                 <li>
                     <a href="{{url('productcontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/lightbulb.png')}}">
-                        <span>{{Session::get('lang')=='th'?'สินค้า':'product'}}</span>
+                        <span>{{Session::get('lang')=='th'?'การจัดการสินค้า':'Product Management'}}</span>
                     </a> 
                 </li>
                 <li>
                     <a href="{{url('production')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/box.png')}}">
-                        <span>Production</span>
+                        <span>Production Management</span>
                     </a> 
                 </li>
                 <li>
