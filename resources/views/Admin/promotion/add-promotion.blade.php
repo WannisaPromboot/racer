@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'เพิ่มบทความ':' Add Blog'}} @endsection
+@section('title') {{Session::get('lang')=='th'?'เพิ่มโปรโมชั่น':' Add promotion'}} @endsection
 
 @section('css') 
         <!-- Summernote css -->
@@ -39,7 +39,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'เพิ่มบทความ':' Add Blog'}}</h4>
+        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'เพิ่มโปรโมชั่น':' Add promotion'}}</h4>
         </div>
     </div>
 </div>     
@@ -50,7 +50,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form  action="{{url('saveblog')}}" method="POST" enctype="multipart/form-data" id="saveblog">
+                <form  action="{{url('savepromotion')}}" method="POST" enctype="multipart/form-data" id="savepromotion">
                         @csrf
                         
                         <div class="row">
@@ -64,75 +64,18 @@
                         
                             </div>
                         </div>
-                        <br>
-                        <div class="row">
-                            <input type="hidden" name="id" value="{{!empty($id)?$id:''}}" >
-                            <div class="col-2">
-                                <b>{{Session::get('lang')=='th'?'หัวข้อ (ภาษาไทย) : ' :'Title (Thailand) : '}} </b>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" class="form-control" name="blog_th" value="{{!empty($id)?$blog->title_th:''}}" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-2">
-                                <b>{{Session::get('lang')=='th'?'หัวข้อ (อังกฤษ) : ' :'Title (English) : '}}</b>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" class="form-control" name="blog_en" value="{{!empty($id)?$blog->title_en:''}}" required>
-                            </div>
-                        </div>
-                        <br>
-                        
-                        {{-- <div id="newlanguage"></div>
-                        <button type="button" class="btn" style="background-color: #03dc74 !important;color:white !important;" onclick="addtitlelanguage()">เพิ่มหัวข้อ</button> --}}
-                        <hr style=" border-top: 1px solid #556ee6;">
-                        <div class="row">
-                            <div class="col-2">
-                                <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาไทย) : ':'Detail (Thailand) : '}}</b>
-                            </div>
-                            <div class="col-sm">
-                                <textarea type="text" id="description_th"  name="blog_description_th" required>{{!empty($id)?$blog->description_th:''}}</textarea>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-2">
-                                <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาอังกฤษ) : ':'Detail (English) : '}} </b>
-                            </div>
-                            <div class="col-sm">
-                                <textarea type="text" id="description_en" name="blog_description_en" required>{{!empty($id)?$blog->description_en:''}}</textarea>
-                            </div>
-                        </div>
-                        <br>
-                        
-                        <hr style=" border-top: 1px solid #556ee6;">
-                        <div class="row">
-                            <div class="col-sm">
-                                <h5>
-                                    <b>{{Session::get('lang')=='th'?'แกลลอรี่':'Gallery '}} (อัพได้หลายภาพ)</b>
-                                </h5>
-                            </div>
-                        </div>
-                        <div id="newgallery">
-                    
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="addimagegallery()">เพิ่มภาพ</button>
-        
-                        <br><br>
                         
                         
-                        <hr style=" border-top: 1px solid #556ee6;">
+                        {{-- <hr style=" border-top: 1px solid #556ee6;"> --}}
                         
                         <div data-repeater-item class="row mt-5"> 
                             <div class="col-9">
-                                <a href="{{url('blogcontent')}}" style="float:left;"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
+                                <a href="{{url('promotioncontent')}}" style="float:left;"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
                             </div>
                             <div class="col-3 text-right">
-                                {{-- <button type="submit" formaction="{{url('saveviewblog')}}"  class="btn btn-info mr-2" >  <i class="bx bx-show" style="font-size:18px ="></i>{{Session::get('lang')=='th'?'มุมมองของลูกค้า ' :'Customer View'}}</button> --}}
-                                <button type="button" class="btn" onclick="save('saveblog')"  style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
-                                {!! OrangeV1:: AlertMessage ('saveblog') !!}
+                                {{-- <button type="submit" formaction="{{url('saveviewpromotion')}}"  class="btn btn-info mr-2" >  <i class="bx bx-show" style="font-size:18px ="></i>{{Session::get('lang')=='th'?'มุมมองของลูกค้า ' :'Customer View'}}</button> --}}
+                                <button type="button" class="btn" onclick="save('savepromotion')"  style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
+                                {!! OrangeV1:: AlertMessage ('savepromotion') !!}
                             </div>
                         </div>
                     </form>
@@ -259,43 +202,7 @@
         placeholder: "-select target-",
     });
 
-function save(formname){
-    var inputs = document.getElementsByTagName('input');
-        for (var i = 0; i < inputs.length; i++) {
-            // only validate the inputs that have the required attribute
-            if(inputs[i].hasAttribute("required")){
-                if(inputs[i].value == ""){
-                    // found an empty field that is required
-                    inputs[i].focus();
-                    // alert("Please fill all required fields");
-                    return false;
-                }
-            }
-        }
 
-        
-        document.getElementById("description_th").required;
-        document.getElementById("description_en").required;
-        document.getElementById("description_ch").required;
-        
-    Swal.fire({
-        text: "คุณต้องการบันทึกข้อมูลใช่หรือไม่",
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'save'
-        }).then((result)=>{
-            if (result.value) {
-                console.log(formname);
-                $('#'+formname+'').submit();
-                }
-        });
-    }
-
-    $('.datefrom').change(function(){
-        $('.dateto').attr('min',$(this).val());
-    });
 
 </script>
 @endsection

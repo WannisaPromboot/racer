@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'แก้ไขข้อมูล Blog ':'Edit blog'}} @endsection
+@section('title') {{Session::get('lang')=='th'?'แก้ไขข้อมูลข่าวสาร ':'Edit news'}} @endsection
 
 @section('css') 
         <!-- Summernote css -->
@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'แก้ไขข้อมูล Blog ':'Edit blog'}}</h4>
+        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'แก้ไขข้อมูลข่าวสาร ':'Edit news'}}</h4>
         </div>
     </div>
 </div>     
@@ -30,15 +30,15 @@
         <div class="card">
             <div class="card-body">
                 <div id="edit">
-                    <form action="{{url('updateblog/'.$item->id_blog.'')}}" method="post" enctype="multipart/form-data" id="updateblog">
+                    <form action="{{url('updatenew/'.$item->id_new.'')}}" method="post" enctype="multipart/form-data" id="updatenew">
                         @csrf
                         <div class="row">
                             <div class="col-2">
                                 <b>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}} : </b>
                             </div>
                             <div class="col-8">
-                                <input type="file" class="form-control" name="filepath" id="filepath" value="{{$item->blog_image}}" onchange="readImage(this,'filepath');" >
-                                <img src="{{!empty($item->blog_image)?url('storage/app/'.$item->blog_image):''}}" id="imgpreview_filepath" style="max-height:200px;">
+                                <input type="file" class="form-control" name="filepath" id="filepath" value="{{$item->new_image}}" onchange="readImage(this,'filepath');" >
+                                <img src="{{!empty($item->new_image)?url('storage/app/'.$item->new_image):''}}" id="imgpreview_filepath" style="max-height:200px;">
                                 {!! OrangeV1::ImagePreviewJs() !!}
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <b>{{Session::get('lang')=='th'?'หัวข้อ (ภาษาไทย) : ' :'Title (Thailand) : '}}</b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="blog_th" value="{{$item->blog_th}}" required>
+                                <input type="text" class="form-control" name="new_th" value="{{$item->new_th}}" required>
                             </div>
                         </div>
                         <br>
@@ -57,7 +57,7 @@
                                 <b>{{Session::get('lang')=='th'?'หัวข้อ (อังกฤษ) : ' :'Title (English) : '}}</b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="blog_en" value="{{$item->blog_en}}" required>
+                                <input type="text" class="form-control" name="new_en" value="{{$item->new_en}}" required>
                             </div>
                         </div>
                         
@@ -68,7 +68,7 @@
                                 <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาไทย) : ':'Detail (Thailand) : '}}</b>
                             </div>
                             <div class="col-sm">
-                                <textarea type="text" id="description_th"  name="blog_description_th"  required>{{$item->blog_description_th}}</textarea>
+                                <textarea type="text" id="description_th"  name="description_new_th"  required>{{$item->description_new_th}}</textarea>
                             </div>
                         </div>
                         <br>
@@ -77,7 +77,7 @@
                                 <b>{{Session::get('lang')=='th'?' รายละเอียด (ภาษาอังกฤษ) : ':'Detail (English) : '}}</b>
                             </div>
                             <div class="col-sm">
-                                <textarea type="text" id="description_en" name="blog_description_en" required>{{$item->blog_description_en}}</textarea>
+                                <textarea type="text" id="description_en" name="description_new_en" required>{{$item->description_new_th}}</textarea>
                             </div>
                         </div>
                         <br>
@@ -85,19 +85,19 @@
                         <hr style=" border-top: 1px solid #556ee6;">
                        
                         <div class="row">
-                            <div class="col-2">Blog gallery : </div>
+                            <div class="col-2">News gallery : </div>
                             <div class="col-8">
                                 @foreach($image as $key => $picture)
-                                    <div id="gal{{$picture->id_blog_gallery}}">
+                                    <div id="gal{{$picture->id_new_gallery}}">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <input type="file" name="sub_gallery[{{$picture->id_blog_gallery}}]" class="form-control" id="slidepicture{{$picture->id_blog_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_blog_gallery}})">
-                                                    <img id="gallerypreview{{$picture->id_blog_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->blog_gallery_image)}}" />
+                                                    <input type="file" name="sub_gallery[{{$picture->id_new_gallery}}]" class="form-control" id="slidepicture{{$picture->id_new_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_new_gallery}})">
+                                                    <img id="gallerypreview{{$picture->id_new_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->new_gallery_image)}}" />
                                                 
                                                 </div>
                                                 <div class="col-sm mt-4 pt-2">
-                                                    <button  type="button" class="btn btn-danger" onclick="deleteimagegallery({{$picture->id_blog_gallery}})">ลบภาพ</button>
+                                                    <button  type="button" class="btn btn-danger" onclick="deleteimagegallery({{$picture->id_new_gallery}})">ลบภาพ</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,12 +119,12 @@
                                 <a href="javascript:void(0)"  onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'ยกเลิก ':'Cancel'}}</a>
                             </div>
                             <div class="col-6 text-right">
-                                {{-- <button type="submit"  formaction="{{url('viewupdateblog/'.$item->id_blog.'')}}"  class="btn btn-info">  <i class="bx bx-show" style="font-size:18px ="></i>{{Session::get('lang')=='th'?'มุมมองของลูกค้า ' :'Customer View'}}</button> --}}
-                                <button type="button" class="btn btn-success" onclick="save('updateblog')" style="">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
+                                {{-- <button type="submit"  formaction="{{url('viewupdatenew/'.$item->id_new.'')}}"  class="btn btn-info">  <i class="bx bx-show" style="font-size:18px ="></i>{{Session::get('lang')=='th'?'มุมมองของลูกค้า ' :'Customer View'}}</button> --}}
+                                <button type="button" class="btn btn-success" onclick="save('updatenew')" style="">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
                                
                             </div>
                             {{-- <div class="col-1">
-                                <a  href="{{url('blogcontent')}}"  style="float:left;"  class="btn btn-warning">{{Session::get('lang')=='th'?'ยกเลิก':'Cancel'}}</a>
+                                <a  href="{{url('newcontent')}}"  style="float:left;"  class="btn btn-warning">{{Session::get('lang')=='th'?'ยกเลิก':'Cancel'}}</a>
                             </div> --}}
                         </div>
                     </form>
@@ -234,42 +234,6 @@
         });
     }
 
-
-    function save(formname){
-
-        var inputs = document.getElementsByTagName('input');
-        for (var i = 0; i < inputs.length; i++) {
-            // only validate the inputs that have the required attribute
-            if(inputs[i].hasAttribute("required")){
-                if(inputs[i].value == ""){
-                    // found an empty field that is required
-                    inputs[i].focus();
-                    // alert("Please fill all required fields");
-                    return false;
-                }
-            }
-        }
-
-        
-        document.getElementById("description_th").required;
-        document.getElementById("description_en").required;
-
-        
-        Swal.fire({
-            text: "คุณต้องการบันทึกข้อมูลใช่หรือไม่",
-            type: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'save'
-            }).then((result)=>{
-                if (result.value) {
-                    // console.log(formname);
-                    $('#'+formname+'').submit();
-                }
-            });
-    }
-
     function canclebtn(){
         Swal.fire({
             text: "คุณต้องการยกเลิกการแก้ไขข้อมูลใช่หรือไม่",
@@ -281,7 +245,7 @@
             cancelButtonText: 'ไม่ใช่',
         }).then((result)=>{
             if (result.value) {
-                    window.location.href = "{{ url('blogcontent')}}";
+                    window.location.href = "{{ url('newcontent')}}";
                 }
         });
     }

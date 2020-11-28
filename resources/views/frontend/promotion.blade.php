@@ -657,26 +657,10 @@ a:hover {
                         <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro003.jpg')}}"></a>
                         <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro004.jpg')}}"></a>
                     </div>
-                
-
-
-        
                 </div>
             </div>
-
-
-
-        
         </div>
-        
-        
         </div> 
-
-		
-
-		
-	
-
     <footer class="ftco-footer ftco-section">
       <div class="container">
       	<!-- <div class="row">

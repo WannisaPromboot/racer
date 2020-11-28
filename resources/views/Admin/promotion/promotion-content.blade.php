@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'บทความ':'Blog'}} @endsection
+@section('title') {{Session::get('lang')=='th'?'โปรโมชั่น':'Promotion'}} @endsection
 
 @section('css') 
         <!-- Summernote css -->
@@ -29,11 +29,11 @@
 <div class="row">
     <div class="col-6">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'บทความ':'Blog'}}</h4>
+        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'โปรโมชั่น':'Promotion'}}</h4>
         </div>
     </div>
     <div class="col-6 text-right">
-        <a href="{{url('addblog')}}" class="btn add" style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มบทความ':'+ Add Blog'}}</a>
+        <a href="{{url('addpromotion')}}" class="btn add" style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มโปรโมชั่น':'+ Add promotion'}}</a>
     </div>  
 </div>     
 <!-- end page title -->
@@ -52,10 +52,7 @@
                             <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>{{Session::get('lang')=='th'?'วันที่' :'Date'}}</th>
-                                <th>{{Session::get('lang')=='th'?'หัวข้อ':'Title'}}</th>
                                 <th>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}}</th>
-                                <th>{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</th>
                                 <th>{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</th>
                                 <th>{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</th>
                             </tr>
@@ -65,17 +62,15 @@
                                 @foreach($data as $item)
                                     <tr>
                                         <td>{{$i}}</td>
-                                        <td>{{$item->created_at}}</td>
-                                        <td>{{$item->blog_th}}</td>
-                                        <td><img src="{{url('storage/app/'.$item->blog_image)}}" alt="" style="max-height: 200px;"></td>
-                                        <td>
+                                        <td><img src="{{url('storage/app/'.$item->promotion_image)}}" alt="" style="max-height: 200px;"></td>
+                                        {{-- <td>
                                             <button type="button" class="btn btn-secondary" onclick="detailblog({{$item->id_blog}})">{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</button>
-                                        </td>
+                                        </td> --}}
                                         <td> 
-                                            <a href="{{url('editblog/'.$item->id_blog)}}" class="btn btn-warning" >แก้ไข</a> 
+                                            <a href="{{url('editpromotion/'.$item->id_new_promotion)}}" class="btn btn-warning" >แก้ไข</a> 
                                         </td>
                                         <td>
-                                            <a href="{{url('deleteblog')}}/{{$item->id_blog}}" type="button" class="btn btn-danger">ลบ</a>
+                                            <a href="{{url('deletepromotion')}}/{{$item->id_new_promotion}}" type="button" class="btn btn-danger">ลบ</a>
                                         </td>
                                     </tr>
                                     <?php $i=$i+1;?>

@@ -14,7 +14,17 @@
 
 
 /////fronent.
+Route::get('/clc', function() {
 
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+        // Artisan::call('view:clear');
+        // session()->forget('key');
+    return "Cleared!";
+
+});
 //Frontend
 Route::get('/', function(){
     return view('frontend.index');
@@ -25,7 +35,10 @@ Route::get('/about-us', function(){
 });
 
 Route::get('/article', function(){
-    return view('frontend.article');
+    $data = array(
+        'data' => \App\Blog::paginate(6),
+    );
+    return view('frontend.article',$data);
 });
 
 
@@ -39,13 +52,21 @@ Route::get('/caontact', function(){
 });
 
 
-Route::get('/detail-article', function(){
-    return view('frontend.detail-article');
+Route::get('/detail-article/{id}', function($id){
+    $data = array(
+        'data' => \App\Blog::where('id_blog',$id)->first(),
+        'img' => \App\Blog_Gallery::where('id_blog',$id)->get(),
+    );
+    return view('frontend.detail-article',$data);
 });
 
 
-Route::get('/detail-news', function(){
-    return view('frontend.detail-news');
+Route::get('/detail-news/{id}', function($id){
+    $data = array(
+        'data' => \App\News::where('id_new',$id)->first(),
+        'img' => \App\News_Gallery::where('id_new',$id)->get(),
+    );
+    return view('frontend.detail-news',$data);
 });
 
 
@@ -63,7 +84,11 @@ Route::get('/userlogin', function(){
 });
 
 Route::get('/news', function(){
-    return view('frontend.news');
+    $data = array(
+        'data' => \App\News::paginate(6),
+    );
+    // dd($data['data']);
+    return view('frontend.news',$data);
 });
 
 Route::get('/order-history', function(){
@@ -84,7 +109,10 @@ Route::get('/product/{id}', function($id){
 
 
 Route::get('/promotion', function(){
-    return view('frontend.promotion');
+    $data = array(
+        'data' => \App\Promotion::get(),
+    );
+    return view('frontend.promotion',$data);
 });
 
 Route::get('/userregister', function(){
@@ -232,9 +260,11 @@ Route::get('/updateproduction', 'Admin\ProductionController@updateproduction');
 
 ////////////////////blog///////////////////////////
 Route::get('/addblog', 'Admin\BlogController@AddBlog');
+Route::get('/deleteblog/{id}', 'Admin\BlogController@DeleteBlog');
 Route::get('/editblog/{id}', 'Admin\BlogController@EditBlog');
 Route::get('/blogcontent', 'Admin\BlogController@ShowBlogContent');
 Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
+Route::get('/detailblog/{id}', 'Admin\BlogController@DetailBlog');
 
 Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
 
@@ -245,6 +275,48 @@ Route::post('/updateblog/{id}', 'Admin\BlogController@UpdateBlog');
 Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
 Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
 Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
+
+
+
+////////////////////new///////////////////////////
+Route::get('/addnew', 'Admin\NewsController@Addnew');
+Route::get('/deletenew/{id}', 'Admin\NewsController@Deletenew');
+Route::get('/editnew/{id}', 'Admin\NewsController@Editnew');
+Route::get('/newcontent', 'Admin\NewsController@ShownewContent');
+// Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
+Route::get('/detailnew/{id}', 'Admin\NewsController@Detailnew');
+
+// Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
+
+
+// Route::post('/saveviewblog', 'Admin\BlogController@SaveViewBlog');
+Route::post('/savenew', 'Admin\NewsController@Savenew');
+Route::post('/updatenew/{id}', 'Admin\NewsController@Updatenew');
+// Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
+// Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
+// Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
+
+
+
+
+////////////////////promotion///////////////////////////
+Route::get('/addpromotion', 'Admin\PromotionController@Addpromotion');
+Route::get('/deletepromotion/{id}', 'Admin\PromotionController@Deletepromotion');
+Route::get('/editpromotion/{id}', 'Admin\PromotionController@Editpromotion');
+Route::get('/promotioncontent', 'Admin\PromotionController@ShowpromotionContent');
+// Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
+Route::get('/detailpromotion/{id}', 'Admin\PromotionController@Detailpromotion');
+
+// Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
+
+
+// Route::post('/saveviewblog', 'Admin\BlogController@SaveViewBlog');
+Route::post('/savepromotion', 'Admin\PromotionController@Savepromotion');
+Route::post('/updatepromotion/{id}', 'Admin\PromotionController@Updatepromotion');
+// Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
+// Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
+// Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
+
 
 ////////////////////Report///////////////////////////
 Route::get('/reportcontent', 'Admin\ReportController@ReportContent');

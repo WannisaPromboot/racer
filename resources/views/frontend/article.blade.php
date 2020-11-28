@@ -527,88 +527,89 @@ a:hover {
 
   <body class="goto-here">
 		<div class="py-1 bg-primary">
-    	<div class="container">
-    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-	    		<div class="col-lg-12 d-block">
-		    		<div class="row d-flex">
+    	    <div class="container">
+                <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                    <div class="col-lg-12 d-block">
+                        <div class="row d-flex">
 
-                        <div class="col-md-8 pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : xx xxx xxxx</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon icon-envelope" style="color:#00b9e9"></span>
-							<span class="text"> : Racer.co.th</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันเสาร์ : 08.00น. - 19.00น.</span></div>
+                            <div class="col-md-8 pr-4 d-flex topper align-items-center">
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon-phone2" style="color:#00b9e9"></span>
+                                <span class="text"> : xx xxx xxxx</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon icon-envelope" style="color:#00b9e9"></span>
+                                <span class="text"> : Racer.co.th</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
+                                <span class="text"> : วันจันทร์ - วันเสาร์ : 08.00น. - 19.00น.</span></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                    <a href="#" style="color: #00b9e9;"><span class="icon-twitter"></span></a>
+                                </div>
+                                <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                    <a href="#" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+                                </div>
+                                <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                    <a href="#" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+                            </div>
+
+                            </div>
+
                         </div>
-                        <div class="col-md-4">
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-twitter"></span></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
-						   </div>
-
-					    </div>
-
-				    </div>
-			    </div>
+                    </div>
+                </div>
 		    </div>
-		  </div>
-    </div>
+        </div>
        {{-- start nav --}}
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	<div class="container">
-	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="oi oi-menu"></span> Menu
-	  </button>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+                <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu
+                </button>
 
-	  <div class="collapse navbar-collapse" id="ftco-nav">
+            <div class="collapse navbar-collapse" id="ftco-nav">
 
-		  <div class="col-md-8">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
-		  <li class="nav-item dropdown">
-		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
-		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-			  <?php $menu = \App\Category::orderby('sort')->get(); ?>
-                @foreach ($menu as $_menu)
-                    <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
-                @endforeach
-		  </div>
-		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
-		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
-			<div class="dropdown-menu" aria-labelledby="dropdown04">
-				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
-				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
-			</div>
-		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
+                <div class="col-md-8">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="{{url('/product')}}">Lighting</a>
+                                <a class="dropdown-item" href="{{url('/product')}}">Decorative</a>
+                                <a class="dropdown-item" href="{{url('/product')}}">Innovation</a>
+                                <a class="dropdown-item" href="{{url('/product')}}">Equipment</a>
+                                <a class="dropdown-item" href="{{url('/product')}}">Cable</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
+                        <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
+                                <a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
+                        <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
 
-		</ul>
-	</div>
-	<div class="col-md-4" id="pay-nemu">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
-		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
-		</ul>
-	</div>
+                    </ul>   
+                </div>
+                <div class="col-md-4" id="pay-nemu">
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
+                    <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
+                    </ul>
+                </div>
 
 
-	  </div>
-	</div>
-  </nav>
+            </div>
+        </div>
+    </nav>
     <!-- END nav -->
 
     <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
@@ -628,82 +629,22 @@ a:hover {
         <div class="site-section bg-light">
             <div class="container">
                 <div class="row">
-                   
-                    <div class="col-md-4" id="">
-                        <a href="{{url('/detail-article')}}"><img class="pro-img" src="{{asset('frontend/images/pro02.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
+                    @foreach($data as $item)
+                        <div class="col-md-4" id="">
+                            <a href="{{url('/detail-article')}}"><img class="pro-img" src="{{url('storage/app/'.$item->blog_image)}}"></a>
+                        </div>
+                        <div class="col-md-8" id="">
 
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
+                            <div class="welcome_docmed_info">
+                                <h3 class="title-pan">{{$item->blog_th}}</h3>
+                                <p class="sub-pan">{!!$item->description_blog_th!!}</p>
 
-                                                            <a href="{{url('/detail-article')}}" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
+                                <a href="{{url('/detail-article')}}/{{$item->id_blog}}" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
+                                
+                            </div>
                             
                         </div>
-                        
-                    </div>
-
-                    <div class="col-md-4" id="">
-                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="#" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-md-4" id="">
-                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="#" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-md-4" id="">
-                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro05.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="#" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
-                        </div>
-                        
-                    </div>
-
-                    <div class="col-md-4" id="">
-                        <a href="#"><img class="pro-img" src="{{asset('frontend/images/pro06.jpg')}}"></a>
-                    </div>
-                    <div class="col-md-8" id="">
-
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Simple, simulated content used in the printing business.</h3>
-                            <p class="sub-pan">Lorem Ipsum is a simple simulation content. Used in printing or typesetting business It has been a standard mock-up of such businesses since the 16th century, when a noname printer switched typefaces to swap letters to make sample books. Lorem Ipsum was invincible, not just five centuries. But until the time that turned into electronic typesetting And retains its original condition unchanged It became more popular in the era</p>
-
-                                                            <a href="#" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                            
-                        </div>
-                        
-                    </div>
-
+                    @endforeach
         
                 </div>
             </div>
@@ -713,19 +654,32 @@ a:hover {
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-lg-12">
-            <center><div class="pagination">
-                <a href="#"><i class="fas fa-arrow-left" style="color: #00b9e9;" aria-hidden="true"></i></a>
-                <a href="#">1</a>
-                <a href="#" class="active">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#"><i class="fas fa-arrow-right" style="color: #00b9e9;" aria-hidden="true"></i></a>
-              </div></center>
-            </div>
+                            <center>
+                                <div class="pagination">
+                                    @if(!empty($data))
+                                        @if ($data->lastPage() > 1)
+                                            <ul>
+                                                <li class="{{ ($data->currentPage() == 1) ? ' disabled' : '' }}">
+                                                    <a href="{{ $data->url(1) }}" class="current"><i class="fas fa-arrow-left" style="color: #00b9e9;" aria-hidden="true"></i></a>
+                                                </li>
+                                                @for ($i = 1; $i <= $data->lastPage(); $i++)
+                                                    <li class="{{ ($data->currentPage() == $i) ? ' active' : '' }}">
+                                                        <a href="{{ $data->url($i) }}" >{{ $i }}</a>
+                                                    </li>
+                                                @endfor
+                                                <li class="{{ ($data->currentPage() == $data->lastPage()) ? ' disabled' : '' }}">
+                                                    <a href="{{ $data->url($data->currentPage()+1) }}" class="current"><i class="fas fa-arrow-right" style="color: #00b9e9;" aria-hidden="true"></i></a>
+                                                </li>
+                                            </ul>
+                                        @endif
+                                    @endif
+                                </div>
+                            </center>
+                        </div>
         
-              </div>
-              </div>
-              </div>
+                    </div>
+                </div>
+            </div>
 
         
         </div>

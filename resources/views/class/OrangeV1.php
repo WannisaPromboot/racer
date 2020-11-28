@@ -592,7 +592,7 @@ class OrangeV1
                                 // only validate the inputs that have the required attribute
                                 if(inputs[i].hasAttribute("required")){
                                     if(inputs[i].value == ""){
-                                         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+                                        alert("กรุณากรอกข้อมูลให้ครบถ้วน");
                                         inputs[i].focus();
                                    
                                         return false;
