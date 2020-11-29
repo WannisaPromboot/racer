@@ -43,7 +43,7 @@ class ProductController extends Controller
     }
 
     public function SaveProduct(Request $request){
-
+       
         $newProduct = New Product;
         $newProduct->sap_code   = $request->sap_code;
         $newProduct->product_name_th   = $request->product_name_th;
@@ -54,6 +54,7 @@ class ProductController extends Controller
         $newProduct->product_special_price   = $request->product_special_price;
         $newProduct->product_start   = $request->product_start;
         $newProduct->product_end   = $request->product_end;
+        $newProduct->product_count   = $request->product_count;
         $newProduct->product_method_th   = $request->product_method_th;
         $newProduct->product_method_en   = $request->product_method_en;
         $newProduct->product_description_th   = $request->product_description_th;
@@ -128,6 +129,10 @@ class ProductController extends Controller
 
         if(isset($request->product_end)){
             $updateProduct->product_end   = $request->product_end;
+        }
+
+        if(isset($request->product_count)){
+            $updateProduct->product_count   = $request->product_count;
         }
 
         if(isset($request->product_method_th)){
@@ -424,7 +429,7 @@ class ProductController extends Controller
 
 
     public function ShowProduct(Request $request){
-        $products = Product::where('id_subcategory',$request->id)->get();
+        $products = Product::where('id_subcategory',$request->id)->where('product_display',0)->get();
         $subcate = \App\SubCategory::where('id_subcategory',$request->id)->first();
         $html= '';
 
