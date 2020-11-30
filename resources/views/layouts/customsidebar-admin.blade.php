@@ -22,18 +22,18 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
-                <li>
+                {{-- <li>
                     <a href="{{url('home')}}"  class="waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/home-run.png')}}">
                         <span>{{Session::get('lang')=='th'?'หน้าแรก':'Home'}}</span>
                     </a> 
-                </li>
-                <li>
+                </li> --}}
+                {{-- <li>
                     <a href="javascript:void(0)" class="waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/contact-us.png')}}">
                         <span>การจัดการสิทธิ์และบทบาท</span>
                     </a> 
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{url('slidecontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/banner.png')}}">
@@ -78,12 +78,12 @@
                         <span>Production Management</span>
                     </a> 
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{url('bankaccountcontent')}}" class=" waves-effect">
                          <img src="{{asset('assets/images/b2b/icon/bankbook.png')}}">
                         <span>การจัดการชำระเงินออนไลน์(การโอนเงิน)</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{url('reportcontent')}}" class=" waves-effect">
                          <img src="{{asset('assets/images/b2b/icon/seo-report.png')}}">

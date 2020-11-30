@@ -59,31 +59,46 @@ class ProductController extends Controller
         $newProduct->product_method_en   = $request->product_method_en;
         $newProduct->product_description_th   = $request->product_description_th;
         $newProduct->product_description_en   = $request->product_description_en;
+        $newProduct->product_selling_th   = $request->product_selling_th;
+        $newProduct->product_selling_en   = $request->product_selling_en;
+        $newProduct->product_property_th   = $request->product_property_th;
+        $newProduct->product_property_en   = $request->product_property_en;
+        $newProduct->product_installation_th   = $request->product_installation_th;
+        $newProduct->product_installation_en   = $request->product_installation_en;
         $newProduct->product_kg   = $request->product_kg;
         $newProduct->product_width   = $request->product_width;
         $newProduct->product_lenght   = $request->product_lenght;
         $newProduct->product_height   = $request->product_height;
-        $newProduct->product_distance_free   = $request->product_distance_free;
-        $newProduct->product_distance_km   = $request->product_distance_km;
+        $newProduct->product_distance_price   = $request->product_distance_price;
+        // $newProduct->product_distance_km   = $request->product_distance_km;
+
+        if($request["filepath"][0] !== null){
+            $newimage = 'Product/'.time().$request["filepath"][0]->getClientOriginalName();
+            Storage::put($newimage, file_get_contents($request["filepath"][0]));
+            $newProduct->product_img = $newimage;
+        }
+
         $newProduct->save();
        
         //dd($request->file('sub_gallery') );
 
         foreach($request->sub_gallery as $key => $value){
-            $newGallery = new ProductGallery;
-            $newGallery->sap_code   = $request->sap_code;
-            $newGallery->sort        = $request->sub_sort[$key];
-            $newGallery->id_product   = $newProduct->id_product;
 
-            //////รูป
-            $newFilename = 'product/'.time().$value->getClientOriginalName();
-            Storage::put($newFilename, file_get_contents($value));
-            $newGallery->filepath = $newFilename;
-
-            $newGallery->save();
+            if(!empty($request->sub_gallery[$key])){
+                $newGallery = new ProductGallery;
+                $newGallery->sap_code   = $request->sap_code;
+                $newGallery->sort        = $request->sub_sort[$key];
+                $newGallery->id_product   = $newProduct->id_product;
+    
+                //////รูป
+                $newFilename = 'Product/'.time().$value->getClientOriginalName();
+                Storage::put($newFilename, file_get_contents($value));
+                $newGallery->filepath = $newFilename;
+    
+                $newGallery->save();
+            }
+           
         }
-
-      
 
         return redirect('productcontent')->with('save','บันทึกข้อมูลสำเร็จ');
 
@@ -152,6 +167,30 @@ class ProductController extends Controller
             $updateProduct->product_description_en   = $request->product_description_en;
         }
 
+        if(isset($request->product_selling_th)){
+            $updateProduct->product_selling_th   = $request->product_selling_th;
+        }
+
+        if(isset($request->product_selling_en)){
+            $updateProduct->product_selling_en   = $request->product_selling_en;
+        }
+
+        if(isset($request->product_property_th)){
+            $updateProduct->product_property_th   = $request->product_property_th;
+            
+        }
+        if(isset($request->product_property_en)){
+            $updateProduct->product_property_en   = $request->product_property_en;
+            
+        }
+        if(isset($request->product_installation_th)){
+            $updateProduct->product_installation_th   = $request->product_installation_th;
+        }
+        if(isset($request->product_installation_en)){
+            $updateProduct->product_installation_en   = $request->product_installation_en;
+        }
+
+
         if(isset($request->product_kg)){
             $updateProduct->product_kg   = $request->product_kg;
         }
@@ -170,27 +209,35 @@ class ProductController extends Controller
         }
 
         if(isset($request->product_distance_free)){
-            $updateProduct->product_distance_free   = $request->product_distance_free;
+            $updateProduct->product_distance_price   = $request->product_distance_price;
         }
 
-        if(isset($request->product_distance_km)){
-            $updateProduct->product_distance_km   = $request->product_distance_km;
-        }
+        // if(isset($request->product_distance_km)){
+        //     $updateProduct->product_distance_km   = $request->product_distance_km;
+        // }
 
        // dd(   $request->all());
 
-        $updateProduct->save();
+       if(isset($request["filepath"][$id])){
+            $newimage = 'Product/'.time().$request["filepath"][$id]->getClientOriginalName();
+            Storage::put($newimage, file_get_contents($request["filepath"][$id]));
+            $updateProduct->product_img = $newimage;
+        }  
 
-           
+
+        $updateProduct->save();
+        
+   
         if(isset($request["deletedkey"])){
             foreach($request["deletedkey"] as $delete_id){ 
+             
+           
                 $deleteimg =  ProductGallery::where('id_product_gallery',$delete_id)->first();
                 if(!empty($deleteimg )){
                     $deleteimg->delete();
                     Storage::delete($deleteimg->filepath);
                 }
                
-
             }
         }
 
@@ -205,7 +252,7 @@ class ProductController extends Controller
                     $updateGallery->sort        = $request->sub_sort[$key];
         
                     //////รูป
-                    $newFilename = 'product/'.time().$value->getClientOriginalName();
+                    $newFilename = 'Product/'.time().$value->getClientOriginalName();
                     Storage::put($newFilename, file_get_contents($value));
                     $updateGallery->filepath = $newFilename;
         
@@ -217,7 +264,7 @@ class ProductController extends Controller
                     $newGallery->sort        = $request->sub_sort[$key];
         
                     //////รูป
-                    $newFilename = 'product/'.time().$value->getClientOriginalName();
+                    $newFilename = 'Product/'.time().$value->getClientOriginalName();
                     Storage::put($newFilename, file_get_contents($value));
                     $newGallery->filepath = $newFilename;
         
