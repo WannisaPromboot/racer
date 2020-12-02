@@ -205,9 +205,11 @@ div {
     color: #616161;
 }
 .section-back {
-    background-color: #f7f7f7!important;
+    background-color: #f7f7f700!important;
 }
-
+.bg-light {
+    background: #f7f6f200 !important;
+}
 
 /*---------------detail-product--------------- */
 .container2 {
@@ -784,53 +786,52 @@ a:hover {
     </div>
     {{-- start nav --}}
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-          <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-          </button>
-    
-          <div class="collapse navbar-collapse" id="ftco-nav">
-    
-              <div class="col-md-8">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
-              <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="{{url('/product')}}">Lighting</a>
-                  <a class="dropdown-item" href="{{url('/product')}}">Decorative</a>
-                <a class="dropdown-item" href="{{url('/product')}}">Innovation</a>
-                <a class="dropdown-item" href="{{url('/product')}}">Equipment</a>
-                <a class="dropdown-item" href="{{url('/product')}}">Cable</a>
-              </div>
-            </li>
-              <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
-              <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown04">
-                    <a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
-                    <a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
-                </div>
-              </li>
-              <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
-              <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
-    
-            </ul>
-        </div>
-        <div class="col-md-4" id="pay-nemu">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
-              <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
-              <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
-            </ul>
-        </div>
-    
-    
-          </div>
-        </div>
-      </nav>
+	<div class="container">
+	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="oi oi-menu"></span> Menu
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="ftco-nav">
+
+		  <div class="col-md-8">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+		  <li class="nav-item dropdown">
+		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+		  <div class="dropdown-menu" aria-labelledby="dropdown04">
+            <?php $menu = \App\Category::orderby('sort')->get(); ?>
+                @foreach ($menu as $_menu)
+                    <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
+                @endforeach
+		  </div>
+		</li>
+		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
+		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+		  <li class="nav-item dropdown ">
+			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
+			<div class="dropdown-menu" aria-labelledby="dropdown04">
+				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
+				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+			</div>
+		  </li>
+		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
+
+		</ul>
+	</div>
+	<div class="col-md-4" id="pay-nemu">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item active"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
+		</ul>
+	</div>
+
+
+	  </div>
+	</div>
+  </nav>
         <!-- END nav -->
 
     <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
@@ -844,10 +845,11 @@ a:hover {
       </div>
     </div>
 
+<div class="back" style="background-image: url({{asset('frontend/images/back-about.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
         
         <div class="section-back">
 
-            <div class="site-section bg-light">
+            <div class="site-section bg-light" >
                 <div class="container">
                   <div class="row">
                     <div class="col-md-12 col-lg-12 mb-12" >
@@ -856,7 +858,7 @@ a:hover {
                         <p class="about-title">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                         <hr class="line-re">
                         <p class="sub-text-about">Lorem Ipsum is simply</p>
-                         <center><a href="#" class="boxed-btn3-white-2"> <span class="icon-facebook"></span> Continue with facebook</a></center>
+                         <center><a href="#" class="boxed-btn3-white-2"> <span class="icon-facebook2"></span> Continue with facebook</a></center>
                       </div>
                     </div>
           
@@ -1156,7 +1158,7 @@ a:hover {
         </div> 
 
 		
-
+</div>
 		
 	
 

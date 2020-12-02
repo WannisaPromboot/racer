@@ -77,6 +77,7 @@
     border-bottom: 1px solid #ddd;
     color: #00b9e9;
     font-family:'Prompt', sans-serif;
+    border: 1px solid #ddd;
 }
 .panel-group .panel .panel-heading h4 a:hover, .panel-group .panel .panel-heading h4 a:not(.collapsed) {
     /*background: #fff;*/
@@ -130,6 +131,7 @@ a, a:hover, a:visited, a:active, a:link {
     color: #777;
     font-family: 'Prompt', sans-serif;
     transition: background-color .2s ease;
+    border: 1px solid #ddd;
 }
 .faq-nav .nav-link.active {
     background-color: #fff;
@@ -233,10 +235,10 @@ div {
 		  </div>
     </div>
     {{-- start nav --}}
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
 	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-	  <button style="outline: 0px !important;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="oi oi-menu"></span> Menu
 	  </button>
 
@@ -244,34 +246,34 @@ div {
 
 		  <div class="col-md-8">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
-		  <li class="nav-item dropdown">
+		  <li class="nav-item "><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+		  <li class="nav-item dropdown active">
 		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
 		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-			  <?php $menu = \App\Category::orderby('sort')->get(); ?>
+            <?php $menu = \App\Category::orderby('sort')->get(); ?>
                 @foreach ($menu as $_menu)
                     <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
                 @endforeach
 		  </div>
 		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
 		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
 		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
+			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
 			<div class="dropdown-menu" aria-labelledby="dropdown04">
 				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
 				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
 			</div>
 		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
 
 		</ul>
 	</div>
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -301,7 +303,7 @@ div {
 			</div>
         </section> -->
         
-        <div class="section-back">
+        <div class="section-back" style="background-image: url({{asset('frontend/images/back-about.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
 
             <div class="container">
                 <div class="row">
@@ -324,10 +326,10 @@ div {
                                                 aria-labelledby="heading{{$i}}">
                                                 <div class="panel-body pxlr-faq-body">
                                                     <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
-                                                        <?php  $subcate = \App\Subcategory::where('id_category',$item->id_category)->get();?>
+                                                        <?php  $subcate = \App\SubCategory::where('id_category',$item->id_category)->get();?>
                                                         @foreach ($subcate as $_sub)
-                                                        <button style="cursor: pointer;" type="button" class="nav-link text-left" data-toggle="pill" role="tab" onclick="selectproduct({{$_sub->id_subcategory}})" aria-selected="true">
-                                                            <i class="mdi mdi-help-circle"></i> {{$_sub->subcategory_name_th}}
+                                                        <button type="button" class="nav-link" data-toggle="pill" role="tab" onclick="selectproduct({{$_sub->id_SubCategory}})" aria-selected="true">
+                                                            <i class="mdi mdi-help-circle"></i> {{$_sub->SubCategory_name_th}}
                                                         </button>
                                                         @endforeach
                                                     </div>
@@ -336,6 +338,163 @@ div {
                                         </div>
                                         <?php $i++; ?>
                                     @endforeach
+
+                                     {{-- end --}}
+{{--         
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" id="headingOne" role="tab">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Lighting<i class="pull-right fa fa-plus"></i></a>
+                                            </h4>
+                                        </div>
+                                        <div class="panel-collapse collapse" id="collapseOne" role="tabpanel"
+                                             aria-labelledby="headingOne">
+                                            <div class="panel-body pxlr-faq-body">
+                                                <!-- <a href="#"><p>Anim pariatur</p></a>
+                                                 <a href="#"><p>Anim pariatur</p></a> -->
+                                                 <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
+                                                    <a href="#tab1" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
+                                                        <i class="mdi mdi-help-circle"></i> Lighting
+                                                    </a>
+                                                    <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
+                                                        <i class="mdi mdi-account"></i> เสื้อผู้หญิง
+                                                    </a>
+                                                    <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
+                                                        <i class="mdi mdi-account-settings"></i> เสื้อแฟชั่น
+                                                    </a>
+                                                    <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
+                                                        <i class="mdi mdi-heart"></i> แม่และเด็ก
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" id="headingTwo" role="tab">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse"
+                                                   data-parent="#accordion" href="#collapseTwo"
+                                                   aria-expanded="false" aria-controls="collapseTwo">บ้านและส่วน<i
+                                                            class="pull-right fa fa-plus"></i></a>
+                                            </h4>
+                                        </div>
+                                        <div class="panel-collapse collapse" id="collapseTwo" role="tabpanel"
+                                             aria-labelledby="headingTwo">
+                                            <div class="panel-body pxlr-faq-body">
+                                                <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
+                                                    <a href="#tab5" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab5" aria-selected="true">
+                                                        <i class="mdi mdi-help-circle"></i> ต้นไม้/ดอกไม้
+                                                    </a>
+                                                    <a href="#tab6" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab6" aria-selected="false">
+                                                        <i class="mdi mdi-account"></i> อุปกรณ์ทำความสะอาด
+                                                    </a>
+                                                    <!-- <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
+                                                        <i class="mdi mdi-account-settings"></i> เครื่องใช้ในครัว
+                                                    </a>
+                                                    <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
+                                                        <i class="mdi mdi-heart"></i> แม่และเด็ก
+                                                    </a> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" id="headingThree" role="tab">
+                                            <h4 class="panel-title"><a class="collapsed" role="button"
+                                                                       data-toggle="collapse"
+                                                                       data-parent="#accordion"
+                                                                       href="#collapseThree"
+                                                                       aria-expanded="false"
+                                                                       aria-controls="collapseThree">เครื่องใช้ในครัว <i
+                                                            class="pull-right fa fa-plus"></i></a></h4>
+                                        </div>
+                                        <div class="panel-collapse collapse" id="collapseThree" role="tabpanel"
+                                             aria-labelledby="headingThree">
+                                            <div class="panel-body pxlr-faq-body">
+                                                <div class="panel-body pxlr-faq-body">
+                                                    <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
+                                                        <a href="#tab1" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
+                                                            <i class="mdi mdi-help-circle"></i> อุปกรณ์ทำอาหาร
+                                                        </a>
+                                                        <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
+                                                            <i class="mdi mdi-account"></i> ชุดอุปกรณ์ใส่อาหาร
+                                                        </a>
+                                                        <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
+                                                            <i class="mdi mdi-account-settings"></i> ชุดตกแต่งห้องครัว
+                                                        </a>
+                                                        <!-- <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
+                                                            <i class="mdi mdi-heart"></i> แม่และเด็ก
+                                                        </a> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" id="headingFour" role="tab">
+                                            <h4 class="panel-title"><a class="collapsed" role="button"
+                                                                       data-toggle="collapse"
+                                                                       data-parent="#accordion"
+                                                                       href="#collapseFour"
+                                                                       aria-expanded="false"
+                                                                       aria-controls="collapseFour">แม่และเด็ก <i
+                                                            class="pull-right fa fa-plus"></i></a></h4>
+                                        </div>
+                                        <div class="panel-collapse collapse" id="collapseFour" role="tabpanel"
+                                             aria-labelledby="headingFour">
+                                            <div class="panel-body pxlr-faq-body">
+                                                <div class="panel-body pxlr-faq-body">
+                                                    <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
+                                                        <a href="#tab1" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
+                                                            <i class="mdi mdi-help-circle"></i> เสื้อผ้า 
+                                                        </a>
+                                                        <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
+                                                            <i class="mdi mdi-account"></i> ร้องเท้า
+                                                        </a>
+                                                        <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
+                                                            <i class="mdi mdi-account-settings"></i> แป้ง
+                                                        </a>
+                                                        <!-- <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
+                                                            <i class="mdi mdi-heart"></i> แม่และเด็ก
+                                                        </a> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" id="headingFive" role="tab">
+                                            <h4 class="panel-title"><a class="collapsed" role="button"
+                                                                       data-toggle="collapse"
+                                                                       data-parent="#accordion"
+                                                                       href="#collapseFive"
+                                                                       aria-expanded="false"
+                                                                       aria-controls="collapseFive">เครื่องใช้ไฟฟ้า <i
+                                                            class="pull-right fa fa-plus"></i></a></h4>
+                                        </div>
+                                        <div class="panel-collapse collapse" id="collapseFive" role="tabpanel"
+                                             aria-labelledby="headingFive">
+                                            <div class="panel-body pxlr-faq-body">
+                                                <div class="panel-body pxlr-faq-body">
+                                                    <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
+                                                        <a href="#tab1" class="nav-link active show" data-toggle="pill" role="tab" aria-controls="tab1" aria-selected="true">
+                                                            <i class="mdi mdi-help-circle"></i> เครื่องดูดฝุ่น
+                                                        </a>
+                                                        <a href="#tab2" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab2" aria-selected="false">
+                                                            <i class="mdi mdi-account"></i> เครื่องซักผ้า
+                                                        </a>
+                                                        <a href="#tab3" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab3" aria-selected="false">
+                                                            <i class="mdi mdi-account-settings"></i> เครื่องทำความเย็น
+                                                        </a>
+                                                        <a href="#tab4" class="nav-link" data-toggle="pill" role="tab" aria-controls="tab4" aria-selected="false">
+                                                            <i class="mdi mdi-heart"></i> อุปกรณ์ไอที
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+        
                                 </div>
                             </div>
                         </div>
@@ -373,6 +532,7 @@ div {
                             </div>
                         </div>
                     </div>
+                    {{-- end --}}
                 </div>
             </div>
         
@@ -487,7 +647,7 @@ div {
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
    <script>
-    function selectproduct(id){
+             function selectproduct(id){
             console.log(id);
         $.ajax({
             url: '{{ url("showproduct")}}',
@@ -500,8 +660,7 @@ div {
                                
             }
         });
-    } 
-
+    }  
     </script> 
   </body>
 </html>

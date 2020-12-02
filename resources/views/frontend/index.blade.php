@@ -288,7 +288,7 @@ a:hover, a:focus {
 
 		  <div class="col-md-8">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
+		  <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
 		  <li class="nav-item dropdown">
 		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
 		  <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -298,24 +298,24 @@ a:hover, a:focus {
                 @endforeach
 		  </div>
 		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
 		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
 		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
+			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
 			<div class="dropdown-menu" aria-labelledby="dropdown04">
 				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
 				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
 			</div>
 		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
 
 		</ul>
 	</div>
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -360,9 +360,9 @@ a:hover, a:focus {
 	    </div>
     </section>
 
-	<div class="section-back">
+	<div class="section-back" >
 
-		<div class="site-section bg-light">
+		<div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
 
 		<div class="container">
 			<div class="row">

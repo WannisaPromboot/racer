@@ -22,18 +22,18 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
-                {{-- <li>
+                <li>
                     <a href="{{url('home')}}"  class="waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/home-run.png')}}">
                         <span>{{Session::get('lang')=='th'?'หน้าแรก':'Home'}}</span>
                     </a> 
-                </li> --}}
-                {{-- <li>
+                </li>
+                <li>
                     <a href="javascript:void(0)" class="waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/contact-us.png')}}">
                         <span>การจัดการสิทธิ์และบทบาท</span>
                     </a> 
-                </li> --}}
+                </li>
                 <li>
                     <a href="{{url('slidecontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/banner.png')}}">
@@ -48,16 +48,6 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <img src="{{asset('assets/images/b2b/icon/news.png')}}">
-                        <span>{{Session::get('lang')=='th'?'ข่าวสารและโปรโมชั่น':'News & Promotion Management'}}</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{url('newcontent')}}">{{Session::get('lang')=='th'?'ข่าวสาร':'News'}}</a></li>
-                        <li><a href="{{url('promotioncontent')}}">{{Session::get('lang')=='th'?'โปรโมชั่น':'Promotion'}}</a></li>
-                    </ul> 
-                </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/grid.png')}}">
                         <span>{{Session::get('lang')=='th'?'การจัดการหมวดหมู่':'Category Management'}}</span>
                     </a>
@@ -69,21 +59,15 @@
                 <li>
                     <a href="{{url('productcontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/b2b/icon/lightbulb.png')}}">
-                        <span>{{Session::get('lang')=='th'?'การจัดการสินค้า':'Product Management'}}</span>
+                        <span>{{Session::get('lang')=='th'?'สินค้า':'product'}}</span>
                     </a> 
                 </li>
                 <li>
-                    <a href="{{url('production')}}" class=" waves-effect">
-                        <img src="{{asset('assets/images/b2b/icon/box.png')}}">
-                        <span>Production Management</span>
-                    </a> 
-                </li>
-                {{-- <li>
                     <a href="{{url('bankaccountcontent')}}" class=" waves-effect">
                          <img src="{{asset('assets/images/b2b/icon/bankbook.png')}}">
                         <span>การจัดการชำระเงินออนไลน์(การโอนเงิน)</span>
                     </a>
-                </li> --}}
+                </li>
                 <li>
                     <a href="{{url('reportcontent')}}" class=" waves-effect">
                          <img src="{{asset('assets/images/b2b/icon/seo-report.png')}}">
