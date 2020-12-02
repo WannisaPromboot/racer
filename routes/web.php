@@ -11,6 +11,15 @@
 |
 */
 
+Route::get('test', function() {
+
+    ShoppingCart::add(37, 'Item name', 5, 100.00, ['color' => 'red', 'size' => 'M']);
+    ShoppingCart::add(37, 'Item name', 1, 200.00, ['color' => 'red', 'size' => 's']);
+    ShoppingCart::add(38, 'Item name', 1, 100.00, ['color' => 'red', 'size' => 'L']);
+
+    dd(ShoppingCart::all());
+
+});
 
 
 /////fronent.
@@ -124,12 +133,6 @@ Route::get('/contact', function(){
     return view('frontend.contact');
 });
 
-
-
-
-
-
-
 Route::get('tested',function(){
     // Mail::send('email.register',[],function($message){
     //     $message->to('s5904062630292@email.kmutnb.ac.th')
@@ -142,21 +145,8 @@ Route::get('footerd',function(){
     return view('email.footer');
 });
 /////////////////////////////////////////////////controller frontend
-Route::post('appointment_step1/', 'Frontend\AppoinmentController@AppointmentStep1');
-Route::post('rescheduleappointment/', 'Frontend\AppoinmentController@RescheduleAppointment');
 
-Route::get('autocancle','Frontend\AppoinmentController@Autocancle');
-
-///qrcode
-Route::get('getqrcode','QrcodeController@getQrcode');
-Route::get('showqrcode/{id}','QrcodeController@showQrcode');
-Route::get('checkqrcode','QrcodeController@CheckQrcode');
-
-///payment
-Route::post('payment','PaymentController@StorePayment');
-Route::get('checkpayment/{id}','PaymentController@CheckPayment');
-Route::get('updatestatuspayment/{id}','PaymentController@UpdateStatusPayment');
-
+Route::get('addcart', 'Frontend\AddacartController@addCart');
 
 
 

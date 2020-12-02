@@ -16,6 +16,7 @@
         "league/omnipay": "^3.1",
         "maatwebsite/excel": "^3.1",
         "omnipay/paypal": "^3.0",
+        "overtrue/laravel-shopping-cart": "~2.0",
         "simplesoftwareio/simple-qrcode": "^4.1",
         "socialiteproviders/line": "^2.1"
     },

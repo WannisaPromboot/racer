@@ -182,6 +182,7 @@ return [
 
         ////excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Overtrue\LaravelShoppingCart\ServiceProvider::class,
 
     ],
 
@@ -236,6 +237,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'ShoppingCart'      => Overtrue\LaravelShoppingCart\Facade::class,
 
     ],
 
