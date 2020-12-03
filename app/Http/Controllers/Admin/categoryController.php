@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 use App\SubCategory;
+use Storage;
 
 class categoryController extends Controller
 {
@@ -42,6 +43,13 @@ class categoryController extends Controller
         $NewCategory->category_name_en = $request->category_en;
         $NewCategory->sort = $sort;
 
+        if($request["filepath"][0] !== null){
+            $newimage = 'Cate/'.time().$request["filepath"][0]->getClientOriginalName();
+            Storage::put($newimage, file_get_contents($request["filepath"][0]));
+            $NewCategory->category_img = $newimage;
+        }
+
+
         $NewCategory->save();
 
         return redirect('categorycontent')->with('Save','บันทึกข้อมูลสำเร็จ');
@@ -58,6 +66,12 @@ class categoryController extends Controller
         if(isset($request->category_en)){
             $UpdateCategory->category_name_en = $request->category_en;
         }
+        if($request["filepath"][$id] !== null){
+            $newimage = 'Cate/'.time().$request["filepath"][$id]->getClientOriginalName();
+            Storage::put($newimage, file_get_contents($request["filepath"][$id]));
+            $UpdateCategory->category_img = $newimage;
+        }
+
       
         $UpdateCategory->save();
 

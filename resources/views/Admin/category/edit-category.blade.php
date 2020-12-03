@@ -42,10 +42,31 @@
         <div class="card">
             <div class="card-body">
                 <div id="edit">
-                    <form action="{{url('updatecategory/'.$item->id_category.'')}}"  method="post" id="editmain">            
+                    <form action="{{url('updatecategory/'.$item->id_category.'')}}"  method="post" id="editmain" enctype="multipart/form-data">            
                         @csrf
                         <div data-repeater-list="outer-group" class="outer">
                             <div data-repeater-item class="outer"> 
+                                <div class="row">
+                                    <div class="col-3">
+                                        <b>รูปภาพหน้าปก : </b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                            <input type="file" style="display: none;"  name="filepath[{{$item->id_category}}]" class="form-control chooseImage2{{$item->id_category}}" id="slidepicture{{$item->id_category}}" multiple="multiple" onchange="readGalleryURL3(this,{{$item->id_category}})">
+                                               @if(!empty($item->category_img))
+                                               <img id="gallerypreview2{{$item->id_category}}"  style="max-height:250px ;" src="{{url('storage/app/'.$item->category_img)}}" onclick="browsImage1({{$item->id_category}})" />
+                                               @else  
+                                               <img id="gallerypreview2{{$item->id_category}}"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage1({{$item->id_category}})" />
+                                               @endif
+                                                
+                                                {{-- <input type="text" name="sub_sort[2]" class="form-control text-center" required> --}}
+                                                {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(2)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
                                 <div class="row">
                                     <div class="col-3">
                                         <b>ชื่อหมวดหมู่ (ภาษาไทย)</b>
@@ -62,6 +83,13 @@
                                     <div class="col-6">
                                         <input type="texe" class="form-control" name="category_en" value="{{$item->category_name_en}}" required>
                                     </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <b>ลำดับการแสดง</b>
+                                    </div>
+                                    <div class="col-6">{{$item->sort}}</div>
                                 </div>
                                 <br>
                                 <div class="row mt-5">
@@ -143,6 +171,25 @@
         $('#edit').hide();
   
     });
+
+       //////////ภาพหน้าปก
+       function browsImage1(id){
+        $('.chooseImage2'+id).click();
+    }
+
+
+
+    function readGalleryURL3(input,id) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#gallerypreview2'+id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 </script>
 
 @endsection
