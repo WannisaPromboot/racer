@@ -656,7 +656,9 @@ label {
     </div>
 
 
-    <?php $items = Session::get('product'); ?>
+    <?php $items = Session::get('product');  
+          $sum  = 0;
+    ?>
     @foreach ($items as $item)
     <?php $product = \App\Product::where('id_product',$item)->first(); ?>
     <div class="product">
@@ -668,9 +670,9 @@ label {
             {{-- <p class="product-description">{!! $product->product_description_th !!}</p> --}}
         </div>
         @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-        <div class="product-price">{{$product->product_special_price}}</div>
+        <div class="product-price">{{number_format($product->product_special_price)}}</div>
         @else 
-        <div class="product-price">{{$product->product_normal_price}}</div>
+        <div class="product-price">{{number_format($product->product_normal_price)}}</div>
         @endif
         
             <div class="product-quantity">
@@ -682,11 +684,14 @@ label {
             </button>
         </div>
         @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-        <div class="product-line-price">{{$product->product_special_price}}</div>
+        <div class="product-line-price">{{number_format($product->product_special_price)}}</div>
+        <?php  $sum +=  $product->product_special_price;?>
         @else 
-        <div class="product-line-price">{{$product->product_normal_price}}</div>
+        <div class="product-line-price">{{number_format($product->product_normal_price)}}</div>
+        <?php  $sum +=  $product->product_normal_price;?>
         @endif
     </div>
+ 
     @endforeach
    
     
@@ -734,7 +739,7 @@ label {
     <div class="totals">
     <div class="totals-item">
     <label>ยอดรวม</label>
-    <div class="totals-value" id="cart-subtotal">550</div>
+    <div class="totals-value" id="cart-subtotal">{{number_format($sum)}}</div>
     </div>
     <!-- <div class="totals-item">
     <label>Tax (5%)</label>
@@ -742,7 +747,7 @@ label {
     </div> -->
     <div class="totals-item">
     <label>ค่าส่ง</label>
-    <div class="totals-value" id="cart-shipping">45.00</div>
+    <div class="totals-value" id="cart-shipping">0</div>
     </div>
     <!-- <div class="totals-item">
     <div class="container">
@@ -759,7 +764,7 @@ label {
     </div> -->
     <div class="totals-item totals-item-total">
     <label>ยอดรวมทั้งสิน</label>
-    <div class="totals-value" id="cart-total">595.00</div>
+    <div class="totals-value" id="cart-total">{{number_format($sum)}}</div>
     </div>
     </div>
     
@@ -885,7 +890,7 @@ label {
 
   <script>
     var taxRate = 0.00;
-  var shippingRate = 45.00; 
+  var shippingRate = 0.00; 
   var fadeTime = 300;
   
   
@@ -906,20 +911,20 @@ label {
     
     /* Sum up row totals */
     $('.product').each(function () {
-      subtotal += parseFloat($(this).children('.product-line-price').text());
+      subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
     });
     
     /* Calculate totals */
     var tax = subtotal * taxRate;
     var shipping = (subtotal > 0 ? shippingRate : 0);
-    var total = subtotal + tax + shipping;
+    var total = numberWithCommas(subtotal + tax + shipping);
     
     /* Update totals display */
     $('.totals-value').fadeOut(fadeTime, function() {
-      $('#cart-subtotal').html(subtotal.toFixed(2));
-      $('#cart-tax').html(tax.toFixed(2));
-      $('#cart-shipping').html(shipping.toFixed(2));
-      $('#cart-total').html(total.toFixed(2));
+      $('#cart-subtotal').html(numberWithCommas(subtotal));
+      $('#cart-tax').html(tax);
+      $('#cart-shipping').html(shipping);
+      $('#cart-total').html(total);
       if(total == 0){
         $('.checkout').fadeOut(fadeTime);
       }else{
@@ -935,14 +940,15 @@ label {
   {
     /* Calculate line price */
     var productRow = $(quantityInput).parent().parent();
-    var price = parseFloat(productRow.children('.product-price').text());
+    var price = parseInt(productRow.children('.product-price').text().replace(',',''));
+    console.log(price);
     var quantity = $(quantityInput).val();
-    var linePrice = price * quantity;
+    var linePrice = numberWithCommas(price * quantity);
     
     /* Update line price display and recalc cart totals */
     productRow.children('.product-line-price').each(function () {
       $(this).fadeOut(fadeTime, function() {
-        $(this).text(linePrice.toFixed(2));
+        $(this).text(linePrice);
         recalculateCart();
         $(this).fadeIn(fadeTime);
       });
@@ -960,6 +966,13 @@ label {
       recalculateCart();
     });
   }
+
+
+  //////////////////////convert to string with comma
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     </script>
     
   </body>
