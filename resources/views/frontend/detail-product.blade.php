@@ -591,10 +591,14 @@ height: 165px;
                     <div class="col-md-6" id="col-md-6">
 
                         <div class="container2">
-                          <div class="mySlides" style="display: block;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro02.jpg')}}" style="width:100%">
-                          </div>
-  
+
+                            @foreach ($imgs as $img)
+                            <div class="mySlides" style="display: block;">
+                                <img class="pro-img" src="{{url('storage/app/'.$img->filepath.'')}}" style="width:100%">
+                            </div>
+                            @endforeach
+                         
+{{--   
                           <div class="mySlides" style="display: none;">
                             <img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}" style="width:100%">
                           </div>
@@ -637,76 +641,111 @@ height: 165px;
 
                           <div class="mySlides" style="display: none;">
                             <img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}" style="width:100%">
-                          </div>
+                          </div> --}}
   
   
                           <div class="caption-container">
                             <p id="caption"></p>
                           </div>
   
-<div class="owl-carousel owl-theme">
+                        <div class="owl-carousel owl-theme">
+                          <div class="row">
+                              @if(!empty($imgs[0]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[0]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                              @endif
+                              @if(!empty($imgs[1]))
+                              <div class="column">
+                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[1]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                              </div>
+                              @endif
+                              @if(!empty($imgs[2]))
+                              <div class="column">
+                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[2]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                              </div>
+                              @endif
+                          </div>
+                          @if(!empty($imgs[3]))
+                          <div class="row">
+                                @if(!empty($imgs[3]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[3]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[4]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[4]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[5]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[5]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                          </div>
+                          @endif
+                          @if(!empty($imgs[6]))
+                          <div class="row">
+                                @if(!empty($imgs[6]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[6]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[7]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[7]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[8]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                          </div>
+                          @endif
+                          
+                          @if(!empty($imgs[9]))
+                          <div class="row">
+                                @if(!empty($imgs[9]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[10]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[11]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                          </div>
+                          @endif
 
-                          <div class="row">
-                            <div class="column">
-                              <img class="demo cursor active" src="{{asset('frontend/images/pro02.jpg')}}" style="width:100%" onclick="currentSlide(1)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro03.jpg')}}" style="width:100%" onclick="currentSlide(2)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro04.jpg')}}" style="width:100%" onclick="currentSlide(3)">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="column">
-                              <img class="demo cursor active" src="{{asset('frontend/images/pro05.jpg')}}" style="width:100%" onclick="currentSlide(4)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro06.jpg')}}" style="width:100%" onclick="currentSlide(5)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro07.jpg')}}" style="width:100%" onclick="currentSlide(6)">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="column">
-                              <img class="demo cursor active" src="{{asset('frontend/images/pro08.jpg')}}" style="width:100%" onclick="currentSlide(7)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro09.jpg')}}" style="width:100%" onclick="currentSlide(8)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro10.jpg')}}" style="width:100%" onclick="currentSlide(9)">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="column">
-                              <img class="demo cursor active" src="{{asset('frontend/images/pro11.jpg')}}" style="width:100%" onclick="currentSlide(10)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro12.jpg')}}" style="width:100%" onclick="currentSlide(11)">
-                            </div>
-                            <div class="column">
-                              <img class="demo cursor" src="{{asset('frontend/images/pro07.jpg')}}" style="width:100%" onclick="currentSlide(12)">
-                            </div>
-                          </div>
-
-</div>
+                        </div>
 
                         </div>
   
                       </div>
                       <div class="col-md-6" id="col-md-6">
-                                                  <p class="title-pro">STANDARD DUMMY TEXT</p>
-                        <p class="sub-pro">(Dietary supplement product)</p>
+                                                  <p class="title-pro">{{$item->product_name_th}}</p>
+                        <?php $cate = \App\Category::where('id_category',$item->id_category)->first(); ?>
+                        <p class="sub-pro">({{$cate->category_name_th}})</p>
                         <hr class="line-height">
-                        <p class="price"> <span class="price-span">฿700.00</span> ฿350.00 <span class="price-sale">50% ส่วนลด</span></p>
+                        @if(($item->product_start <= date('Y-m-d') && $item->product_start != NULL ) && ($item->product_end >= date('Y-m-d') && $item->product_end != NULL))
+                        <p class="price"> <span class="price-span">฿{{number_format($item->product_normal_price)}}</span> ฿{{number_format($item->product_special_price)}} <span class="price-sale">{{($item->product_special_price/$item->product_normal_price)*100}}% ส่วนลด</span></p>
+                        @else 
+                        <p class="price">฿{{number_format($item->product_normal_price)}}</p>
+                        @endif
+                       
                         <p class="text-detial">เกี่ยวกับสินค้า :</p>
-                        <p class="sub-detial">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset.</p>
+                        <p class="sub-detial">{!! $item->product_description_th !!}</p>
                           <p class="text-detial">วิธีใช้ :</p>
-                          <p class="sub-detial2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
-                            <center><a href="{{url('cart')}}" ><p class="button">ADD TO CART</p></a></center>
-  
+                          <p class="sub-detial2">{!! $item->product_method_th !!}</p>
+                            <center><a href="{{url('addcart/'.$item->id_product.'')}}"><p class="button">ADD TO CART</p></a></center>
                       </div>
         
                 </div>
@@ -716,24 +755,19 @@ height: 165px;
                 <div class="row">
                     <div class="col-md-12" id="back-col">
                     <p class="text-detial">dimension :</p>
-                    <p class="sub-detial">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset.</p>
+                    <p class="sub-detial"><b>น้ำหนัก</b> {{$item->product_kg}} kg.<br><b>ขนาด </b>{{$item->product_width}} มม. X {{$item->product_lenght}} มม. X {{$item->product_height}} มม.</p>
                       <p class="text-detial">จุดเด่นของสินค้า :</p>
-                      <p class="sub-detial2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
+                        <p class="sub-detial2">{!!$item->product_selling_th!!}</p>
                       <p class="text-detial">คุณสมบัติ :</p>
-                    <p class="sub-detial">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset.</p>
+                    <p class="sub-detial">{!!$item->product_property_th!!}</p>
                       <p class="text-detial">รายละเอียด :</p>
-                      <p class="sub-detial2">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum</p>
+                      <p class="sub-detial2">{!!$item->product_description_th!!}</p>
                       <p class="text-detial">วิธีใช้งาน :</p>
-                    <p class="sub-detial">1. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <p class="sub-detial">2. It was popularised in the 1960s with the release of Letraset.</p>
-                    <p class="sub-detial">3. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
-                    <p class="sub-detial">4. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                        <p class="sub-detial">{!!$item->product_method_th!!}</p>
+                  
                       
                       <p class="text-detial">การติดตั้ง :</p>
-                      <p class="sub-detial">1. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <p class="sub-detial">2. It was popularised in the 1960s with the release of Letraset.</p>
-                    <p class="sub-detial">3. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
-                    <p class="sub-detial">4. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                      <p class="sub-detial">{!!$item->product_installation_th!!}</p>
                     </div>
     
                 </div>

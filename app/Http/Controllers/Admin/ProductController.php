@@ -479,6 +479,7 @@ class ProductController extends Controller
         $products = Product::where('id_subcategory',$request->id)->where('product_display',0)->get();
         $subcate = \App\SubCategory::where('id_subcategory',$request->id)->first();
         $html= '';
+     //   dd($request->all());
 
         if(count($products) > 0){
             $html.='
@@ -493,9 +494,8 @@ class ProductController extends Controller
                     <div class="container">
                         <div class="row">';
                     foreach( $products as $product){
-                        $img = \App\ProductGallery::where('id_product',$product->id_product)->orderby('sort')->first();
                 $html.=              '<div class="col-md-4 col-lg-4 mb-4" >
-                                            <a href="'.url('detail-product/'.$product->id_product.'').'"><img class="pro-img" src="'.url('storage/app/'.$img->filepath).'"></a>
+                                            <a href="'.url('detail-product/'.$product->id_product.'').'"><img class="pro-img" src="'.url('storage/app/'.$product->product_img).'"></a>
                                         </div>';
                                     }
                                         

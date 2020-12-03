@@ -654,16 +654,25 @@ label {
     <label class="product-removal">Remove</label>
     <label class="product-line-price" style="    color: #00b9eb;">รวม</label>
     </div>
-    
+
+
+    <?php $items = Session::get('product'); ?>
+    @foreach ($items as $item)
+    <?php $product = \App\Product::where('id_product',$item)->first(); ?>
     <div class="product">
         <div class="product-image">
-            <img src="{{asset('frontend/images/pro02.jpg')}}">
+            <img src="{{url('storage/app/'.$product->product_img.'')}}">
         </div>
         <div class="product-details">
-            <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-            <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
+            <div class="product-title">{{$product->product_name_th}}</div>
+            {{-- <p class="product-description">{!! $product->product_description_th !!}</p> --}}
         </div>
-        <div class="product-price">350</div>
+        @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+        <div class="product-price">{{$product->product_special_price}}</div>
+        @else 
+        <div class="product-price">{{$product->product_normal_price}}</div>
+        @endif
+        
             <div class="product-quantity">
             <input type="number" value="1" min="1">
         </div>
@@ -672,7 +681,33 @@ label {
             Remove
             </button>
         </div>
-        <div class="product-line-price">350</div>
+        @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+        <div class="product-line-price">{{$product->product_special_price}}</div>
+        @else 
+        <div class="product-line-price">{{$product->product_normal_price}}</div>
+        @endif
+    </div>
+    @endforeach
+   
+    
+    {{-- <div class="product">
+        <div class="product-image">
+        <img src="{{asset('frontend/images/pro01.jpg')}}">
+        </div>
+        <div class="product-details">
+            <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
+            <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
+        </div>
+        <div class="product-price">200</div>
+        <div class="product-quantity">
+            <input type="number" value="1" min="1">
+        </div>
+        <div class="product-removal">
+            <button class="remove-product">
+            Remove
+            </button>
+        </div>
+        <div class="product-line-price">200</div>
     </div>
     
     <div class="product">
@@ -693,8 +728,7 @@ label {
             </button>
         </div>
         <div class="product-line-price">200</div>
-    </div>
-    
+    </div> --}}
     
     
     <div class="totals">

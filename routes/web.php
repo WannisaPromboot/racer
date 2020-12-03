@@ -14,7 +14,7 @@
 Route::get('test', function() {
 
     ShoppingCart::add(37, 'Item name', 5, 100.00, ['color' => 'red', 'size' => 'M']);
-    ShoppingCart::add(37, 'Item name', 1, 200.00, ['color' => 'red', 'size' => 's']);
+    ShoppingCart::update(37, 'Item name', 1, 200.00, ['color' => 'red', 'size' => 's']);
     ShoppingCart::add(38, 'Item name', 1, 100.00, ['color' => 'red', 'size' => 'L']);
 
     dd(ShoppingCart::all());
@@ -146,7 +146,7 @@ Route::get('footerd',function(){
 });
 /////////////////////////////////////////////////controller frontend
 
-Route::get('addcart', 'Frontend\AddacartController@addCart');
+Route::get('addcart/{id}', 'Frontend\AddacartController@addCart');
 
 
 
