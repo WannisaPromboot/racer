@@ -46,6 +46,22 @@
                     <div data-repeater-list="outer-group" class="outer">
                         <div data-repeater-item class="outer"> 
                             <div class="row">
+                                <div class="col-3">
+                                    <b>รูปภาพหน้าปก : </b>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                        <input type="file" style="display: none;"  name="filepath[0]" class="form-control chooseImage20" id="slidepicture0" multiple="multiple" onchange="readGalleryURL3(this,0)">
+                                            <img id="gallerypreview20"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage1(0)" />
+                                            {{-- <input type="text" name="sub_sort[2]" class="form-control text-center" required> --}}
+                                            {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(2)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="row">
                                 <div class="col-3 mt-2">
                                     <b>รหัสสินค้า</b>
                                 </div>
@@ -138,24 +154,6 @@
                             <br>
                             <div class="row">
                                 <div class="col-3  mt-2">
-                                    <b>วิธีใช้สนค้า (ภาษาไทย)</b>
-                                </div>
-                                <div class="col-sm">
-                                    <textarea type="texe" class="form-control" id="product_method_th" name="product_method_th" ></textarea>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-3  mt-2">
-                                    <b>วิธีใช้สนค้า (ภาษาอังกฤษ)</b>
-                                </div>
-                                <div class="col-sm">
-                                    <textarea type="texe" class="form-control" id="product_method_en" name="product_method_en" ></textarea>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-3  mt-2">
                                     <b>รายละเอียดสินค้า (ภาษาไทย)</b>
                                 </div>
                                 <div class="col-sm">
@@ -169,6 +167,79 @@
                                 </div>
                                 <div class="col-sm">
                                     <textarea type="texe" class="form-control" id="product_description_en" name="product_description_en" ></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-3  mt-2">
+                                    <b>วิธีใช้สินค้า (ภาษาไทย)</b>
+                                </div>
+                                <div class="col-sm">
+                                    <textarea type="texe" class="form-control" id="product_method_th" name="product_method_th" ></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3  mt-2">
+                                    <b>วิธีใช้สินค้า (ภาษาอังกฤษ)</b>
+                                </div>
+                                <div class="col-sm">
+                                    <textarea type="texe" class="form-control" id="product_method_en" name="product_method_en" ></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3  mt-2">
+                                    <b>จุดเด่นสินค้า (ภาษาไทย)</b>
+                                </div>
+                                <div class="col-sm">
+                                    <textarea type="texe" class="form-control" id="product_selling_th" name="product_selling_th" ></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3  mt-2">
+                                    <b>จุดเด่นสินค้า (ภาษาอังกฤษ)</b>
+                                </div>
+                                <div class="col-sm">
+                                    <textarea type="texe" class="form-control" id="product_selling_en" name="product_selling_en" ></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3  mt-2">
+                                    <b>คุณสมบัติ (ภาษาไทย)</b>
+                                </div>
+                                <div class="col-sm">
+                                    <textarea type="texe" class="form-control" id="product_property_th" name="product_property_th" ></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3  mt-2">
+                                    <b>คุณสมบัติ (ภาษาอังกฤษ)</b>
+                                </div>
+                                <div class="col-sm">
+                                    <textarea type="texe" class="form-control" id="product_property_en" name="product_property_en" ></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3  mt-2">
+                                    <b>การติดตั้ง (ภาษาไทย)</b>
+                                </div>
+                                <div class="col-sm">
+                                    <textarea type="texe" class="form-control" id="product_installation_th" name="product_installation_th" ></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3  mt-2">
+                                    <b>การติดตั้ง (ภาษาอังกฤษ)</b>
+                                </div>
+                                <div class="col-sm">
+                                    <textarea type="texe" class="form-control" id="product_installation_en" name="product_installation_en" ></textarea>
                                 </div>
                             </div>
                             <br>
@@ -191,12 +262,12 @@
                                         {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery({{$gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <div class="col-sm-12">
                                     <input type="file" style="display: none;"  name="sub_gallery[2]" class="form-control chooseImage2" id="slidepicture2" multiple="multiple" onchange="readGalleryURL2(this,2)">
                                         <img id="gallerypreview2"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(2)" />
                                         <input type="text" name="sub_sort[2]" class="form-control text-center" required>
-                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(2)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                       <button  type="button" class="btn btn-danger" onclick="deletegallery(2)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -204,7 +275,7 @@
                                     <input type="file" style="display: none;"  name="sub_gallery[3]" class="form-control chooseImage3" id="slidepicture3" multiple="multiple" onchange="readGalleryURL2(this,3)">
                                         <img id="gallerypreview3"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(3)" />
                                         <input type="text" name="sub_sort[3]" class="form-control text-center" required>
-                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(3)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                         <button  type="button" class="btn btn-danger" onclick="deletegallery(3)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -212,13 +283,61 @@
                                     <input type="file" style="display: none;"  name="sub_gallery[4]" class="form-control chooseImage4" id="slidepicture4" multiple="multiple" onchange="readGalleryURL2(this,4)">
                                         <img id="gallerypreview4"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(4)" />
                                         <input type="text" name="sub_sort[4]" class="form-control text-center" required>
-                                        {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                         <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[5]" class="form-control chooseImage5" id="slidepicture5" multiple="multiple" onchange="readGalleryURL2(this,5)">
+                                        <img id="gallerypreview5"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(5)" />
+                                        <input type="text" name="sub_sort[5]" class="form-control text-center" required>
+                                         <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[6]" class="form-control chooseImage6" id="slidepicture6" multiple="multiple" onchange="readGalleryURL2(this,6)">
+                                        <img id="gallerypreview6"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(6)" />
+                                        <input type="text" name="sub_sort[6]" class="form-control text-center" required>
+                                         <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[7]" class="form-control chooseImage7" id="slidepicture7" multiple="multiple" onchange="readGalleryURL2(this,7)">
+                                        <img id="gallerypreview7"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(7)" />
+                                        <input type="text" name="sub_sort[7]" class="form-control text-center" required>
+                                         <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[8]" class="form-control chooseImage8" id="slidepicture8" multiple="multiple" onchange="readGalleryURL2(this,8)">
+                                        <img id="gallerypreview8"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(8)" />
+                                        <input type="text" name="sub_sort[8]" class="form-control text-center" required>
+                                         <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[9]" class="form-control chooseImage9" id="slidepicture9" multiple="multiple" onchange="readGalleryURL2(this,9)">
+                                        <img id="gallerypreview9"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(9)" />
+                                        <input type="text" name="sub_sort[9]" class="form-control text-center" required>
+                                         <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                    <input type="file" style="display: none;"  name="sub_gallery[10]" class="form-control chooseImage10" id="slidepicture10" multiple="multiple" onchange="readGalleryURL2(this,10)">
+                                        <img id="gallerypreview10"   style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(10)" />
+                                        <input type="text" name="sub_sort[10]" class="form-control text-center" required>
+                                       <button  type="button" class="btn btn-danger" onclick="deletegallery(4)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> 
+                                    </div>
+                                </div> --}}
                             </div>
                             <div id="delete"></div>
                             <div id="newgallery" class="row"></div>
-                            {{-- <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button> --}}
+                            <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
                             {{-- end --}}
                             <hr>
                             <div class="row">
@@ -244,38 +363,38 @@
                                 <div class="col-1">
                                     <input type="number" class="form-control" name="product_width" required>
                                 </div>
-                                <div class="col-1  mt-2">ซม.</div>
+                                <div class="col-1  mt-2">มม.</div>
                                 <div class="col-1  mt-2">
                                     <b>ความยาว</b>
                                 </div>
                                 <div class="col-1">
                                     <input type="number" class="form-control" name="product_lenght" required>
                                 </div>
-                                <div class="col-1  mt-2">ซม.</div>
+                                <div class="col-1  mt-2">มม.</div>
                                 <div class="col-1  mt-2">
                                     <b>ความสูง</b>
                                 </div>
                                 <div class="col-1">
                                     <input type="number" class="form-control" name="product_height" required>
                                 </div>
-                                <div class="col-1  mt-2">ซม.</div>
+                                <div class="col-1  mt-2">มม.</div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-3  mt-2">
-                                    <b>ส่งฟรี </b>
+                                    <b>ค่าส่ง </b>
                                 </div>
                                 <div class="col-1">
-                                    <input type="number" class="form-control" name="product_distance_free" required>
+                                    <input type="number" class="form-control" name="product_distance_price" required>
                                 </div>
-                                <div class="col-1  mt-2">กม.</div>
-                                <div class="col-1  mt-2">
+                                <div class="col-1  mt-2">บาท</div>
+                                {{-- <div class="col-1  mt-2">
                                     <b>กิโลเมตรละ</b>
                                 </div>
                                 <div class="col-1">
                                     <input type="number" class="form-control" name="product_distance_km" required>
                                 </div>
-                                <div class="col-1  mt-2">บาท</div>
+                                <div class="col-1  mt-2">บาท</div> --}}
                             </div>
                             <br>
                             <div class="row mt-5">
@@ -362,6 +481,86 @@
             }
         });
 
+        $("#product_selling_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_selling_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_property_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_property_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_installation_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_installation_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_description_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_description_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
     });
     
 </script>
@@ -411,6 +610,26 @@
         }
     }
 
+    //////////ภาพหน้าปก
+    function browsImage1(id){
+        $('.chooseImage2'+id).click();
+    }
+
+
+
+    function readGalleryURL3(input,id) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#gallerypreview2'+id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+
+
     /////end image
     ///////check specialprice
     $('.specialprice').change(function(){
@@ -442,6 +661,7 @@
     $('.dateto').change(function(){
           if($(this).val() < $('.datefrom').val() ){
                 $('#notidate').removeAttr('style');
+                $('.dateto').val('');
           }else{
             $('#notidate').css('display','none');
           }  

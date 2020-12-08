@@ -43,9 +43,9 @@
   /* #pay-nemu {
     padding-left: 92px;
 } */
-#pay-nemu {
-  padding-left: 105px;
-}
+/* #pay-nemu {
+  padding-left: 75px;
+} */
 
 
 
@@ -81,6 +81,26 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem; }
+
+
+.nav-item > #but-login{
+    background-color: #41c8f5;
+    padding: 4px 20px;
+    margin-top: 1.2rem;
+    margin-bottom: 1rem;
+    border-radius: 30px;
+    color: #fff;
+    width: max-content;
+  }
+.icon-shopping_cart{
+  color:  #41c8f5;
+  font-size: 18px;
+}
+.ftco-navbar-light .navbar-nav > .nav-item > #cart-col{
+  color:  #41c8f5 !important;
+  font-size: 18px;
+}
+
 
 p {
   margin-top: 0;
@@ -205,7 +225,8 @@ button {
 
 button:focus {
   outline: 1px dotted;
-  outline: 0px auto -webkit-focus-ring-color; }
+  outline: 0px auto -webkit-focus-ring-color; 
+}
 
 input,
 button,
@@ -3498,7 +3519,7 @@ input[type="button"].btn-block {
     display: inline-block;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
-    margin-right: -5rem;
+    margin-right: -7rem;
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
@@ -8078,11 +8099,23 @@ h1, h2, h3, h4, h5,
   display: block;
   text-transform: uppercase;
   letter-spacing: 1px; }
+  .fa-clock-o{
+    color: #fff!important;
+  }
+  .icon-instagram, .icon-facebook, .icon-twitter{
+    color: #fff;
+  }
+  .icon-facebook2:before {
+    content: "\f09a";
+}
+  .menu-span-col{
+    color: #41c8f5 !important;
+  }
   @media (max-width: 767.98px) {
     .topper {
       margin-bottom: 10px; } }
   .topper .icon span {
-    color: #868686; 
+    color: #fff !important; 
     font-family:'Prompt', sans-serif;
     text-transform: none;
   }
@@ -8129,7 +8162,7 @@ h1, h2, h3, h4, h5,
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     padding-left: 11px;
-    padding-right: 11px;
+    padding-right: 7px;
     font-weight: 400;
     color: #000000;
     text-transform: uppercase;
@@ -8138,7 +8171,10 @@ h1, h2, h3, h4, h5,
     font-family: 'Prompt', sans-serif;
   }
     .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
-      color: #00b9eb !important; }
+      /* color: #00b9eb !important; */
+      color: #d2e5f8 !important;
+    
+    }
     @media (max-width: 991.98px) {
       .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
         padding-left: 0;
@@ -8254,6 +8290,26 @@ h1, h2, h3, h4, h5,
       padding-top: 0.9rem !important;
       padding-bottom: 0.9rem !important;
       color: #000000 !important; }
+
+      .ftco-navbar-light.scrolled #but-login {
+        /* background-color: #41c8f5;
+        padding-top: 0.2rem !important;
+        padding-bottom: 0.2rem !important;
+        color: #fff !important;
+        border-radius: 30px;
+        color: #fff; */
+        background-color: #41c8f5;
+        padding-top: 0.2rem !important;
+        padding-bottom: 0.2rem !important;
+        color: #fff !important;
+        border-radius: 30px;
+        margin-top: 11px;
+        margin-bottom: 0rem;
+        
+    }
+
+
+
       .ftco-navbar-light.scrolled .nav-link.active {
         color: #82ae46 !important; }
     .ftco-navbar-light.scrolled.awake {
@@ -9247,8 +9303,9 @@ textarea.form-control {
 
 .bg-primary {
   /* background: #82ae46 !important;  */
-  background: #fff !important;
-  border-bottom: 0.5px solid #777;
+  background: #41c8f5 !important;
+  /* border-bottom: 0.5px solid #777; */
+  border-bottom: 0.5px solid #41c8f5;
 }
 
 .bg-black {
@@ -10111,7 +10168,7 @@ textarea.form-control {
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
         padding-left: 6px;
-        padding-right: 6px;
+        padding-right: 4px;
         font-weight: 400;
         color: #000000;
         text-transform: uppercase;
@@ -10122,6 +10179,15 @@ textarea.form-control {
     .hero-wrap.hero-bread {
       padding: 6em 0;
   }
+  .navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: -8rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
 
     }
 
@@ -10175,7 +10241,9 @@ textarea.form-control {
   -ms-border-radius: 0;
   border-radius: 0;
 }
-
+.menu-span-col {
+  display: none;
+}
     }
 
     @media (max-width: 525px){

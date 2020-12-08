@@ -627,7 +627,7 @@ a:hover {
 		  </div>
     </div>
       {{-- start nav --}}
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
 	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -638,34 +638,34 @@ a:hover {
 
 		  <div class="col-md-8">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
+		  <li class="nav-item"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
 		  <li class="nav-item dropdown">
 		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
 		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-			  <?php $menu = \App\Category::orderby('sort')->get(); ?>
+            <?php $menu = \App\Category::orderby('sort')->get(); ?>
                 @foreach ($menu as $_menu)
                     <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
                 @endforeach
 		  </div>
 		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
 		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
+		  <li class="nav-item dropdown ">
+			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
 			<div class="dropdown-menu" aria-labelledby="dropdown04">
 				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
 				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
 			</div>
 		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
+		  <li class="nav-item active"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
 
 		</ul>
 	</div>
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -688,13 +688,13 @@ a:hover {
     </div>
 
         
-        <div class="section-back">
+    <div class="section-back">
 
         <div class="site-section bg-light">
 
             <div class="container">
                 <div class="row">
-                   
+                
                     <div class="col-md-12" id="">
                         <center>
                             <img class="img-fluid img-prod" src="{{url('storage/app/'.$data->blog_image)}}" alt="Colorlib Template">
@@ -706,13 +706,13 @@ a:hover {
 
             <div class="container">
                 <div class="row">
-                   
+                
                     <div class="col-md-12" id="">
                         <div class="welcome_docmed_info">
                             <h3 class="title-pan">{{$data->blog_th}}</h3>
                             <p class="sub-pan">{!!$data->description_blog_th!!}</p>
                             {{-- <p class="sub-pan">มีท่อนต่างๆ ของ Lorem Ipsum ให้หยิบมาใช้งานได้มากมาย แต่ส่วนใหญ่แล้วจะถูกนำไปปรับให้เป็นรูปแบบอื่นๆ อาจจะด้วยการสอดแทรกมุกตลก หรือด้วยคำที่มั่วขึ้นมาซึ่งถึงอย่างไรก็ไม่มีทางเป็นเรื่องจริงได้เลยแม้แต่น้อย ถ้าคุณกำลังคิดจะใช้ Lorem Ipsum สักท่อนหนึ่ง คุณจำเป็นจะต้องตรวจให้แน่ใจว่าไม่มีอะไรน่าอับอายซ่อนอยู่ภายในท่อนนั้นๆ ตัวสร้าง Lorem Ipsum บนอินเทอร์เน็ตทุกตัวมักจะเอาท่อนที่แน่ใจแล้วมาใช้ซ้ำๆ ทำให้กลายเป็นที่มาของตัวสร้างที่แท้จริงบนอินเทอร์เน็ต ในการสร้าง Lorem Ipsum ที่ดูเข้าท่า ต้องใช้คำจากพจนานุกรมภาษาละตินถึงกว่า 200 คำ ผสมกับรูปแบบโครงสร้างประโยคอีกจำนวนหนึ่ง เพราะฉะนั้น Lorem Ipsum ที่ถูกสร้างขึ้นใหม่นี้ก็จะไม่ซ้ำไปซ้ำมา ไม่มีมุกตลกซุกแฝงไว้ภายใน หรือไม่มีคำใดๆ ที่ไม่บ่งบอกความหมาย</p> --}}
-                                                          
+                                                        
                             
                         </div>
                     </div>
@@ -722,12 +722,12 @@ a:hover {
 
             <div class="container">
                 <div class="row">
-                   
+                
                     <div class="col-md-12" id="">
                         <div class="welcome_docmed_info">
                             <h3 class="title-pan">Gallery Photo</h3>
-                           
-                                                          
+                        
+                                                        
                             
                         </div>
                     </div>
@@ -749,9 +749,9 @@ a:hover {
 
         
         </div>
-        
-        
-        </div> 
+    
+    
+    </div> 
 
 		
 

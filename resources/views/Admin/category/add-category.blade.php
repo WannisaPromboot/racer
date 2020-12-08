@@ -41,10 +41,26 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{url('savecategory')}}" method="post" id="savemain">            
+                <form action="{{url('savecategory')}}" method="post" id="savemain" enctype="multipart/form-data">            
                     @csrf
                     <div data-repeater-list="outer-group" class="outer">
                         <div data-repeater-item class="outer"> 
+                            <div class="row">
+                                <div class="col-3">
+                                    <b>Banner : </b>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                        <input type="file" style="display: none;"  name="filepath[0]" class="form-control chooseImage20" id="slidepicture0" multiple="multiple" onchange="readGalleryURL3(this,0)">
+                                            <img id="gallerypreview20"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage1(0)" />
+                                            {{-- <input type="text" name="sub_sort[2]" class="form-control text-center" required> --}}
+                                            {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(2)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
                             <div class="row">
                                 <div class="col-3">
                                     <b>ชื่อเมนูหมวดหมู่ (ภาษาไทย)</b>
@@ -138,25 +154,22 @@
 
 <script>
 
-function save(formname){
-    Swal.fire({
-        text: "คุณต้องการบันทึกข้อมูลใช้หรือไม่",
-        type: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'save'
-        }).then((result)=>{
-            if (result.value) {
-                console.log(formname);
-                $('#'+formname+'').submit();
-                }
-        });
+    //////////ภาพหน้าปก
+    function browsImage1(id){
+        $('.chooseImage2'+id).click();
     }
 
-    var B = "{{Session::get('Save')}}";
-    if(B){
-        swal(B);
+
+
+    function readGalleryURL3(input,id) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#gallerypreview2'+id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
     }
 
     

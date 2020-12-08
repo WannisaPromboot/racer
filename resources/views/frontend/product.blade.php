@@ -77,6 +77,7 @@
     border-bottom: 1px solid #ddd;
     color: #00b9e9;
     font-family:'Prompt', sans-serif;
+    border: 1px solid #ddd;
 }
 .panel-group .panel .panel-heading h4 a:hover, .panel-group .panel .panel-heading h4 a:not(.collapsed) {
     /*background: #fff;*/
@@ -130,6 +131,7 @@ a, a:hover, a:visited, a:active, a:link {
     color: #777;
     font-family: 'Prompt', sans-serif;
     transition: background-color .2s ease;
+    border: 1px solid #ddd;
 }
 .faq-nav .nav-link.active {
     background-color: #fff;
@@ -233,10 +235,10 @@ div {
 		  </div>
     </div>
     {{-- start nav --}}
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
 	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-	  <button style="outline: 0px !important;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="oi oi-menu"></span> Menu
 	  </button>
 
@@ -244,34 +246,34 @@ div {
 
 		  <div class="col-md-8">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
-		  <li class="nav-item dropdown">
+		  <li class="nav-item "><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+		  <li class="nav-item dropdown active">
 		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
 		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-			  <?php $menu = \App\Category::orderby('sort')->get(); ?>
+            <?php $menu = \App\Category::orderby('sort')->get(); ?>
                 @foreach ($menu as $_menu)
                     <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
                 @endforeach
 		  </div>
 		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
 		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
 		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
+			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
 			<div class="dropdown-menu" aria-labelledby="dropdown04">
 				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
 				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
 			</div>
 		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
 
 		</ul>
 	</div>
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -301,7 +303,7 @@ div {
 			</div>
         </section> -->
         
-        <div class="section-back">
+        <div class="section-back" style="background-image: url({{asset('frontend/images/back-about.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
 
             <div class="container">
                 <div class="row">
@@ -324,9 +326,9 @@ div {
                                                 aria-labelledby="heading{{$i}}">
                                                 <div class="panel-body pxlr-faq-body">
                                                     <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
-                                                        <?php  $subcate = \App\Subcategory::where('id_category',$item->id_category)->get();?>
+                                                        <?php  $subcate = \App\SubCategory::where('id_category',$item->id_category)->get();?>
                                                         @foreach ($subcate as $_sub)
-                                                        <button style="cursor: pointer;" type="button" class="nav-link text-left" data-toggle="pill" role="tab" onclick="selectproduct({{$_sub->id_subcategory}})" aria-selected="true">
+                                                        <button type="button" class="nav-link text-left" data-toggle="pill" role="tab" onclick="selectproduct({{$_sub->id_subcategory}})" aria-selected="true" style="   cursor: pointer; ">
                                                             <i class="mdi mdi-help-circle"></i> {{$_sub->subcategory_name_th}}
                                                         </button>
                                                         @endforeach
@@ -336,6 +338,9 @@ div {
                                         </div>
                                         <?php $i++; ?>
                                     @endforeach
+
+                                     {{-- end --}}
+        
                                 </div>
                             </div>
                         </div>
@@ -358,9 +363,8 @@ div {
                                                     <div class="row" id="contentproduct">
                                                       <?php   $products = \App\Product::where('product_display',0)->orderby('sap_code')->get(); ?>
                                                       @foreach ($products as $item)
-                                                      <?php $img = \App\ProductGallery::where('id_product',$item->id_product)->orderby('sort')->first(); ?>
                                                       <div class="col-md-4 col-lg-4 mb-4" >
-                                                            <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$img->filepath)}}"></a>
+                                                            <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$item->product_img)}}"></a>
                                                       </div>
                                                       @endforeach
                                                     </div>
@@ -373,18 +377,11 @@ div {
                             </div>
                         </div>
                     </div>
+                    {{-- end --}}
                 </div>
-            </div>
-        
- 
-        
-        
+            </div>        
         </div> 
 
-		
-
-		
-	
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -487,7 +484,7 @@ div {
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
    <script>
-    function selectproduct(id){
+             function selectproduct(id){
             console.log(id);
         $.ajax({
             url: '{{ url("showproduct")}}',
@@ -500,8 +497,7 @@ div {
                                
             }
         });
-    } 
-
+    }  
     </script> 
   </body>
 </html>

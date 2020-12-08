@@ -566,7 +566,7 @@ label {
 		  </div>
     </div>
      {{-- start nav --}}
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
 	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -577,34 +577,34 @@ label {
 
 		  <div class="col-md-8">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
+		  <li class="nav-item"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
 		  <li class="nav-item dropdown">
 		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
 		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-			  <?php $menu = \App\Category::orderby('sort')->get(); ?>
+            <?php $menu = \App\Category::orderby('sort')->get(); ?>
                 @foreach ($menu as $_menu)
                     <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
                 @endforeach
 		  </div>
 		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
 		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
+		  <li class="nav-item dropdown ">
+			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
 			<div class="dropdown-menu" aria-labelledby="dropdown04">
 				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
 				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
 			</div>
 		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
+		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
 
 		</ul>
 	</div>
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+		  <li class="nav-item cta-colored active"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -636,7 +636,7 @@ label {
         
         <div class="section-back">
 
-            <div class="site-section bg-light">
+            <div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about02.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
             <div class="container">
                 <div class="row">
                    
@@ -654,16 +654,27 @@ label {
     <label class="product-removal">Remove</label>
     <label class="product-line-price" style="    color: #00b9eb;">รวม</label>
     </div>
-    
+
+
+    <?php $items = Session::get('product');  
+          $sum  = 0;
+    ?>
+    @foreach ($items as $item)
+    <?php $product = \App\Product::where('id_product',$item)->first(); ?>
     <div class="product">
         <div class="product-image">
-            <img src="{{asset('frontend/images/pro02.jpg')}}">
+            <img src="{{url('storage/app/'.$product->product_img.'')}}">
         </div>
         <div class="product-details">
-            <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-            <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
+            <div class="product-title">{{$product->product_name_th}}</div>
+            {{-- <p class="product-description">{!! $product->product_description_th !!}</p> --}}
         </div>
-        <div class="product-price">350</div>
+        @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+        <div class="product-price">{{number_format($product->product_special_price)}}</div>
+        @else 
+        <div class="product-price">{{number_format($product->product_normal_price)}}</div>
+        @endif
+        
             <div class="product-quantity">
             <input type="number" value="1" min="1">
         </div>
@@ -672,7 +683,36 @@ label {
             Remove
             </button>
         </div>
-        <div class="product-line-price">350</div>
+        @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+        <div class="product-line-price">{{number_format($product->product_special_price)}}</div>
+        <?php  $sum +=  $product->product_special_price;?>
+        @else 
+        <div class="product-line-price">{{number_format($product->product_normal_price)}}</div>
+        <?php  $sum +=  $product->product_normal_price;?>
+        @endif
+    </div>
+ 
+    @endforeach
+   
+    
+    {{-- <div class="product">
+        <div class="product-image">
+        <img src="{{asset('frontend/images/pro01.jpg')}}">
+        </div>
+        <div class="product-details">
+            <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
+            <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
+        </div>
+        <div class="product-price">200</div>
+        <div class="product-quantity">
+            <input type="number" value="1" min="1">
+        </div>
+        <div class="product-removal">
+            <button class="remove-product">
+            Remove
+            </button>
+        </div>
+        <div class="product-line-price">200</div>
     </div>
     
     <div class="product">
@@ -693,14 +733,13 @@ label {
             </button>
         </div>
         <div class="product-line-price">200</div>
-    </div>
-    
+    </div> --}}
     
     
     <div class="totals">
     <div class="totals-item">
     <label>ยอดรวม</label>
-    <div class="totals-value" id="cart-subtotal">550</div>
+    <div class="totals-value" id="cart-subtotal">{{number_format($sum)}}</div>
     </div>
     <!-- <div class="totals-item">
     <label>Tax (5%)</label>
@@ -708,7 +747,7 @@ label {
     </div> -->
     <div class="totals-item">
     <label>ค่าส่ง</label>
-    <div class="totals-value" id="cart-shipping">45.00</div>
+    <div class="totals-value" id="cart-shipping">0</div>
     </div>
     <!-- <div class="totals-item">
     <div class="container">
@@ -725,7 +764,7 @@ label {
     </div> -->
     <div class="totals-item totals-item-total">
     <label>ยอดรวมทั้งสิน</label>
-    <div class="totals-value" id="cart-total">595.00</div>
+    <div class="totals-value" id="cart-total">{{number_format($sum)}}</div>
     </div>
     </div>
     
@@ -851,7 +890,7 @@ label {
 
   <script>
     var taxRate = 0.00;
-  var shippingRate = 45.00; 
+  var shippingRate = 0.00; 
   var fadeTime = 300;
   
   
@@ -872,20 +911,20 @@ label {
     
     /* Sum up row totals */
     $('.product').each(function () {
-      subtotal += parseFloat($(this).children('.product-line-price').text());
+      subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
     });
     
     /* Calculate totals */
     var tax = subtotal * taxRate;
     var shipping = (subtotal > 0 ? shippingRate : 0);
-    var total = subtotal + tax + shipping;
+    var total = numberWithCommas(subtotal + tax + shipping);
     
     /* Update totals display */
     $('.totals-value').fadeOut(fadeTime, function() {
-      $('#cart-subtotal').html(subtotal.toFixed(2));
-      $('#cart-tax').html(tax.toFixed(2));
-      $('#cart-shipping').html(shipping.toFixed(2));
-      $('#cart-total').html(total.toFixed(2));
+      $('#cart-subtotal').html(numberWithCommas(subtotal));
+      $('#cart-tax').html(tax);
+      $('#cart-shipping').html(shipping);
+      $('#cart-total').html(total);
       if(total == 0){
         $('.checkout').fadeOut(fadeTime);
       }else{
@@ -901,14 +940,15 @@ label {
   {
     /* Calculate line price */
     var productRow = $(quantityInput).parent().parent();
-    var price = parseFloat(productRow.children('.product-price').text());
+    var price = parseInt(productRow.children('.product-price').text().replace(',',''));
+    console.log(price);
     var quantity = $(quantityInput).val();
-    var linePrice = price * quantity;
+    var linePrice = numberWithCommas(price * quantity);
     
     /* Update line price display and recalc cart totals */
     productRow.children('.product-line-price').each(function () {
       $(this).fadeOut(fadeTime, function() {
-        $(this).text(linePrice.toFixed(2));
+        $(this).text(linePrice);
         recalculateCart();
         $(this).fadeIn(fadeTime);
       });
@@ -926,6 +966,13 @@ label {
       recalculateCart();
     });
   }
+
+
+  //////////////////////convert to string with comma
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     </script>
     
   </body>

@@ -39,6 +39,33 @@
 }
 
 
+.owl-carousel.home-slider {
+    position: relative;
+    /* height: 650px; */
+    height: auto;
+    z-index: 0;
+}
+.owl-theme .owl-dots .owl-dot span {
+    width: 10px;
+    height: 10px;
+    margin: 5px 7px;
+    background: #D6D6D6;
+    display: block;
+    -webkit-backface-visibility: visible;
+    transition: opacity .2s ease;
+    border-radius: 30px;
+    display: none;
+}
+.owl-theme .owl-nav.disabled+.owl-dots {
+    margin-top: 0px;
+}
+
+
+.video-size{
+width: 100%;
+height: 390px
+}
+
 
 #pro-top{
     margin-top: 40px;
@@ -253,6 +280,21 @@ img {
     margin-bottom: 0px;
     font-family: 'Prompt', sans-serif;
 }
+.price-span{
+  color: #777;
+    font-size: 16px;
+    font-family: 'Prompt', sans-serif;
+    text-decoration: line-through;
+}
+.price-sale{
+  color: #fff;
+    font-size: 11px;
+    font-family: 'Prompt', sans-serif;
+    background-color: #ef0c0c;
+    font-weight: lighter;
+    padding: 0px 5px;
+    border-radius: 5px;
+}
 .text-detial {
     font-size: 20px;
     color: #000;
@@ -393,6 +435,11 @@ a:hover {
     flex: 0 0 100%;
     max-width: 100%;
 }
+.video-size{
+width: 100%;
+height: 252px;
+}
+
 
 }
 
@@ -408,6 +455,10 @@ a:hover {
     height: 115px;
     object-fit: cover;
 }
+.video-size {
+    width: 100%;
+    height: 222px;
+}
 }
 @media (max-width: 375px){
     .pro-img {
@@ -420,6 +471,10 @@ a:hover {
     width: 100%;
     height: 95px;
     object-fit: cover;
+}
+.video-size{
+width: 100%;
+height: 165px;
 }
 
 }
@@ -467,51 +522,51 @@ a:hover {
     </div>
 {{-- start nav --}}
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="oi oi-menu"></span> Menu
-      </button>
+	<div class="container">
+	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="oi oi-menu"></span> Menu
+	  </button>
 
-      <div class="collapse navbar-collapse" id="ftco-nav">
+	  <div class="collapse navbar-collapse" id="ftco-nav">
 
-          <div class="col-md-8">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก</a></li>
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown04">
+		  <div class="col-md-8">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item "><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+		  <li class="nav-item dropdown active">
+		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+		  <div class="dropdown-menu" aria-labelledby="dropdown04">
             <?php $menu = \App\Category::orderby('sort')->get(); ?>
-            @foreach ($menu as $_menu)
-                <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
-            @endforeach
-          </div>
-        </li>
-          <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link">เกี่ยวกับเรา</a></li>
-          <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ข่าวสารและโปรโมชั่น</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
-                <a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
-            </div>
-          </li>
-          <li class="nav-item"><a href="{{url('/article')}}" class="nav-link">บทความ</a></li>
-          <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link">ติดต่อเรา</a></li>
+                @foreach ($menu as $_menu)
+                    <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
+                @endforeach
+		  </div>
+		</li>
+		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
+		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+		  <li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
+			<div class="dropdown-menu" aria-labelledby="dropdown04">
+				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
+				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+			</div>
+		  </li>
+		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
 
-        </ul>
-    </div>
-    <div class="col-md-4" id="pay-nemu">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link">เข้าสู่ระบบ</a></li>
-          <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li>
-          <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
-        </ul>
-    </div>
+		</ul>
+	</div>
+	<div class="col-md-4" id="pay-nemu">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
+		</ul>
+	</div>
 
 
-      </div>
-    </div>
+	  </div>
+	</div>
   </nav>
     <!-- END nav -->
 
@@ -529,32 +584,149 @@ a:hover {
         
         <div class="section-back">
 
-        <div class="site-section bg-light">
+        <div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about02.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
             <div class="container">
                 <div class="row">
                    
                     <div class="col-md-6" id="col-md-6">
 
                         <div class="container2">
-                          @foreach ($imgs as $img)
+
+                            @foreach ($imgs as $img)
                             <div class="mySlides" style="display: block;">
-                                <img class="pro-img" src="{{url('storage/app/'.$img->filepath)}}" style="width:100%">
+                                <img class="pro-img" src="{{url('storage/app/'.$img->filepath.'')}}" style="width:100%">
                             </div>
-                          @endforeach
+                            @endforeach
+                         
+{{--   
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}" style="width:100%">
+                          </div>
+  
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}" style="width:100%">
+                          </div>
+
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro05.jpg')}}" style="width:100%">
+                          </div>
+  
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro06.jpg')}}" style="width:100%">
+                          </div>
+
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}" style="width:100%">
+                          </div>
+
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro08.jpg')}}" style="width:100%">
+                          </div>
+  
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro09.jpg')}}" style="width:100%">
+                          </div>
+
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro10.jpg')}}" style="width:100%">
+                          </div>
+
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro11.jpg')}}" style="width:100%">
+                          </div>
+  
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro12.jpg')}}" style="width:100%">
+                          </div>
+
+                          <div class="mySlides" style="display: none;">
+                            <img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}" style="width:100%">
+                          </div> --}}
   
   
                           <div class="caption-container">
                             <p id="caption"></p>
                           </div>
-                          <?php $i=1; ?>
+  
+                        <div class="owl-carousel owl-theme">
                           <div class="row">
-                            @foreach ($imgs as $img)
-                            <div class="column">
-                                <img class="demo cursor active" src="{{url('storage/app/'.$img->filepath)}}" style="width:100%" onclick="currentSlide({{$i}})">
+                              @if(!empty($imgs[0]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[0]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                              @endif
+                              @if(!empty($imgs[1]))
+                              <div class="column">
+                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[1]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
                               </div>
-                              <?php $i++; ?>
-                            @endforeach
+                              @endif
+                              @if(!empty($imgs[2]))
+                              <div class="column">
+                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[2]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                              </div>
+                              @endif
                           </div>
+                          @if(!empty($imgs[3]))
+                          <div class="row">
+                                @if(!empty($imgs[3]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[3]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[4]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[4]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[5]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[5]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                          </div>
+                          @endif
+                          @if(!empty($imgs[6]))
+                          <div class="row">
+                                @if(!empty($imgs[6]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[6]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[7]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[7]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[8]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                          </div>
+                          @endif
+                          
+                          @if(!empty($imgs[9]))
+                          <div class="row">
+                                @if(!empty($imgs[9]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[10]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                                @if(!empty($imgs[11]))
+                                <div class="column">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                </div>
+                                @endif
+                          </div>
+                          @endif
+
+                        </div>
+
                         </div>
   
                       </div>
@@ -563,13 +735,17 @@ a:hover {
                         <?php $cate = \App\Category::where('id_category',$item->id_category)->first(); ?>
                         <p class="sub-pro">({{$cate->category_name_th}})</p>
                         <hr class="line-height">
+                        @if(($item->product_start <= date('Y-m-d') && $item->product_start != NULL ) && ($item->product_end >= date('Y-m-d') && $item->product_end != NULL))
+                        <p class="price"> <span class="price-span">฿{{number_format($item->product_normal_price)}}</span> ฿{{number_format($item->product_special_price)}} <span class="price-sale">{{($item->product_special_price/$item->product_normal_price)*100}}% ส่วนลด</span></p>
+                        @else 
                         <p class="price">฿{{number_format($item->product_normal_price)}}</p>
+                        @endif
+                       
                         <p class="text-detial">เกี่ยวกับสินค้า :</p>
-                        <p class="sub-detial"><?php echo $item->product_description_th; ?></p>
+                        <p class="sub-detial">{!! $item->product_description_th !!}</p>
                           <p class="text-detial">วิธีใช้ :</p>
-                          <p class="sub-detial2"><?php echo $item->product_method_th; ?></p>
-                            <center><a href="{{url('cart')}}" ><p class="button">ADD TO CART</p></a></center>
-  
+                          <p class="sub-detial2">{!! $item->product_method_th !!}</p>
+                            <center><a href="{{url('addcart/'.$item->id_product.'')}}"><p class="button">ADD TO CART</p></a></center>
                       </div>
         
                 </div>
@@ -578,14 +754,66 @@ a:hover {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12" id="back-col">
-                    <p class="text-detial">เกี่ยวกับสินค้า :</p>
-                    <p class="sub-detial"><?php echo $item->product_description_th; ?></p>
-                      <p class="text-detial">วิธีใช้ :</p>
-                      <p class="sub-detial2"><?php echo $item->product_method_th; ?></p>
+                    <p class="text-detial">dimension :</p>
+                    <p class="sub-detial"><b>น้ำหนัก</b> {{$item->product_kg}} kg.<br><b>ขนาด </b>{{$item->product_width}} มม. X {{$item->product_lenght}} มม. X {{$item->product_height}} มม.</p>
+                      <p class="text-detial">จุดเด่นของสินค้า :</p>
+                        <p class="sub-detial2">{!!$item->product_selling_th!!}</p>
+                      <p class="text-detial">คุณสมบัติ :</p>
+                    <p class="sub-detial">{!!$item->product_property_th!!}</p>
+                      <p class="text-detial">รายละเอียด :</p>
+                      <p class="sub-detial2">{!!$item->product_description_th!!}</p>
+                      <p class="text-detial">วิธีใช้งาน :</p>
+                        <p class="sub-detial">{!!$item->product_method_th!!}</p>
+                  
+                      
+                      <p class="text-detial">การติดตั้ง :</p>
+                      <p class="sub-detial">{!!$item->product_installation_th!!}</p>
                     </div>
     
                 </div>
             </div>
+            <br>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                    <iframe class="video-size" src="https://www.youtube.com/embed/K3VxV2TTlMo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="col-md-4">
+                    <p class="sub-pro" style="font-weight: 500;">สะดวกยิ่งขึ้นสามารถสั่งซื้อผ่าน ไลน์@ และ Facebook</p>
+                    <a href="#"><img src="{{asset('frontend/images/line.png')}}" style="width:70%; margin-bottom: 10px;"></a>
+                    <a href="#"><img src="{{asset('frontend/images/facebook.png')}}" style="width:70%;"></a>
+                    </div>
+                </div>
+            </div>
+
+<br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    <p class="title-pro" align="center" style="margin-bottom: 10px;">รีวิวจากลูกค้า</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+                    </div>
+                    <div class="col-md-6">
+                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+                    </div>
+                </div>
+            </div>
+
+
+
 
         
         </div>
@@ -730,6 +958,67 @@ a:hover {
       captionText.innerHTML = dots[slideIndex-1].alt;
     }
     </script>
+
+<script>
+      var owl = $('.owl-carousel');
+owl.owlCarousel({
+    items:1,
+    loop:false,
+    // margin:10,
+    autoplay:false,
+    // slideBy: 2000,
+    // touchDrag: false,
+    mouseDrag: true,
+    dotsSpeed: 1000,
+    autoplaySpeed: 1000,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true,
+    responsive:{
+        0:{
+          autoplay:false,
+            items:1
+        },
+        600:{
+          autoplay:false,
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+});
+$('.play').on('click',function(){
+    owl.trigger('play.owl.autoplay',[1000])
+    // owl.trigger('play.owl.transition-Duration',[1000])
+})
+$('.stop').on('click',function(){
+    owl.trigger('stop.owl.autoplay')
+})
+//     $(document).ready(function(){
+        
+//         $('.owl-carousel').owlCarousel({
+//     loop:true,
+//     margin:10,
+//     responsiveClass:true,
+//     responsive:{
+//         0:{
+//             items:1,
+//             nav:false
+//         },
+//         600:{
+//             items:1,
+//             nav:false
+//         },
+//         1000:{
+//             items:1,
+//             nav:false,
+//             loop:true
+//         }
+//     }
+// })
+
+//       });
+</script>
     
   </body>
 </html>
