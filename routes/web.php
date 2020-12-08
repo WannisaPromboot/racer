@@ -47,8 +47,12 @@ Route::get('/cart', function(){
 });
 
 
-Route::get('/caontact', function(){
+Route::get('/contact', function(){
     return view('frontend.caontact');
+});
+
+Route::get('/privacy', function(){
+    return view('frontend.index');
 });
 
 
