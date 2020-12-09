@@ -116,14 +116,14 @@ class LoginController extends Controller
 
     public function LogOut()
       {
-        if(!empty(Session::get('customer_ip')) && !empty(Session::get('customer_id')) ){
-            $update = CustomerLogin::where('customer_id',Session::get('customer_id'))
-                                    ->where('ip',Session::get('customer_ip'))
-                                    ->orderBy('created_at','desc')
-                                    ->first();
-            $update->duration = $this->diff2time($update->created_at,date('Y-m-d H:i:s'));
-            $update->save();
-        }
+        // if(!empty(Session::get('customer_ip')) && !empty(Session::get('customer_id')) ){
+        //     $update = CustomerLogin::where('customer_id',Session::get('customer_id'))
+        //                             ->where('ip',Session::get('customer_ip'))
+        //                             ->orderBy('created_at','desc')
+        //                             ->first();
+        //     $update->duration = $this->diff2time($update->created_at,date('Y-m-d H:i:s'));
+        //     $update->save();
+        // }
 
         Session::forget('customer_id');
         Session::forget('username');
