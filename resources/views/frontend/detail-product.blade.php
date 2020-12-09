@@ -34,8 +34,137 @@
   </head>
 
   <style>
+
+    /* ------star---------- */
+
+    .rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+    margin-top: -15px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+    /* -------------- */
+
+/* ---form review */
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  font-family: 'Prompt', sans-serif;
+}
+
+input[type=submit] {
+  background-color: #41c8f5;
+  color: white;
+  /* padding: 12px 20px; */
+  padding: 5px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  /* float: right; */
+  float: left;
+}
+
+input[type=submit]:hover {
+  /* background-color: #45a049; */
+  background-color: #45a04900;
+    color: #41c8f5;
+    border: 1px solid;
+}
+
+.box-form{
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 20px 50px;
+}
+
+.col-25 {
+  float: left;
+  /* width: 25%;
+  margin-top: 6px; */
+  width: 15%;
+    margin-top: 6px;
+    margin-left: 45px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+    margin-left: 0px;
+  }
+}
+
+
+:focus {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+/* ---- */
+
       .img-logo {
         width: 60%;
+}
+
+.checked {
+  color: orange;
+}
+.box-re{
+  background-color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 10px;
 }
 
 
@@ -459,6 +588,13 @@ height: 252px;
     width: 100%;
     height: 222px;
 }
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
 }
 @media (max-width: 375px){
     .pro-img {
@@ -647,7 +783,7 @@ height: 165px;
                           <div class="caption-container">
                             <p id="caption"></p>
                           </div>
-  
+                        
                         <div class="owl-carousel owl-theme">
                           <div class="row">
                               @if(!empty($imgs[0]))
@@ -657,12 +793,12 @@ height: 165px;
                               @endif
                               @if(!empty($imgs[1]))
                               <div class="column">
-                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[1]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[1]->filepath.'')}}" style="width:100%" onclick="currentSlide(2)">
                               </div>
                               @endif
                               @if(!empty($imgs[2]))
                               <div class="column">
-                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[2]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[2]->filepath.'')}}" style="width:100%" onclick="currentSlide(3)">
                               </div>
                               @endif
                           </div>
@@ -670,17 +806,17 @@ height: 165px;
                           <div class="row">
                                 @if(!empty($imgs[3]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[3]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[3]->filepath.'')}}" style="width:100%" onclick="currentSlide(4)">
                                 </div>
                                 @endif
                                 @if(!empty($imgs[4]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[4]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[4]->filepath.'')}}" style="width:100%" onclick="currentSlide(5)">
                                 </div>
                                 @endif
                                 @if(!empty($imgs[5]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[5]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[5]->filepath.'')}}" style="width:100%" onclick="currentSlide(6)">
                                 </div>
                                 @endif
                           </div>
@@ -689,17 +825,17 @@ height: 165px;
                           <div class="row">
                                 @if(!empty($imgs[6]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[6]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[6]->filepath.'')}}" style="width:100%" onclick="currentSlide(7)">
                                 </div>
                                 @endif
                                 @if(!empty($imgs[7]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[7]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[7]->filepath.'')}}" style="width:100%" onclick="currentSlide(8)">
                                 </div>
                                 @endif
                                 @if(!empty($imgs[8]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(9)">
                                 </div>
                                 @endif
                           </div>
@@ -709,17 +845,17 @@ height: 165px;
                           <div class="row">
                                 @if(!empty($imgs[9]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(10)">
                                 </div>
                                 @endif
                                 @if(!empty($imgs[10]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(11)">
                                 </div>
                                 @endif
                                 @if(!empty($imgs[11]))
                                 <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(12)">
                                 </div>
                                 @endif
                           </div>
@@ -741,10 +877,10 @@ height: 165px;
                         <p class="price">฿{{number_format($item->product_normal_price)}}</p>
                         @endif
                        
-                        <p class="text-detial">เกี่ยวกับสินค้า :</p>
-                        <p class="sub-detial">{!! $item->product_description_th !!}</p>
-                          <p class="text-detial">วิธีใช้ :</p>
-                          <p class="sub-detial2">{!! $item->product_method_th !!}</p>
+                        <p class="text-detial">ข้อมูลจำเพาะสินค้า :</p>
+                        <p class="sub-detial">{!! $item->product_spec_th !!}</p>
+                          {{-- <p class="text-detial">วิธีใช้ :</p>
+                          <p class="sub-detial2">{!! $item->product_method_th !!}</p> --}}
                             <center><a href="{{url('addcart/'.$item->id_product.'')}}"><p class="button">ADD TO CART</p></a></center>
                       </div>
         
@@ -754,20 +890,20 @@ height: 165px;
             <div class="container">
                 <div class="row">
                     <div class="col-md-12" id="back-col">
-                    <p class="text-detial">dimension :</p>
-                    <p class="sub-detial"><b>น้ำหนัก</b> {{$item->product_kg}} kg.<br><b>ขนาด </b>{{$item->product_width}} มม. X {{$item->product_lenght}} มม. X {{$item->product_height}} มม.</p>
-                      <p class="text-detial">จุดเด่นของสินค้า :</p>
+                    {{-- <p class="text-detial">dimension :</p>
+                    <p class="sub-detial"><b>น้ำหนัก</b> {{$item->product_kg}} kg.<br><b>ขนาด </b>{{$item->product_width}} มม. X {{$item->product_lenght}} มม. X {{$item->product_height}} มม.</p> --}}
+                        <p class="text-detial">คุณสมบัติเด่น :</p>
                         <p class="sub-detial2">{!!$item->product_selling_th!!}</p>
-                      <p class="text-detial">คุณสมบัติ :</p>
-                    <p class="sub-detial">{!!$item->product_property_th!!}</p>
-                      <p class="text-detial">รายละเอียด :</p>
-                      <p class="sub-detial2">{!!$item->product_description_th!!}</p>
-                      <p class="text-detial">วิธีใช้งาน :</p>
+                        <p class="text-detial">คุณสมบัติทั่วไป :</p>
+                        <p class="sub-detial">{!!$item->product_property_th!!}</p>
+                        <p class="text-detial">วิธีใช้งาน :</p>
                         <p class="sub-detial">{!!$item->product_method_th!!}</p>
-                  
-                      
-                      <p class="text-detial">การติดตั้ง :</p>
-                      <p class="sub-detial">{!!$item->product_installation_th!!}</p>
+                        <p class="text-detial">การติดตั้ง :</p>
+                        <p class="sub-detial">{!!$item->product_installation_th!!}</p>
+                        <p class="text-detial">คำแนะนำ :</p>
+                        <p class="sub-detial2">{!!$item->product_direction_th!!}</p>
+                        <p class="text-detial">ข้อควรระวัง :</p>
+                        <p class="sub-detial2">{!!$item->product_caution_th!!}</p>
                     </div>
     
                 </div>
@@ -787,7 +923,7 @@ height: 165px;
                 </div>
             </div>
 
-<br>
+            <br>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -798,16 +934,130 @@ height: 165px;
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
-                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
-                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
-                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+
+                    <div class="box-re">
+                    <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
+                    <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
                     </div>
+                    <div class="box-re">
+                    <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
+                    <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    </div>
+                    <div class="box-re">
+                    <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
+                    <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    </div>
+
+                    </div>
+
                     <div class="col-md-6">
-                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
-                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
-                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
-                    <center><img src="{{asset('frontend/images/review01.jpg')}}" style="width:90%; margin-bottom: 10px;"></center>
+
+                    <div class="box-re">
+                    <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
+                    <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    </div>
+                    <div class="box-re">
+                    <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
+                    <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    </div>
+                    <div class="box-re">
+                    <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
+                    <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
+                    <div class="box-form">
+            <form action="#">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="fname">ชื่อ-สกุล</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="fname" name="firstname" placeholder="กรอกชื่อ-สกุล..">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="subject">แสดงความคิดเห็น</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="subject" name="subject" placeholder="ความคิดเห็น.." style="height:150px"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-25">
+                        <label for="subject">ระดับความพอใจ</label>
+                    </div>
+                        <div class="col-75">
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-25">
+
+                        </div>
+                        <div class="col-75">
+                            <input type="submit" value="ส่ง">
+                        </div>
+                </div>
+        <!-- <div class="row">
+        <input type="submit" value="Submit">
+        </div> -->
+        </form>
+    </div>
+
                     </div>
                 </div>
             </div>
@@ -820,7 +1070,6 @@ height: 165px;
         
         
         </div> 
-
 		
 
 		

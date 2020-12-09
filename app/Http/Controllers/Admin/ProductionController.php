@@ -19,8 +19,6 @@ class ProductionController extends Controller
       //  dd($request->all());
         $product = \App\Product::where('id_product',$request->id)->first();
         $product->product_count = $request->count;
-        $product->product_normal_price = $request->normal;
-        $product->product_special_price = $request->special;
         $product->save();
     }
 }

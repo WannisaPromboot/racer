@@ -37,6 +37,80 @@
   </head>
 
   <style>
+
+    /* ---custom radio---- */
+    .container2 {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 16px;
+    font-weight: normal;
+}
+
+/* Hide the browser's default radio button */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* height: 25px;
+  width: 25px; */
+  height: 20px;
+    width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container2:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container2 input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container2 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container2 .checkmark:after {
+ 	/* top: 9px;
+  left: 9px; */
+  top: 6px;
+    left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+    /* ------------ */
+
+
       .img-logo {
         width: 60%;
 }
@@ -209,8 +283,9 @@ input[type=text], select, textarea {
 }
 
 label {
-  padding: 12px 12px 12px 0;
+  /* padding: 12px 12px 12px 0; */
   display: inline-block;
+  padding: 0px 0 0px 0;
 }
 
 input[type=submit] {
@@ -704,6 +779,7 @@ text-align: left;
 
 }
 
+
       
   </style>
 
@@ -974,7 +1050,7 @@ text-align: left;
        
       
     
-            <div class="container">
+            {{-- <div class="container">
               <div class="row">
     
                   <div class="col-md-2 col-lg-2 mb-2" >
@@ -986,7 +1062,178 @@ text-align: left;
               </div>
     
                 </div>
-            </div>
+            </div> --}}
+
+            {{-- ใบกำกับภาษี --}}
+
+            <div class="container">
+                <div class="row">
+      
+                    <div class="col-md-2 col-lg-2 mb-2" >
+                    </div>
+                  <div class="col-md-8 col-lg-8 mb-8" >
+                      
+                  </div>
+                  <div class="col-md-2 col-lg-2 mb-2" >
+                </div>
+      
+                  </div>
+              </div>
+  
+              <div class="container">
+                <div class="row">
+      
+                    <div class="col-md-2 col-lg-2 mb-2" >
+                    </div>
+                  <div class="col-md-8 col-lg-8 mb-8" >
+                      <p class="title-pay">ขอใบกำกับภาษี</p>
+  
+                      <label class="container2">ตามที่อยู่เดิม
+                          <input type="radio" checked="checked" name="radio">
+                          <span class="checkmark"></span>
+                      </label>
+                      <label class="container2">ที่อยู่ใหม่
+                          <input type="radio" name="radio">
+                          <span class="checkmark" id="checkmark"></span>
+                      </label>
+  
+                  </div>
+                  <div class="col-md-2 col-lg-2 mb-2" >
+                </div>
+      
+                  </div>
+              </div>
+  
+              <div class="site-section" id="desk">
+                <div class="container">
+                  <div class="row">
+        
+                    <div class="col-md-2 col-lg-2 mb-2" >
+                    </div>
+        
+                    <div class="col-md-4 col-lg-4 mb-4" >
+                      <form action="/action_page.php">
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="fname" name="firstname" placeholder="Name*">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="E-mail*">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="Address*">
+                          </div>
+                        </div>
+                        
+                        </form>
+        
+                    </div>
+        
+                    <div class="col-md-4 col-lg-4 mb-4" >
+                      <form action="/action_page.php">
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="fname" name="firstname" placeholder="Last Name*">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="Fax*">
+                          </div>
+                        </div>
+      
+                        </form>
+                    </div>
+        
+                    <div class="col-md-2 col-lg-2 mb-2" >
+                    </div>
+        
+                  </div>
+                  
+                </div>
+              </div>
+      
+      
+        
+      
+      
+              <div class="site-section" id="mobile">
+                <div class="container">
+                  <div class="row">
+        
+                    <!-- <div class="col-md-2 col-lg-2 mb-2" >
+        
+                    </div> -->
+        
+                    <div class="col-md-12 col-lg-12 mb-12">
+                      <form action="/action_page.php" >
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="fname" name="firstname" placeholder="Name*">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="Last name*">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="E-mail">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="Address*">
+                          </div>
+                        </div>
+                        <div class="row">
+                      
+                          <div class="col-75">
+                            <input type="text" id="lname" name="lastname" placeholder="Fax*">
+                          </div>
+                        </div>
+      
+        
+      
+        
+        
+                        
+                        </form>
+                    
+                    </div>
+        
+        
+        
+                  </div>
+                  
+                </div>
+              </div>
     
             <div class="container">
                 <div class="row">
@@ -994,7 +1241,7 @@ text-align: left;
                     <div class="col-md-2 col-lg-2 mb-2" >
                     </div>
                   <div class="col-md-8 col-lg-8 mb-8" >
-                      <p class="title-pay2">Delivery Detail</p>
+                      <p class="title-pay2">ช่องทางการชำระเงิน</p>
                   </div>
                   <div class="col-md-2 col-lg-2 mb-2" >
                 </div>

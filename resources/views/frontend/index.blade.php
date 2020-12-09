@@ -383,8 +383,6 @@ a:hover, a:focus {
 			<div class="container">
 				<div class="row">
 				   <div id="box">
-
-
 					<div class="container">
 						<div class="row">
 
@@ -425,8 +423,6 @@ a:hover, a:focus {
 
 					</div>
 					</div>
-
-
 				</div>
 				</div>
 			</div>
@@ -590,7 +586,7 @@ a:hover, a:focus {
 				<div class="row">
 
 					<div class="col-md-12" >
-						<a href="promotion.php"><img class="pro-img2" src="{{asset('frontend/images/product01.jpg')}}"></a>
+                        <a href="{{url('promotion')}}"><img class="pro-img2" src="{{asset('frontend/images/product01.jpg')}}"></a>
 					</div>
 
 				</div>
