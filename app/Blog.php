@@ -9,3 +9,5 @@ class Blog extends Model
     protected $table = 'blog';
     protected $primaryKey = 'id_blog';
 }
+
+?>

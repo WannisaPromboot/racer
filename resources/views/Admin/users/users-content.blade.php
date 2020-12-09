@@ -58,8 +58,8 @@
                             @foreach ($users as $item)
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$item->email}}</td>   
-                                <td>{{$item->firstname}} {{$item->lastname}}</td>       
+                                <td>{{$item->email_staff}}</td>   
+                                <td>{{$item->name_staff}} {{$item->lastname_staff}}</td>       
                                 <td>
                                     @if($item->role == 1) 
                                       admin

@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datepicker.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/jquery.timepicker.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
 
     
     <link rel="stylesheet" href="{{asset('frontend/css/flaticon.css')}}">
@@ -431,7 +432,7 @@ a:hover {
 
 /* -------form------------- */
 
-input[type=text], select, textarea {
+input[type=password],input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -496,21 +497,7 @@ input[type=submit]:hover {
     margin-top: 60px;
     margin-bottom: 50px;
 }
-.submit2 {
-    width: 25%;
-    background-color: #777;
-    color: white;
-    padding: 10px 50px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    margin-top: 50px;
-    margin-bottom: 40px;
-    font-family: 'Prompt', sans-serif;
-    font-size: 16px;
-    text-align: center;
-}
+
 a:hover {
     color: #ccc;
 }
@@ -594,7 +581,6 @@ a:hover {
     border: none;
     border-radius: 0px;
     cursor: pointer;
-    margin-top: 50px;
     margin-bottom: 40px;
     font-family: 'Prompt', sans-serif;
     font-size: 16px;
@@ -842,77 +828,67 @@ a:hover {
                         <p class="about-title">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                         <hr class="line-re">
                         <p class="sub-text-about">Lorem Ipsum is simply</p>
-                        <center><a href="#" class="boxed-btn3-white-2"> <span class="icon-facebook2"></span> Continue with facebook</a></center>
+                        <center><a href="{{route('redirectToProvider','facebook')}}" class="boxed-btn3-white-2"> <span class="icon-facebook2"></span> Continue with facebook</a></center>
                       </div>
                     </div>
           
                   </div>
                 </div>
-              
-          
-              
+
+
+                <form action="{{url('logincustomer','Customer')}}" method="POST">
+                  @csrf
                   <div class="container">
                     <div class="row">
-          
                       <div class="col-md-3 col-lg-3 mb-3" >
                       </div>
           
                       <div class="col-md-6 col-lg-6 mb-6" >
-                        <form action="/action_page.php">
                           <div class="row">
                         
                             <div class="col-75">
-                              <input type="text" id="fname" name="firstname" placeholder="เลขบัตรประชาชน">
+                              <input type="text" name="email" placeholder="email">
                             </div>
                           </div>
                           <div class="row">
                         
                             <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="รหัสผ่าน">
+                              <input type="password" name="password" placeholder="password">
                             </div>
                           </div>
-          
-          
-                          
-                          </form>
-          
                       </div>
-          
                       <div class="col-md-3 col-lg-3 mb-3" >
                       </div>
-          
-          
-          
                     </div>
                     
                   </div>
                 
-                <div class="container">
-                  <div class="row" id="">
-          
-                    <div class="col-md-12 col-lg-12 mb-12" >
-                <p class="text-re">Don't have an account yet? <a href="{{url('userregister')}}"><span class="re-col">สมัครสมาชิก</span></a></p>
-                  <center></center>
-                   
-          
-                  </div>
-                </div>
-                </div>
-          
-                <div class="container">
-                  <div class="row" id="">
-          
-                    <div class="col-md-12 col-lg-12 mb-12" >
-                      
-                        <div class="but">
-                          <center><a href="#" class="submit2">เข้าสู่ระบบ</a></center>
+                  <div class="container">
+                    <div class="row" id="">
+            
+                      <div class="col-md-12 col-lg-12 mb-12" >
+                        <p class="text-re">Don't have an account yet? <a href="{{url('userregister')}}"><span class="re-col">สมัครสมาชิก</span></a></p>
+                        <center></center>
+                    
+            
                       </div>
-                   
-          
+                    </div>
                   </div>
-                </div>
-                </div>
-          
+            
+                  <div class="container">
+                    <div class="row" id="">
+            
+                      <div class="col-md-12 col-lg-12 mb-12" >
+                        
+                          <div class="but">
+                            <center><button type="submit" class="submit2">เข้าสู่ระบบ</button></center>
+                          </div>
+                    
+            
+                      </div>
+                    </div>
+                  </div>
+                </form>
             </div>
         
         </div> 
@@ -1022,7 +998,22 @@ a:hover {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
-
+  <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> 
+  <script>
+    var A  = "{{Session::get('success')}}";
+    var B  = "{{Session::get('error')}}";
+    if(A){
+      Swal.fire({
+            text:A,
+            type: 'success'
+        });
+    }else if(B){
+      Swal.fire({
+            text:B,
+            type: 'error'
+        });
+    }
+  </script>
 
     
   </body>

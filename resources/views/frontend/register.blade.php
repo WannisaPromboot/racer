@@ -439,7 +439,7 @@ a:hover {
 
 /* -------form------------- */
 
-input[type=text], select, textarea {
+input[type=password],input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -514,7 +514,7 @@ input[type=submit]:hover {
     border: none;
     border-radius: 0px;
     cursor: pointer;
-    margin-top: 50px;
+    
     margin-bottom: 40px;
     font-family: 'Prompt', sans-serif;
     font-size: 16px;
@@ -594,21 +594,7 @@ a:hover {
     margin-top: 60px;
     margin-bottom: 50px;
 }
-.submit2 {
-    width: 25%;
-    background-color: #777;
-    color: white;
-    padding: 10px 50px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    margin-top: 50px;
-    margin-bottom: 40px;
-    font-family: 'Prompt', sans-serif;
-    font-size: 16px;
-    text-align: center;
-}
+
 .submit2:hover {
     background-color: rgba(119, 119, 119, 0);
     color: #777 !important;
@@ -864,169 +850,117 @@ a:hover {
           
                   </div>
                 </div>
-              </div>
-          
-              <div class="" id="desk">
-                  <div class="container">
-                    <div class="row">
-          
-                      <div class="col-md-2 col-lg-2 mb-2" >
-                      </div>
-          
-                      <div class="col-md-4 col-lg-4 mb-4" >
-                        <form action="/action_page.php">
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="fname" name="firstname" placeholder="Nane*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="E-mail*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Address*">
-                            </div>
-                          </div>
-                          <!-- <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="ชื่อ-นามสกุล ตามบัญชีธนาคาร*">
-                            </div>
-                          </div> -->
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <select id="country" name="country">
-                                <option value="australia">Spacify Province</option>
-                                <option value="canada">text01</option>
-                                <option value="usa">text02</option>
-                              </select>
-                            </div>
-                          </div>
-          
-                          <div class="row">
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Facebook*">
-                          </div>
-                        </div>
-          
-
-                          
-                          <!--<div class="row">
-                        
-                            <div class="col-75">
-                              <select id="country" name="country">
-                                <option value="australia">เลือกจังหวัด</option>
-                                <option value="canada">text01</option>
-                                <option value="usa">text02</option>
-                              </select>
-                            </div>
-                          </div>
-                           <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Your facebook">
-                            </div>
-                          </div> -->
-          
-                          
-                          </form>
-          
-                      </div>
-          
-                      <div class="col-md-4 col-lg-4 mb-4" >
-                        <form action="/action_page.php">
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="fname" name="firstname" placeholder="Last Name*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Fax*">
-                            </div>
-                          </div>
-                          <!-- <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="ชื่อธนาคาร*">
-                            </div>
-                          </div> -->
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <select id="country" name="country">
-                                <option value="australia">Specify District</option>
-                                <option value="canada">text1</option>
-                                <option value="usa">text02</option>
-                              </select>
-                            </div>
-                          </div>
-          
-                          <div class="row">
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Line ID*">
-                          </div>
-                        </div>
-          
-                        
-                          <!--<div class="row">
-                        
-                             <div class="col-75">
-                              <select id="country" name="country">
-                                <option value="australia">เลือกอำเภอ</option>
-                                <option value="canada">text01</option>
-                                <option value="usa">text02</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Your line id">
-                            </div>
-                          </div> -->
-          
-                          </form>
-                      </div>
-          
-                      <div class="col-md-2 col-lg-2 mb-2" >
-                      </div>
-          
-                    </div>
-                    
-                  </div>
-                </div>
-                
-          
-                <!-- <div class="vpop" data-type="youtube" data-id="-QLJv3kdfiM" data-autoplay='true'><a href=""><span class="re-col">คลิกเพื่อดูวิธีการสมัครสมาชิก</span></a></div>
-                <center><a href="https://line.me/ti/p/vYKb_MVzam"><span class="re-col">ติดต่อสอบถาม</span></a></center>
-          <br /> -->
-          
-
-          <!-- <div id="video-popup-overlay"></div>
-          
-          <div id="video-popup-container">
-            <div id="video-popup-close" class="fade">&#10006;</div>
-            <div id="video-popup-iframe-container">
-              <iframe id="video-popup-iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
             </div>
-          </div> -->
-          
+            <form action="{{url('customerregister')}}" method="POST">
+              @csrf
+                <div class="" id="desk">
+                    <div class="container">
+                      <div class="row">
+            
+                        <div class="col-md-2 col-lg-2 mb-2" >
+                        </div>
+                          <div class="col-md-4 col-lg-4 mb-4" >
+                              <div class="row">
+                            
+                                <div class="col-75">
+                                  <input type="text" name="name" placeholder="Name*">
+                                </div>
+                              </div>
+                              <div class="row">
+                            
+                                <div class="col-75">
+                                  <input type="text" name="email" placeholder="E-mail*">
+                                </div>
+                              </div>
+                              <div class="row">
+                            
+                                <div class="col-75">
+                                  <input type="text" name="address" placeholder="Address*">
+                                </div>
+                              </div>
+                              <div class="row">
+                            
+                                <div class="col-75">
+                                  <select id="amphure" name="amphure">
+                                    <option value="">Specify Amphure</option>
+                                    
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-75">
+                                  <input type="text" id="zipcode" name="postal" placeholder="Postal code" readonly>
+                                </div>
+                              </div>
+              
+                              <div class="row">
+                                <div class="col-75">
+                                  <input type="text" name="facebook" placeholder="Facebook">
+                                </div>
+                              </div>
+              
+                          </div>
+            
+                          <div class="col-md-4 col-lg-4 mb-4" >
+                              <div class="row">
+                            
+                                <div class="col-75">
+                                  <input type="text" name="lastname" placeholder="Last Name*">
+                                </div>
+                              </div>
+                              <div class="row">
+                            
+                                <div class="col-75">
+                                  <input type="text" name="phone" placeholder="Phone No.*">
+                                </div>
+                              </div>
+
+                              <div class="row">
+                            
+                                <div class="col-75">
+                                  <select id="province" name="province"  style="height: 50px">
+                                    <option value="">Spacify Province</option>
+                                    @foreach($province as $pro)
+                                      <option value="{{$pro->id}}">{{$pro->name_th}}</option>
+
+                                    @endforeach
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                            
+                                <div class="col-75">
+                                  <select id="district" name="district"  style="height: 50px">
+                                    <option value="">Specify District</option>
+                                   
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-75">
+                                  <input type="password" name="password" placeholder="password">
+                                </div>
+                              </div>
+                            
+                              
+                              <div class="row">
+                                <div class="col-75">
+                                  <input type="text" name="lineid" placeholder="Line ID">
+                                </div>
+                              </div>
+
+                          </div>
+
+                        <div class="col-md-2 col-lg-2 mb-2" >
+                        </div>
+            
+                      </div>
+                      
+                    </div>
+                </div>
           
                 <div class="container">
                   <div class="row" id="desk">
@@ -1034,127 +968,119 @@ a:hover {
                     <div class="col-md-12 col-lg-12 mb-12" >
                       
                         <div class="but">
-                          <center><a href="#" class="submit2">สมัครสมาชิก</a></center>
-                      </div>
+                          <center><button type="submit" class="submit2">สมัครสมาชิก</button></center>
+                        </div>
                    
-          
-                  </div>
-                </div>
-                </div>
-          
-                <div class="" id="mobile">
-                  <div class="container">
-                    <div class="row">
-          
-                      <div class="col-md-2 col-lg-2 mb-2" >
-          
-                      </div>
-          
-                      <div class="col-md-4 col-lg-4 mb-4">
-                        <form action="/action_page.php" >
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="fname" name="firstname" placeholder="Name*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Last Name*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="E-mail">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Address*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Fax*">
-                            </div>
-                          </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <select id="country" name="country">
-                                <option value="australia">Spacify Province</option>
-                                <option value="canada">text1</option>
-                                <option value="usa">text2</option>
-                              </select>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <select id="country" name="country">
-                                <option value="australia">Spacify District</option>
-                                <option value="canada">text1</option>
-                                <option value="usa">text2</option>
-                              </select>
-                            </div>
-                          </div>
-          
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Facebook*">
-                            </div>
-                          </div>
-                          
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="text" id="lname" name="lastname" placeholder="Line ID*">
-                            </div>
-                          </div>
-          
-             
-                          
-    
-          
-          
-                          
-                          </form>
-                      
-                      </div>
-          
-          
           
                     </div>
+                  </div>
+                </div>
+            </form>
+          
+            <div class="" id="mobile">
+              <div class="container">
+                <div class="row">
+      
+                  <div class="col-md-2 col-lg-2 mb-2" >
+      
+                  </div>
+      
+                  <div class="col-md-4 col-lg-4 mb-4">
+                    <form action="/action_page.php" >
+                      <div class="row">
                     
-                  </div>
-                </div>
-          
-                <div class="container">
-                  <div class="row" id="mobile">
-          
-                    <div class="col-md-12 col-lg-12 mb-12" >
-                      
-                        <div class="but">
-                          <center><a href="#" class="submit2">สมัครสมาชิก</a></center>
+                        <div class="col-75">
+                          <input type="text" id="fname" name="firstname" placeholder="Name*">
+                        </div>
                       </div>
-                   
-          
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <input type="text" id="lname" name="lastname" placeholder="Last Name*">
+                        </div>
+                      </div>
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <input type="text" id="lname" name="lastname" placeholder="E-mail">
+                        </div>
+                      </div>
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
+                        </div>
+                      </div>
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <input type="text" id="lname" name="lastname" placeholder="Address*">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <select id="country" name="country">
+                            <option value="australia">Spacify District</option>
+                            <option value="canada">text1</option>
+                            <option value="usa">text2</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <select id="country" name="country">
+                            <option value="australia">Spacify Province</option>
+                            <option value="canada">text1</option>
+                            <option value="usa">text2</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <input type="text" id="lname" name="lastname" placeholder="Postal code">
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <input type="text" id="lname" name="lastname" placeholder="Facebook*">
+                        </div>
+                      </div>
+                      
+                      <div class="row">
+                    
+                        <div class="col-75">
+                          <input type="text" id="lname" name="lastname" placeholder="Line ID*">
+                        </div>
+                      </div>
+                      </form>
                   </div>
                 </div>
-                </div>
-        
+                
+              </div>
+            </div>
+      
+            <div class="container">
+              <div class="row" id="mobile">
+      
+                <div class="col-md-12 col-lg-12 mb-12" >
+                  
+                    <div class="but">
+                      <center><a href="#" class="submit2">สมัครสมาชิก</a></center>
+                  </div>
+                
+      
+              </div>
+            </div>
+                
         </div> 
 
 		
@@ -1244,7 +1170,65 @@ a:hover {
 
   <!-- loader -->
   <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+ 
+    $("#province").change(function (){
+        var province_id = $('#province').val();
+        // console.log(province_id);
+        if(province_id){
+            $.ajax({
+                url:'{{ url("getAmphure") }}/'+encodeURIComponent(province_id),
+                type: 'GET',
+                dataType: 'HTML',
+                async: true,
+                data: "{data: value}",
+                success: function(data){
+                    // jssearch();
+                   
+                    $('#amphure').html(data);
+                }
+            });
+        }
+    
+    });
 
+    $("#amphure").change(function() {
+        var district_id = $('#amphure').val();
+        if(district_id){
+            $.ajax({
+                url:'{{ url("getDistrict") }}/'+encodeURIComponent(district_id),
+                type: 'GET',
+                dataType: 'HTML',
+                async: true,
+                data: "{data: value}",
+                success: function(data){
+                    // jssearch();
+                    $('#district').html(data);
+                }
+            });
+        }
+        
+    });
+
+    $("#district").change(function() {
+        var sub_district_id = $('#district').val();
+        // console.log(sub_district_id);
+        if(sub_district_id){
+            $.ajax({
+                url:'{{ url("getSubDistrict") }}/'+encodeURIComponent(sub_district_id),
+                type: 'GET',
+                dataType: 'HTML',
+                async: true,
+                data: "{data: value}",
+                success: function(data){
+                    $('#zipcode').val(data);
+                }
+            });
+        }
+        
+    });
+</script>
 
   <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
   <script src="{{asset('frontend/js/jquery-migrate-3.0.1.min.js')}}"></script>
@@ -1262,7 +1246,6 @@ a:hover {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
-
 
     
   </body>

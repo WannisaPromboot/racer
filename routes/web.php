@@ -129,9 +129,16 @@ Route::get('/promotion', function(){
 });
 
 Route::get('/userregister', function(){
-    return view('frontend.register');
+    $data = array(
+        'province' => DB::Table('provinces')->get(),
+    );
+    return view('frontend.register',$data);
 });
-
+Route::get('getProvince/{id}','Frontend\GetdataController@getProvince');
+Route::get('getAmphure/{id}','Frontend\GetdataController@getAmphure');
+Route::get('getDistrict/{id}','Frontend\GetdataController@getDistrict');
+Route::get('getSubDistrict/{id}','Frontend\GetdataController@getSubDistrict');
+Route::post('customerregister','Frontend\CustomerController@CustomerRegister');
 
 Route::get('/contact', function(){
     return view('frontend.contact');
@@ -169,40 +176,21 @@ Route::post('logincustomer/{model}', 'Auth\LoginController@LogIn')->name('LogIn'
 Route::get('logout', 'Auth\LoginController@LogOut')->name('LogOut');
 // Route::post('resetpassword/{model}/{id}','Auth\ResetPasswordController@ResetPassword')->name('ResetPassword');
 
-Route::get('getDistrictwithid/{id}','Frontend\CustomerController@getDistrictWithId');
-Route::get('getAmphurewithid/{id}','Frontend\CustomerController@getAmphurewithid');
-
-// Route::get('getSubDistrict/{id}','Frontend\CustomerController@getSubDistrict');
-Route::get('getAddress','Frontend\CustomerController@getSubDistrict');
-Route::get('deleteAddress/{id}','Frontend\CustomerController@deleteAddress');
-
-Route::get('getCustomerAddress/{id}','Frontend\CustomerController@getCustomerAddress');
-
-Route::get('selectDefaultAdress','Frontend\CustomerController@selectDefaultAdress');
-
-/////////////get addres
-Route::get('getProvince/{id}','Frontend\CustomerController@getProvince');
-Route::get('getAmphure/{id}','Frontend\CustomerController@getAmphure');
-Route::get('getDistrict/{id}','Frontend\CustomerController@getDistrict');
-Route::get('getSubDistrict/{id}','Frontend\CustomerController@getSubDistrict');
-
 Route::get('sortproduct','Admin\ProductsController@getsortproduct');
 Route::get('sortproductorder','Admin\ProductsController@sortproductorder');
 Route::get('sortreview','Admin\ProductsController@getsortreview');
 Route::get('searchproduct','Admin\ProductsController@searchproduct');
 
 ///////////////////////// //////////////////////////////////////////////////////////////////
-Route::get('Login_admin','Admin\UsersController@LoginAdmin');
+Route::get('admin','Admin\UsersController@LoginAdmin');
   
 Route::get('/adduser', 'Admin\UsersController@AddUser');
 Route::get('/edituser/{id}', 'Admin\UsersController@EditUser');
 Route::get('/usercontent', 'Admin\UsersController@ShowUserContent');
 Route::post('/updateUser', 'Admin\UsersController@updateUser');
 Route::get('Logoutadmin','Admin\UsersController@LogoutAdmin');
-Route::get('checkLoginadmin','Admin\UsersController@CheckLoginAdmin');
+Route::post('checkLoginadmin','Admin\UsersController@CheckLoginAdmin');
 Route::post('createuser', 'Admin\UsersController@CreatedUser');
-
-
 
 
 ////silde

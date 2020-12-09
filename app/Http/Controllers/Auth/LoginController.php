@@ -26,15 +26,11 @@ class LoginController extends Controller
     ///// Customer is model which insert user login 
     public function redirectToProvider($provider)
     {
-
        return Socialite::driver($provider)->redirect();
     }
     public function handleProviderCallback($provider,Request $request)
     {       
-        
-            $random = mt_rand(1000000000, 9999999999);
-       
-       
+        $random = mt_rand(1000000000, 9999999999);
         try {
             $user = Socialite::driver($provider)->user();
             $input['customer_id']=  $random ;
@@ -45,23 +41,23 @@ class LoginController extends Controller
 
             $authUser = $this->findOrCreate($input,$provider,$user->getId(),$random );
             Session::put('username',$user->getName()); 
-            Session::put('currency','THB');
+            // Session::put('currency','THB');
 
-            $this->getIP( Session::get('customer_id'),$request->getClientIp());
+            // $this->getIP( Session::get('customer_id'),$request->getClientIp());
 
-            if(!empty(Session::get('paynow')) || !empty(Session::get('paystore')) || !empty(Session::get('booknow')) ){
-                return redirect('appointment/'.Session::get('id_store').'');
-            }else if(!empty(Session::get('flashsale'))){
-                return redirect('payment_method/'.Session::get('flashsale')['booking_id']);
-            }else{
+            // if(!empty(Session::get('paynow')) || !empty(Session::get('paystore')) || !empty(Session::get('booknow')) ){
+            //     return redirect('appointment/'.Session::get('id_store').'');
+            // }else if(!empty(Session::get('flashsale'))){
+            //     return redirect('payment_method/'.Session::get('flashsale')['booking_id']);
+            // }else{
 
                 return redirect('/');
-            }
+            // }
            
 
         } catch (Exception $e) {
 
-            return redirect('login/'.$provider);
+            return redirect('userlogin');
 
         }
     }
@@ -86,143 +82,53 @@ class LoginController extends Controller
     
     public function LogIn(Request $request,$model){
         $CustomerModel= '\\App\\'.$model;
-        $emailuser = $CustomerModel::where('email',$request->input('user'))->first();
-        $telephoneuser = $CustomerModel::where('telephone',$request->input('user'))->first();
-
+        $emailuser = $CustomerModel::where('email',$request->email)->first();
         if(!empty($emailuser)){
-            $x=1;
-            // dd($emailuser);
-        }else if(!empty($telephoneuser)){
-            $x=2;
-            // dd($telephoneuser);
-
-        }else{
-            $x=0;
-
-        }
-       
-        if($x!=0){
-
-        
-            if($x==1){//email
-                
-                $decryptedpws = Crypt::decryptString($emailuser->password);
-                // dd($emailuser->customer_id);
-                if($request->input('password')==$decryptedpws){
-                    Session::put('customer_id',$emailuser->customer_id);
-                    Session::put('username',$emailuser->name); 
-                    Session::put('currency','THB');
-                    $CustomerModel::where('email',$request->input('user'))->update(['count'=> 0]);
-               
-                    $this->getIP($emailuser->customer_id,$request->getClientIp());
-
-                    ///////check
-                    if(!empty(Session::get('paynow')) || !empty(Session::get('paystore')) || !empty(Session::get('booknow'))){
-                        return redirect('appointment/'.Session::get('id_store').'');
-                    }else{
-                        return redirect('/');
-                    }
-                    
-                }else{
-                        $count = $emailuser->count +  1;
-                        $CustomerModel::where('email',$request->input('user'))->update(['count'=> $count]);
-                                    
-                        if($emailuser->count > 3){
-
-                            $error_mes_login = 'คุณใส่รหัสผ่านหรืออิเมลผิดเกิน 3 ครั้ง กรุณาเปลี่ยนรหัสผ่าน';
-                            $data = array(
-                                'error_mes_login' => $error_mes_login
-                            );
-                            return redirect('forgotpassword')->with('error_mes_login',$error_mes_login);
-                            // return view('frontend.login',$data);
-                        }else{
-                            $error_mes_login = 'อิเมลหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง';
-                            $data = array(
-                                    'error_mes_login' => $error_mes_login
-                            );
-                            return redirect('login-customer')->with('error_mes_login',$error_mes_login);
-                            // return view('frontend.login',$data);
-                        }
-
-                    
-                    }
-            }else{
-                // dd('telephone');
-                // dd($telephoneuser->customer_id);
-
-                $decryptedpws = Crypt::decryptString($telephoneuser->password);
-                if($request->input('password')==$decryptedpws){
-                    Session::put('customer_id',$telephoneuser->customer_id );
-                    Session::put('username',$telephoneuser->name); 
-                    Session::put('currency','THB');
-                    $CustomerModel::where('telephone',$request->input('user'))->update(['count'=> 0]);
-
-
-                    $this->getIP($telephoneuser->customer_id,$request->getClientIp());
-
-                    if(!empty(Session::get('paynow')) || !empty(Session::get('paystore'))){
-                        return redirect('appointment/'.Session::get('id_store').'');
-                    }else{
-                        return redirect('/');
-                    }
-
-                
-                }else{
-                        $count = $telephoneuser->count +  1;
-                        $CustomerModel::where('telephone',$request->input('user'))->update(['count'=> $count]);
-                                    
-                        if($telephoneuser->count > 3){
-
-                            $error_mes_login = 'คุณใส่รหัสผ่านหรืออิเมลผิดเกิน 3 ครั้ง กรุณาเปลี่ยนรหัสผ่าน';
-                            $data = array(
-                                'error_mes_login' => $error_mes_login
-                            );
-                            return redirect('forgotpassword')->with('error_mes_login',$error_mes_login);
-                            // return view('frontend.login',$data);
-                        }else{
-                            $error_mes_login = 'อิเมลหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง';
-                            $data = array(
-                                    'error_mes_login' => $error_mes_login
-                            );
-                            return redirect('login-customer')->with('error_mes_login',$error_mes_login);
-                            // return view('frontend.login',$data);
-                        }
-
-                    
-                    }
-
-            }
+            $decryptedpws = Crypt::decryptString($emailuser->password);
+            if($request->password==$decryptedpws){
+                Session::put('customer_id',$emailuser->customer_id);
+                Session::put('username',$emailuser->name); 
+                // Session::put('currency','THB');
+                $CustomerModel::where('email',$request->email)->update(['count'=> 0]);
             
+                // $this->getIP($emailuser->customer_id,$request->getClientIp());
+                return redirect('/');
+            }else{
+                $count = $emailuser->count +  1;
+                $CustomerModel::where('email',$request->email)->update(['count'=> $count]);
+                if($emailuser->count > 3){
+                    $error_mes_login = 'คุณใส่รหัสผ่านหรืออิเมลผิดเกิน 3 ครั้ง กรุณาเปลี่ยนรหัสผ่าน';
+                    $data = array(
+                        'error_mes_login' => $error_mes_login
+                    );
+                    return redirect('forgotpassword')->with('error',$error_mes_login);
+                }else{
+                    
+                    return redirect('userlogin')->with('error',$error_mes_login);
+                }
+            }
         }else{                                                                  //////find customer
-                $error_mes_login = 'อิเมลหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง';
-                $data = array(
-                            'error_mes_login' => $error_mes_login
-                        );
-                        return redirect('login-customer')->with('error_mes_login',$error_mes_login);
+            $error_mes_login = 'อิเมลหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง';
+             return redirect('userlogin')->with('error',$error_mes_login);
         }
-        
     }
 
 
     public function LogOut()
       {
-
         if(!empty(Session::get('customer_ip')) && !empty(Session::get('customer_id')) ){
             $update = CustomerLogin::where('customer_id',Session::get('customer_id'))
                                     ->where('ip',Session::get('customer_ip'))
                                     ->orderBy('created_at','desc')
                                     ->first();
-            
             $update->duration = $this->diff2time($update->created_at,date('Y-m-d H:i:s'));
-
             $update->save();
         }
 
+        Session::forget('customer_id');
+        Session::forget('username');
 
-      Session::forget('customer_id');
-      Session::forget('username');
-
-      return Redirect::to('login-customer'); 
+        return Redirect::to('userlogin'); 
       }
 
       public static function getIP($user,$ip){
