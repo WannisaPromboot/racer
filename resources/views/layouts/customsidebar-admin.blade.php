@@ -63,13 +63,13 @@
                     </a> 
                 </li>
                 <li>
-                    <a href="{{url('bankaccountcontent')}}" class=" waves-effect">
+                    <a href="javascript:void(0)" class=" waves-effect">
                          <img src="{{asset('assets/images/b2b/icon/bankbook.png')}}">
                         <span>การจัดการชำระเงินออนไลน์(การโอนเงิน)</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('reportcontent')}}" class=" waves-effect">
+                    <a href="javascript:void(0)" class=" waves-effect">
                          <img src="{{asset('assets/images/b2b/icon/seo-report.png')}}">
                         <span>{{Session::get('lang')=='th'?'รายงาน':'Report'}}</span>
                     </a>
