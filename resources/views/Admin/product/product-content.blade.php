@@ -53,7 +53,7 @@
                         <th>SAP CODE</th>
                         <th>หมวดหมู่หลัก</th>
                         <th>ชื่อสินค้าภาษาไทย</th>
-                        <th>ชื่อสินค้าภาษาอังกฤษ</th>
+                        <th>จำนวนสต็อก</th>
                         <th>รายละเอียด</th>
                         <th>แก้ไข</th>
                         <th>ลบ</th>
@@ -75,7 +75,11 @@
                             ?>
                             <td>{{!empty($item->id_category) ? $cate->category_name_th : ''}}</td>
                             <td>{{$item->product_name_th}}</td>
-                            <td>{{$item->product_name_en}}</td>
+                            <td>
+                                <div id="inputcount{{$item->id_product}}">
+                                    <input class="form-control text-center" onchange="save({{$item->id_product}})" min="0" id="ncount{{$item->id_product}}" type="number" value="{{$item->product_count}}">
+                                </div>
+                            </td>
                             <td>
                                 <a href="javascript:void(0)" onclick="view({{$item->id_product}})" class="btn btn-secondary btn-sm">{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</a>
                             </td>
@@ -262,6 +266,40 @@
             }
         });
 
+    }
+
+    
+    function save(id){
+        var count = $('#ncount'+id).val();
+        console.log(count);
+        Swal.fire({
+            text: "คุณต้องการบันทึกข้อมูลใช่หรือไม่",
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'save'
+            }).then((result)=>{
+                if (result.value) {
+                    $.ajax({
+                            url: '{{ url("updateproduction")}}',
+                            type: 'GET',
+                            dataType: 'HTML',
+                            data : {'id' : id  , 'count' : count },
+                            success: function(data) {
+                                Swal.fire({
+                                    text: 'บันทึกข้อมูลเรียบร้อย',
+                                    type: "success",
+                                });
+
+                                window.location.reload();
+
+                            }
+                        });
+                    }else{
+                        window.location.reload();
+                    }
+        });
     }
 
 </script>
