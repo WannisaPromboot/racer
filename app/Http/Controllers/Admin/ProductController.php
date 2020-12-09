@@ -57,18 +57,19 @@ class ProductController extends Controller
         $newProduct->product_count   = $request->product_count;
         $newProduct->product_method_th   = $request->product_method_th;
         $newProduct->product_method_en   = $request->product_method_en;
-        $newProduct->product_description_th   = $request->product_description_th;
-        $newProduct->product_description_en   = $request->product_description_en;
+        $newProduct->product_direction_th   = $request->product_direction_th;
+        $newProduct->product_direction_en   = $request->product_direction_en;
         $newProduct->product_selling_th   = $request->product_selling_th;
         $newProduct->product_selling_en   = $request->product_selling_en;
         $newProduct->product_property_th   = $request->product_property_th;
         $newProduct->product_property_en   = $request->product_property_en;
         $newProduct->product_installation_th   = $request->product_installation_th;
         $newProduct->product_installation_en   = $request->product_installation_en;
-        $newProduct->product_kg   = $request->product_kg;
-        $newProduct->product_width   = $request->product_width;
-        $newProduct->product_lenght   = $request->product_lenght;
-        $newProduct->product_height   = $request->product_height;
+        $newProduct->product_caution_th   = $request->product_caution_th;
+        $newProduct->product_caution_en   = $request->product_caution_en;
+        $newProduct->product_spec_th   = $request->product_spec_th;
+        $newProduct->product_spec_en   = $request->product_spec_en;
+
         $newProduct->product_distance_price   = $request->product_distance_price;
         // $newProduct->product_distance_km   = $request->product_distance_km;
 
@@ -105,6 +106,7 @@ class ProductController extends Controller
     }
 
     public function UpdateProduct(Request $request,$id){
+      
      
         $updateProduct = Product::where('id_product',$id)->first();
         
@@ -159,12 +161,28 @@ class ProductController extends Controller
         }
 
 
-        if(isset($request->product_description_th)){
-            $updateProduct->product_description_th   = $request->product_description_th;
+        if(isset($request->product_direction_th)){
+            $updateProduct->product_direction_th   = $request->product_direction_th;
         }
 
-        if(isset($request->product_description_en)){
-            $updateProduct->product_description_en   = $request->product_description_en;
+        if(isset($request->product_direction_en)){
+            $updateProduct->product_direction_en   = $request->product_direction_en;
+        }
+
+        if(isset($request->product_caution_th)){
+            $updateProduct->product_caution_th   = $request->product_caution_th;
+        }
+
+        if(isset($request->product_caution_en)){
+            $updateProduct->product_caution_en   = $request->product_caution_en;
+        }
+
+        if(isset($request->product_spec_th)){
+            $updateProduct->product_spec_th   = $request->product_spec_th;
+        }
+
+        if(isset($request->product_spec_en)){
+            $updateProduct->product_spec_en   = $request->product_spec_en;
         }
 
         if(isset($request->product_selling_th)){
@@ -190,24 +208,6 @@ class ProductController extends Controller
             $updateProduct->product_installation_en   = $request->product_installation_en;
         }
 
-
-        if(isset($request->product_kg)){
-            $updateProduct->product_kg   = $request->product_kg;
-        }
-
-        if(isset($request->product_width)){
-            $updateProduct->product_width   = $request->product_width;
-        }
-
-        
-        if(isset($request->product_lenght)){
-            $updateProduct->product_lenght   = $request->product_lenght;
-        }
-       
-        if(isset($request->product_height)){
-            $updateProduct->product_height   = $request->product_height;
-        }
-
         if(isset($request->product_distance_free)){
             $updateProduct->product_distance_price   = $request->product_distance_price;
         }
@@ -226,7 +226,7 @@ class ProductController extends Controller
 
 
         $updateProduct->save();
-        
+     
    
         if(isset($request["deletedkey"])){
             foreach($request["deletedkey"] as $delete_id){ 
@@ -285,10 +285,6 @@ class ProductController extends Controller
             }
 
 
-
-
-        
-
         return redirect('productcontent')->with('save','บันทึกข้อมูลสำเร็จ');
     }
 
@@ -342,21 +338,23 @@ class ProductController extends Controller
                         <br>
                         <div class="row" >
                             <div class="col-3 ">
+                                <b>หมวดหมู่หลัก</b>
+                            </div>
+                            <div class="col-5">'.$cate->category_name_th.'</div>
+                        </div>
+                        <br>
+                        <div class="row" >
+                            <div class="col-3 ">
                                 <b>หมวดหมู่ย่อย</b>
                             </div>
-                            <div class="col-5">'.$subcate->subcategory_name_th.'</div>
+                            <div class="col-5">'.$subcate->subcategory_name_en.'</div>
                         </div>
                     </div>
                     <div class="col-5"><img src="'.url('storage/app/'.$img->filepath).'" width="70%"></div>
                 </div>
                 
                 <br>
-                <div class="row" >
-                    <div class="col-3 ">
-                        <b>หมวดหมู่ย่อย</b>
-                    </div>
-                    <div class="col-5">'.$subcate->subcategory_name_en.'</div>
-                </div>
+               
                 <br>
                 <div class="row" >
                     <div class="col-3">
@@ -364,23 +362,6 @@ class ProductController extends Controller
                     </div>
                     <div class="col-2">'.$product->product_normal_price.'</div>
                     <div class="col-1">บาท</div>
-                    <div class="col-2 text-right">
-                        <b>ราคาพิเศษ</b>
-                    </div>
-                    <div class="col-2">
-                        '.$product->product_special_price.'</div>
-                    <div class="col-1">บาท</div>
-                </div>
-                <br>
-                 <div class="row">
-                    <div class="col-3">
-                        <b>วันที่เริ่ม </b>
-                    </div>
-                    <div class="col-3">'.$product->product_start.'</div>
-                    <div class="col-2 text-right">
-                        <b>ถึง</b>
-                    </div>
-                    <div class="col-2">'.$product->product_start.'</div>
                 </div>
                 <br>
                 <div class="row" id="date">
@@ -388,22 +369,22 @@ class ProductController extends Controller
                         <b>จำนวนสินค้า </b>
                     </div>
                     <div class="col-2">'.$product->product_count.'</div>
-                    <div class="col-">ชิ้น</div>
+                    <div class="col-1">ชิ้น</div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-3">
-                        <b>วิธีใช้สนค้า (ภาษาไทย)</b>
+                        <b>ข้อมูลจำเพาะสินค้า (ภาษาไทย)</b>
                     </div>
-                    <div class="col-sm">'.$product->product_method_th.'
+                    <div class="col-sm">'.$product->product_spec_th.'
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-3">
-                        <b>วิธีใช้สนค้า (ภาษาอังกฤษ)</b>
+                        <b>ข้อมูลจำเพาะสินค้า (ภาษาอังกฤษ)</b>
                     </div>
-                    <div class="col-sm">'.$product->product_method_en.'
+                    <div class="col-sm">'.$product->product_spec_en.'
                     </div>
                 </div>
                 <br>
@@ -411,7 +392,7 @@ class ProductController extends Controller
                     <div class="col-3">
                         <b>รายละเอียดสินค้า (ภาษาไทย)</b>
                     </div>
-                    <div class="col-sm">'.$product->product_description_th.'
+                    <div class="col-sm">'.$product->product_property_th.'
                     </div>
                 </div>
                 <br>
@@ -419,58 +400,11 @@ class ProductController extends Controller
                     <div class="col-3">
                         <b>รายละเอียดสินค้า (ภาษาอังกฤษ)</b>
                     </div>
-                    <div class="col-sm">'.$product->product_description_en.'
+                    <div class="col-sm">'.$product->product_property_en.'
                     </div>
                 </div>
-                <br>
-                <hr>
-                <div class="row">
-                    <div class="col">
-                        <h4>ขนาดและการจัดส่ง</h4>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-3">
-                        <b>น้ำหนัก</b>
-                    </div>
-                        <div class="col-1">'.$product->product_kg.'</div>
-                    <div class="col-1">กก.</div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-3">
-                        <b>ความกว้าง</b>
-                    </div>
-                    <div class="col-1">'.$product->product_width.'</div>
-                    <div class="col-1">ซม.</div>
-                    <div class="col-1">
-                        <b>ความยาว</b>
-                    </div>
-                    <div class="col-1">'.$product->product_lenght.'
-                    </div>
-                    <div class="col-1">ซม.</div>
-                    <div class="col-1">
-                        <b>ความสูง</b>
-                    </div>
-                    <div class="col-1">'.$product->product_height.'
-                    </div>
-                    <div class="col-1">ซม.</div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-3">
-                        <b>ส่งฟรี </b>
-                    </div>
-                    <div class="col-1">'.$product->product_distance_free.'</div>
-                    <div class="col-1">กม.</div>
-                    <div class="col-1">
-                        <b>กิโลเมตรละ</b>
-                    </div>
-                    <div class="col-1">'.$product->product_distance_km.'
-                    </div>
-                    <div class="col-1">บาท</div>
-                </div>
+
+                
         ';
     }
 

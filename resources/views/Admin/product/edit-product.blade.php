@@ -170,36 +170,54 @@
                                         <b>จำนวนสินค้า </b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control" name="product_count" min="0" value="{{$product->product_count}}" >
+                                        <input type="number" class="form-control" name="product_count" min="0" value="{{$product->product_count}}" required>
                                     </div>
                                     <div class="col-1 mt-2">ชิ้น</div>
                                 </div>
                                 <br>
+                                <br>
                                 <div class="row">
                                     <div class="col-3  mt-2">
-                                        <b>รายละเอียดสินค้า (ภาษาไทย)</b>
+                                        <b>คุณสมบัติเด่น (ภาษาไทย)</b>
                                     </div>
                                     <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_description_th" name="product_description_th" >{!! $product->product_description_th !!}</textarea>
+                                    <textarea type="texe" class="form-control" id="product_selling_th" name="product_selling_th"  required>{{$product->product_selling_th}}</textarea>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-3  mt-2">
-                                        <b>รายละเอียดสินค้า (ภาษาอังกฤษ)</b>
+                                        <b>คุณสมบัติเด่น (ภาษาอังกฤษ)</b>
                                     </div>
                                     <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_description_en" name="product_description_en" >{!! $product->product_description_en !!}</textarea>
+                                        <textarea type="texe" class="form-control" id="product_selling_en" name="product_selling_en" required>{{$product->product_selling_en}}</textarea>
                                     </div>
                                 </div>
                                 <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>คุณสมบัติทั่วไป (ภาษาไทย)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_property_th" name="product_property_th" required>{{$product->product_property_th}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>คุณสมบัติทั่วไป (ภาษาอังกฤษ)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_property_en" name="product_property_en" required>{{$product->product_property_en}}</textarea>
+                                    </div>
+                                </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-3  mt-2">
                                         <b>วิธีใช้สินค้า (ภาษาไทย)</b>
                                     </div>
                                     <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_method_th" name="product_method_th" >{!! $product->product_method_th !!}</textarea>
+                                        <textarea type="texe" class="form-control" id="product_method_th" name="product_method_th" required>{{$product->product_method_th}}</textarea>
                                     </div>
                                 </div>
                                 <br>
@@ -208,52 +226,17 @@
                                         <b>วิธีใช้สินค้า (ภาษาอังกฤษ)</b>
                                     </div>
                                     <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_method_en" name="product_method_en" >{!! $product->product_method_en !!}</textarea>
+                                        <textarea type="texe" class="form-control" id="product_method_en" name="product_method_en" required>{{$product->product_method_en}}</textarea>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="row">
-                                    <div class="col-3  mt-2">
-                                        <b>จุดเด่นสินค้า (ภาษาไทย)</b>
-                                    </div>
-                                    <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_selling_th" name="product_selling_th" >{!! $product->product_selling_th !!}</textarea>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-3  mt-2">
-                                        <b>จุดเด่นสินค้า (ภาษาอังกฤษ)</b>
-                                    </div>
-                                    <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_selling_en" name="product_selling_en" >{!! $product->product_selling_en !!}</textarea>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-3  mt-2">
-                                        <b>คุณสมบัติ (ภาษาไทย)</b>
-                                    </div>
-                                    <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_property_th" name="product_property_th" >{!! $product->product_property_th !!}</textarea>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-3  mt-2">
-                                        <b>คุณสมบัติ (ภาษาอังกฤษ)</b>
-                                    </div>
-                                    <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_property_en" name="product_property_en" >{!! $product->product_property_en !!}</textarea>
-                                    </div>
-                                </div>
-                                <br>
+                              
                                 <div class="row">
                                     <div class="col-3  mt-2">
                                         <b>การติดตั้ง (ภาษาไทย)</b>
                                     </div>
                                     <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_installation_th" name="product_installation_th" >{!! $product->product_installation_th !!}</textarea>
+                                        <textarea type="texe" class="form-control" id="product_installation_th" name="product_installation_th" required>{{$product->product_installation_th}}</textarea>
                                     </div>
                                 </div>
                                 <br>
@@ -262,8 +245,120 @@
                                         <b>การติดตั้ง (ภาษาอังกฤษ)</b>
                                     </div>
                                     <div class="col-sm">
-                                        <textarea type="texe" class="form-control" id="product_installation_en" name="product_installation_en" >{!! $product->product_installation_en !!}</textarea>
+                                        <textarea type="texe" class="form-control" id="product_installation_en" name="product_installation_en" required>{{$product->product_installation_en}}</textarea>
                                     </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>คำแนะนำ (ภาษาไทย)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_direction_th" name="product_direction_th" required>{{$product->product_direction_th}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>คำแนะนำ (ภาษาอังกฤษ)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_direction_en" name="product_direction_en" required>{{$product->product_direction_en}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>ข้อควรระวัง (ภาษาไทย)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_caution_th" name="product_caution_th" required>{{$product->product_caution_th}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>ข้อควรระวัง (ภาษาอังกฤษ)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_caution_en" name="product_caution_en" required>{{$product->product_caution_en}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                {{-- spec --}}
+                                <hr>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>ข้อมมูลจำเพาะและการจัดส่ง</h4>
+                                    </div>
+                                </div>
+                                <br>
+                                {{-- <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>น้ำหนัก</b>
+                                    </div>
+                                    <div class="col-1">
+                                        <input type="number" class="form-control" name="product_kg" required>
+                                    </div>
+                                    <div class="col-1  mt-2">กก.</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>ความกว้าง</b>
+                                    </div>
+                                    <div class="col-1">
+                                        <input type="number" class="form-control" name="product_width" required>
+                                    </div>
+                                    <div class="col-1  mt-2">มม.</div>
+                                    <div class="col-1  mt-2">
+                                        <b>ความยาว</b>
+                                    </div>
+                                    <div class="col-1">
+                                        <input type="number" class="form-control" name="product_lenght" required>
+                                    </div>
+                                    <div class="col-1  mt-2">มม.</div>
+                                    <div class="col-1  mt-2">
+                                        <b>ความสูง</b>
+                                    </div>
+                                    <div class="col-1">
+                                        <input type="number" class="form-control" name="product_height" required>
+                                    </div>
+                                    <div class="col-1  mt-2">มม.</div>
+                                </div> --}}
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>ข้อมูลจำเพาะ (ภาษาไทย)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_spec_th" name="product_spec_th" required>{{$product->product_spec_th}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>ข้อมูลจำเพาะ (ภาษาอังกฤษ)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_spec_en" name="product_spec_en" required>{{$product->product_spec_en}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>ค่าส่ง </b>
+                                    </div>
+                                    <div class="col-1">
+                                        <input type="number" class="form-control" name="product_distance_price" required value="{{$product->product_distance_price}}">
+                                    </div>
+                                    <div class="col-1  mt-2">บาท</div>
+                                    {{-- <div class="col-1  mt-2">
+                                        <b>กิโลเมตรละ</b>
+                                    </div>
+                                    <div class="col-1">
+                                        <input type="number" class="form-control" name="product_distance_km" required>
+                                    </div>
+                                    <div class="col-1  mt-2">บาท</div> --}}
                                 </div>
                                 <br>
                                 <hr>
@@ -295,63 +390,6 @@
                                 <div id="newgallery" class="row"></div>
                                 <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
                                 {{-- end --}}
-                                <hr>
-                                <div class="row">
-                                    <div class="col">
-                                        <h4>ขนาดและการจัดส่ง</h4>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-3  mt-2">
-                                        <b>น้ำหนัก</b>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="number" class="form-control" name="product_kg" value="{{$product->product_kg }}" required>
-                                    </div>
-                                    <div class="col-1  mt-2">กก.</div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-3  mt-2">
-                                        <b>ความกว้าง</b>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="number" class="form-control" name="product_width" value="{{$product->product_width }}" required>
-                                    </div>
-                                    <div class="col-1  mt-2">ซม.</div>
-                                    <div class="col-1  mt-2">
-                                        <b>ความยาว</b>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="number" class="form-control" name="product_lenght"  value="{{$product->product_lenght }}" required>
-                                    </div>
-                                    <div class="col-1  mt-2">ซม.</div>
-                                    <div class="col-1  mt-2">
-                                        <b>ความสูง</b>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="number" class="form-control" name="product_height" value="{{$product->product_height }}"  required>
-                                    </div>
-                                    <div class="col-1  mt-2">ซม.</div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-3  mt-2">
-                                        <b>ส่งฟรี </b>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="number" class="form-control" name="product_distance_free" value="{{$product->product_distance_price }}" required>
-                                    </div>
-                                    <div class="col-1  mt-2">บาท</div>
-                                    {{-- <div class="col-1  mt-2">
-                                        <b>กิโลเมตรละ</b>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="number" class="form-control" name="product_distance_km" value="{{$product->product_distance_km }}" required>
-                                    </div>
-                                    <div class="col-1  mt-2">บาท</div> --}}
-                                </div>
                                 <br>
                                 <div class="row mt-5">
                                     <div class="col-sm text-left">
@@ -418,7 +456,7 @@
             }
         });
 
-        $("#product_description_th").summernote({
+        $("#product_direction_th").summernote({
             height:300,
             callbacks: {
                 onImageUpload: function(files, editor, welEditable) {
@@ -428,7 +466,48 @@
             }
         });
 
-        $("#product_description_en").summernote({
+        $("#product_direction_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+        
+        $("#product_spec_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_spec_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        
+        $("#product_caution_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_caution_en").summernote({
             height:300,
             callbacks: {
                 onImageUpload: function(files, editor, welEditable) {

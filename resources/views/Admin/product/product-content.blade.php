@@ -68,8 +68,12 @@
                                 <input type="checkbox" name="display" class="form-control text-center display" value="{{$item->sort}}" ref="{{$item->id_product}}" {{$item->product_display == 1 ? 'checked':''}}>
                             </td>
                             <td>{{$item->sap_code}}</td>
-                            <?php $cate = \App\Category::where('id_category',$item->id_category)->first(); ?>
-                            <td>{{$cate->category_name_th}}</td>
+                            <?php    
+                                if(!empty($item->id_category)){
+                                    $cate = \App\Category::where('id_category',$item->id_category)->first();
+                                }
+                            ?>
+                            <td>{{!empty($item->id_category) ? $cate->category_name_th : ''}}</td>
                             <td>{{$item->product_name_th}}</td>
                             <td>{{$item->product_name_en}}</td>
                             <td>
