@@ -1139,7 +1139,7 @@ text-align: left;
                               <div class="col-md-12 col-lg-12 mb-12" >
                                 
                                   <div class="but">
-                                    <center><button style="color: white;" type="submit" onclick="" class="submit2">Send</button></center>
+                                    <center><button style="color: white;" type="button" onclick="" class="submit2">Send</button></center>
                                 </div>
                             </div>
                           </div>
