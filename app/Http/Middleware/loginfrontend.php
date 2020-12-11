@@ -19,7 +19,7 @@ class loginfrontend
         if (!empty(Session::get('customer_id'))) {
             return $next($request);
         }else{
-            return redirect('/login-customer');
+            return redirect('/userlogin');
         }
     }
     

@@ -645,131 +645,94 @@ label {
                         <h1 class="title-cart"><span class="icon-shopping_cart"></span>ตะกร้า</h1>
     
     <div class="shopping-cart">
-    
+    <form action="{{url('storeorder')}}" method="POST">
+    @csrf
     <div class="column-labels">
-    <label class="product-image">Image</label>
-    <label class="product-details">Product</label>
-    <label class="product-price" style="    color: #00b9eb;">ราคา</label>
-    <label class="product-quantity">จำนวน</label>
-    <label class="product-removal">Remove</label>
-    <label class="product-line-price" style="    color: #00b9eb;">รวม</label>
-    </div>
-
-
-    <?php $items = Session::get('product');  
-          $sum  = 0;
-    ?>
-    @foreach ($items as $item)
-    <?php $product = \App\Product::where('id_product',$item)->first(); ?>
-    <div class="product">
-        <div class="product-image">
-            <img src="{{url('storage/app/'.$product->product_img.'')}}">
+        <label class="product-image">Image</label>
+        <label class="product-details">Product</label>
+        <label class="product-price" style="    color: #00b9eb;">ราคา</label>
+        <label class="product-quantity">จำนวน</label>
+        <label class="product-removal">Remove</label>
+        <label class="product-line-price" style="    color: #00b9eb;">รวม</label>
         </div>
-        <div class="product-details">
-            <div class="product-title">{{$product->product_name_th}}</div>
-            {{-- <p class="product-description">{!! $product->product_description_th !!}</p> --}}
+
+        @if(!empty(Session::get('product')))
+        <?php $items = Session::get('product');  
+            $sum  = 0;
+        ?>
+        @foreach ($items as $item)
+        <?php $product = \App\Product::where('id_product',$item)->first(); ?>
+        <div class="product">
+            <div class="product-image">
+                <img src="{{url('storage/app/'.$product->product_img.'')}}">
+            </div>
+            <div class="product-details">
+                <div class="product-title">{{$product->product_name_th}}</div>
+                {{-- <p class="product-description">{!! $product->product_description_th !!}</p> --}}
+            </div>
+            @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+            <div class="product-price">{{number_format($product->product_special_price)}}</div>
+            <input type="hidden" name="price_item[{{$item}}]" value="{{$product->product_special_price}}">
+            @else 
+            <div class="product-price">{{number_format($product->product_normal_price)}}</div>
+            <input type="hidden" name="price_item[{{$item}}]" value="{{$product->product_normal_price}}">
+            @endif
+            
+                <div class="product-quantity">
+                <input type="number" name="count[{{$item}}]" value="1" min="1">
+            </div>
+            <div class="product-removal">
+                <button class="remove-product">
+                Remove
+                </button>
+            </div>
+            @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+            <div class="product-line-price">{{number_format($product->product_special_price)}}</div>
+            <?php  $sum +=  $product->product_special_price;?>
+            @else 
+            <div class="product-line-price">{{number_format($product->product_normal_price)}}</div>
+            <?php  $sum +=  $product->product_normal_price;?>
+            @endif
         </div>
-        @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-        <div class="product-price">{{number_format($product->product_special_price)}}</div>
-        @else 
-        <div class="product-price">{{number_format($product->product_normal_price)}}</div>
+    
+        @endforeach
         @endif
+    
+        <div class="totals">
+            <div class="totals-item">
+                <label>ยอดรวม</label>
+            <div class="totals-value" id="cart-subtotal">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+        </div>
+        <!-- <div class="totals-item">
+        <label>Tax (5%)</label>
+        <div class="totals-value" id="cart-tax">3.60</div>
+        </div> -->
+        <div class="totals-item">
+            <label>ค่าส่ง</label>
+            <div class="totals-value" id="cart-shipping">0</div>
+        </div>
+        <!-- <div class="totals-item">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-6"></div>
+            <div class="col-md-4 col-lg-4">
+                <input class="w3-input w3-border" type="text" placeholder="ระบุโค้ดส่วนลด">
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <a href="#"><div class="totals-value2" id="">ยืนยัน</div></a>
+            </div>
+            </div>
+        </div>
+        </div> -->
+        <div class="totals-item totals-item-total">
+            <label>ยอดรวมทั้งสิน</label>
+            <div class="totals-value" id="cart-total">{{Session::get('product')? number_format($sum) : '0'}}</div>
+            <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+        </div>
+        </div>
         
-            <div class="product-quantity">
-            <input type="number" value="1" min="1">
-        </div>
-        <div class="product-removal">
-            <button class="remove-product">
-            Remove
-            </button>
-        </div>
-        @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-        <div class="product-line-price">{{number_format($product->product_special_price)}}</div>
-        <?php  $sum +=  $product->product_special_price;?>
-        @else 
-        <div class="product-line-price">{{number_format($product->product_normal_price)}}</div>
-        <?php  $sum +=  $product->product_normal_price;?>
-        @endif
-    </div>
- 
-    @endforeach
-   
-    
-    {{-- <div class="product">
-        <div class="product-image">
-        <img src="{{asset('frontend/images/pro01.jpg')}}">
-        </div>
-        <div class="product-details">
-            <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-            <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-        </div>
-        <div class="product-price">200</div>
-        <div class="product-quantity">
-            <input type="number" value="1" min="1">
-        </div>
-        <div class="product-removal">
-            <button class="remove-product">
-            Remove
-            </button>
-        </div>
-        <div class="product-line-price">200</div>
-    </div>
-    
-    <div class="product">
-        <div class="product-image">
-        <img src="{{asset('frontend/images/pro01.jpg')}}">
-        </div>
-        <div class="product-details">
-            <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-            <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-        </div>
-        <div class="product-price">200</div>
-        <div class="product-quantity">
-            <input type="number" value="1" min="1">
-        </div>
-        <div class="product-removal">
-            <button class="remove-product">
-            Remove
-            </button>
-        </div>
-        <div class="product-line-price">200</div>
-    </div> --}}
-    
-    
-    <div class="totals">
-    <div class="totals-item">
-    <label>ยอดรวม</label>
-    <div class="totals-value" id="cart-subtotal">{{number_format($sum)}}</div>
-    </div>
-    <!-- <div class="totals-item">
-    <label>Tax (5%)</label>
-    <div class="totals-value" id="cart-tax">3.60</div>
-    </div> -->
-    <div class="totals-item">
-    <label>ค่าส่ง</label>
-    <div class="totals-value" id="cart-shipping">0</div>
-    </div>
-    <!-- <div class="totals-item">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-lg-6"></div>
-          <div class="col-md-4 col-lg-4">
-            <input class="w3-input w3-border" type="text" placeholder="ระบุโค้ดส่วนลด">
-          </div>
-          <div class="col-md-2 col-lg-2">
-            <a href="#"><div class="totals-value2" id="">ยืนยัน</div></a>
-        </div>
-        </div>
-    </div>
-    </div> -->
-    <div class="totals-item totals-item-total">
-    <label>ยอดรวมทั้งสิน</label>
-    <div class="totals-value" id="cart-total">{{number_format($sum)}}</div>
-    </div>
-    </div>
-    
-    <a href="{{url('/payment')}}"><button class="checkout">ชำระเงิน</button></a>
-    
+        <a href="javascript:void(0)"><button type="submit" class="checkout">ชำระเงิน</button></a>
+    </form>
     </div>
                         
                     </div>
@@ -925,6 +888,7 @@ label {
       $('#cart-tax').html(tax);
       $('#cart-shipping').html(shipping);
       $('#cart-total').html(total);
+      $('#total').val(total);
       if(total == 0){
         $('.checkout').fadeOut(fadeTime);
       }else{

@@ -104,13 +104,26 @@ Route::get('/news', function(){
     return view('frontend.news',$data);
 });
 
-Route::get('/order-history', function(){
-    return view('frontend.order-history');
+Route::group(['middleware'=>['loginfrontend']],function(){
+    Route::get('/order-history', function(){
+        return view('frontend.order-history');
+    });
+    
+    Route::get('/payment/{id}', function($id){
+        $data = array(
+            'id'   => $id,
+        );
+        return view('frontend.payment',$data);
+    });
+
+    ////////////////////controller order
+    Route::post('/storeorder','Frontend\OrderController@StoreOrder');
+
+     ////////////////////controller payment
+     Route::post('/storepayment','Frontend\PaymentController@storePayment');
 });
 
-Route::get('/payment', function(){
-    return view('frontend.payment');
-});
+
 
 
 Route::get('/product/{id}', function($id){

@@ -37,6 +37,18 @@
   </head>
 
   <style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
     /* ---custom radio---- */
     .container2 {
@@ -905,443 +917,486 @@ text-align: left;
     
             <div class="container">
               <div class="row">
-    
-                  <div class="col-md-2 col-lg-2 mb-2" >
-                  </div>
-                <div class="col-md-8 col-lg-8 mb-8" >
-                    <p class="title-pay">Delivery Detail</p>
-                </div>
-                <div class="col-md-2 col-lg-2 mb-2" >
-              </div>
-    
+                  <div class="col-md-2 col-lg-2 mb-2" ></div>
+                    <div class="col-md-8 col-lg-8 mb-8" >
+                        <p class="title-pay">Delivery Detail</p>
+                    </div>
+                    <div class="col-md-2 col-lg-2 mb-2" ></div>
                 </div>
             </div>
-        
-            <div class="site-section" id="desk">
-              <div class="container">
-                <div class="row">
-      
-                  <div class="col-md-2 col-lg-2 mb-2" >
-                  </div>
-      
-                  <div class="col-md-4 col-lg-4 mb-4" >
-                    <form action="/action_page.php">
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="fname" name="firstname" placeholder="Name*">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="E-mail*">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="Address*">
-                        </div>
-                      </div>
-                      
-                      </form>
-      
-                  </div>
-      
-                  <div class="col-md-4 col-lg-4 mb-4" >
-                    <form action="/action_page.php">
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="fname" name="firstname" placeholder="Last Name*">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="Fax*">
-                        </div>
-                      </div>
-    
-                      </form>
-                  </div>
-      
-                  <div class="col-md-2 col-lg-2 mb-2" >
-                  </div>
-      
-                </div>
+                <div class="site-section " id="desk">
+                    <form action="{{url('storepayment')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="id_order" value="{{$id}}">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 mb-2" ></div>
                 
-              </div>
-            </div>
-    
-    
-      
-    
-    
-            <div class="site-section" id="mobile">
-              <div class="container">
-                <div class="row">
-      
-                  <!-- <div class="col-md-2 col-lg-2 mb-2" >
-      
-                  </div> -->
-      
-                  <div class="col-md-12 col-lg-12 mb-12">
-                    <form action="/action_page.php" >
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="fname" name="firstname" placeholder="Name*">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="Last name*">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="E-mail">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="Address*">
-                        </div>
-                      </div>
-                      <div class="row">
-                    
-                        <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="Fax*">
-                        </div>
-                      </div>
-    
-      
-    
-      
-      
-                      
-                      </form>
-                  
-                  </div>
-      
-      
-      
-                </div>
+                                <div class="col-md-4 col-lg-4 mb-4" >
+                                {{-- <form action="/action_page.php"> --}}
+                                    <div class="row">
+                                        <div class="col-75">
+                                        <input type="text" id="fname" name="firstname" placeholder="Name*" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    
+                                        <div class="col-75">
+                                        <input type="text" id="lname" name="email" placeholder="E-mail*" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    
+                                        <div class="col-75">
+                                        <input type="text" id="lname" name="address" placeholder="Address*" required>
+                                        </div>
+                                    </div>
+                                {{-- </form> --}}
+                            </div>
                 
-              </div>
-            </div>
-       
-      
-    
-            {{-- <div class="container">
-              <div class="row">
-    
-                  <div class="col-md-2 col-lg-2 mb-2" >
-                  </div>
-                <div class="col-md-8 col-lg-8 mb-8" >
-                    
-                </div>
-                <div class="col-md-2 col-lg-2 mb-2" >
-              </div>
-    
-                </div>
-            </div> --}}
+                            <div class="col-md-4 col-lg-4 mb-4" >
+                                {{-- <form action="/action_page.php"> --}}
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="fname" name="lastname" placeholder="Last Name*" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="lname" name="telephone" placeholder="Phone No.*" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="lname" name="fax" placeholder="Fax*" required>
+                                    </div>
+                                </div>
+                
+                                {{-- </form> --}}
+                            </div>
+                
+                            <div class="col-md-2 col-lg-2 mb-2" ></div>
+                
+                            </div>
+                            
+                        </div>
+                    {{-- </div> --}}
 
-            {{-- ใบกำกับภาษี --}}
-
-            <div class="container">
-                <div class="row">
-      
-                    <div class="col-md-2 col-lg-2 mb-2" >
-                    </div>
-                  <div class="col-md-8 col-lg-8 mb-8" >
-                      
-                  </div>
-                  <div class="col-md-2 col-lg-2 mb-2" >
-                </div>
-      
-                  </div>
-              </div>
-  
-              <div class="container">
-                <div class="row">
-      
-                    <div class="col-md-2 col-lg-2 mb-2" >
-                    </div>
-                  <div class="col-md-8 col-lg-8 mb-8" >
-                      <p class="title-pay">ขอใบกำกับภาษี</p>
-  
-                      <label class="container2">ตามที่อยู่เดิม
-                          <input type="radio" checked="checked" name="radio">
-                          <span class="checkmark"></span>
-                      </label>
-                      <label class="container2">ที่อยู่ใหม่
-                          <input type="radio" name="radio">
-                          <span class="checkmark" id="checkmark"></span>
-                      </label>
-  
-                  </div>
-                  <div class="col-md-2 col-lg-2 mb-2" >
-                </div>
-      
-                  </div>
-              </div>
-  
-              <div class="site-section" id="desk">
-                <div class="container">
-                  <div class="row">
-        
-                    <div class="col-md-2 col-lg-2 mb-2" >
-                    </div>
-        
-                    <div class="col-md-4 col-lg-4 mb-4" >
-                      <form action="/action_page.php">
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="Name*">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="E-mail*">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Address*">
-                          </div>
-                        </div>
-                        
-                        </form>
-        
-                    </div>
-        
-                    <div class="col-md-4 col-lg-4 mb-4" >
-                      <form action="/action_page.php">
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="Last Name*">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Fax*">
-                          </div>
-                        </div>
-      
-                        </form>
-                    </div>
-        
-                    <div class="col-md-2 col-lg-2 mb-2" >
-                    </div>
-        
-                  </div>
-                  
-                </div>
-              </div>
-      
-      
-        
-      
-      
-              <div class="site-section" id="mobile">
-                <div class="container">
-                  <div class="row">
-        
-                    <!-- <div class="col-md-2 col-lg-2 mb-2" >
-        
-                    </div> -->
-        
-                    <div class="col-md-12 col-lg-12 mb-12">
-                      <form action="/action_page.php" >
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="Name*">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Last name*">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="E-mail">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Address*">
-                          </div>
-                        </div>
-                        <div class="row">
-                      
-                          <div class="col-75">
-                            <input type="text" id="lname" name="lastname" placeholder="Fax*">
-                          </div>
-                        </div>
-      
-        
-      
-        
-        
-                        
-                        </form>
-                    
-                    </div>
-        
-        
-        
-                  </div>
-                  
-                </div>
-              </div>
-    
-            <div class="container">
-                <div class="row">
-      
-                    <div class="col-md-2 col-lg-2 mb-2" >
-                    </div>
-                  <div class="col-md-8 col-lg-8 mb-8" >
-                      <p class="title-pay2">ช่องทางการชำระเงิน</p>
-                  </div>
-                  <div class="col-md-2 col-lg-2 mb-2" >
-                </div>
-      
-                  </div>
-              </div>
-    
-            <div class="container">
-              <div class="row">
-    
-                  <div class="col-md-2 col-lg-2 mb-2" >
-                  </div>
-                <div class="col-md-8 col-lg-8 mb-8" >
-              <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">โอนผ่านบัญชี</a></li>
-                <li><a data-toggle="tab" href="#menu1">บัตรเครดิต</a></li>
-              </ul>
+                    {{-- ที่อยู่ใบกำกับภาษี desk --}}
+                    {{-- <div class="site-section" id="desk" > --}}
+                        <div class="container">
+                            <div class="row">
+                
+                                <div class="col-md-2 col-lg-2 mb-2" >
+                                </div>
+                            <div class="col-md-8 col-lg-8 mb-8" >
+                                <p class="title-pay">ขอใบกำกับภาษี</p>
             
-              <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
-    
-    
-    
-                                      <div class="col-50">
-                                        
-                             <img class="bank-img" src="{{asset('frontend/images/bank.jpg')}}">
+                                <label class="container2">ตามที่อยู่เดิม
+                                    <input type="radio" checked="checked" name="radio" value="old" class="deskold">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container2">ที่อยู่ใหม่
+                                    <input type="radio" name="radio" value="new" class="desknew">
+                                    <span class="checkmark" id="checkmark"></span>
+                                </label>
+            
+                            </div>
+                            <div class="col-md-2 col-lg-2 mb-2" >
+                            </div>
+                
+                            </div>
+                        </div>
+                        <div class="container desktax" style="display: none">
+                            <div class="row">
+                    
+                                <div class="col-md-2 col-lg-2 mb-2" >
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-4 mb-4" >
+                                {{-- <form action="/action_page.php"> --}}
+                                    <div class="row">
+                                    <div class="col-75">
+                                        <input type="text" id="fname" name="tax_firstname" placeholder="Name*">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="tax_email" placeholder="E-mail*">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="tax_address" placeholder="Address*">
+                                    </div>
+                                    </div>
+                                    
+                                    {{-- </form> --}}
+                    
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-4 mb-4" >
+                                {{-- <form action="/action_page.php"> --}}
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="fname" name="tax_lastname" placeholder="Last Name*">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="tax_telephone" placeholder="Phone No.*">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="tax_fax" placeholder="Fax*">
+                                    </div>
+                                    </div>
+                
+                                    {{-- </form> --}}
+                                </div>
+                    
+                                <div class="col-md-2 col-lg-2 mb-2" >
+                                </div>
+                    
+                            </div>
+                        
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 mb-2" ></div>
+                                <div class="col-md-8 col-lg-8 mb-8" >
+                                    <p class="title-pay2">ช่องทางการชำระเงิน</p>
+                                </div>
+                                <div class="col-md-2 col-lg-2 mb-2" ></div>
+                            </div>
+                        </div>
+            
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 mb-2" >
+                                </div>
+                                <div class="col-md-8 col-lg-8 mb-8" >
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#home">โอนผ่านบัญชี</a></li>
+                                        <li><a data-toggle="tab" href="#menu1">บัตรเครดิต</a></li>
+                                    </ul>
+                            
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane fade in active">
+                                    <div class="col-50">            
+                                        <img class="bank-img" src="{{asset('frontend/images/bank.jpg')}}">
+                                    </div>
+                                    <div class="col-50">
+                                        <p class="bank-text">ชื่อบัญชี : xxxxxxxxx xxxxx</p>
+                                        <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
+                                        <p class="upload2">กรุณาอัปโหลดหลักฐานการชำระเงินเพื่อช่วยให้เรายืนยันการชำระเงินได้รวดเร็วขึ้น</p>
+                                            {{-- <form action="#"> --}}
+                                        <input type="file" id="myFile" name="filename" class="upload">
+                                        <br>
+                                    </div>
+                                </div>
+        
+                                <div id="menu1" class="tab-pane fade">
+                                
+                                <div class="col-50">
+                                    <div class="row" id="form-top">
+                                    
+                                        <div class="col-75" id="form-pad">
+                                            <input type="text" id="lname" name="numbercard" placeholder="หมายเลขบัตรเครดิต*">
+                                        </div>
+                                        <div class="col-75" id="form-pad">
+                                            <input type="text" id="lname" name="ccv" placeholder="CCV*">
+                                            </div>
+                                        </div>
+                                </div>
+                    
+                                <div class="col-50">
+                                    <div class="row" id="form-top">
+                                    
+                                        <div class="col-75" id="form-pad2">
+                                            <input type="text" id="lname" name="expire" placeholder="วันหมดอายุบัตร*">
+                                        </div>
+                                        <div class="col-75" id="form-pad2">
+                                            <input type="text" id="lname" name="namecard" placeholder="ชื่อผู้ถือบัตร*">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row" id="">
+                    
+                              <div class="col-md-12 col-lg-12 mb-12" >
+                                
+                                  <div class="but">
+                                    <center><button style="color: white;" type="submit" onclick="" class="submit2">Send</button></center>
+                                </div>
+                            </div>
                           </div>
+                    </form>
+                </div>
+
+                    
+                {{-- mobile --}}
+                <div class="site-section" id="mobile">
+                    <form action="{{url('storepayment')}}" method="POST">
+                        <div class="container">
+                            <div class="row">
+                
+                            <!-- <div class="col-md-2 col-lg-2 mb-2" >
+                
+                            </div> -->
+                
+                            <div class="col-md-12 col-lg-12 mb-12">
+                                {{-- <form action="/action_page.php" > --}}
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="fname" name="firstname" placeholder="Name*" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="lname" name="lastname" placeholder="Last name*" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="lname" name="lastname" placeholder="E-mail" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="lname" name="lastname" placeholder="Phone No.*" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="lname" name="lastname" placeholder="Address*" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                
+                                    <div class="col-75">
+                                    <input type="text" id="lname" name="lastname" placeholder="Fax*" required>
+                                    </div>
+                                </div>
+                                
+                                {{-- </form> --}}
+                            
+                            </div>
+                        </div>
+                    </div>
+                    {{-- </div> --}}
+        
+        
+        
+                {{-- <div class="container">
+                <div class="row">
+        
+                    <div class="col-md-2 col-lg-2 mb-2" >
+                    </div>
+                    <div class="col-md-8 col-lg-8 mb-8" >
+                        
+                    </div>
+                    <div class="col-md-2 col-lg-2 mb-2" >
+                </div>
+        
+                    </div>
+                </div> --}}
+
+                {{-- ใบกำกับภาษี --}}
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2 col-lg-2 mb-2" ></div>
+                            <div class="col-md-8 col-lg-8 mb-8" ></div>
+                            <div class="col-md-2 col-lg-2 mb-2" ></div>
+                        </div>
+                    </div>
+        
+
+                    {{-- ขอใบกำกับภาษี mobile --}}
+        
+                    {{-- <div class="site-section" id="mobile"> --}}
+                        <div class="container">
+                            <div class="row">
+                
+                                <div class="col-md-2 col-lg-2 mb-2" >
+                                </div>
+                            <div class="col-md-8 col-lg-8 mb-8" >
+                                <p class="title-pay">ขอใบกำกับภาษี</p>
+            
+                                <label class="container2">ตามที่อยู่เดิม
+                                    <input type="radio" checked="checked" name="radio" class="moblieold">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container2">ที่อยู่ใหม่
+                                    <input type="radio" name="radio" class="moblienew">
+                                    <span class="checkmark" id="checkmark"></span>
+                                </label>
+            
+                            </div>
+                            <div class="col-md-2 col-lg-2 mb-2" >
+                            </div>
+                
+                            </div>
+                        </div>
+                        <div class="container mobiletax" style="display: none">
+                            <div class="row">
+                    
+                                <!-- <div class="col-md-2 col-lg-2 mb-2" >
+                    
+                                </div> -->
+                    
+                                <div class="col-md-12 col-lg-12 mb-12">
+                                {{-- <form action="/action_page.php" > --}}
+                                    <div class="row">
+                                    <div class="col-75">
+                                        <input type="text" id="fname" name="firstname" placeholder="Name*">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="lastname" placeholder="Last name*">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="lastname" placeholder="E-mail">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="lastname" placeholder="Address*">
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                
+                                    <div class="col-75">
+                                        <input type="text" id="lname" name="lastname" placeholder="Fax*">
+                                    </div>
+                                </div>
+                                    {{-- </form> --}}
+                                </div>
+                            </div>
+                        
+                        </div>
+                    {{-- </div> --}}
+        
+                    {{-- payment mobile --}}
+                    {{-- <div class="site-section" id="mobile"> --}}
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 mb-2" ></div>
+                                <div class="col-md-8 col-lg-8 mb-8" >
+                                    <p class="title-pay2">ช่องทางการชำระเงิน</p>
+                                </div>
+                                <div class="col-md-2 col-lg-2 mb-2" ></div>
+                            </div>
+                        </div>
+            
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 mb-2" >
+                                </div>
+                                <div class="col-md-8 col-lg-8 mb-8" >
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#home">โอนผ่านบัญชี</a></li>
+                                        <li><a data-toggle="tab" href="#menu1">บัตรเครดิต</a></li>
+                                    </ul>
+                            
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane fade in active">
+                                    <div class="col-50">            
+                                        <img class="bank-img" src="{{asset('frontend/images/bank.jpg')}}">
+                                    </div>
+                                    <div class="col-50">
+                                        <p class="bank-text">ชื่อบัญชี : xxxxxxxxx xxxxx</p>
+                                        <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
+                                        <p class="upload2">กรุณาอัปโหลดหลักฐานการชำระเงินเพื่อช่วยให้เรายืนยันการชำระเงินได้รวดเร็วขึ้น</p>
+                                            {{-- <form action="#"> --}}
+                                        <input type="file" id="myFile" name="filename" class="upload">
+                                        <br>
+                                    </div>
+                                </div>
+        
+                                <div id="menu1" class="tab-pane fade">
+                                
+                                <div class="col-50">
+                                    <div class="row" id="form-top">
+                                    
+                                        <div class="col-75" id="form-pad">
+                                            <input type="text" id="lname" name="lastname" placeholder="หมายเลขบัตรเครดิต*">
+                                        </div>
+                                        <div class="col-75" id="form-pad">
+                                            <input type="text" id="lname" name="lastname" placeholder="CCV*">
+                                            </div>
+                                        </div>
+                                </div>
+                    
+                                <div class="col-50">
+                                    <div class="row" id="form-top">
+                                    
+                                        <div class="col-75" id="form-pad2">
+                                            <input type="text" id="lname" name="lastname" placeholder="วันหมดอายุบัตร*">
+                                        </div>
+                                        <div class="col-75" id="form-pad2">
+                                            <input type="text" id="lname" name="lastname" placeholder="ชื่อผู้ถือบัตร*">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row" id="">
+                    
+                            <div class="col-md-12 col-lg-12 mb-12" >
+                                
+                                <div class="but">
+                                    <center><a type="javascript:void(0)" onclick="" class="submit2">Send</a></center>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {{-- end mobile --}}
+                
     
-                          <div class="col-50">
-                           
-                              <p class="bank-text">ชื่อบัญชี : xxxxxxxxx xxxxx</p>
-                              <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
-                              <p class="upload2">กรุณาอัปโหลดหลักฐานการชำระเงินเพื่อช่วยให้เรายืนยันการชำระเงินได้รวดเร็วขึ้น</p>
-                              <form action="#">
-    <input type="file" id="myFile" name="filename" class="upload">
-    <br>
-    </form>
-           
+            <div class="col-md-2 col-lg-2 mb-2" >
+        </div>
     </div>
-                </div>
+</div>
     
     
-                
-                <div id="menu1" class="tab-pane fade">
-                
-                  <div class="col-50">
-                      <div class="row" id="form-top">
-                    
-                          <div class="col-75" id="form-pad">
-                            <input type="text" id="lname" name="lastname" placeholder="หมายเลขบัตรเครดิต*">
-                          </div>
-                          <div class="col-75" id="form-pad">
-                              <input type="text" id="lname" name="lastname" placeholder="CCV*">
-                            </div>
-                        </div>
-                   </div>
-    
-                   <div class="col-50">
-                      <div class="row" id="form-top">
-                    
-                          <div class="col-75" id="form-pad2">
-                            <input type="text" id="lname" name="lastname" placeholder="วันหมดอายุบัตร*">
-                          </div>
-                          <div class="col-75" id="form-pad2">
-                              <input type="text" id="lname" name="lastname" placeholder="ชื่อผู้ถือบัตร*">
-                            </div>
-                        </div>
-               </div>
-    
-    
-                </div>
-    
-              </div>
-    
-              </div>
-    
-              <div class="col-md-2 col-lg-2 mb-2" >
-              </div>
-    
-    
-              </div>
-            </div>
-    
-    
-            <div class="container">
-              <div class="row" id="">
-      
-                <div class="col-md-12 col-lg-12 mb-12" >
-                  
-                    <div class="but">
-                      <center><a href="#" class="submit2">Send</a></center>
-                  </div>
-               
-      
-              </div>
-            </div>
+     
     
           </div>
-    
-    
+    {{-- endform --}}
          
        
     </div>
@@ -1441,6 +1496,23 @@ text-align: left;
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
 
+  <script>
+      $('.desknew').click(function() {
+          $('.desktax').removeAttr('style');
+      });
+
+      $('.deskold').click(function() {
+        $('.desktax').css('display','none');
+      });
+
+      $('.moblieold').click(function() {
+          $('.mobiletax').removeAttr('style');
+      });
+
+      $('.moblienew').click(function() {
+        $('.mobiletax').css('display','none');
+      });
+  </script>
     
   </body>
 </html>
