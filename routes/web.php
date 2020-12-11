@@ -186,7 +186,7 @@ Route::post('logincustomer/{model}', 'Auth\LoginController@LogIn')->name('LogIn'
 
 /////login
 
-Route::get('logout', 'Auth\LoginController@LogOut')->name('LogOut');
+Route::get('logout', 'Auth\LoginController@LogOut');
 // Route::post('resetpassword/{model}/{id}','Auth\ResetPasswordController@ResetPassword')->name('ResetPassword');
 
 Route::get('sortproduct','Admin\ProductsController@getsortproduct');
