@@ -21,6 +21,7 @@ class AddacartController extends Controller
             Session::push('product', $id);
         }
 
+
         return redirect('cart'); 
       
     }

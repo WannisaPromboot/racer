@@ -871,7 +871,7 @@ text-align: left;
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
 		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored active"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item cta-colored active"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -1139,7 +1139,7 @@ text-align: left;
                               <div class="col-md-12 col-lg-12 mb-12" >
                                 
                                   <div class="but">
-                                    <center><button style="color: white;" type="button" onclick="" class="submit2">Send</button></center>
+                                    <center><button style="color: white;" type="submit" onclick="" class="submit2">Send</button></center>
                                 </div>
                             </div>
                           </div>

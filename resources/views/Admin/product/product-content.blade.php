@@ -53,6 +53,7 @@
                         <th>SAP CODE</th>
                         <th>หมวดหมู่หลัก</th>
                         <th>ชื่อสินค้าภาษาไทย</th>
+                        <th>ชื่อสินค้าภาษาอังกฤษ</th>
                         <th>จำนวนสต็อก</th>
                         <th>รายละเอียด</th>
                         <th>แก้ไข</th>
@@ -75,6 +76,7 @@
                             ?>
                             <td>{{!empty($item->id_category) ? $cate->category_name_th : ''}}</td>
                             <td>{{$item->product_name_th}}</td>
+                            <td>{{$item->product_name_en}}</td>
                             <td>
                                 <div id="inputcount{{$item->id_product}}">
                                     <input class="form-control text-center" onchange="save({{$item->id_product}})" min="0" id="ncount{{$item->id_product}}" type="number" value="{{$item->product_count}}">

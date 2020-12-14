@@ -94,7 +94,7 @@ class LoginController extends Controller
                 // $this->getIP($emailuser->customer_id,$request->getClientIp());
 
                 if(!empty(Session::get('product'))){
-                    return redirect('storeorder');
+                    return redirect('cart');
                 }else{
                     return redirect('/');
                 }

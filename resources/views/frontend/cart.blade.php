@@ -604,7 +604,7 @@ label {
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
 		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored active"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item cta-colored active"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -730,8 +730,9 @@ label {
             <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
         </div>
         </div>
-        
-        <a href="javascript:void(0)"><button type="submit" class="checkout">ชำระเงิน</button></a>
+        @if(!empty(Session::get('product')))
+            <a href="javascript:void(0)"><button type="submit" class="checkout">ชำระเงิน</button></a>
+        @endif
     </form>
     </div>
                         
