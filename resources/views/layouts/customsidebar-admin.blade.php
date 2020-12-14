@@ -24,31 +24,31 @@
                 <li class="menu-title">Menu</li>
                 <li>
                     <a href="{{url('home')}}"  class="waves-effect">
-                        <img src="{{asset('assets/images/b2b/icon/home-run.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/home-run.png')}}">
                         <span>{{Session::get('lang')=='th'?'หน้าแรก':'Home'}}</span>
                     </a> 
                 </li>
                 <li>
                     <a href="javascript:void(0)" class="waves-effect">
-                        <img src="{{asset('assets/images/b2b/icon/contact-us.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/contact-us.png')}}">
                         <span>การจัดการสิทธิ์และบทบาท</span>
                     </a> 
                 </li>
                 <li>
                     <a href="{{url('slidecontent')}}" class=" waves-effect">
-                        <img src="{{asset('assets/images/b2b/icon/banner.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/banner.png')}}">
                         <span>{{Session::get('lang')=='th'?'การจัดการ  Banner & Slide':'Banner & Slide Management'}}</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{url('blogcontent')}}" class=" waves-effect">
-                        <img src="{{asset('assets/images/b2b/icon/news.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/news.png')}}">
                         <span>{{Session::get('lang')=='th'?'การจัดการบทความ':'Blog Management'}}</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <img src="{{asset('assets/images/b2b/icon/grid.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/grid.png')}}">
                         <span>{{Session::get('lang')=='th'?'การจัดการหมวดหมู่':'Category Management'}}</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -58,19 +58,25 @@
                 </li>
                 <li>
                     <a href="{{url('productcontent')}}" class=" waves-effect">
-                        <img src="{{asset('assets/images/b2b/icon/lightbulb.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/lightbulb.png')}}">
                         <span>{{Session::get('lang')=='th'?'สินค้า':'product'}}</span>
                     </a> 
                 </li>
                 <li>
+                    <a href="{{url('ordercontent')}}" class=" waves-effect">
+                        <img src="{{asset('assets/images/racer/icon/box.png')}}">
+                        <span>คำสั่งซื้อสินค้า</span>
+                    </a> 
+                </li>
+                <li>
                     <a href="javascript:void(0)" class=" waves-effect">
-                         <img src="{{asset('assets/images/b2b/icon/bankbook.png')}}">
+                         <img src="{{asset('assets/images/racer/icon/bankbook.png')}}">
                         <span>การจัดการชำระเงินออนไลน์(การโอนเงิน)</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:void(0)" class=" waves-effect">
-                         <img src="{{asset('assets/images/b2b/icon/seo-report.png')}}">
+                         <img src="{{asset('assets/images/racer/icon/seo-report.png')}}">
                         <span>{{Session::get('lang')=='th'?'รายงาน':'Report'}}</span>
                     </a>
                 </li>

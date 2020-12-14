@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\OrderItem;
 use App\OrderTax;
+use App\OrderPayment;
 use Storage;
 use DB;
 use URL;
@@ -13,7 +14,7 @@ use Session;
 class PaymentController extends Controller
 {
     public function storePayment(Request $request){
-     
+
         $updateOrder = Order::where('id_order',$request->id_order)->first();
         $updateOrder->firstname = $request->firstname;
         $updateOrder->lastname = $request->lastname;
@@ -21,6 +22,7 @@ class PaymentController extends Controller
         $updateOrder->address = $request->address;
         $updateOrder->telephone = $request->telephone;
         $updateOrder->fax = $request->fax;
+        $updateOrder->method = $request->payment_method;
         $updateOrder->status_payment = 1;
         $updateOrder->status_process = 1;
         $updateOrder->status_delivery = 0;
@@ -28,17 +30,7 @@ class PaymentController extends Controller
 
 
 
-        if($request->radio == 'old'){
-            $newTax = New OrderTax;
-            $newTax->id_order = $request->id_order;
-            $newTax->firstname = $request->firstname;
-            $newTax->lastname = $request->lastname;
-            $newTax->email = $request->email;
-            $newTax->address = $request->address;
-            $newTax->telephone = $request->telephone;
-            $newTax->fax = $request->fax;
-            $newTax->save();
-        }else{
+        if($request->radio == 'new' && !empty($request->tax_firstname)){
             $newTax = New OrderTax;
             $newTax->id_order = $request->id_order;
             $newTax->firstname = $request->tax_firstname;
@@ -51,11 +43,23 @@ class PaymentController extends Controller
         }
 
         //////ลบจำนวนสินค้า
+
+
+     
+
+        ///////////////Payment////////////////
+        if($request["filename"] !== null){
+            $newpayment  = New OrderPayment;
+            $new_image = 'Order/'.time().$request["filename"]->getClientOriginalName();
+            Storage::put($new_image, file_get_contents($request["filename"]));
+            $newpayment->filepath = $new_image;
+            $newpayment->id_order = $request->id_order;
+            $newpayment->save();
+        }
         
 
         Session::forget('product');
-
-        return redirect('/')->with('success','ขอบคุณสำหรับการส่งซื้อ');
+        return redirect('/')->with('success','ขอบคุณสำหรับการสั่งซื้อสินค้า');
 
     }
 }

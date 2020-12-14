@@ -925,7 +925,7 @@ text-align: left;
                 </div>
             </div>
                 <div class="site-section " id="desk">
-                    <form action="{{url('storepayment')}}" method="post" id="deskfrom">
+                    <form action="{{url('storepayment')}}" method="post" id="deskfrom" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id_order" value="{{$id}}">
                         <div class="container">
@@ -1086,8 +1086,8 @@ text-align: left;
                                 </div>
                                 <div class="col-md-8 col-lg-8 mb-8" >
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a data-toggle="tab" href="#home">โอนผ่านบัญชี</a></li>
-                                        <li><a data-toggle="tab" href="#menu1">บัตรเครดิต</a></li>
+                                        <li class="active"><a data-toggle="tab" href="#home" class="btntranfer">โอนผ่านบัญชี</a></li>
+                                        <li><a data-toggle="tab" href="#menu1" class="btncredit">บัตรเครดิต</a></li>
                                     </ul>
                             
                             <div class="tab-content">
@@ -1100,7 +1100,7 @@ text-align: left;
                                         <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
                                         <p class="upload2">กรุณาอัปโหลดหลักฐานการชำระเงินเพื่อช่วยให้เรายืนยันการชำระเงินได้รวดเร็วขึ้น</p>
                                             {{-- <form action="#"> --}}
-                                        <input type="file" id="myFile" name="filename" class="upload">
+                                        <input type="file" id="myFile" name="filename" class="upload" required>
                                         <br>
                                     </div>
                                 </div>
@@ -1133,13 +1133,16 @@ text-align: left;
                                 </div>
                             </div>
                         </div>
+                        <div class="paymentmethod">
+                            <input type="hidden" name="payment_method" value="tranfer">
+                        </div>
                         <div class="container">
                             <div class="row" id="">
                     
                               <div class="col-md-12 col-lg-12 mb-12" >
                                 
                                   <div class="but">
-                                    <center><button style="color: white;" type="submit" onclick="" class="submit2">Send</button></center>
+                                    <center><button style="color: white;" type="submit"  class="submit2 btnsend">Send</button></center>
                                 </div>
                             </div>
                           </div>
@@ -1149,7 +1152,7 @@ text-align: left;
                     
                 {{-- mobile --}}
                 <div class="site-section" id="mobile">
-                    <form action="{{url('storepayment')}}" method="POST">
+                    <form action="{{url('storepayment')}}" method="POST" enctype="multipart/form-data">
                         <div class="container">
                             <div class="row">
                 
@@ -1267,37 +1270,37 @@ text-align: left;
                                 {{-- <form action="/action_page.php" > --}}
                                     <div class="row">
                                     <div class="col-75">
-                                        <input type="text" id="fname" name="firstname" placeholder="Name*">
+                                        <input type="text" id="fname" name="tax_firstname" placeholder="Name*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="lastname" placeholder="Last name*">
+                                        <input type="text" id="lname" name="tax_lastname" placeholder="Last name*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="lastname" placeholder="E-mail">
+                                        <input type="text" id="lname" name="tax_email" placeholder="E-mail">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="lastname" placeholder="Phone No.*">
+                                        <input type="text" id="lname" name="tax_phone" placeholder="Phone No.*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="lastname" placeholder="Address*">
+                                        <input type="text" id="lname" name="tax_address" placeholder="Address*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="lastname" placeholder="Fax*">
+                                        <input type="text" id="lname" name="tax_fax" placeholder="Fax*">
                                     </div>
                                 </div>
                                     {{-- </form> --}}
@@ -1325,8 +1328,8 @@ text-align: left;
                                 </div>
                                 <div class="col-md-8 col-lg-8 mb-8" >
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a data-toggle="tab" href="#home">โอนผ่านบัญชี</a></li>
-                                        <li><a data-toggle="tab" href="#menu1">บัตรเครดิต</a></li>
+                                        <li class="active"><a data-toggle="tab" href="#home"  class="btntranfer">โอนผ่านบัญชี</a></li>
+                                        <li><a data-toggle="tab" href="#menu1" class="btncredit">บัตรเครดิต</a></li>
                                     </ul>
                             
                             <div class="tab-content">
@@ -1339,7 +1342,7 @@ text-align: left;
                                         <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
                                         <p class="upload2">กรุณาอัปโหลดหลักฐานการชำระเงินเพื่อช่วยให้เรายืนยันการชำระเงินได้รวดเร็วขึ้น</p>
                                             {{-- <form action="#"> --}}
-                                        <input type="file" id="myFile" name="filename" class="upload">
+                                        <input type="file" id="myFile" name="filename" class="upload" required>
                                         <br>
                                     </div>
                                 </div>
@@ -1372,13 +1375,16 @@ text-align: left;
                                 </div>
                             </div>
                         </div>
+                        <div class="paymentmethod">
+                            <input type="hidden" name="payment_method" value="tranfer">
+                        </div>
                         <div class="container">
                             <div class="row" id="">
                     
                             <div class="col-md-12 col-lg-12 mb-12" >
                                 
                                 <div class="but">
-                                    <center><a type="javascript:void(0)" onclick="" class="submit2">Send</a></center>
+                                    <center><button type="submit"  class="submit2 btnsend">Send</button></center>
                                 </div>
                             </div>
                         </div>
@@ -1512,7 +1518,17 @@ text-align: left;
       $('.moblienew').click(function() {
         $('.mobiletax').css('display','none');
       });
-      
+
+     $('.btncredit').click(function(){
+            $('.but').css('display','none');
+            $('.paymentmethod').html('<input type="hidden" name="payment_method" value="credit">');
+     });
+
+     $('.btntranfer').click(function(){
+            $('.but').removeAttr('style');
+            $('.paymentmethod').html('<input type="hidden" name="payment_method" value="tranfer">');
+     });
+
   </script>
     
   </body>
