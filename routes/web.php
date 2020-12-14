@@ -11,17 +11,6 @@
 |
 */
 
-Route::get('test', function() {
-
-    ShoppingCart::add(37, 'Item name', 5, 100.00, ['color' => 'red', 'size' => 'M']);
-    ShoppingCart::update(37, 'Item name', 1, 200.00, ['color' => 'red', 'size' => 's']);
-    ShoppingCart::add(38, 'Item name', 1, 100.00, ['color' => 'red', 'size' => 'L']);
-
-    dd(ShoppingCart::all());
-
-});
-
-
 /////fronent.
 Route::get('/clc', function() {
 
@@ -36,7 +25,10 @@ Route::get('/clc', function() {
 });
 //Frontend
 Route::get('/', function(){
-    return view('frontend.index');
+    $data = array(
+        'cate'   => \App\Category::orderBy('sort')->get()
+    );
+    return view('frontend.index',$data);
 });
 
 Route::get('/about-us', function(){

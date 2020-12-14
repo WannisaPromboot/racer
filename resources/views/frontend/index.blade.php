@@ -393,57 +393,69 @@ a:hover, a:focus {
 
 	
 			</div>
-		</div>
-		
+        </div>
+        <?php  $i = '01'; ?>
+        @foreach ($cate as $_cate)
+        <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
+         $subcate = \App\Subcategory::where('id_category',$_cate->id_category)->limit(2)->get();
+         ?>
+        @if(count($product) > 0)
+        <div class="container">
+            <div class="row">
+               <div id="box">
+                    <div class="container">
+                        <div class="row">
 
-			<div class="container">
-				<div class="row">
-				   <div id="box">
-					<div class="container">
-						<div class="row">
+                            <div class="col-md-12" >
+                                <p class="pro-index"><span class="title-num" id="margin-pro">{{$i}}</span> <span class="pro-title" id="margin-pro">{{$_cate->category_name_th}}</span><span class="popular" id="margin-pro"> #Popular searches</span>
+                                    @foreach ($subcate as $_subcate)
+                                        <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
+                                    @endforeach
+                                </p>
+                                <hr class="line-index">
+                            </div>
 
-					<div class="col-md-12" >
-						<p class="pro-index"><span class="title-num" id="margin-pro">01</span> <span class="pro-title" id="margin-pro">Lighting</span><span class="popular" id="margin-pro"> #Popular searches</span><a href="#" class="next-pro" id="margin-pro"> Light Bulb</a><a href="#" class="next-pro" id="margin-pro"> Light Bulb</a> <a href="#" class="next-pro" id="margin-pro"> Light Bulb</a> <a href="#" class="next-pro" id="margin-pro"> Light test</a> <a href="#" class="next-pro" id="margin-pro"> Free Delivery</a></p>
-						<hr class="line-index">
-					</div>
+                        </div>
+                    </div>
 
-					</div>
-					</div>
+               
+                    <div class="container" >
+                        <div class="row">
+                            <div class="col-md-6" id="pro-mar">
+                                <a href="{{url('/detail-product')}}"><img class="pro-img3" src="{{url('storage/app/'.$product[0]->product_img)}}"></a>
+                            </div>
+                            <div class="col-md-6" id="pro-mar">
+                                
+                                <div class="container" id="con-pro">
+                                    <div class="row" >
+                                        <div class="col-md-6" id="pro-mar">
+                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$product[1]->product_img)}}"></a>
+                                        </div>
+                                        <div class="col-md-6" id="pro-mar">
+                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$product[2]->product_img)}}"></a>
+                                        </div>
+                                        <div class="col-md-6" id="pro-mar">
+                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$product[3]->product_img)}}"></a>
+                                        </div>
+                                        <div class="col-md-6" id="pro-mar">
+                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$product[4]->product_img)}}"></a>
+                                        </div>
+                                    </div>
+                                </div>
 
-					<div class="container" >
-						<div class="row">
+                            </div>
 
-					<div class="col-md-6" id="pro-mar">
-						<a href="{{url('/detail-product')}}"><img class="pro-img3" src="{{asset('frontend/images/pro01.jpg')}}"></a>
-					</div>
-					<div class="col-md-6" id="pro-mar">
-						
-						<div class="container" id="con-pro">
-							<div class="row" >
-						<div class="col-md-6" id="pro-mar">
-							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro02.jpg')}}"></a>
-						</div>
-						<div class="col-md-6" id="pro-mar">
-							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro03.jpg')}}"></a>
-						</div>
-						<div class="col-md-6" id="pro-mar">
-							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro04.jpg')}}"></a>
-						</div>
-						<div class="col-md-6" id="pro-mar">
-							<a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro05.jpg')}}"></a>
-						</div>
-						</div>
-						</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php $i = str_pad($i + 1, 2, 0, STR_PAD_LEFT); ?>
+        @endif
+        @endforeach
+			
 
-					</div>
-
-					</div>
-					</div>
-				</div>
-				</div>
-			</div>
-
-			<div class="container">
+			{{-- <div class="container">
 				<div class="row">
 				   <div id="box">
 
@@ -488,13 +500,11 @@ a:hover, a:focus {
 
 					</div>
 					</div>
-
-
 				</div>
 				</div>
-			</div>
+			</div> --}}
 
-			<div class="container">
+			{{-- <div class="container">
 				<div class="row">
 				   <div id="box">
 
@@ -543,9 +553,9 @@ a:hover, a:focus {
 
 				</div>
 				</div>
-			</div>
+			</div> --}}
 
-			<div class="container">
+			{{-- <div class="container">
 				<div class="row">
 				   <div id="box">
 
@@ -594,7 +604,7 @@ a:hover, a:focus {
 
 				</div>
 				</div>
-			</div>
+			</div> --}}
 
 
        <div id="box2">
