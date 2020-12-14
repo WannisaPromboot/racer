@@ -925,7 +925,7 @@ text-align: left;
                 </div>
             </div>
                 <div class="site-section " id="desk">
-                    <form action="{{url('storepayment')}}" method="post">
+                    <form action="{{url('storepayment')}}" method="post" id="deskfrom">
                         @csrf
                         <input type="hidden" name="id_order" value="{{$id}}">
                         <div class="container">
@@ -1401,7 +1401,7 @@ text-align: left;
        
     </div>
 
-		
+                        </div>	
 
 		
 	
@@ -1512,6 +1512,7 @@ text-align: left;
       $('.moblienew').click(function() {
         $('.mobiletax').css('display','none');
       });
+      
   </script>
     
   </body>
