@@ -357,9 +357,10 @@ a:hover, a:focus {
 
 	          </div>
 	        </div>
-	      </div>
+          </div>
+          <?php  $data = App\Slide::orderBy('slide_number','ASC')->first(); ?>
 
-	      <div class="slider-item" style="background-image: url({{asset('frontend/images/pro001.jpg')}});">
+	      <div class="slider-item" style="background-image: {{url('storage/app/'.$data->slide_image)}};">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -397,7 +398,7 @@ a:hover, a:focus {
         <?php  $i = '01'; ?>
         @foreach ($cate as $_cate)
         <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
-         $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(2)->get();
+         $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(5)->get();
          ?>
         @if(count($product) > 0)
         <div class="container">
