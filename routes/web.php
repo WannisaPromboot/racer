@@ -36,7 +36,11 @@ Route::get('/clc', function() {
 });
 //Frontend
 Route::get('/', function(){
-    return view('frontend.index');
+    $data = array(
+        'data' => App\Slide::orderBy('slide_number','ASC')->get(),
+    );
+    // dd( $data['data']);
+    return view('frontend.index',$data);
 });
 
 Route::get('/about-us', function(){

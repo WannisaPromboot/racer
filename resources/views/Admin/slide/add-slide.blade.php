@@ -49,15 +49,7 @@
             <div class="card-body">
                     <form action="{{route('SaveSlide')}}" method="POST" enctype="multipart/form-data" id="saveslide">
                         @csrf
-                        <div class="row">
-                            <div class="col-2">
-                                <b>{{Session::get('lang')=='th'?'หัวข้อ':'Title'}} : </b>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" class="form-control" name="title_th">
-                            </div>
-                        </div>
-                        <hr style=" border-top: 1px solid #556ee6;">
+                        
                         <div class="row">
                             <div class="col-sm">
                                 <h5>
@@ -77,21 +69,22 @@
                                 <input type="number" class="form-control" name="sort">
                             </div>
                         </div>
-                        <hr style=" border-top: 1px solid #f1734f;">
+                        {{-- <hr style=" border-top: 1px solid #556ee6;">
                         <div class="row">
                             <div class="col-2">{{Session::get('lang')=='th'?'วิดิโอ':'Video'}} : </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="youtube" name="video">
                             </div>
-                        </div>   
-                        <hr style=" border-top: 1px solid #f1734f;">
+                        </div>   --}}
+                        <br> 
+                        {{-- <hr style=" border-top: 1px solid #556ee6;">
                         <div class="row">
                             <div class="col-2">{{Session::get('lang')=='th'?'ลิงค์':'Link'}} : </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="link" name="link">
                             </div>
-                        </div>                 
-                        <hr style=" border-top: 1px solid #556ee6;">
+                        </div>                  --}}
+                        {{-- <hr style=" border-top: 1px solid #556ee6;">
                         <div class="row">
                             <div class="col-sm">
                                 <h5>
@@ -112,7 +105,7 @@
                             <div class="col-3">
                                 <input type="date" class="form-control" name="dateto">
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- <hr style=" border-top: 1px solid #556ee6;">
                         <div class="row">
                             <div class="col-sm">

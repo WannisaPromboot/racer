@@ -9,3 +9,5 @@ class Promotion extends Model
     protected $table = 'new_promotion';
     protected $primaryKey = 'id_new_promotion';
 }
+
+?>

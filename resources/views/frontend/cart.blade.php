@@ -602,12 +602,28 @@ label {
 		</ul>
 	</div>
 	<div class="col-md-4" id="pay-nemu">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored active"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
-		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
-		</ul>
-	</div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]<span class="menu-span-col">|</span> </a></li>
+      @if(empty(Session::get('customer_id')))
+        <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+      @else
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown04">
+            <a class="dropdown-item" href="{{url('/order-history')}}">ประวัติการซื้อ</a>
+            <a class="dropdown-item" href="{{url('/logout')}}">ลงชื่อออก </a>
+          </div>
+        </li>
+      @endif
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/en.jpg')}}"> TH</a>
+          <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/en.jpg')}}"> EN</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 
 
 	  </div>
