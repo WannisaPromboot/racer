@@ -63,7 +63,7 @@
                                 <input type="number" class="form-control" name="sort" value="{{!empty($slide->sort)? $slide->sort:'' }}">
                             </div>
                         </div>
-                        <hr style=" border-top: 1px solid #f1734f;">
+                        {{-- <hr style=" border-top: 1px solid #f1734f;">
                         <div class="row">
                             <div class="col-2">{{Session::get('lang')=='th'?'วิดิโอ':'Video'}} : </div>
                             <div class="col-8">
@@ -72,8 +72,9 @@
                                     <iframe src="{{$slide->video}}?autoplay=1&controls=0" allowfullscreen allow="autoplay;"></iframe>
                                 @endif
                             </div>
-                        </div>
-                        <hr style=" border-top: 1px solid #f1734f;">
+                        </div> --}}
+                        <br>
+                        {{-- <hr style=" border-top: 1px solid #f1734f;">
                         <div class="row">
                             <div class="col-2">{{Session::get('lang')=='th'?'ลิงค์':'Link'}} : </div>
                             <div class="col-8">
@@ -101,7 +102,7 @@
                             <div class="col-3">
                                 <input type="date" class="form-control" name="dateto"  value="{{!empty($slide->dateto)? $slide->dateto:'' }}">
                             </div>
-                        </div>  
+                        </div>   --}}
                         {{-- <hr style=" border-top: 1px solid #556ee6;">
                         <div class="row">
                             <div class="col-sm">

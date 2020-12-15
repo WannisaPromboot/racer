@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Storage;
 use App\Slide;
-use App\slideitem;
 use DB;
 use Config;
 
@@ -19,8 +18,10 @@ class SlidesController extends Controller
 
 
     public function ShowSlideContent(){
-
-        return view('Admin.slide.slide-content');
+        $data = array(
+            'data' => Slide::orderBy('slide_number','ASC')->get(),
+        );
+        return view('Admin.slide.slide-content',$data);
     }
 
     public function EditSlide($id){
@@ -33,39 +34,30 @@ class SlidesController extends Controller
 
 
     public function SaveSlide(Request $request){
-        $SlideContent = new slide;
+        $SlideContent = new Slide;
+        if($request->sort !== null){
+            $SlideContent->slide_number = $request->sort;
+        }else{
+            $SlideContent->slide_number = 0;
 
-        $SlideContent->title_th = $request->title_th;
-        $SlideContent->link = $request->link;
-        $SlideContent->sort = $request->sort;
-        $SlideContent->datefrom = $request->datefrom;
-        $SlideContent->dateto = $request->dateto;
-
+        }
                     ////video youtube
-        $youtube =  str_replace("watch?v=", "embed/",$request->video);
-        $SlideContent->video = $youtube;
+        if($request->video !== null){
+            $youtube =  str_replace("watch?v=", "embed/",$request->video);
+            $SlideContent->slide_video = $youtube;
+        }
 
         
         if($request->filepath !== null){
-            $newFilename = 'slide/'.time().$request->filepath->getClientOriginalName();
+            $newFilename = 'Slide/'.time().$request->filepath->getClientOriginalName();
             Storage::put($newFilename, file_get_contents($request->filepath));
-            $SlideContent->filepath = $newFilename;
+            $SlideContent->slide_image = $newFilename;
         }
 
         $SlideContent->save();
 
 
-        if(isset($request->target)){
-            foreach($request['target'] as $key  => $item){
-                $SlideItemContent = new slideitem;
-    
-                $SlideItemContent->slide_id = $SlideContent->slide_id;
-                $SlideItemContent->target = $item;
-    
-                $SlideItemContent->save();
-            }
-        }
-        return redirect('slidecontent')->with('Save','เพิ่มเนื้อหาเรียบร้อยแล้ว');
+        return redirect('slidecontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
 
