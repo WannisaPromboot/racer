@@ -92,7 +92,14 @@ class LoginController extends Controller
                 $CustomerModel::where('email',$request->email)->update(['count'=> 0]);
             
                 // $this->getIP($emailuser->customer_id,$request->getClientIp());
-                return redirect('/');
+
+                if(!empty(Session::get('product'))){
+                    return redirect('cart');
+                }else{
+                    return redirect('/');
+                }
+
+               
             }else{
                 $count = $emailuser->count +  1;
                 $CustomerModel::where('email',$request->email)->update(['count'=> $count]);

@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Order;
 use App\OrderItem;
-
-
+use Session;
 
 class OrderController extends Controller
 {
@@ -17,6 +16,7 @@ class OrderController extends Controller
         $newOrder = New Order;
         $newOrder->id_order =  $A;
         $newOrder->total =  $request->price_total;
+        $newOrder->customer_id = Session::get('customer_id');
         //dd($newOrder);
         $newOrder->save();
 

@@ -746,8 +746,9 @@ label {
             <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
         </div>
         </div>
-        
-        <a href="javascript:void(0)"><button type="submit" class="checkout">ชำระเงิน</button></a>
+        @if(!empty(Session::get('product')))
+            <a href="javascript:void(0)"><button type="submit" class="checkout">ชำระเงิน</button></a>
+        @endif
     </form>
     </div>
                         

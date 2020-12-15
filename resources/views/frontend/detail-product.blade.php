@@ -695,7 +695,7 @@ height: 165px;
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
 		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -733,53 +733,7 @@ height: 165px;
                                 <img class="pro-img" src="{{url('storage/app/'.$img->filepath.'')}}" style="width:100%">
                             </div>
                             @endforeach
-                         
-{{--   
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro03.jpg')}}" style="width:100%">
-                          </div>
-  
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro04.jpg')}}" style="width:100%">
-                          </div>
 
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro05.jpg')}}" style="width:100%">
-                          </div>
-  
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro06.jpg')}}" style="width:100%">
-                          </div>
-
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}" style="width:100%">
-                          </div>
-
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro08.jpg')}}" style="width:100%">
-                          </div>
-  
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro09.jpg')}}" style="width:100%">
-                          </div>
-
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro10.jpg')}}" style="width:100%">
-                          </div>
-
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro11.jpg')}}" style="width:100%">
-                          </div>
-  
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro12.jpg')}}" style="width:100%">
-                          </div>
-
-                          <div class="mySlides" style="display: none;">
-                            <img class="pro-img" src="{{asset('frontend/images/pro07.jpg')}}" style="width:100%">
-                          </div> --}}
-  
-  
                           <div class="caption-container">
                             <p id="caption"></p>
                           </div>
@@ -1071,9 +1025,21 @@ height: 165px;
         
         </div> 
 		
+     {{-- modaL --}}
+        <div class="modal fade bd-example-modal-lg " id="main" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                
+                <div class="modal-content" >
+                    <div class="modal-body" id="sub">
 
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>   
 		
-	
+	{{-- footer --}}
 
     <footer class="ftco-footer ftco-section">
       <div class="container">

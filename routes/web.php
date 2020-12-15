@@ -11,17 +11,6 @@
 |
 */
 
-Route::get('test', function() {
-
-    ShoppingCart::add(37, 'Item name', 5, 100.00, ['color' => 'red', 'size' => 'M']);
-    ShoppingCart::update(37, 'Item name', 1, 200.00, ['color' => 'red', 'size' => 's']);
-    ShoppingCart::add(38, 'Item name', 1, 100.00, ['color' => 'red', 'size' => 'L']);
-
-    dd(ShoppingCart::all());
-
-});
-
-
 /////fronent.
 Route::get('/clc', function() {
 
@@ -40,6 +29,8 @@ Route::get('/', function(){
         'data' => App\Slide::orderBy('slide_number','ASC')->get(),
     );
     // dd( $data['data']);
+        'cate'   => \App\Category::orderBy('sort')->get()
+    );
     return view('frontend.index',$data);
 });
 
@@ -198,7 +189,7 @@ Route::get('sortproductorder','Admin\ProductsController@sortproductorder');
 Route::get('sortreview','Admin\ProductsController@getsortreview');
 Route::get('searchproduct','Admin\ProductsController@searchproduct');
 
-///////////////////////// //////////////////////////////////////////////////////////////////
+///////////////////////// ///////////////////////////////////////////backend////////////////////////////////////////////////////
 Route::get('admin','Admin\UsersController@LoginAdmin');
   
 Route::get('/adduser', 'Admin\UsersController@AddUser');
@@ -277,24 +268,19 @@ Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
 Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
 
 
+////////////////order
+Route::get('/ordercontent', 'Admin\OrderController@ShowOrder');
+Route::get('/orederdetail/{id}', 'Admin\OrderController@OrederDetail');
 
 ////////////////////new///////////////////////////
 Route::get('/addnew', 'Admin\NewsController@Addnew');
 Route::get('/deletenew/{id}', 'Admin\NewsController@Deletenew');
 Route::get('/editnew/{id}', 'Admin\NewsController@Editnew');
 Route::get('/newcontent', 'Admin\NewsController@ShownewContent');
-// Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
 Route::get('/detailnew/{id}', 'Admin\NewsController@Detailnew');
-
-// Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
-
-
-// Route::post('/saveviewblog', 'Admin\BlogController@SaveViewBlog');
 Route::post('/savenew', 'Admin\NewsController@Savenew');
 Route::post('/updatenew/{id}', 'Admin\NewsController@Updatenew');
-// Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
-// Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
-// Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
+
 
 
 

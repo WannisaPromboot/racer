@@ -596,7 +596,7 @@
                 '<div class="col-sm-12">'+
                     '<input type="file" style="display: none;"  name="sub_gallery['+(gallery).toString()+']" class="form-control chooseImage'+gallery+'" id="slidepicture'+gallery+'" multiple="multiple" onchange="readGalleryURL2(this,'+gallery+')">'+
                     '<img id="gallerypreview'+gallery+'" style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage('+gallery+')" />'+
-                    '<input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center">'+
+                    '<input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center" required>'+
                     '<button  type="button" class="btn btn-danger" onclick="deletegallery('+gallery+')" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>'+
                 '</div>'+
             '</div>'+
