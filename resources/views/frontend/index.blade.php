@@ -397,7 +397,7 @@ a:hover, a:focus {
         <?php  $i = '01'; ?>
         @foreach ($cate as $_cate)
         <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
-         $subcate = \App\Subcategory::where('id_category',$_cate->id_category)->limit(2)->get();
+         $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(2)->get();
          ?>
         @if(count($product) > 0)
         <div class="container">
