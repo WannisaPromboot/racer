@@ -25,4 +25,9 @@ class AddacartController extends Controller
         return redirect('cart'); 
       
     }
+
+    public function deleteitemincart(Request $request){
+        Session::forget('product.'.$request->item);
+
+    }
 }

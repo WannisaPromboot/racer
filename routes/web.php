@@ -165,6 +165,7 @@ Route::get('footerd',function(){
 /////////////////////////////////////////////////controller frontend
 
 Route::get('addcart/{id}', 'Frontend\AddacartController@addCart');
+Route::get('deleteitemincart', 'Frontend\AddacartController@deleteitemincart');
 
 
 
@@ -183,10 +184,10 @@ Route::post('logincustomer/{model}', 'Auth\LoginController@LogIn')->name('LogIn'
 Route::get('logout', 'Auth\LoginController@LogOut');
 // Route::post('resetpassword/{model}/{id}','Auth\ResetPasswordController@ResetPassword')->name('ResetPassword');
 
-Route::get('sortproduct','Admin\ProductsController@getsortproduct');
-Route::get('sortproductorder','Admin\ProductsController@sortproductorder');
-Route::get('sortreview','Admin\ProductsController@getsortreview');
-Route::get('searchproduct','Admin\ProductsController@searchproduct');
+// Route::get('sortproduct','Admin\ProductsController@getsortproduct');
+// Route::get('sortproductorder','Admin\ProductsController@sortproductorder');
+// Route::get('sortreview','Admin\ProductsController@getsortreview');
+// Route::get('searchproduct','Admin\ProductsController@searchproduct');
 
 ///////////////////////// ///////////////////////////////////////////backend////////////////////////////////////////////////////
 Route::get('admin','Admin\UsersController@LoginAdmin');
@@ -270,6 +271,9 @@ Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer'
 ////////////////order
 Route::get('/ordercontent', 'Admin\OrderController@ShowOrder');
 Route::get('/orederdetail/{id}', 'Admin\OrderController@OrederDetail');
+Route::get('receipt','Admin\OrderController@receipt');
+Route::get('changestatus','Admin\OrderController@changestatus');
+Route::get('changeshipping','Admin\OrderController@changeshipping');
 
 ////////////////////new///////////////////////////
 Route::get('/addnew', 'Admin\NewsController@Addnew');

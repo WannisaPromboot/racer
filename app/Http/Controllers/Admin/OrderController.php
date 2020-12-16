@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Order;
+use DB;
 
 class OrderController extends Controller
 {
@@ -20,5 +21,23 @@ class OrderController extends Controller
             'order' => \App\Order::where('id_order',$id)->first(),
         );
         return view('Admin.order.order-detail',$data);
+    }
+
+    public function receipt(Request $request){
+        $img  = \App\OrderPayment::where('id_order',$request->id)->first();
+
+
+        echo '<img src="'.url('storage/app/'.$img->filepath).'">';
+
+    }
+
+    public function changestatus(Request $request){
+        DB::table('product_order')->where('id_order',$request->id)->update(['status_payment' => $request->value]);
+
+    }
+
+    public function changeshipping(Request $request){
+        DB::table('product_order')->where('id_order',$request->id)->update(['status_delivery' => $request->value]);
+
     }
 }
