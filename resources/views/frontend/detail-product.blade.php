@@ -729,88 +729,166 @@ height: 165px;
                         <div class="container2">
 
                             @foreach ($imgs as $img)
+                            @if(!empty($img->filepath))
                             <div class="mySlides" style="display: block;">
                                 <img class="pro-img" src="{{url('storage/app/'.$img->filepath.'')}}" style="width:100%">
                             </div>
+                            @else 
+                            <div class="mySlides" style="display: block;">
+                                <iframe class="pro-img" src="{{$img->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                            </div>
+                            @endif
+                           
                             @endforeach
 
                           <div class="caption-container">
                             <p id="caption"></p>
                           </div>
-                        
                         <div class="owl-carousel owl-theme">
                           <div class="row">
-                              @if(!empty($imgs[0]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[0]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
-                                </div>
-                              @endif
-                              @if(!empty($imgs[1]))
-                              <div class="column">
-                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[1]->filepath.'')}}" style="width:100%" onclick="currentSlide(2)">
-                              </div>
-                              @endif
-                              @if(!empty($imgs[2]))
-                              <div class="column">
-                                  <img class="demo cursor active" src="{{url('storage/app/'.$imgs[2]->filepath.'')}}" style="width:100%" onclick="currentSlide(3)">
-                              </div>
-                              @endif
+                                @if(!empty($imgs[0]))
+                                    @if(!empty($imgs[0]->filepath) )
+                                        <div class="column">
+                                            <img class="demo cursor actve" src="{{url('storage/app/'.$imgs[0]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                        </div>
+                                    @else 
+                                    <div class="column">
+                                            <iframe class="img-fluid" src="{{$imgs[0]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
+                                @endif
+                                @if(!empty($imgs[1]))
+                                    @if(!empty($imgs[1]->filepath))
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[1]->filepath.'')}}" style="width:100%" onclick="currentSlide(2)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                            <iframe class="img-fluid" src="{{$imgs[1]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
+                                @endif
+                                @if(!empty($imgs[2]))
+                                    @if(!empty($imgs[2]->filepath))
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[2]->filepath.'')}}" style="width:100%" onclick="currentSlide(3)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                            <iframe class="img-fluid" src="{{$imgs[2]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
+                                @endif
                           </div>
                           @if(!empty($imgs[3]))
                           <div class="row">
                                 @if(!empty($imgs[3]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[3]->filepath.'')}}" style="width:100%" onclick="currentSlide(4)">
-                                </div>
+                                    @if(!empty($imgs[3]->filepath))
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[3]->filepath.'')}}" style="width:100%" onclick="currentSlide(4)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[3]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                                 @if(!empty($imgs[4]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[4]->filepath.'')}}" style="width:100%" onclick="currentSlide(5)">
-                                </div>
+                                    @if( !empty($imgs[4]->filepath) )
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[4]->filepath.'')}}" style="width:100%" onclick="currentSlide(5)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[4]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                                 @if(!empty($imgs[5]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[5]->filepath.'')}}" style="width:100%" onclick="currentSlide(6)">
-                                </div>
+                                    @if(!empty($imgs[5]))
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[5]->filepath.'')}}" style="width:100%" onclick="currentSlide(6)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[5]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                           </div>
                           @endif
                           @if(!empty($imgs[6]))
                           <div class="row">
                                 @if(!empty($imgs[6]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[6]->filepath.'')}}" style="width:100%" onclick="currentSlide(7)">
-                                </div>
+                                    @if(  !empty($imgs[6]->filepath) )
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[6]->filepath.'')}}" style="width:100%" onclick="currentSlide(7)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[6]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                                 @if(!empty($imgs[7]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[7]->filepath.'')}}" style="width:100%" onclick="currentSlide(8)">
-                                </div>
+                                    @if( !empty($imgs[7]->filepath))
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[7]->filepath.'')}}" style="width:100%" onclick="currentSlide(8)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[7]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                                 @if(!empty($imgs[8]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(9)">
-                                </div>
+                                    @if( !empty($imgs[8]->filepath) )
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(9)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[8]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                           </div>
                           @endif
-                          
+                        
                           @if(!empty($imgs[9]))
                           <div class="row">
-                                @if(!empty($imgs[9]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(10)">
-                                </div>
+                                @if(!empty($imgs[0]))
+                                    @if( !empty($imgs[9]->filepath) )
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[9]->filepath.'')}}" style="width:100%" onclick="currentSlide(10)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[9]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                                 @if(!empty($imgs[10]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(11)">
-                                </div>
+                                    @if(!empty($imgs[10]->filepath) )
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[10]->filepath.'')}}" style="width:100%" onclick="currentSlide(11)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[10]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                                 @if(!empty($imgs[11]))
-                                <div class="column">
-                                    <img class="demo cursor active" src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(12)">
-                                </div>
+                                    @if(!empty($imgs[11]) && !empty($imgs[11]->filepath))
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[11]->filepath.'')}}" style="width:100%" onclick="currentSlide(12)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[11]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
                                 @endif
                           </div>
                           @endif

@@ -98,6 +98,20 @@ class ProductController extends Controller
     
                 $newGallery->save();
             }
+
+            if(!empty($request->video[$key])){
+                $newGallery = new ProductGallery;
+                $newGallery->sap_code   = $request->sap_code;
+                $newGallery->sort        = $request->sub_sort[$key];
+                $newGallery->id_product   = $newProduct->id_product;
+    
+                //////วิดิโอ
+                $youtube =  str_replace("watch?v=", "embed/",$request->video[$key]);
+                $newGallery->video = $youtube;
+    
+                $newGallery->save();
+
+            }
            
         }
 
@@ -240,8 +254,6 @@ class ProductController extends Controller
                
             }
         }
-
-
        
          if(isset($request->sub_gallery)){
             foreach($request->sub_gallery as $key => $value){
@@ -258,21 +270,49 @@ class ProductController extends Controller
         
                     $updateGallery->save();
                 }else{
-                    $newGallery = new ProductGallery;
-                    $newGallery->sap_code   = $request->sap_code;
-                    $newGallery->id_product   = $updateProduct->id_product;
-                    $newGallery->sort        = $request->sub_sort[$key];
-        
-                    //////รูป
-                    $newFilename = 'Product/'.time().$value->getClientOriginalName();
-                    Storage::put($newFilename, file_get_contents($value));
-                    $newGallery->filepath = $newFilename;
-        
-                    $newGallery->save();
+
+                    if(!empty($request->sub_gallery[$key])){
+                        $newGallery = new ProductGallery;
+                        $newGallery->sap_code   = $request->sap_code;
+                        $newGallery->id_product   = $updateProduct->id_product;
+                        $newGallery->sort        = $request->sub_sort[$key];
+            
+                        //////รูป
+                        $newFilename = 'Product/'.time().$value->getClientOriginalName();
+                        Storage::put($newFilename, file_get_contents($value));
+                        $newGallery->filepath = $newFilename;
+            
+                        $newGallery->save();
+                    }
+             
                 }
                
             }
          }
+
+            ////////////////update video 
+            if(isset($request->video)){
+                                    //////video
+                foreach($request["video"] as $key => $video){
+                   
+                    if($video != NULL){
+                        $updateGallery  = ProductGallery::where('id_product_gallery',$key)->first();
+                            $newGallery = new ProductGallery;
+                            $newGallery->sap_code   = $request->sap_code;
+                            $newGallery->sort        = $request->sub_sort[$key];
+                            $newGallery->id_product   = $updateProduct->id_product;
+                
+                            //////วิดิโอ
+                            $youtube =  str_replace("watch?v=", "embed/",$request->video[$key]);
+                            $newGallery->video = $youtube;
+                
+                            $newGallery->save();
+                        
+                    }
+                    
+                }
+            }
+
             ///////////////update sort
             if(isset($request->sub_sort) ){   
                 foreach($request["sub_sort"] as $key => $subsort){
