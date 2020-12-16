@@ -27,7 +27,6 @@ Route::get('/clc', function() {
 Route::get('/', function(){
     $data = array(
         'data' => App\Slide::orderBy('slide_number','ASC')->get(),
-    );
     // dd( $data['data']);
         'cate'   => \App\Category::orderBy('sort')->get()
     );
