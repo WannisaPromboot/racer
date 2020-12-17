@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'แก้ไขแบนเนอร์และสไลด์' :'Edit Banner & Slide'}} @endsection
+@section('title') {{Session::get('lang')=='th'?'แก้ไขสไลด์' :'Edit Slide'}} @endsection
 
 @section('css') 
     <!-- Summernote css -->
@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18"> {{Session::get('lang')=='th'?'แก้ไขแบนเนอร์และสไลด์' :'Edit Banner & Slide'}}</h4>
+        <h4 class="mb-0 font-size-18"> {{Session::get('lang')=='th'?'แก้ไขสไลด์' :'Edit Slide'}}</h4>
         </div>
     </div>
 </div>     

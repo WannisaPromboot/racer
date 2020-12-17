@@ -346,7 +346,8 @@ a:hover, a:focus {
 
 			@foreach($data as $datas)
 				{{-- @if(!empty($datas->slide_image)) --}}
-				<div class="slider-item" style="background-image: url({{url('storage/app/'.$datas->slide_image)}});">
+				<div class="slider-item">
+					<img src="{{url('storage/app/'.$datas->slide_image)}}"  style="width: 100%; height:auto;">
 				{{-- @else --}}
 				{{-- <iframe class="slider-item" src="{{$datas->slide_video}}?loop=1&controls=0" style="width: 100%; height:400px;" ></iframe> --}}
 				{{-- <div class="slider-item" style="background-image: url({{url('storage/app/'.$datas->slide_image)}});"> --}}
@@ -385,8 +386,9 @@ a:hover, a:focus {
         </div>
         <?php  $i = '01'; ?>
         @foreach ($cate as $_cate)
-        <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
-         $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(2)->get();
+        <?php   $banner = \App\Banner::where('category_id',$_cate->id_category)->orderBy('banner_number','ASC')->get();
+                $product = \App\Product::where('id_category',$_cate->id_category)->get();
+                $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(2)->get();
          ?>
         @if(count($product) > 0)
         <div class="container">
@@ -411,23 +413,23 @@ a:hover, a:focus {
                     <div class="container" >
                         <div class="row">
                             <div class="col-md-6" id="pro-mar">
-                                <a href="{{url('/detail-product')}}"><img class="pro-img3" src="{{url('storage/app/'.$product[0]->product_img)}}"></a>
+                                <a href="{{url('/detail-product')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
                             </div>
                             <div class="col-md-6" id="pro-mar">
                                 
                                 <div class="container" id="con-pro">
                                     <div class="row" >
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$product[1]->product_img)}}"></a>
+                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$banner[1]->banner_image)}}"></a>
                                         </div>
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$product[2]->product_img)}}"></a>
+                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$banner[2]->banner_image)}}"></a>
                                         </div>
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$product[3]->product_img)}}"></a>
+                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$banner[3]->banner_image)}}"></a>
                                         </div>
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$product[4]->product_img)}}"></a>
+                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$banner[4]->banner_image)}}"></a>
                                         </div>
                                     </div>
                                 </div>
