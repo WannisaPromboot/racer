@@ -232,6 +232,16 @@ Route::post('/updatesubcategory/{id}', 'Admin\categoryController@UpdateSubcatego
 Route::get('/getcategory', 'Admin\categoryController@Getcategory');
 Route::get('/viewsubcategory', 'Admin\categoryController@ViewSubCategory');
 
+/////////////banner of category
+Route::get('/addbanner', 'Admin\BannerController@Addbanner');
+Route::get('/editbanner/{id}', 'Admin\BannerController@Editbanner');
+Route::get('/bannercontent', 'Admin\BannerController@ShowbannerContent');
+Route::get('change_sortbanner','Admin\BannerController@change_sortbanner');
+Route::get('change_select','Admin\BannerController@change_select');
+Route::get('viewbanner/{id}','Admin\BannerController@Viewbanner');
+
+Route::post('/savebanner', 'Admin\BannerController@Savebanner');
+Route::post('/updatebanner', 'Admin\BannerController@Updatebanner');
 
 ///////////////product
 Route::get('/productcontent', 'Admin\ProductController@ProductContent');

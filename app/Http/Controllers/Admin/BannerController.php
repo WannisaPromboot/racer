@@ -5,112 +5,145 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Storage;
-use App\Slide;
+use App\Banner;
+use App\Category;
 use DB;
 use Config;
 
-class SlidesController extends Controller
+class BannerController extends Controller
 {
     //
-    public function AddSlide(){
-        return view('Admin.slide.add-slide');
-    }
-
-
-    public function ShowSlideContent(){
+    public function Addbanner(){
         $data = array(
-            'data' => Slide::orderBy('slide_number','ASC')->get(),
+            'data' => Category::get(),
         );
-        return view('Admin.slide.slide-content',$data);
+        return view('Admin.banner.add-banner',$data);
     }
 
-    public function EditSlide($id){
+
+    public function ShowbannerContent(){
         $data = array(
-            'slide'   => Slide::where('slide_id',$id)->first(),
+            'data' => Category::get(),
+        );
+        return view('Admin.banner.banner-content',$data);
+    }
+
+    public function Editbanner($id){
+        $data = array(
+            'banner'   => Banner::where('category_id',$id)->get(),
+            'data' => Category::get(),
+            'idcate' => $id
         );
 
-        return view('Admin.slide.edit-slide',$data);
+        return view('Admin.banner.edit-banner',$data);
     }
 
 
-    public function SaveSlide(Request $request){
-        $SlideContent = new Slide;
+    public function Savebanner(Request $request){
+        $bannerContent = new Banner;
         if($request->sort !== null){
-            $SlideContent->slide_number = $request->sort;
+            $bannerContent->banner_number = $request->sort;
         }else{
-            $SlideContent->slide_number = 0;
+            $bannerContent->banner_number = 0;
 
         }
                     ////video youtube
         if($request->video !== null){
             $youtube =  str_replace("watch?v=", "embed/",$request->video);
-            $SlideContent->slide_video = $youtube;
+            $bannerContent->banner_video = $youtube;
         }
 
         
         if($request->filepath !== null){
-            $newFilename = 'Slide/'.time().$request->filepath->getClientOriginalName();
+            $newFilename = 'Banner/'.time().$request->filepath->getClientOriginalName();
             Storage::put($newFilename, file_get_contents($request->filepath));
-            $SlideContent->slide_image = $newFilename;
+            $bannerContent->banner_image = $newFilename;
         }
 
-        $SlideContent->save();
+        $bannerContent->save();
 
 
-        return redirect('slidecontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
+        return redirect('bannercontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
 
-    public function UpdateSlide(Request $request, $id){
-        $SlideContent = Slide::where('slide_id',$id)->first();
-        $SlideContent->title_th = $request->title_th;
-        $SlideContent->link = $request->link;
-        $SlideContent->sort = $request->sort;
-        $SlideContent->datefrom = $request->datefrom;
-        $SlideContent->dateto = $request->dateto;
-
-                    ////video youtube
-        $youtube =  str_replace("watch?v=", "embed/",$request->video);
-        $SlideContent->video = $youtube;
-
+    public function Updatebanner(Request $request){
         
-        if($request->filepath !== null){
-            $newFilename = 'Slide/'.time().$request->filepath->getClientOriginalName();
-            Storage::put($newFilename, file_get_contents($request->filepath));
-            $SlideContent->filepath = $newFilename;
-        }
+        if($request->filepath1 !== null){
+            $bannerContent1 = Banner::where('category_id',$request->id_category)->where('banner_number',1)->first();
+            $newFilename1 = 'Banner/'.time().$request->filepath1->getClientOriginalName();
+            Storage::put($newFilename1, file_get_contents($request->filepath1));
+            if(!empty($bannerContent1)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',1)->update(['banner_image'=>$newFilename1]);
+            }else{
+                DB::insert('insert into banner (category_id, banner_image ,banner_number) values (?,?,?)', [$request->id_category,$newFilename1,1]);
 
-        $SlideContent->save();
-
-        if(isset($request->target)){
-            slideitem::where('slide_id',$id)->delete();
-
-            foreach($request['target'] as $key  => $item){
-                $SlideItemContent = new slideitem;
-    
-                $SlideItemContent->slide_id = $id;
-                $SlideItemContent->target = $item;
-    
-                $SlideItemContent->save();
             }
-    
-    
         }
-            
-        return redirect('slidecontent')->with('Save','แก้ไขเนื้อหาเรียบร้อยแล้ว');
+
+
+        if($request->filepath2 !== null){
+            $bannerContent2 = Banner::where('category_id',$request->id_category)->where('banner_number',2)->first();
+            $newFilename2 = 'Banner/'.time().$request->filepath2->getClientOriginalName();
+            Storage::put($newFilename2, file_get_contents($request->filepath2));
+            if(!empty($bannerContent2)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',2)->update(['banner_image'=>$newFilename2]);
+            }else{
+                DB::insert('insert into banner (category_id, banner_image ,banner_number) values (?,?,?)', [$request->id_category,$newFilename2,2]);
+
+            }
+        }
+
+        if($request->filepath3 !== null){
+            $bannerContent3 = Banner::where('category_id',$request->id_category)->where('banner_number',3)->first();
+            $newFilename3 = 'Banner/'.time().$request->filepath3->getClientOriginalName();
+            Storage::put($newFilename3, file_get_contents($request->filepath3));
+            if(!empty($bannerContent3)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',3)->update(['banner_image'=>$newFilename3]);
+            }else{
+                DB::insert('insert into banner (category_id, banner_image ,banner_number) values (?,?,?)', [$request->id_category,$newFilename3,3]);
+
+            }
+        }
+
+        if($request->filepath4 !== null){
+            $bannerContent4 = Banner::where('category_id',$request->id_category)->where('banner_number',4)->first();
+            $newFilename4 = 'Banner/'.time().$request->filepath4->getClientOriginalName();
+            Storage::put($newFilename4, file_get_contents($request->filepath4));
+            if(!empty($bannerContent4)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',4)->update(['banner_image'=>$newFilename4]);
+            }else{
+                DB::insert('insert into banner (category_id, banner_image ,banner_number) values (?,?,?)', [$request->id_category,$newFilename4,4]);
+
+            }
+        }
+
+        if($request->filepath5 !== null){
+            $bannerContent5 = Banner::where('category_id',$request->id_category)->where('banner_number',5)->first();
+            $newFilename5 = 'Banner/'.time().$request->filepath5->getClientOriginalName();
+            Storage::put($newFilename5, file_get_contents($request->filepath5));
+            if(!empty($bannerContent5)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',5)->update(['banner_image'=>$newFilename5]);
+            }else{
+                DB::insert('insert into banner (category_id, banner_image ,banner_number) values (?,?,?)', [$request->id_category,$newFilename5,5]);
+
+            }
+        }
+
+        return redirect('bannercontent')->with('Save','อัพเดตข้อมูลเรียบร้อยแล้ว');
 
     }
 
 
     public function change_sortslide(Request $request){
         $data['sort'] = $request->slide_sort;
-        Slide::where('slide_id',$request->slide_id)->update($data);
+        Banner::where('slide_id',$request->slide_id)->update($data);
 
     }
 
 
     public function ViewSlide(Request $request,$id){
-        $slide  =   Slide::where('slide_id',$id)->first();
+        $slide  =   Banner::where('slide_id',$id)->first();
 
         $month_th['01'] = 'ม.ค.';
         $month_th['02'] = 'ก.พ.';

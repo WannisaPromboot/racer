@@ -52,6 +52,7 @@
                         <span>{{Session::get('lang')=='th'?'การจัดการหมวดหมู่':'Category Management'}}</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{url('bannercontent')}}">{{Session::get('lang')=='th'?'แบนเนอร์':'Banner'}}</a></li>
                         <li><a href="{{url('categorycontent')}}">{{Session::get('lang')=='th'?'เมนูหลัก':'Category'}}</a></li>
                         <li><a href="{{url('subcategorycontent')}}">{{Session::get('lang')=='th'?'หมวดหมู่ย่อย 1':'Sub Category 1'}}</a></li>
                     </ul> 
