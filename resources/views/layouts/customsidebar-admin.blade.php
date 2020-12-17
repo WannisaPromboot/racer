@@ -49,6 +49,16 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/racer/icon/grid.png')}}">
+                        <span>ข่าวสารและโปรโมชั่น</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{url('newcontent')}}">ข่าวสาร</a></li>
+                        <li><a href="{{url('promotioncontent')}}">โปรโมชั่น</a></li>
+                    </ul> 
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <img src="{{asset('assets/images/racer/icon/grid.png')}}">
                         <span>การจัดการหมวดหมู่</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
