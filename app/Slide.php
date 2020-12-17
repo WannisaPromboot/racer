@@ -9,5 +9,3 @@ class Slide extends Model
     protected $table = 'slide';
     protected $primaryKey = 'id_slide';
 }
-
-?>

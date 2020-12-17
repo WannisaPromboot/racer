@@ -377,7 +377,13 @@
                                             <div class="form-group">
                                                 <div class="col-sm-12">
                                                 <input type="file" style="display: none;" name="sub_gallery[{{$picture->id_product_gallery}}]" class="form-control chooseImage{{$picture->id_product_gallery}}" id="slidepicture{{$picture->id_product_gallery}}" multiple="multiple" onchange="readGalleryURL2(this,{{$picture->id_product_gallery}})">
+                                                    @if(!empty($picture->filepath))
                                                     <img id="gallerypreview{{$picture->id_product_gallery}}" style="max-height:250px ;" alt="{{url('no-image.jpg')}}" src="{{url('storage/app/'.$picture->filepath)}}" onclick="browsImage({{$picture->id_product_gallery}})" />
+                                                    @else
+                                                        <img id="gallerypreview{{$picture->id_product_gallery}}" style="max-height:250px ;opacity: 20%;" alt="{{url('no-image.jpg')}}" src="{{asset('images/brows.png')}}" />
+                                                    @endif
+                                                    <input type="text" id="vdo{{$picture->id_product_gallery}}" name="video[{{$picture->id_product_gallery}}]" class="form-control"  placeholder="youtube.com" onchange="insertvideo({{$picture->id_product_gallery}})" value="{{$picture->video}}">
+                                                    <br>
                                                     <input type="text" name="sub_sort[{{$picture->id_product_gallery}}]"  class="form-control text-center" value="{{$picture->sort}}" />
                                                     <button  type="button" class="btn btn-danger" onclick="deletegallery({{$picture->id_product_gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>
                                                 </div>
@@ -596,6 +602,8 @@
                 '<div class="col-sm-12">'+
                     '<input type="file" style="display: none;"  name="sub_gallery['+(gallery).toString()+']" class="form-control chooseImage'+gallery+'" id="slidepicture'+gallery+'" multiple="multiple" onchange="readGalleryURL2(this,'+gallery+')">'+
                     '<img id="gallerypreview'+gallery+'" style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage('+gallery+')" />'+
+                    '<input type="text" id="vdo'+gallery+'" name="video['+(gallery).toString()+']" class="form-control"  placeholder="youtube.com" onchange="insertvideo('+gallery+')">'+
+                    '<br>'+
                     '<input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center" required>'+
                     '<button  type="button" class="btn btn-danger" onclick="deletegallery('+gallery+')" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>'+
                 '</div>'+
@@ -622,10 +630,25 @@
 
         reader.onload = function(e) {
             $('#gallerypreview'+id).attr('src', e.target.result);
+            $('#vdo'+id).attr('disabled','disabled');
+            $('#vdo'+id).css('background-color','#CACCCE');
         }
         reader.readAsDataURL(input.files[0]);
         }
     }
+
+    function insertvideo(id){
+        
+        if($('#vdo'+id).val() != ''){
+            $('#gallerypreview'+id).css('opacity','20%');
+            $('#gallerypreview'+id).removeAttr('onclick');
+        }else{
+            $('#gallerypreview'+id).css('opacity','100%');
+            $('#gallerypreview'+id).attr('onclick','browsImage('+id+')');
+        }
+     
+    }
+
 
 
        //////////ภาพหน้าปก

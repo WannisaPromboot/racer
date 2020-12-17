@@ -353,6 +353,8 @@
                                     <div class="col-sm-12">
                                     <input type="file" style="display: none;"  name="sub_gallery[1]" class="form-control chooseImage1" id="slidepicture1" multiple="multiple" onchange="readGalleryURL2(this,1)">
                                         <img id="gallerypreview1"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(1)" />
+                                        <input type="text" id="vdo1" name="video[1]" class="form-control"  placeholder="youtube.com" onchange="insertvideo(1)">
+                                        <br>
                                         <input type="text" name="sub_sort[1]" class="form-control text-center" required>
                                         {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery({{$gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
                                     </div>
@@ -658,6 +660,8 @@
                 '<div class="col-sm-12">'+
                     '<input type="file" style="display: none;"  name="sub_gallery['+(gallery).toString()+']" class="form-control chooseImage'+gallery+'" id="slidepicture'+gallery+'" multiple="multiple" onchange="readGalleryURL2(this,'+gallery+')">'+
                     '<img id="gallerypreview'+gallery+'" style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage('+gallery+')" />'+
+                    '<input type="text" id="vdo'+gallery+'" name="video['+(gallery).toString()+']" class="form-control"  placeholder="youtube.com" onchange="insertvideo('+gallery+')">'+
+                    '<br>'+
                     '<input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center" required>'+
                     '<button  type="button" class="btn btn-danger" onclick="deletegallery('+gallery+')" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>'+
                 '</div>'+
@@ -684,9 +688,23 @@
 
         reader.onload = function(e) {
             $('#gallerypreview'+id).attr('src', e.target.result);
+            $('#vdo'+id).attr('disabled','disabled');
+            $('#vdo'+id).css('background-color','#CACCCE');
         }
         reader.readAsDataURL(input.files[0]);
         }
+    }
+
+    function insertvideo(id){
+        
+        if($('#vdo'+id).val() != ''){
+            $('#gallerypreview'+id).css('opacity','20%');
+            $('#gallerypreview'+id).removeAttr('onclick');
+        }else{
+            $('#gallerypreview'+id).css('opacity','100%');
+            $('#gallerypreview'+id).attr('onclick','browsImage('+id+')');
+        }
+     
     }
 
     //////////ภาพหน้าปก

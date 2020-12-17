@@ -34,6 +34,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+      <!-- Sweertalert -->
+      <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
+
   </head>
 
   <style>
@@ -936,19 +939,19 @@ text-align: left;
                                 {{-- <form action="/action_page.php"> --}}
                                     <div class="row">
                                         <div class="col-75">
-                                        <input type="text" id="fname" name="firstname" placeholder="Name*" required>
+                                        <input type="text" id="desk_fname" name="firstname" placeholder="Name*" >
                                         </div>
                                     </div>
                                     <div class="row">
                                     
                                         <div class="col-75">
-                                        <input type="text" id="lname" name="email" placeholder="E-mail*" required>
+                                        <input type="text" id="desk_email" name="email" placeholder="E-mail*" >
                                         </div>
                                     </div>
                                     <div class="row">
                                     
                                         <div class="col-75">
-                                        <input type="text" id="lname" name="address" placeholder="Address*" required>
+                                        <input type="text" id="desk_address" name="address" placeholder="Address*" >
                                         </div>
                                     </div>
                                 {{-- </form> --}}
@@ -959,19 +962,19 @@ text-align: left;
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="fname" name="lastname" placeholder="Last Name*" required>
+                                    <input type="text" id="desk_lname" name="lastname" placeholder="Last Name*" >
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="lname" name="telephone" placeholder="Phone No.*" required>
+                                    <input type="text" id="desk_telephone" name="telephone" placeholder="Phone No.*" >
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="lname" name="fax" placeholder="Fax*" required>
+                                    <input type="text" id="desk_fax" name="fax" placeholder="Fax*" >
                                     </div>
                                 </div>
                 
@@ -1020,19 +1023,19 @@ text-align: left;
                                 {{-- <form action="/action_page.php"> --}}
                                     <div class="row">
                                     <div class="col-75">
-                                        <input type="text" id="fname" name="tax_firstname" placeholder="Name*">
+                                        <input type="text" id="tax_fname" name="tax_firstname" placeholder="Name*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_email" placeholder="E-mail*">
+                                        <input type="text" id="tax_email" name="tax_email" placeholder="E-mail*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_address" placeholder="Address*">
+                                        <input type="text" id="tax_address" name="tax_address" placeholder="Address*">
                                     </div>
                                     </div>
                                     
@@ -1045,19 +1048,19 @@ text-align: left;
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="fname" name="tax_lastname" placeholder="Last Name*">
+                                        <input type="text" id="tax_lname" name="tax_lastname" placeholder="Last Name*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_telephone" placeholder="Phone No.*">
+                                        <input type="text" id="tax_telephone" name="tax_telephone" placeholder="Phone No.*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_fax" placeholder="Fax*">
+                                        <input type="text" id="tax_fax" name="tax_fax" placeholder="Fax*">
                                     </div>
                                     </div>
                 
@@ -1100,7 +1103,7 @@ text-align: left;
                                         <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
                                         <p class="upload2">กรุณาอัปโหลดหลักฐานการชำระเงินเพื่อช่วยให้เรายืนยันการชำระเงินได้รวดเร็วขึ้น</p>
                                             {{-- <form action="#"> --}}
-                                        <input type="file" id="myFile" name="filename" class="upload" required>
+                                        <input type="file" id="desk_file" name="filename" class="upload" >
                                         <br>
                                     </div>
                                 </div>
@@ -1111,10 +1114,10 @@ text-align: left;
                                     <div class="row" id="form-top">
                                     
                                         <div class="col-75" id="form-pad">
-                                            <input type="text" id="lname" name="numbercard" placeholder="หมายเลขบัตรเครดิต*">
+                                            <input type="text" id="desk_number" name="numbercard" placeholder="หมายเลขบัตรเครดิต*">
                                         </div>
                                         <div class="col-75" id="form-pad">
-                                            <input type="text" id="lname" name="ccv" placeholder="CCV*">
+                                            <input type="text" id="desk_ccv" name="ccv" placeholder="CCV*">
                                             </div>
                                         </div>
                                 </div>
@@ -1123,10 +1126,10 @@ text-align: left;
                                     <div class="row" id="form-top">
                                     
                                         <div class="col-75" id="form-pad2">
-                                            <input type="text" id="lname" name="expire" placeholder="วันหมดอายุบัตร*">
+                                            <input type="text" id="desk_expire" name="expire" placeholder="วันหมดอายุบัตร*">
                                         </div>
                                         <div class="col-75" id="form-pad2">
-                                            <input type="text" id="lname" name="namecard" placeholder="ชื่อผู้ถือบัตร*">
+                                            <input type="text" id="desk_namecard" name="namecard" placeholder="ชื่อผู้ถือบัตร*">
                                             </div>
                                         </div>
                                     </div>
@@ -1134,7 +1137,7 @@ text-align: left;
                             </div>
                         </div>
                         <div class="paymentmethod">
-                            <input type="hidden" name="payment_method" value="tranfer">
+                            <input type="hidden" id="payment_method" name="payment_method" value="tranfer">
                         </div>
                         <div class="container">
                             <div class="row" id="">
@@ -1165,37 +1168,37 @@ text-align: left;
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="fname" name="firstname" placeholder="Name*" required>
+                                    <input type="text" id="m_fname" name="firstname" placeholder="Name*" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="lname" name="lastname" placeholder="Last name*" required>
+                                    <input type="text" id="m_lname" name="lastname" placeholder="Last name*" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="lname" name="lastname" placeholder="E-mail" required>
+                                    <input type="text" id="m_email" name="lastname" placeholder="E-mail" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="lname" name="lastname" placeholder="Phone No.*" required>
+                                    <input type="text" id="m_telephone" name="lastname" placeholder="Phone No.*" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="lname" name="lastname" placeholder="Address*" required>
+                                    <input type="text" id="m_address" name="lastname" placeholder="Address*" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="lname" name="lastname" placeholder="Fax*" required>
+                                    <input type="text" id="m_fax" name="lastname" placeholder="Fax*" required>
                                     </div>
                                 </div>
                                 
@@ -1270,37 +1273,37 @@ text-align: left;
                                 {{-- <form action="/action_page.php" > --}}
                                     <div class="row">
                                     <div class="col-75">
-                                        <input type="text" id="fname" name="tax_firstname" placeholder="Name*">
+                                        <input type="text" id="m_tax_fname" name="tax_firstname" placeholder="Name*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_lastname" placeholder="Last name*">
+                                        <input type="text" id="m_tax_lname" name="tax_lastname" placeholder="Last name*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_email" placeholder="E-mail">
+                                        <input type="text" id="m_tax_email" name="tax_email" placeholder="E-mail">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_phone" placeholder="Phone No.*">
+                                        <input type="text" id="m_tax_telephone" name="tax_phone" placeholder="Phone No.*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_address" placeholder="Address*">
+                                        <input type="text" id="m_tax_address" name="tax_address" placeholder="Address*">
                                     </div>
                                     </div>
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="lname" name="tax_fax" placeholder="Fax*">
+                                        <input type="text" id="m_tax_fax" name="tax_fax" placeholder="Fax*">
                                     </div>
                                 </div>
                                     {{-- </form> --}}
@@ -1342,7 +1345,7 @@ text-align: left;
                                         <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
                                         <p class="upload2">กรุณาอัปโหลดหลักฐานการชำระเงินเพื่อช่วยให้เรายืนยันการชำระเงินได้รวดเร็วขึ้น</p>
                                             {{-- <form action="#"> --}}
-                                        <input type="file" id="myFile" name="filename" class="upload" required>
+                                        <input type="file" id="m_file" name="filename" class="upload" required>
                                         <br>
                                     </div>
                                 </div>
@@ -1353,10 +1356,10 @@ text-align: left;
                                     <div class="row" id="form-top">
                                     
                                         <div class="col-75" id="form-pad">
-                                            <input type="text" id="lname" name="lastname" placeholder="หมายเลขบัตรเครดิต*">
+                                            <input type="text" id="m_number" name="lastname" placeholder="หมายเลขบัตรเครดิต*">
                                         </div>
                                         <div class="col-75" id="form-pad">
-                                            <input type="text" id="lname" name="lastname" placeholder="CCV*">
+                                            <input type="text" id="m_ccv" name="lastname" placeholder="CCV*">
                                             </div>
                                         </div>
                                 </div>
@@ -1365,10 +1368,10 @@ text-align: left;
                                     <div class="row" id="form-top">
                                     
                                         <div class="col-75" id="form-pad2">
-                                            <input type="text" id="lname" name="lastname" placeholder="วันหมดอายุบัตร*">
+                                            <input type="text" id="m_expire" name="lastname" placeholder="วันหมดอายุบัตร*">
                                         </div>
                                         <div class="col-75" id="form-pad2">
-                                            <input type="text" id="lname" name="lastname" placeholder="ชื่อผู้ถือบัตร*">
+                                            <input type="text" id="m_cardname" name="lastname" placeholder="ชื่อผู้ถือบัตร*">
                                             </div>
                                         </div>
                                     </div>
@@ -1376,7 +1379,7 @@ text-align: left;
                             </div>
                         </div>
                         <div class="paymentmethod">
-                            <input type="hidden" name="payment_method" value="tranfer">
+                            <input type="hidden" id="payment_method" name="payment_method" value="tranfer">
                         </div>
                         <div class="container">
                             <div class="row" id="">
@@ -1501,6 +1504,8 @@ text-align: left;
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
+  <!-- Sweert Alert -->
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> 
 
   <script>
       $('.desknew').click(function() {
@@ -1520,14 +1525,424 @@ text-align: left;
       });
 
      $('.btncredit').click(function(){
-            $('.but').css('display','none');
-            $('.paymentmethod').html('<input type="hidden" name="payment_method" value="credit">');
+            //$('.but').css('display','none');
+            $('.paymentmethod').html('<input type="hidden" id="payment_method" name="payment_method" value="credit">');
      });
 
      $('.btntranfer').click(function(){
-            $('.but').removeAttr('style');
-            $('.paymentmethod').html('<input type="hidden" name="payment_method" value="tranfer">');
+           // $('.but').removeAttr('style');
+            $('.paymentmethod').html('<input type="hidden" id="payment_method" name="payment_method" value="tranfer">');
      });
+     
+
+
+     
+     $('#deskfrom').submit(function () {
+        if($.trim($('#desk_fname').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกชื่อ",
+                    type: 'warning',
+                });
+
+                $('#desk_fname').focus();
+
+                return false;
+            }
+
+            if($.trim($('#desk_lname').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกนามสกุล",
+                    type: 'warning',
+                });
+
+                $('#desk_lname').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#desk_address').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกที่อยู่",
+                    type: 'warning',
+                });
+
+                $('#desk_address').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#desk_email').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกอีเมล",
+                    type: 'warning',
+                });
+
+                $('#desk_email').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#desk_telephone').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกเบอร์โทรศัพท์",
+                    type: 'warning',
+                });
+
+                $('#desk_telephone').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#desk_fax').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกแฟกซ์",
+                    type: 'warning',
+                });
+
+                $('#desk_fax').focus();
+                
+                return false;
+            }
+
+        /////check true
+        if($('.desknew').is(':checked') == true ){
+            if($.trim($('#tax_fname').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกชื่อ",
+                    type: 'warning',
+                });
+
+                $('#tax_fname').focus();
+
+                return false;
+            }
+
+            if($.trim($('#tax_lname').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกนามสกุล",
+                    type: 'warning',
+                });
+
+                $('#tax_lname').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#tax_address').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกที่อยู่",
+                    type: 'warning',
+                });
+
+                $('#tax_address').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#tax_email').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกemail",
+                    type: 'warning',
+                });
+
+                $('#tax_email').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#tax_telephone').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกเบอร์โทรศัพท์",
+                    type: 'warning',
+                });
+
+                $('#tax_telephone').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#tax_fax').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกแฟกซ์",
+                    type: 'warning',
+                });
+
+                $('#tax_fax').focus();
+                
+                return false;
+            }
+        }
+
+
+        /////check 
+
+        if($('#payment_method').val() == 'tranfer'){
+
+            if($.trim($('#desk_file').val()) == ''){
+                Swal.fire({
+                    text: "กรุณาแนบไฟล์หลักฐานการจ่ายเงิน",
+                    type: 'warning',
+                });
+
+                $('#desk_file').focus();
+
+                return false;
+            }
+
+        }else if( $('#payment_method').val() == 'credit'){
+
+            if($.trim($('#desk_number').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกเลขบัตรเครดิต",
+                    type: 'warning',
+                });
+
+                $('#desk_number').focus();
+
+                return false;
+            }
+
+            if($.trim($('#desk_ccv').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกเลขหลังบัตร",
+                    type: 'warning',
+                });
+
+                
+                $('#desk_ccv').focus();
+
+                return false;
+            }
+
+            if($.trim($('#desk_expire').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกวันหมดอายุ",
+                    type: 'warning',
+                });
+
+                $('#desk_expire').focus();
+
+                return false;
+            }
+
+            if($.trim($('#desk_namecard').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกชื่อบนบัตร",
+                    type: 'warning',
+                });
+
+                $('#desk_namecard').focus();
+
+
+                return false;
+            }
+            
+        }
+     });   
+//////////////////mobile
+
+     $('#mobilefrom').submit(function () {
+        if($.trim($('#m_fname').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกชื่อ",
+                    type: 'warning',
+                });
+
+                $('#m_fname').focus();
+
+                return false;
+            }
+
+            if($.trim($('#m_lname').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกนามสกุล",
+                    type: 'warning',
+                });
+
+                $('#m_lname').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#m_address').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกที่อยู่",
+                    type: 'warning',
+                });
+
+                $('#m_address').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#m_email').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกอีเมล",
+                    type: 'warning',
+                });
+
+                $('#m_email').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#m_telephone').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกเบอร์โทรศัพท์",
+                    type: 'warning',
+                });
+
+                $('#m_telephone').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#m_fax').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกแฟกซ์",
+                    type: 'warning',
+                });
+
+                $('#m_fax').focus();
+                
+                return false;
+            }
+
+        /////check true
+        if($('.mobilenew').is(':checked') == true ){
+            if($.trim($('#tax_fname').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกชื่อ",
+                    type: 'warning',
+                });
+
+                $('#tax_fname').focus();
+
+                return false;
+            }
+
+            if($.trim($('#m_tax_lname').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกนามสกุล",
+                    type: 'warning',
+                });
+
+                $('#m_tax_lname').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#m_tax_address').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกที่อยู่",
+                    type: 'warning',
+                });
+
+                $('#m_tax_address').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#m_tax_email').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกemail",
+                    type: 'warning',
+                });
+
+                $('#m_tax_email').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#m_tax_telephone').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกเบอร์โทรศัพท์",
+                    type: 'warning',
+                });
+
+                $('#m_tax_telephone').focus();
+                
+                return false;
+            }
+
+            if($.trim($('#m_tax_fax').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกแฟกซ์",
+                    type: 'warning',
+                });
+
+                $('#m_tax_fax').focus();
+                
+                return false;
+            }
+        }
+
+
+        /////check 
+
+        if($('#payment_method').val() == 'tranfer'){
+
+            if($.trim($('#m_file').val()) == ''){
+                Swal.fire({
+                    text: "กรุณาแนบไฟล์หลักฐานการจ่ายเงิน",
+                    type: 'warning',
+                });
+
+                $('#m_file').focus();
+
+                return false;
+            }
+
+        }else if( $('#payment_method').val() == 'credit'){
+
+            if($.trim($('#m_number').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกเลขบัตรเครดิต",
+                    type: 'warning',
+                });
+
+                $('#m_number').focus();
+
+                return false;
+            }
+
+            if($.trim($('#m_ccv').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกเลขหลังบัตร",
+                    type: 'warning',
+                });
+
+                
+                $('#m_ccv').focus();
+
+                return false;
+            }
+
+            if($.trim($('#m_expire').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกวันหมดอายุ",
+                    type: 'warning',
+                });
+
+                $('#m_expire').focus();
+
+                return false;
+            }
+
+            if($.trim($('#m_namecard').val()) == ''){
+                Swal.fire({
+                    text: "กรุณากรอกชื่อบนบัตร",
+                    type: 'warning',
+                });
+
+                $('#m_namecard').focus();
+
+
+                return false;
+            }
+            
+        }
+     });  
 
   </script>
     

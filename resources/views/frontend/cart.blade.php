@@ -603,7 +603,7 @@ label {
 	</div>
 	<div class="col-md-4" id="pay-nemu">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]<span class="menu-span-col">|</span> </a></li>
+      <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('porduct')) ? '['.count(Session::get('porduct')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
       @if(empty(Session::get('customer_id')))
         <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
       @else
@@ -676,7 +676,7 @@ label {
         <?php $items = Session::get('product');  
             $sum  = 0;
         ?>
-        @foreach ($items as $item)
+        @foreach ($items as $key => $item)
         <?php $product = \App\Product::where('id_product',$item)->first(); ?>
         <div class="product">
             <div class="product-image">
@@ -698,9 +698,7 @@ label {
                 <input type="number" name="count[{{$item}}]" value="1" min="1">
             </div>
             <div class="product-removal">
-                <button class="remove-product">
-                Remove
-                </button>
+                <button type="button" class="remove-product" onclick="delitem({{$key}})">Remove</button>
             </div>
             @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
             <div class="product-line-price">{{number_format($product->product_special_price)}}</div>
@@ -952,6 +950,20 @@ label {
   //////////////////////convert to string with comma
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
+
+    ///////////////delitem
+    function delitem(item){
+        $.ajax({
+            url: '{{ url("deleteitemincart")}}',
+            type: 'GET',
+            data : {'item' : item},
+            success: function(data) {
+                
+            }
+        });
     }
 
     </script>

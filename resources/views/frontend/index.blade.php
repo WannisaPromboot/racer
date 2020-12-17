@@ -88,7 +88,7 @@
     margin-right: 15px;
 }
 #margin-pro{
-	margin: 0px 15px;
+	margin: 0px 10px;
 }
 #pro-mar{
     /* margin-left: -30px;
@@ -238,6 +238,40 @@ a:hover, a:focus {
 
 }
 
+
+
+/* --------dropdown-product---------------- */
+.dropdown2 {
+  position: relative;
+  display: inline-block;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+.dropdown-content a {
+  color: #777;
+  padding: 6px 2px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+	color: #00b9e9;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 </style>
 
   <body class="goto-here">
@@ -313,7 +347,7 @@ a:hover, a:focus {
 			</div>
 			<div class="col-md-4" id="pay-nemu">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>[1]<span class="menu-span-col">|</span> </a></li>
+					<li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('porduct')) ? '['.count(Session::get('porduct')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
 					@if(empty(Session::get('customer_id')))
 						<li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
 					@else
@@ -386,9 +420,14 @@ a:hover, a:focus {
         </div>
         <?php  $i = '01'; ?>
         @foreach ($cate as $_cate)
-        <?php   $banner = \App\Banner::where('category_id',$_cate->id_category)->orderBy('banner_number','ASC')->get();
-                $product = \App\Product::where('id_category',$_cate->id_category)->get();
-                $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(2)->get();
+        <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
+                $banner = \App\Banner::where('category_id',$_cate->id_category)->orderBy('banner_number','ASC')->get();
+              $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(4)->get();
+              $count_sub = count(\App\SubCategory::where('id_category',$_cate->id_category)->get());
+              $count = $count_sub - 4;
+              if( $count > 0){
+                $other_subcate = \App\SubCategory::where('id_category',$_cate->id_category)->skip(4)->take($count)->get();
+              }
          ?>
         @if(count($product) > 0)
         <div class="container">
@@ -398,11 +437,30 @@ a:hover, a:focus {
                         <div class="row">
 
                             <div class="col-md-12" >
-                                <p class="pro-index"><span class="title-num" id="margin-pro">{{$i}}</span> <span class="pro-title" id="margin-pro">{{$_cate->category_name_th}}</span><span class="popular" id="margin-pro"> #Popular searches</span>
+                                {{-- <p class="pro-index"><span class="title-num" id="margin-pro">{{$i}}</span> <span class="pro-title" id="margin-pro">{{$_cate->category_name_th}}</span>
+                                    <span class="popular" id="margin-pro"> #Popular searches</span>
                                     @foreach ($subcate as $_subcate)
                                         <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
                                     @endforeach
-                                </p>
+                                </p> --}}
+                                <span class="dropdown2">
+                                    <span class="title-num" id="margin-pro">01</span> 
+                                    <span class="pro-title" id="margin-pro">Lighting</span>
+                                    <span class="popular" id="margin-pro"> #Popular searches</span>
+                                    @foreach ($subcate as $_subcate)
+                                    <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
+                                    @endforeach
+                                    @if($count > 0)
+                                    <span class="dropdown">
+                                        <span class="next-pro" id="margin-pro">ALL PRODUCT</span>
+                                        <div class="dropdown-content">
+                                                @foreach ($other_subcate as $_other)
+                                                <a href="#"> {{$_other->subcategory_name_th}}</a>
+                                                @endforeach
+                                        </div>
+                                    </span>
+                                    @endif
+                                </span>
                                 <hr class="line-index">
                             </div>
 
