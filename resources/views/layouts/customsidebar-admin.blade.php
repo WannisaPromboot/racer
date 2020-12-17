@@ -49,6 +49,16 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/racer/icon/grid.png')}}">
+                        <span>{{Session::get('lang')=='th'?'ข่าวสารและโปรโมชั่น':'News & Promotion Management'}}</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{url('newcontent')}}">{{Session::get('lang')=='th'?'ข่าวสาร':'News'}}</a></li>
+                        <li><a href="{{url('promotioncontent')}}">{{Session::get('lang')=='th'?'โปรโมชั่น':'Promotion'}}</a></li>
+                    </ul> 
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <img src="{{asset('assets/images/racer/icon/grid.png')}}">
                         <span>{{Session::get('lang')=='th'?'การจัดการหมวดหมู่':'Category Management'}}</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
