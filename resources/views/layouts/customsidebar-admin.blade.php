@@ -25,7 +25,7 @@
                 <li>
                     <a href="{{url('home')}}"  class="waves-effect">
                         <img src="{{asset('assets/images/racer/icon/home-run.png')}}">
-                        <span>{{Session::get('lang')=='th'?'หน้าแรก':'Home'}}</span>
+                        <span>หน้าแรก</span>
                     </a> 
                 </li>
                 <li>
@@ -37,40 +37,40 @@
                 <li>
                     <a href="{{url('slidecontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/racer/icon/banner.png')}}">
-                        <span>{{Session::get('lang')=='th'?'การจัดการ  Banner & Slide':'Banner & Slide Management'}}</span>
+                        <span>การจัดการ  Banner & Slide</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{url('blogcontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/racer/icon/news.png')}}">
-                        <span>{{Session::get('lang')=='th'?'การจัดการบทความ':'Blog Management'}}</span>
+                        <span>การจัดการบทความ</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/racer/icon/grid.png')}}">
-                        <span>{{Session::get('lang')=='th'?'ข่าวสารและโปรโมชั่น':'News & Promotion Management'}}</span>
+                        <span>ข่าวสารและโปรโมชั่น</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{url('newcontent')}}">{{Session::get('lang')=='th'?'ข่าวสาร':'News'}}</a></li>
-                        <li><a href="{{url('promotioncontent')}}">{{Session::get('lang')=='th'?'โปรโมชั่น':'Promotion'}}</a></li>
+                        <li><a href="{{url('newcontent')}}">ข่าวสาร</a></li>
+                        <li><a href="{{url('promotioncontent')}}">โปรโมชั่น</a></li>
                     </ul> 
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/racer/icon/grid.png')}}">
-                        <span>{{Session::get('lang')=='th'?'การจัดการหมวดหมู่':'Category Management'}}</span>
+                        <span>การจัดการหมวดหมู่</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{url('bannercontent')}}">{{Session::get('lang')=='th'?'แบนเนอร์':'Banner'}}</a></li>
-                        <li><a href="{{url('categorycontent')}}">{{Session::get('lang')=='th'?'เมนูหลัก':'Category'}}</a></li>
-                        <li><a href="{{url('subcategorycontent')}}">{{Session::get('lang')=='th'?'หมวดหมู่ย่อย 1':'Sub Category 1'}}</a></li>
+                        <li><a href="{{url('bannercontent')}}">แบนเนอร์หมวดหมูู่</a></li>
+                        <li><a href="{{url('categorycontent')}}">เมนูหลัก</a></li>
+                        <li><a href="{{url('subcategorycontent')}}">หมวดหมู่ย่อย 1</a></li>
                     </ul> 
                 </li>
                 <li>
                     <a href="{{url('productcontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/racer/icon/lightbulb.png')}}">
-                        <span>{{Session::get('lang')=='th'?'สินค้า':'product'}}</span>
+                        <span>สินค้า</span>
                     </a> 
                 </li>
                 <li>
@@ -88,7 +88,7 @@
                 <li>
                     <a href="javascript:void(0)" class=" waves-effect">
                          <img src="{{asset('assets/images/racer/icon/seo-report.png')}}">
-                        <span>{{Session::get('lang')=='th'?'รายงาน':'Report'}}</span>
+                        <span>รายงาน</span>
                     </a>
                 </li>
             </ul>

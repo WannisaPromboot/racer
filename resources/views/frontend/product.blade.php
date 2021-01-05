@@ -34,10 +34,39 @@
   </head>
 
   <style>
-      .img-logo {
+    .img-logo {
         width: 60%;
 }
 
+
+.button {
+    background: #00c4ef;
+    border: 1px solid #00c4ef;
+    color: #fff !important;
+    font-size: 16px;
+    padding: 4px 0px;
+    width: inherit;
+    text-align: center;
+    max-width: 100%;
+    border-radius: 5px;
+}
+.name-pro{
+  font-size: 16px;
+  display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0px;
+}
+.price-pro{
+  font-size: 18px;
+  color: #00b9e9 !important;
+
+}
+.price-line{
+  text-decoration: line-through;
+  margin-bottom: 0px;
+}
 
 
 #pro-top{
@@ -252,7 +281,7 @@ div {
 		  <div class="dropdown-menu" aria-labelledby="dropdown04">
             <?php $menu = \App\Category::orderby('sort')->get(); ?>
                 @foreach ($menu as $_menu)
-                    <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
+                    <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
                 @endforeach
 		  </div>
 		</li>
@@ -319,7 +348,7 @@ div {
                                         <div class="panel panel-default">
                                             <div class="panel-heading" id="heading{{$i}}" role="tab">
                                                 <h4 class="panel-title">
-                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{$item->category_name_th}}<i class="pull-right fa fa-plus"></i></a>
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}<i class="pull-right fa fa-plus"></i></a>
                                                 </h4>
                                             </div>
                                             <div class="panel-collapse collapse" id="collapse{{$i}}" role="tabpanel"
@@ -365,7 +394,17 @@ div {
                                                       @foreach ($products as $item)
                                                       <div class="col-md-4 col-lg-4 mb-4" >
                                                             <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$item->product_img)}}"></a>
-                                                      </div>
+                                                            <center><p class="name-pro">{{!empty($item->product_name_th) ? $item->product_name_th : '' }}</p><center>
+                                                            @if(!empty(	$item->product_special_price))
+                                                                <center><p class="price-line">฿{{$item->product_normal_price}}</p><center>
+                                                            @endif
+                                                            @if(!empty(	$item->product_special_price))
+                                                            <center><p class="price-pro">฿{{$item->product_special_price}}</p><center>
+                                                            @else 
+                                                            <center><p class="price-pro">฿{{$item->product_normal_price}}</p><center>
+                                                            @endif
+                                                            <center><a href="#"><p class="button"><span class="icon-shopping_cart"></span> สั่งซื้อสินค้า</p></a></center>
+                                                       </div>
                                                       @endforeach
                                                     </div>
                                                 </div>

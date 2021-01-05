@@ -30,11 +30,44 @@
   </head>
 
   <style>
+  /* ----banner-slider---------- */
+  .owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 650px;
+    height: calc(50vh - 180px) !important;
+    min-height: 560px;
+}
+.owl-carousel.home-slider .slider-item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* height: 650px; */
+    height: auto;
+    position: relative;
+    z-index: 0;
+}
+.owl-carousel.home-slider .owl-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -20px;
+    width: 100%;
+    text-align: center;
+}
+
+    /* --------------- */
 	.img-logo {
 	  width: 60%;
 }
 .site-section {
     padding: 3rem 0;
+}
+.site-section {
+    padding: 100px 0px 45px 0px;
 }
 .pro-img {
     width: 100%;
@@ -43,13 +76,13 @@
 }
 .pro-img2 {
 	width: 100%;
-    height: 225px;
+    /* height: 225px; */
     object-fit: cover;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .pro-img3 {
     width: 100%;
-    height: 460px;
+    /* height: 460px; */
 	object-fit: cover;
 	margin-bottom: 10px;
 }
@@ -128,21 +161,37 @@ a:hover, a:focus {
 	#margin-pro {
     margin: 0px 7px;
 }
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 650px;
+    height: calc(50vh - 180px) !important;
+    min-height: 425px;
+}
+.owl-carousel.home-slider {
+    position: relative;
+    /* height: 650px; */
+    height: 365px;
+    z-index: 0;
+}
 
 }
 
 @media (max-width: 768px){
 	.pro-img3 {
     width: 100%;
-    height: 270px;
+    /* height: 270px; */
     object-fit: cover;
     margin-bottom: 10px;
 }
 .pro-img2 {
     width: 100%;
-    height: 130px;
+    /* height: 130px; */
     object-fit: cover;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 #margin-pro {
     margin: 0px 3px;
@@ -179,6 +228,27 @@ a:hover, a:focus {
     height: 290px;
     z-index: 0;
 }
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 650px;
+    height: calc(50vh - 180px) !important;
+    min-height: 290px;
+}
+.owl-carousel.home-slider .owl-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+.site-section {
+    padding: 40px 0px 45px 0px;
+}
 
 }
 
@@ -206,7 +276,7 @@ a:hover, a:focus {
 }
 .pro-img2 {
     width: 100%;
-    height: 280px;
+    /* height: 280px; */
     object-fit: cover;
     margin-bottom: 10px;
 }
@@ -218,21 +288,44 @@ a:hover, a:focus {
     padding-right: 15px;
     padding-left: 15px;
 }
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 650px;
+    height: calc(50vh - 200px) !important;
+    min-height: 140px;
+}
+.site-section {
+    padding: 30px 0px 45px 0px;
+}
 
 }
 
 @media (max-width: 375px){
 	.pro-img2 {
     width: 100%;
-    height: 230px;
+    /* height: 230px; */
     object-fit: cover;
     margin-bottom: 10px;
 }
 .pro-img3 {
     width: 100%;
-    height: 238px;
+    /* height: 238px; */
     object-fit: cover;
     margin-bottom: 10px;
+}
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 650px;
+    height: calc(50vh - 180px) !important;
+    min-height: 150px;
 }
 
 
@@ -328,7 +421,7 @@ a:hover, a:focus {
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
 							<?php $menu = \App\Category::orderby('sort')->get(); ?>
 								@foreach ($menu as $_menu)
-									<a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
+									<a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
 								@endforeach
 						</div>
 					</li>
@@ -437,7 +530,6 @@ a:hover, a:focus {
                <div id="box">
                     <div class="container">
                         <div class="row">
-
                             <div class="col-md-12" >
                                 {{-- <p class="pro-index"><span class="title-num" id="margin-pro">{{$i}}</span> <span class="pro-title" id="margin-pro">{{$_cate->category_name_th}}</span>
                                     <span class="popular" id="margin-pro"> #Popular searches</span>
@@ -468,8 +560,6 @@ a:hover, a:focus {
 
                         </div>
                     </div>
-
-               
                     <div class="container" >
                         <div class="row">
                             <div class="col-md-6" id="pro-mar">
