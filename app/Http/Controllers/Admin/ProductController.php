@@ -69,6 +69,8 @@ class ProductController extends Controller
         $newProduct->product_caution_en   = $request->product_caution_en;
         $newProduct->product_spec_th   = $request->product_spec_th;
         $newProduct->product_spec_en   = $request->product_spec_en;
+        $newProduct->product_extra_th   = $request->product_extra_th;
+        $newProduct->product_extra_en   = $request->product_extra_en;
 
         $newProduct->product_distance_price   = $request->product_distance_price;
         // $newProduct->product_distance_km   = $request->product_distance_km;
@@ -222,7 +224,14 @@ class ProductController extends Controller
             $updateProduct->product_installation_en   = $request->product_installation_en;
         }
 
-        if(isset($request->product_distance_free)){
+        if(isset($request->product_extra_th)){
+            $updateProduct->product_extra_th   = $request->product_extra_th;
+        }
+        if(isset($request->product_extra_en)){
+            $updateProduct->product_extra_en   = $request->product_extra_en;
+        }
+
+        if(isset($request->product_distance_price)){
             $updateProduct->product_distance_price   = $request->product_distance_price;
         }
 

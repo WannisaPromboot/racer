@@ -31,21 +31,21 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+     <!-- Sweertalert -->
+     <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
+
   </head>
 
   <style>
 
-    /* ------star---------- */
-
-    .rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
-    margin-top: -15px;
+   /* ------star---------- */
+   .rate {
+    float: left; height: 46px; padding: 0 10px; margin-top: -15px;
 }
 .rate:not(:checked) > input {
     position:absolute;
-    top:-9999px;
+    /* top:-9999px; */
+    display: none;
 }
 .rate:not(:checked) > label {
     float:right;
@@ -64,15 +64,16 @@
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #ffc700;  
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+color: #ffc700;
 }
+
 
     /* -------------- */
 
@@ -104,6 +105,25 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
+  /* background-color: #45a049; */
+  background-color: #45a04900;
+    color: #41c8f5;
+    border: 1px solid;
+}
+
+input[type=button] {
+  background-color: #41c8f5;
+  color: white;
+  /* padding: 12px 20px; */
+  padding: 5px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  /* float: right; */
+  float: left;
+}
+
+input[type=button]:hover {
   /* background-color: #45a049; */
   background-color: #45a04900;
     color: #41c8f5;
@@ -695,7 +715,7 @@ height: 165px;
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
 		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</a></li>
+		  <li class="nav-item cta-colored "><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span><span id="addcart">{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</span></a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -913,7 +933,7 @@ height: 165px;
                         <p class="sub-detial">{!! $item->product_spec_th !!}</p>
                           {{-- <p class="text-detial">วิธีใช้ :</p>
                           <p class="sub-detial2">{!! $item->product_method_th !!}</p> --}}
-                            <center><a href="{{url('addcart/'.$item->id_product.'')}}"><p class="button">ADD TO CART</p></a></center>
+                          <center><a href="javascript:void(0)" onclick="addcart('{{$item->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
                       </div>
         
                 </div>
@@ -941,11 +961,11 @@ height: 165px;
                 </div>
             </div>
             <br>
-            
+            @if(!empty($item->product_extra_th ))
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
-                    <iframe class="video-size" src="https://www.youtube.com/embed/K3VxV2TTlMo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {!! $item->product_extra_th !!}
                     </div>
                     <div class="col-md-4">
                     <p class="sub-pro" style="font-weight: 500;">สะดวกยิ่งขึ้นสามารถสั่งซื้อผ่าน ไลน์@ และ Facebook</p>
@@ -954,6 +974,7 @@ height: 165px;
                     </div>
                 </div>
             </div>
+            @endif
 
             <br>
             <div class="container">
@@ -968,31 +989,31 @@ height: 165px;
                     <div class="col-md-6">
 
                     <div class="box-re">
-                    <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
-                    <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
+                        <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
+                        <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
                     </div>
                     <div class="box-re">
-                    <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
-                    <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                        <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
+                        <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
                     </div>
                     <div class="box-re">
-                    <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
-                    <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                        <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
+                        <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
                     </div>
 
                     </div>
@@ -1000,31 +1021,31 @@ height: 165px;
                     <div class="col-md-6">
 
                     <div class="box-re">
-                    <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
-                    <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                        <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
+                        <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
                     </div>
                     <div class="box-re">
-                    <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
-                    <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                        <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
+                        <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
                     </div>
                     <div class="box-re">
-                    <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
-                    <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
+                        <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
+                        <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
                     </div>
 
                     </div>
@@ -1036,52 +1057,53 @@ height: 165px;
                     <div class="col-md-12">
 
                     <div class="box-form">
-            <form action="#">
+            <form action="{{url('comment')}}" method="post" id="comment">
+                @csrf
+                <input type="hidden" name="product_id"  value="{{$item->id_product}}" required>
                 <div class="row">
                     <div class="col-25">
                         <label for="fname">ชื่อ-สกุล</label>
                     </div>
                     <div class="col-75">
-                        <input type="text" id="fname" name="firstname" placeholder="กรอกชื่อ-สกุล..">
+                        <?php $user = \App\Customer::where('customer_id',Session::get('customer_id'))->first(); ?>
+                        <input type="text" id="fname" name="name" placeholder="กรอกชื่อ-สกุล.." autocomplete="off" value="{{!empty($user)? $user->name.' '.$user->lastname :''}}" {{!empty($user)? 'readonly' :''}} >
                     </div>
                 </div>
-
-
                 <div class="row">
                     <div class="col-25">
                         <label for="subject">แสดงความคิดเห็น</label>
                     </div>
                     <div class="col-75">
-                        <textarea id="subject" name="subject" placeholder="ความคิดเห็น.." style="height:150px"></textarea>
+                        <textarea id="text" name="text" placeholder="ความคิดเห็น.." style="height:150px"></textarea>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-25">
                         <label for="subject">ระดับความพอใจ</label>
                     </div>
                         <div class="col-75">
                             <div class="rate">
-                                <input type="radio" id="star5" name="rate" value="5" />
+                                <input type="radio" class="ratestar" id="star5" name="rate" value="5" onclick="selectstart(this.value)" />
                                 <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
+                                <input type="radio" class="ratestar" id="star4" name="rate" value="4"  onclick="selectstart(this.value)" />
                                 <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
+                                <input type="radio" class="ratestar" id="star3" name="rate" value="3"  onclick="selectstart(this.value)" />
                                 <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
+                                <input type="radio" class="ratestar" id="star2" name="rate" value="2"  onclick="selectstart(this.value)" />
                                 <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
+                                <input type="radio" class="ratestar" id="star1" name="rate" value="1"  onclick="selectstart(this.value)" />
                                 <label for="star1" title="text">1 star</label>
                             </div>
                         </div>
                     </div>
+                    <div id="start_"></div>
 
                     <div class="row">
                         <div class="col-25">
 
                         </div>
                         <div class="col-75">
-                            <input type="submit" value="ส่ง">
+                            <input type="button" onclick="comment()" value="ส่ง">
                         </div>
                 </div>
         <!-- <div class="row">
@@ -1102,7 +1124,6 @@ height: 165px;
         
         
         </div> 
-		
      {{-- modaL --}}
         <div class="modal fade bd-example-modal-lg " id="main" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -1197,7 +1218,7 @@ height: 165px;
         </div>
         </div>
         </footer>
-  
+     
 
   <!-- loader -->
   <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div> -->
@@ -1219,6 +1240,8 @@ height: 165px;
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
+  <!-- Sweert Alert -->
+  <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> 
 
 
   <script>
@@ -1311,6 +1334,93 @@ $('.stop').on('click',function(){
 // })
 
 //       });
+
+
+////////add cart
+function addcart(id){
+    $.ajax({
+        url: '{{ url("addcart")}}/'+id,
+        type: 'GET',
+        dataType: 'HTML',
+        success: function(data) {
+            $("#addcart").load(location.href + " #addcart");
+          //  $(".addcart").attr('style','color:#41c8f5 !important;padding:0;');
+        }
+    });
+}
+/////commemt
+function selectstart(value){
+    $('#start_').html('<input type="hidden" id="starval" value="'+value+'">');
+}
+function comment(){
+    console.log($('input:radio').val());
+    if($('#fname').val() == ''){
+        Swal.fire({
+                text: "กรุณากรอกชื่อผู้แสดงความคิดเห็น",
+                type: 'warning',
+                confirmButtonColor: '#41c8f5',
+            });
+    
+        // alert("Please fill all required fields");
+        return false;
+    }
+
+    console.log($('#text').val() );
+    if($('#text').val() == ''){
+        Swal.fire({
+                text: "กรุณากรอกข้อความแสดงความคิดเห็น",
+                type: 'warning',
+                confirmButtonColor: '#41c8f5',
+            });
+    
+        // alert("Please fill all required fields");
+        return false;
+    }
+
+    if($('#starval').val() == undefined){
+        Swal.fire({
+                text: "กรุณาให้คะแนนสินค้า",
+                type: 'warning',
+                confirmButtonColor: '#41c8f5',
+            });
+    
+        // alert("Please fill all required fields");
+            return false;
+    }
+
+    Swal.fire({
+        text: "คุณต้องการส่งข้อความแสดงความคิดเห็นใช่หรือไม่",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "ใช่",
+        cancelButtonText: "ไม่ใช่",
+        }).then((result)=>{
+            if (result.value) {
+                $("#comment").submit();
+            }
+        });
+   
+}
+
+$( document ).ready(function() {
+    A = '{{Session::get("success")}}';
+
+    if(A){
+        Swal.fire({
+            text: "แสดงความคิดเห็นเรียบร้อย",
+            type: 'success',
+            confirmButtonColor: '#41c8f5',
+        }).then((result)=>{
+                if (result.value) {
+                        <?php  Session::forget('succcess'); ?>
+                        window.location.href.reload();
+                    }
+        });
+    }
+});
+
 </script>
     
   </body>

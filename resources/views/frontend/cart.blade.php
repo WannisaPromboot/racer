@@ -30,6 +30,8 @@
 
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <!-- Sweertalert -->
+     <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
 
   </head>
 
@@ -677,7 +679,7 @@ label {
             $sum  = 0;
         ?>
         @foreach ($items as $key => $item)
-        <?php $product = \App\Product::where('id_product',$item)->first(); ?>
+        <?php $product = \App\Product::where('id_product',$item['product_id'])->first(); ?>
         <div class="product">
             <div class="product-image">
                 <img src="{{url('storage/app/'.$product->product_img.'')}}">
@@ -688,24 +690,24 @@ label {
             </div>
             @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
             <div class="product-price">{{number_format($product->product_special_price)}}</div>
-            <input type="hidden" name="price_item[{{$item}}]" value="{{$product->product_special_price}}">
+            <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_special_price}}">
             @else 
             <div class="product-price">{{number_format($product->product_normal_price)}}</div>
-            <input type="hidden" name="price_item[{{$item}}]" value="{{$product->product_normal_price}}">
+            <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_normal_price}}">
             @endif
             
                 <div class="product-quantity">
-                <input type="number" name="count[{{$item}}]" value="1" min="1">
+                <input type="number" class="text-center" name="count[{{$item['product_id']}}]" value="{{$item['qty']}}" min="1">
             </div>
             <div class="product-removal">
                 <button type="button" class="remove-product" onclick="delitem({{$key}})">Remove</button>
             </div>
             @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-            <div class="product-line-price">{{number_format($product->product_special_price)}}</div>
-            <?php  $sum +=  $product->product_special_price;?>
+            <div class="product-line-price">{{number_format($product->product_special_price * $item['qty'])}}</div>
+            <?php  $sum +=  $product->product_special_price * $item['qty'];?>
             @else 
-            <div class="product-line-price">{{number_format($product->product_normal_price)}}</div>
-            <?php  $sum +=  $product->product_normal_price;?>
+            <div class="product-line-price">{{number_format($product->product_normal_price * $item['qty'])}}</div>
+            <?php  $sum +=  $product->product_normal_price * $item['qty'];?>
             @endif
         </div>
     
@@ -865,6 +867,8 @@ label {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
+  <!-- Sweert Alert -->
+<script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> 
 
   <script>
     var taxRate = 0.00;
@@ -874,7 +878,17 @@ label {
   
   /* Assign actions */
   $('.product-quantity input').change( function() {
-    updateQuantity(this);
+    if(this.value < 1 ){
+            Swal.fire({
+                text: 'กรุณากรอกจำนวนสินค้ามากกว่า 0 ',
+                type: "warning",
+                confirmButtonColor: '#41c8f5',
+            });
+            $(this).val(1); 
+
+            return false    
+    }
+        updateQuantity(this);
   });
   
   $('.product-removal button').click( function() {

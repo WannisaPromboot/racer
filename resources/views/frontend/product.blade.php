@@ -302,7 +302,7 @@ div {
 	<div class="col-md-4" id="pay-nemu">
 		<ul class="navbar-nav ml-auto">
 		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</a></li>
+		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span><span id="addcart">{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</span></a></li>
 		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
 		</ul>
 	</div>
@@ -348,11 +348,18 @@ div {
                                         <div class="panel panel-default">
                                             <div class="panel-heading" id="heading{{$i}}" role="tab">
                                                 <h4 class="panel-title">
-                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}<i class="pull-right fa fa-plus"></i></a>
+                                                    @if($item->id_category == $cat->id_category)
+                                                    <a  class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}<i class="pull-right fa fa-plus"></i></a>
+                                                    @else 
+                                                    <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}<i class="pull-right fa fa-plus"></i></a>
+                                                    @endif
                                                 </h4>
                                             </div>
-                                            <div class="panel-collapse collapse" id="collapse{{$i}}" role="tabpanel"
-                                                aria-labelledby="heading{{$i}}">
+                                            @if($item->id_category == $cat->id_category)
+                                            <div class="panel-collapse collapse show" id="collapse{{$i}}" role="tabpanel"  aria-labelledby="heading{{$i}}">
+                                            @else 
+                                            <div class="panel-collapse collapse" id="collapse{{$i}}" role="tabpanel"  aria-labelledby="heading{{$i}}">
+                                            @endif
                                                 <div class="panel-body pxlr-faq-body">
                                                     <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
                                                         <?php  $subcate = \App\SubCategory::where('id_category',$item->id_category)->get();?>
@@ -382,7 +389,7 @@ div {
                                     <div class="card" id="showhtml">
                                         <div class="card-header" id="accordion-tab-1-heading-1">
                                             <h5>
-                                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >ทั้งหมด</button>
+                                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >{{strtoupper($cat->category_name_th)}}</button>
                                             </h5>
                                         </div>
                                         <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
@@ -390,20 +397,20 @@ div {
         
                                                 <div class="container">
                                                     <div class="row" id="contentproduct">
-                                                      <?php   $products = \App\Product::where('product_display',0)->orderby('sap_code')->get(); ?>
+                                                     
                                                       @foreach ($products as $item)
                                                       <div class="col-md-4 col-lg-4 mb-4" >
                                                             <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$item->product_img)}}"></a>
                                                             <center><p class="name-pro">{{!empty($item->product_name_th) ? $item->product_name_th : '' }}</p><center>
                                                             @if(!empty(	$item->product_special_price))
-                                                                <center><p class="price-line">฿{{$item->product_normal_price}}</p><center>
+                                                                <center><p class="price-line">฿{{number_format($item->product_normal_price,2)}}</p><center>
                                                             @endif
                                                             @if(!empty(	$item->product_special_price))
-                                                            <center><p class="price-pro">฿{{$item->product_special_price}}</p><center>
+                                                            <center><p class="price-pro">฿{{number_format($item->product_special_price,2)}}</p><center>
                                                             @else 
-                                                            <center><p class="price-pro">฿{{$item->product_normal_price}}</p><center>
+                                                            <center><p class="price-pro">฿{{number_format($item->product_normal_price,2)}}</p><center>
                                                             @endif
-                                                            <center><a href="#"><p class="button"><span class="icon-shopping_cart"></span> สั่งซื้อสินค้า</p></a></center>
+                                                            <center><a href="javascript:void(0)" onclick="addcart('{{$item->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
                                                        </div>
                                                       @endforeach
                                                     </div>
@@ -523,7 +530,7 @@ div {
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
    <script>
-             function selectproduct(id){
+    function selectproduct(id){
             console.log(id);
         $.ajax({
             url: '{{ url("showproduct")}}',
@@ -537,6 +544,20 @@ div {
             }
         });
     }  
+
+    function addcart(id){
+    $.ajax({
+            url: '{{ url("addcart")}}/'+id,
+            type: 'GET',
+            dataType: 'HTML',
+            success: function(data) {
+                $("#addcart").load(location.href + " #addcart");
+            //  $(".addcart").attr('style','color:#41c8f5 !important;padding:0;');
+            }
+        });
+    }
+
+    
     </script> 
   </body>
 </html>
