@@ -990,11 +990,12 @@ textarea.form-control {
                       </div>
                       <div class="col-md-6 col-lg-6">
                           <p class="address-text">
-                            <span class="icon icon-map-marker" id="icon-con"></span> xx/x อาคารxxxxxxxx ชั้นx ถนนxxxx แขวงxxxxxxxxx  กรุงเทพฯ 10600
+                            <span class="icon icon-map-marker" id="icon-con"></span> บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
+                            137 หมู่9 ซอยเพชรเกษม91 <br>ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110
                           </p>
                           <p class="address-text"> <i class="fa fa-envelope" id="icon-con" aria-hidden="true"></i> info@gmail.com</p>
-                          <p class="address-text"> <span class="icon icon-phone" id="icon-con"></span> 000-0000-000</p>
-                          <p class="address-text"> <i class="fa fa-fax" id="icon-con" aria-hidden="true"></i> 00-000-0000</p>
+                          <p class="address-text"> <span class="icon icon-phone" id="icon-con"></span> 02 811 1741</p>
+                          {{-- <p class="address-text"> <i class="fa fa-fax" id="icon-con" aria-hidden="true"></i> 00-000-0000</p> --}}
                       </div>
           
                     </div>

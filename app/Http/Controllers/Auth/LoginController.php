@@ -104,19 +104,14 @@ class LoginController extends Controller
                 $count = $emailuser->count +  1;
                 $CustomerModel::where('email',$request->email)->update(['count'=> $count]);
                 if($emailuser->count > 3){
-                    $error_mes_login = 'คุณใส่รหัสผ่านหรืออิเมลผิดเกิน 3 ครั้ง กรุณาเปลี่ยนรหัสผ่าน';
-                    $data = array(
-                        'error_mes_login' => $error_mes_login
-                    );
-                    return redirect('forgotpassword')->with('error',$error_mes_login);
+                    return redirect('forgotpassword')->with('error','คุณใส่รหัสผ่านหรืออีเมลผิดเกิน 3 ครั้ง กรุณาเปลี่ยนรหัสผ่าน');
                 }else{
                     
-                    return redirect('userlogin')->with('error',$error_mes_login);
+                    return redirect('userlogin')->with('error','อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง');
                 }
             }
         }else{                                                                  //////find customer
-            $error_mes_login = 'อิเมลหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง';
-             return redirect('userlogin')->with('error',$error_mes_login);
+            return redirect('userlogin')->with('error','อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง');
         }
     }
 
