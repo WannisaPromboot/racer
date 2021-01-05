@@ -581,7 +581,7 @@ a:hover {
 		  <div class="dropdown-menu" aria-labelledby="dropdown04">
             <?php $menu = \App\Category::orderby('sort')->get(); ?>
                 @foreach ($menu as $_menu)
-                    <a class="dropdown-item" href="{{url('product/'.$_menu->id_category.'')}}">{{$_menu->category_name_th}}</a>
+                    <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
                 @endforeach
 		  </div>
 		</li>

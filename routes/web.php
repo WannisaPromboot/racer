@@ -120,9 +120,10 @@ Route::group(['middleware'=>['loginfrontend']],function(){
 
 
 
-Route::get('/product/{id}', function($id){
+Route::get('/product/{cat}', function($cat){
+    $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
     $data = array(
-        'products'  => \App\Product::where('id_category',$id)->get(),
+        'products'  => \App\Product::where('id_category',$category->id_category)->get(),
     );
     return view('frontend.product');
 });
