@@ -543,7 +543,7 @@ a:hover {
 							<span class="text"> : Racer.co.th</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันเสาร์ : 08.00น. - 19.00น.</span></div>
+						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
                         </div>
                         <div class="col-md-4">
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
