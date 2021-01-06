@@ -134,7 +134,7 @@ Route::get('/product/{cat}', function($cat){
     $product = \App\Product::where('product_display',0)->where('id_category',$category->id_category)->get();
     $data = array(
         'products'  => $product,
-        'cat'       => $category
+        'cate'       => $category
     );
     return view('frontend.product',$data);
 });

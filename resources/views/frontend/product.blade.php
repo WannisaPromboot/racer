@@ -312,16 +312,17 @@ div {
 	</div>
   </nav>
     <!-- END nav -->
-
-    <div class="hero-wrap hero-bread" style="background-image: url({{url('storage/app/'.$cate->category_img)}});">
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-0 bread">Lighting</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>Lighting</span></p>
-          </div>
+    <div id="bannernew">
+        <div class="hero-wrap hero-bread" style="background-image: url({{ !empty($cate->category_img) ? url('storage/app/'.$cate->category_img) : asset('frontend/images/banner-detail.jpg')}});">
+            <div class="container">
+                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                    <div class="col-md-9 ftco-animate text-center">
+                        <h1 class="mb-0 bread">{{$cate->category_name_th}}</h1>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>{{$cate->category_name_th}}</span></p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- <section class="ftco-section ftco-no-pb ftco-no-pt bg-light" id="pro-top">
@@ -348,14 +349,14 @@ div {
                                         <div class="panel panel-default">
                                             <div class="panel-heading" id="heading{{$i}}" role="tab">
                                                 <h4 class="panel-title">
-                                                    @if($item->id_category == $cat->id_category)
+                                                    @if($item->id_category == $cate->id_category)
                                                     <a  class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}<i class="pull-right fa fa-plus"></i></a>
                                                     @else 
                                                     <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}<i class="pull-right fa fa-plus"></i></a>
                                                     @endif
                                                 </h4>
                                             </div>
-                                            @if($item->id_category == $cat->id_category)
+                                            @if($item->id_category == $cate->id_category)
                                             <div class="panel-collapse collapse show" id="collapse{{$i}}" role="tabpanel"  aria-labelledby="heading{{$i}}">
                                             @else 
                                             <div class="panel-collapse collapse" id="collapse{{$i}}" role="tabpanel"  aria-labelledby="heading{{$i}}">
@@ -389,7 +390,7 @@ div {
                                     <div class="card" id="showhtml">
                                         <div class="card-header" id="accordion-tab-1-heading-1">
                                             <h5>
-                                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >{{strtoupper($cat->category_name_th)}}</button>
+                                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >{{strtoupper($cate->category_name_th)}}</button>
                                             </h5>
                                         </div>
                                         <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
@@ -538,8 +539,11 @@ div {
             dataType: 'HTML',
             data : {'id':id},
             success: function(data) {
-                console.log(data == 0);
-                $('#showhtml').html(data);
+                
+                 text = JSON.parse(data);   
+
+                $('#showhtml').html(text['html']);
+                $('#bannernew').html(text['banner']);
                 ///////add cart
                 function addcart(value){
                     $.ajax({

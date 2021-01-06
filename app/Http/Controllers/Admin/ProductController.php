@@ -461,7 +461,9 @@ class ProductController extends Controller
     public function ShowProduct(Request $request){
         $products = Product::where('id_subcategory',$request->id)->where('product_display',0)->get();
         $subcate = \App\SubCategory::where('id_subcategory',$request->id)->first();
+        $cate = \App\Category::where('id_category',$subcate->id_category)->first();
         $html= '';
+        $banner = '';
      //   dd($request->all());
 
         if(count($products) > 0){
@@ -523,11 +525,32 @@ class ProductController extends Controller
                             </div>
                         </div>';
         }
-     
 
-        
 
-        return $html;
+        if(!empty($cate->category_img)){
+                $img = url('storage/app/'.$cate->category_img);
+        }else{
+            $img =      url('frontend/images/banner-detail.jpg');
+        }
+
+
+        $banner     .=  '<div class="hero-wrap hero-bread" style="background-image: url('.$img.');">
+                            <div class="container">
+                                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                                    <div class="col-md-9 ftco-animate text-center">
+                                        <h1 class="mb-0 bread">'.$cate->category_name_th.'</h1>
+                                        <p class="breadcrumbs"><span class="mr-2"><a href="'.url('/').'">หน้าหลัก</a></span>/ <span>'.$cate->category_name_th.'</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+        $data  = array(
+            'html'      => $html,
+            'banner'      => $banner,
+
+        );
+
+        return $data;
     }
 
     public function DeleteProduct($id){
