@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title')เพิ่มสินค้า @endsection
+@section('title')รายละเอียดรีวิวสินค้า @endsection
 
 @section('css') 
         <!-- Summernote css -->
@@ -42,7 +42,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">เพิ่มสินค้า</h4>     
+        <h4 class="mb-0 font-size-18">รายละเอียดรีวิวสินค้า : {{$product->product_name_th}}</h4>     
         </div>
     </div>
 </div>     
@@ -64,10 +64,10 @@
                                             <?php $user = \App\Customer::where('customer_id',$item->customer_id)->first(); ?>
                                             <h5 style="color: #222;">{{$user->name.'  '.$user->lastname}}</h5>
                                             <p style="font-size:16px">{{$item->text}}</p>
-                                            @for ($i =0; $i <= $item->score ; $i++)
+                                            @for ($i =1; $i <= $item->score ; $i++)
                                             <span class="fa fa-star checkedstar"></span>
                                             @endfor
-                                            @for ($i =0; $i <= 5-$item->score ; $i++)
+                                            @for ($i =1; $i <= 5-$item->score ; $i++)
                                             <span class="fa fa-star"></span>
                                             @endfor
                                         </div>

@@ -479,10 +479,23 @@ class ProductController extends Controller
                     foreach( $products as $product){
                 $html.=              '<div class="col-md-4 col-lg-4 mb-4" >
                                             <a href="'.url('detail-product/'.$product->id_product.'').'"><img class="pro-img" src="'.url('storage/app/'.$product->product_img).'"></a>
-                                        </div>';
-                                    }
                                         
+                                        <center><p class="name-pro">'.$product->product_name_th.'</p><center>';
+                                        if(!empty(	$item->product_special_price)){
+                                            $html.=    '<center><p class="price-line">฿'.number_format($product->product_normal_price,2).'</p><center>';
+                                        }
+                                        if(!empty(	$product->product_special_price)){
+                                            $html.= '<center><p class="price-pro">฿'.number_format($product->product_special_price,2).'</p><center>';
+                                        }else{ 
+                                            $html.= '<center><p class="price-pro">฿'.number_format($product->product_normal_price,2).'</p><center>';
+                                        }
+                                        $html.=  '<center><a href="javascript:void(0)" onclick="addcart('.$product->id_product.')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>';
+                        $html.=       '</div>';
+                                    
+                                    }
 
+                 
+                                        
 
                 $html.=              '</div>
                                     </div>
@@ -494,7 +507,7 @@ class ProductController extends Controller
         }else{
             $html.=  '   <div class="card-header" id="accordion-tab-1-heading-1">
                             <h5>
-                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >ทั้งหมด</button>
+                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >'.$subcate->subcategory_name_th.'</button>
                             </h5>
                         </div>
                         <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">

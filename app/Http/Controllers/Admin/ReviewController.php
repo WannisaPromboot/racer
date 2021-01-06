@@ -20,6 +20,7 @@ class ReviewController extends Controller
 
     public function ReviewDetail(Request $request,$id){
         $data = array(
+            'product'   => Product::where('id_product',$id)->first(),
             'all'    =>  Review::where('product_id',$id)->get()
         );
 

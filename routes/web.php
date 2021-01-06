@@ -81,6 +81,7 @@ Route::get('/detail-product/{id}', function($id){
     $data = array(
         'item'  => \App\Product::where('id_product',$id)->first(),
         'imgs'  => \App\ProductGallery::where('id_product',$id)->orderby('sort')->get(),
+        'review' => \App\Review::where('product_id',$id)->get()
     );
     return view('frontend.detail-product',$data);
 });

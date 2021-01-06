@@ -247,13 +247,13 @@ div {
                         </div>
                         <div class="col-md-4">
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-twitter"></span></a>
+                                <a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
 							</div>
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+								<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
 							</div>
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
 						   </div>
 
 					    </div>
@@ -538,9 +538,20 @@ div {
             dataType: 'HTML',
             data : {'id':id},
             success: function(data) {
-               console.log(data == 0);
-                    $('#showhtml').html(data);
-                               
+                console.log(data == 0);
+                $('#showhtml').html(data);
+                ///////add cart
+                function addcart(value){
+                    $.ajax({
+                            url: '{{ url("addcart")}}/'+value,
+                            type: 'GET',
+                            dataType: 'HTML',
+                            success: function(data) {
+                                $("#addcart").load(location.href + " #addcart");
+                            //  $(".addcart").attr('style','color:#41c8f5 !important;padding:0;');
+                            }
+                        });
+                    }
             }
         });
     }  

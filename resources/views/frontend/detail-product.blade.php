@@ -660,13 +660,13 @@ height: 165px;
                         </div>
                         <div class="col-md-4">
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-twitter"></span></a>
+								<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
 							</div>
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+								<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
 							</div>
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
 						   </div>
 
 					    </div>
@@ -933,8 +933,12 @@ height: 165px;
                         <p class="sub-detial">{!! $item->product_spec_th !!}</p>
                           {{-- <p class="text-detial">วิธีใช้ :</p>
                           <p class="sub-detial2">{!! $item->product_method_th !!}</p> --}}
+                          @if($cate->category_name_th == 'project' || $cate->category_name_th == 'cable'  )
+                          <center><a href="https://line.me/ti/p/~@racerlighting"><img src="{{asset('frontend/images/line-more.png')}}" width="100%"></a></center>
+                          @else 
                           <center><a href="javascript:void(0)" onclick="addcart('{{$item->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
-                      </div>
+                           @endif 
+                        </div>
         
                 </div>
             </div>
@@ -977,6 +981,9 @@ height: 165px;
             @endif
 
             <br>
+
+            @if(count($review) > 0)  
+            
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -986,140 +993,95 @@ height: 165px;
             </div>
             <div class="container">
                 <div class="row">
+                    @foreach ($review as $_review)
                     <div class="col-md-6">
-
-                    <div class="box-re">
-                        <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
-                        <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
+                        <div class="box-re">
+                            <?php $user = \App\Customer::where('customer_id',$_review->customer_id)->first(); 
+                                $stargray = 5-$_review->score;
+                            ?>
+                            <p class="sub-detial" style="color: #222;">{{$user->name.'  '.$user->lastname}}</p>
+                            <p class="sub-detial">{{$_review->text}}</p>
+                            @for ($i =1; $i <= $_review->score ; $i++)
+                            <span class="fa fa-star checked"></span>
+                            @endfor
+                            @for ($i =1; $i <= $stargray ; $i++)
+                            <span class="fa fa-star"></span>
+                            @endfor
+                        </div>
                     </div>
-                    <div class="box-re">
-                        <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
-                        <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                    <div class="box-re">
-                        <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
-                        <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-
-                    </div>
-
-                    <div class="col-md-6">
-
-                    <div class="box-re">
-                        <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
-                        <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                    <div class="box-re">
-                        <p class="sub-detial" style="color: #222;">รัตนา รอดขาว</p>
-                        <p class="sub-detial">ได้มาแล้วคะ ชอบมากๆคะ ขอบคุณมากๆน่ะคะ</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                    <div class="box-re">
-                        <p class="sub-detial" style="color: #222;">สมศักต์ เจริญนิมิต</p>
-                        <p class="sub-detial">ผมได้ใช้ดูแล้วครับ แนะนำครับ ดีมากบอกวิธีการทำได้ละเอียดครับ</p>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                    </div>
-
-                    </div>
+                    @endforeach
                 </div>
             </div>
-
+            @endif
+            {{-- form --}}
+            @if(!empty(Session::get('customer_id')))
+            <?php  $old = \App\Order::join('product_order_item','product_order.id_order','=','product_order_item.id_order')
+                                        ->where('customer_id',Session::get('customer_id'))->where('product_id',$item->id_product)->first();
+                  // $review = \App\Review::where('customer_id',Session::get('customer_id'))->where('product_id',$item->id_product)->first(); 
+            ?>
+            @if(!empty($old) && !empty($review))
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
 
-                    <div class="box-form">
-            <form action="{{url('comment')}}" method="post" id="comment">
-                @csrf
-                <input type="hidden" name="product_id"  value="{{$item->id_product}}" required>
-                <div class="row">
-                    <div class="col-25">
-                        <label for="fname">ชื่อ-สกุล</label>
-                    </div>
-                    <div class="col-75">
-                        <?php $user = \App\Customer::where('customer_id',Session::get('customer_id'))->first(); ?>
-                        <input type="text" id="fname" name="name" placeholder="กรอกชื่อ-สกุล.." autocomplete="off" value="{{!empty($user)? $user->name.' '.$user->lastname :''}}" {{!empty($user)? 'readonly' :''}} >
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-25">
-                        <label for="subject">แสดงความคิดเห็น</label>
-                    </div>
-                    <div class="col-75">
-                        <textarea id="text" name="text" placeholder="ความคิดเห็น.." style="height:150px"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-25">
-                        <label for="subject">ระดับความพอใจ</label>
-                    </div>
-                        <div class="col-75">
-                            <div class="rate">
-                                <input type="radio" class="ratestar" id="star5" name="rate" value="5" onclick="selectstart(this.value)" />
-                                <label for="star5" title="text">5 stars</label>
-                                <input type="radio" class="ratestar" id="star4" name="rate" value="4"  onclick="selectstart(this.value)" />
-                                <label for="star4" title="text">4 stars</label>
-                                <input type="radio" class="ratestar" id="star3" name="rate" value="3"  onclick="selectstart(this.value)" />
-                                <label for="star3" title="text">3 stars</label>
-                                <input type="radio" class="ratestar" id="star2" name="rate" value="2"  onclick="selectstart(this.value)" />
-                                <label for="star2" title="text">2 stars</label>
-                                <input type="radio" class="ratestar" id="star1" name="rate" value="1"  onclick="selectstart(this.value)" />
-                                <label for="star1" title="text">1 star</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="start_"></div>
+                        <div class="box-form">
+                            <form action="{{url('comment')}}" method="post" id="comment">
+                                @csrf
+                                <input type="hidden" name="product_id"  value="{{$item->id_product}}" required>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="fname">ชื่อ-สกุล</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <?php $user = \App\Customer::where('customer_id',Session::get('customer_id'))->first(); ?>
+                                        <input type="text" id="fname" name="name" placeholder="กรอกชื่อ-สกุล.." autocomplete="off" value="{{!empty($user)? $user->name.' '.$user->lastname :''}}" {{!empty($user)? 'readonly' :''}} >
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="subject">แสดงความคิดเห็น</label>
+                                    </div>
+                                    <div class="col-75">
+                                        <textarea id="text" name="text" placeholder="ความคิดเห็น.." style="height:150px"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label for="subject">ระดับความพอใจ</label>
+                                    </div>
+                                        <div class="col-75">
+                                            <div class="rate">
+                                                <input type="radio" class="ratestar" id="star5" name="rate" value="5" onclick="selectstart(this.value)" />
+                                                <label for="star5" title="text">5 stars</label>
+                                                <input type="radio" class="ratestar" id="star4" name="rate" value="4"  onclick="selectstart(this.value)" />
+                                                <label for="star4" title="text">4 stars</label>
+                                                <input type="radio" class="ratestar" id="star3" name="rate" value="3"  onclick="selectstart(this.value)" />
+                                                <label for="star3" title="text">3 stars</label>
+                                                <input type="radio" class="ratestar" id="star2" name="rate" value="2"  onclick="selectstart(this.value)" />
+                                                <label for="star2" title="text">2 stars</label>
+                                                <input type="radio" class="ratestar" id="star1" name="rate" value="1"  onclick="selectstart(this.value)" />
+                                                <label for="star1" title="text">1 star</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="start_"></div>
 
-                    <div class="row">
-                        <div class="col-25">
+                                    <div class="row">
+                                        <div class="col-25">
 
+                                        </div>
+                                        <div class="col-75">
+                                            <input type="button" onclick="comment()" value="ส่ง">
+                                        </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-75">
-                            <input type="button" onclick="comment()" value="ส่ง">
-                        </div>
-                </div>
-        <!-- <div class="row">
-        <input type="submit" value="Submit">
-        </div> -->
-        </form>
-    </div>
 
                     </div>
                 </div>
             </div>
-
-
-
-
-        
+            @endif
+            @endif
         </div>
         
         
