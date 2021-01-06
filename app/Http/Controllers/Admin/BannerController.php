@@ -68,9 +68,14 @@ class BannerController extends Controller
 
 
     public function Updatebanner(Request $request){
+
+        $bannerContent1 = Banner::where('category_id',$request->id_category)->where('banner_number',1)->first();
+        $bannerContent2 = Banner::where('category_id',$request->id_category)->where('banner_number',2)->first();
+        $bannerContent3 = Banner::where('category_id',$request->id_category)->where('banner_number',3)->first();
+        $bannerContent4 = Banner::where('category_id',$request->id_category)->where('banner_number',4)->first();
+        $bannerContent5 = Banner::where('category_id',$request->id_category)->where('banner_number',5)->first();
         
         if($request->filepath1 !== null){
-            $bannerContent1 = Banner::where('category_id',$request->id_category)->where('banner_number',1)->first();
             $newFilename1 = 'Banner/'.time().$request->filepath1->getClientOriginalName();
             Storage::put($newFilename1, file_get_contents($request->filepath1));
             if(!empty($bannerContent1)){
@@ -83,7 +88,6 @@ class BannerController extends Controller
 
 
         if($request->filepath2 !== null){
-            $bannerContent2 = Banner::where('category_id',$request->id_category)->where('banner_number',2)->first();
             $newFilename2 = 'Banner/'.time().$request->filepath2->getClientOriginalName();
             Storage::put($newFilename2, file_get_contents($request->filepath2));
             if(!empty($bannerContent2)){
@@ -95,7 +99,6 @@ class BannerController extends Controller
         }
 
         if($request->filepath3 !== null){
-            $bannerContent3 = Banner::where('category_id',$request->id_category)->where('banner_number',3)->first();
             $newFilename3 = 'Banner/'.time().$request->filepath3->getClientOriginalName();
             Storage::put($newFilename3, file_get_contents($request->filepath3));
             if(!empty($bannerContent3)){
@@ -107,7 +110,6 @@ class BannerController extends Controller
         }
 
         if($request->filepath4 !== null){
-            $bannerContent4 = Banner::where('category_id',$request->id_category)->where('banner_number',4)->first();
             $newFilename4 = 'Banner/'.time().$request->filepath4->getClientOriginalName();
             Storage::put($newFilename4, file_get_contents($request->filepath4));
             if(!empty($bannerContent4)){
@@ -119,7 +121,6 @@ class BannerController extends Controller
         }
 
         if($request->filepath5 !== null){
-            $bannerContent5 = Banner::where('category_id',$request->id_category)->where('banner_number',5)->first();
             $newFilename5 = 'Banner/'.time().$request->filepath5->getClientOriginalName();
             Storage::put($newFilename5, file_get_contents($request->filepath5));
             if(!empty($bannerContent5)){
@@ -127,6 +128,32 @@ class BannerController extends Controller
             }else{
                 DB::insert('insert into banner (category_id, banner_image ,banner_number) values (?,?,?)', [$request->id_category,$newFilename5,5]);
 
+            }
+        }
+
+        if(isset($request->banner_link1)){
+            if(!empty($bannerContent1)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',1)->update(['banner_link'=>$request->banner_link1]);
+            }
+        }
+        if(isset($request->banner_link2)){
+            if(!empty($bannerContent2)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',2)->update(['banner_link'=>$request->banner_link2]);
+            }
+        }
+        if(isset($request->banner_link3)){
+            if(!empty($bannerContent3)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',3)->update(['banner_link'=>$request->banner_link3]);
+            }
+        }
+        if(isset($request->banner_link4)){
+            if(!empty($bannerContent4)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',4)->update(['banner_link'=>$request->banner_link4]);
+            }
+        }
+        if(isset($request->banner_link5)){
+            if(!empty($bannerContent5)){
+                Banner::where('category_id',$request->id_category)->where('banner_number',5)->update(['banner_link'=>$request->banner_link5]);
             }
         }
 
@@ -261,5 +288,10 @@ class BannerController extends Controller
 
     }
 
-
+    public function Viewbanner($id){
+        $data = array(
+            'data' => Banner::where('category_id',$id)->first(),
+        );
+        view('Admin.banner.detail-banner',$data);
+    }
 }

@@ -63,10 +63,18 @@
                         <br>
                         <br>
                         <div class="row">
-                            <div class="col-2">{{Session::get('lang')=='th'?'รูปภาพหลัก':'รูปภาพหลัก'}} : </div>
+                            <div class="col-2">ลิงก์   1 : </div>
                             <div class="col-5">
-                                <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');">
-                                <img src="" id="imgpreview_filepath" style="max-height:200px;">
+                                <input type="text" class="form-control" name="banner_link1">
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">รูปภาพ   1 : </div>
+                            <div class="col-5">
+                                <input type="file" class="form-control" name="filepath1" id="filepath1" onchange="readImage(this,'filepath1');">
+                                <img src="" id="imgpreview_filepath1" style="max-height:200px;">
                                 {!! OrangeV1::ImagePreviewJs() !!}  
                             </div>
                             
@@ -74,11 +82,28 @@
                         <br>
 
                         <div class="row">
-                            <div class="col-2">{{Session::get('lang')=='th'?'รูปภาพ 1':'รูปภาพ 1'}} : </div>
+                            <div class="col-2">ลิงก์   2 : </div>
                             <div class="col-5">
-                                <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');">
-                                <img src="" id="imgpreview_filepath" style="max-height:200px;">
+                                <input type="text" class="form-control" name="banner_link2">
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-2">รูปภาพ   2 : </div>
+                            <div class="col-5">
+                                <input type="file" class="form-control" name="filepath2" id="filepath2" onchange="readImage(this,'filepath2');">
+                                <img src="" id="imgpreview_filepath2" style="max-height:200px;">
                                 {!! OrangeV1::ImagePreviewJs() !!}  
+                            </div>
+                            
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-2">ลิงก์   3 : </div>
+                            <div class="col-5">
+                                <input type="text" class="form-control" name="banner_link3">
                             </div>
                             
                         </div>
@@ -86,8 +111,8 @@
                         <div class="row">
                             <div class="col-2">{{Session::get('lang')=='th'?'รูปภาพ 2':'รูปภาพ 2'}} : </div>
                             <div class="col-5">
-                                <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');">
-                                <img src="" id="imgpreview_filepath" style="max-height:200px;">
+                                <input type="file" class="form-control" name="filepath3" id="filepath3" onchange="readImage(this,'filepath3');">
+                                <img src="" id="imgpreview_filepath3" style="max-height:200px;">
                                 {!! OrangeV1::ImagePreviewJs() !!}  
                             </div>
                             

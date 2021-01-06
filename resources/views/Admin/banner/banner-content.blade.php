@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="col-6">
-        <a href="{{url('addbanner')}}" class="btn add" style="float:right;background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มแบนเนอร์' :'+ Add BANNER'}}</a>
+        {{-- <a href="{{url('addbanner')}}" class="btn add" style="float:right;background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มแบนเนอร์' :'+ Add BANNER'}}</a> --}}
     </div> 
 </div>     
 <!-- end page title -->

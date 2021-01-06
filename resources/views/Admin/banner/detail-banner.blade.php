@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'แก้ไขแบนเนอร์' :'Edit Banner'}} @endsection
+@section('title') รายละเอียดแบนเนอร์ @endsection
 
 @section('css') 
     <!-- Summernote css -->
@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18"> {{Session::get('lang')=='th'?'แก้ไขแบนเนอร์' :'Edit Banner'}}</h4>
+        <h4 class="mb-0 font-size-18"> รายละเอียดแบนเนอร์</h4>
         </div>
     </div>
 </div>     
@@ -30,19 +30,11 @@
         <div class="card">
             <div class="card-body">
                 <div id="edit">
-                    <form action="{{url('updatebanner')}}" method="POST" enctype="multipart/form-data" id="saveside">
-                        @csrf
+                    
                         
                             <div class="row">
                                 <div class="col-2">หมวดหมู่   : </div>
-                                <div class="col-5">
-                                    <select class="form-control" name="id_category">
-                                        <option value=""> Please Select</option>
-                                        @foreach($data as $datas)
-                                            <option value="{{$datas->id_category}}" {{$datas->id_category==$idcate?'selected':''}} >{{$datas->category_name_th}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <div class="col-5">{{$datas->category_name_th}}</div>
                             </div>
                             <br>
                             <br>
@@ -109,7 +101,6 @@
                             </div>
                             
                         </div>                
-                    </form>
                 </div>
             </div>
         </div>

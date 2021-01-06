@@ -563,23 +563,23 @@ a:hover, a:focus {
                     <div class="container" >
                         <div class="row">
                             <div class="col-md-6" id="pro-mar">
-                                <a href="{{url('/detail-product')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
+                                <a href="{{url(''.$banner[0]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
                             </div>
                             <div class="col-md-6" id="pro-mar">
                                 
                                 <div class="container" id="con-pro">
                                     <div class="row" >
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$banner[1]->banner_image)}}"></a>
+                                            <a href="{{url(''.$banner[1]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[1]->banner_image)}}"></a>
                                         </div>
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$banner[2]->banner_image)}}"></a>
+                                            <a href="{{url(''.$banner[2]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[2]->banner_image)}}"></a>
                                         </div>
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$banner[3]->banner_image)}}"></a>
+                                            <a href="{{url(''.$banner[3]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[3]->banner_image)}}"></a>
                                         </div>
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$banner[4]->banner_image)}}"></a>
+                                            <a href="{{url(''.$banner[4]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[4]->banner_image)}}"></a>
                                         </div>
                                     </div>
                                 </div>
