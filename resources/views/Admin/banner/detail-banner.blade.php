@@ -34,62 +34,33 @@
                         
                             <div class="row">
                                 <div class="col-2">หมวดหมู่   : </div>
-                                <div class="col-5">{{$datas->category_name_th}}</div>
+                                <div class="col-5">{{$data[0]->category_name_th}}</div>
                             </div>
                             <br>
                             <br>
-                            @if(count($banner)==0)
-                                @foreach(range(1,5) as $i)
-                                    <div class="row">
-                                        <div class="col-2">ลิงก์   {{$i}} : </div>
-                                        <div class="col-5">
-                                            <input type="text" class="form-control" name="banner_link{{$i}}">
-                                        </div>
-                                        
+                            @foreach ($data as $item)
+                              
+                                <div class="row">
+                                    <div class="col-2">ลิงก์   {{$item->banner_number}} : </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" value="{{$item->banner_link}}">
                                     </div>
-                                    <br>
-                                    <div class="row">
-                                        
-                                        <div class="col-2">รูปภาพ   {{$i}} : </div>
-                                        <div class="col-5">
-                                            
-                                            <input type="file" class="form-control" name="filepath{{$i}}" id="filepath{{$i}}" onchange="readImage(this,'filepath{{$i}}');">
-                                            <img src="" id="imgpreview_filepath{{$i}}" style="max-height:200px;">
-                                            {!! OrangeV1::ImagePreviewJs() !!}  
-                                        </div>
+                                    
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-2">รูปภาพ   {{$item->banner_number}} : </div>
+                                    <div class="col-5">
+                                        <img src="{{url('storage/app/'.$item->banner_image)}}"  style="max-height:200px;">
                                     </div>
-                                    <br>
-                                @endforeach
-                            @else
-                                @foreach(range(1,5) as $j)
-                                    <?php $banner = DB::Table('banner')->where('category_id',$idcate)->where('banner_number',$j)->first();?>
-                                    <div class="row">
-                                        <div class="col-2">ลิงก์   {{$j}} : </div>
-                                        <div class="col-5">
-                                            <input type="text" class="form-control" name="banner_link{{$j}}" value="{{!empty($banner)?$banner->banner_link:''}}">
-                                        </div>
-                                        
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-2">รูปภาพ   {{$j}} : </div>
-                                        <div class="col-5">
-                                            <input type="file" class="form-control" name="filepath{{$j}}" id="filepath{{$j}}" onchange="readImage(this,'filepath{{$j}}');">
-                                            @if(!empty($banner))
-                                                <img src="{{url('storage/app/'.$banner->banner_image)}}" id="imgpreview_filepath{{$j}}" style="max-height:200px;" >
-                                            @else
-                                                <img src="" id="imgpreview_filepath{{$j}}" style="max-height:200px;">
-                                            @endif
-                                            {!! OrangeV1::ImagePreviewJs() !!}  
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                    <br>
-                                @endforeach
-                            @endif
-                       
-
+                                    
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                            @endforeach
+                            
+                            
                         <br>
                         <div class="row">
                             <div class="col-sm">

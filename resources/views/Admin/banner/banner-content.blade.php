@@ -66,7 +66,7 @@
                                         {{$datas->category_name_th}}
                                         </td>  
                                         <td>
-                                            <button type="button" class="btn btn-secondary">{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</button>
+                                            <a href="{{url('viewbanner/'.$datas->id_category.'')}}" class="btn btn-secondary">{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</button>
                                         </td>
                                         <td>
                                             <a href="{{url('editbanner/'.$datas->id_category.'')}}" class="btn btn-warning">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
