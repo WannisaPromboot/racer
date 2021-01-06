@@ -43,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-2">ลิงก์   {{$item->banner_number}} : </div>
                                     <div class="col-6">
-                                        <input type="text" class="form-control" value="{{$item->banner_link}}">
+                                        <input type="text" class="form-control" value="{{$item->banner_link}}" readonly>
                                     </div>
                                     
                                 </div>
@@ -64,11 +64,11 @@
                         <br>
                         <div class="row">
                             <div class="col-sm">
-                                <a href="javascript:void(0)" type="button" style="float:left;" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back '}}</a>
+                                <a href="{{url('bannercontent')}}" type="button" style="float:left;" class="btn btn-danger">กลับ</a>
                             </div>
                             <div class="col-sm">
                             
-                                <button type="button" onclick="save('saveside')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button>
+                                {{-- <button type="button" onclick="save('saveside')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button> --}}
                             </div>
                             
                         </div>                
