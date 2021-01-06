@@ -10,23 +10,46 @@ use Session;
 class AddacartController extends Controller
 {
     public function addCart($id){
-        $product = Session::get('product') ;       
-        
-        if( $product != NULL ){
-            if(in_array($id,$product) == false){
-                Session::push('product', $id);
+       // Session::forget('product_arr');
+        //dd(Session::get('product'));
+        $product = Session::get('product') ;   
+        $product_arr = Session::get('product_arr');
+       
+        if( $product_arr != NULL ){
+            if(in_array($id,$product_arr) == false){
+                $data  = array(
+                    'product_id'    =>  $id,
+                    'qty'           =>  1
+                );
+                Session::push('product',   $data );
+                Session::push('product_arr', $id);
+            }else{
+                foreach($product as $key => $item){
+                    if($item['product_id'] == $id){
+                        $count =  $item['qty']+1;
+                        Session::put('product.'.$key.'.qty',$count); 
+                    }
+                  
+                }
             }
         }else{
-         
-            Session::push('product', $id);
+            $data  = array(
+                'product_id'    =>  $id,
+                'qty'           =>  1
+            );
+            Session::push('product',   $data );
+            Session::push('product_arr', $id);
         }
 
 
-        return redirect('cart'); 
+     
+
+      //  return redirect('cart'); 
       
     }
 
     public function deleteitemincart(Request $request){
+        
         Session::forget('product.'.$request->item);
 
     }

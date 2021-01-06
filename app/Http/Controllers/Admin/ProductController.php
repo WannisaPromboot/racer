@@ -69,6 +69,8 @@ class ProductController extends Controller
         $newProduct->product_caution_en   = $request->product_caution_en;
         $newProduct->product_spec_th   = $request->product_spec_th;
         $newProduct->product_spec_en   = $request->product_spec_en;
+        $newProduct->product_extra_th   = $request->product_extra_th;
+        $newProduct->product_extra_en   = $request->product_extra_en;
 
         $newProduct->product_distance_price   = $request->product_distance_price;
         // $newProduct->product_distance_km   = $request->product_distance_km;
@@ -222,7 +224,14 @@ class ProductController extends Controller
             $updateProduct->product_installation_en   = $request->product_installation_en;
         }
 
-        if(isset($request->product_distance_free)){
+        if(isset($request->product_extra_th)){
+            $updateProduct->product_extra_th   = $request->product_extra_th;
+        }
+        if(isset($request->product_extra_en)){
+            $updateProduct->product_extra_en   = $request->product_extra_en;
+        }
+
+        if(isset($request->product_distance_price)){
             $updateProduct->product_distance_price   = $request->product_distance_price;
         }
 
@@ -452,7 +461,9 @@ class ProductController extends Controller
     public function ShowProduct(Request $request){
         $products = Product::where('id_subcategory',$request->id)->where('product_display',0)->get();
         $subcate = \App\SubCategory::where('id_subcategory',$request->id)->first();
+        $cate = \App\Category::where('id_category',$subcate->id_category)->first();
         $html= '';
+        $banner = '';
      //   dd($request->all());
 
         if(count($products) > 0){
@@ -470,10 +481,23 @@ class ProductController extends Controller
                     foreach( $products as $product){
                 $html.=              '<div class="col-md-4 col-lg-4 mb-4" >
                                             <a href="'.url('detail-product/'.$product->id_product.'').'"><img class="pro-img" src="'.url('storage/app/'.$product->product_img).'"></a>
-                                        </div>';
-                                    }
                                         
+                                        <center><p class="name-pro">'.$product->product_name_th.'</p><center>';
+                                        if(!empty(	$item->product_special_price)){
+                                            $html.=    '<center><p class="price-line">฿'.number_format($product->product_normal_price,2).'</p><center>';
+                                        }
+                                        if(!empty(	$product->product_special_price)){
+                                            $html.= '<center><p class="price-pro">฿'.number_format($product->product_special_price,2).'</p><center>';
+                                        }else{ 
+                                            $html.= '<center><p class="price-pro">฿'.number_format($product->product_normal_price,2).'</p><center>';
+                                        }
+                                        $html.=  '<center><a href="javascript:void(0)" onclick="addcart('.$product->id_product.')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>';
+                        $html.=       '</div>';
+                                    
+                                    }
 
+                 
+                                        
 
                 $html.=              '</div>
                                     </div>
@@ -485,7 +509,7 @@ class ProductController extends Controller
         }else{
             $html.=  '   <div class="card-header" id="accordion-tab-1-heading-1">
                             <h5>
-                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >ทั้งหมด</button>
+                                <button class="btn btn-link btntitle" type="button" data-toggle="collapse"  aria-expanded="false" >'.$subcate->subcategory_name_th.'</button>
                             </h5>
                         </div>
                         <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">
@@ -501,11 +525,32 @@ class ProductController extends Controller
                             </div>
                         </div>';
         }
-     
 
-        
 
-        return $html;
+        if(!empty($cate->category_img)){
+                $img = url('storage/app/'.$cate->category_img);
+        }else{
+            $img =      url('frontend/images/banner-detail.jpg');
+        }
+
+
+        $banner     .=  '<div class="hero-wrap hero-bread" style="background-image: url('.$img.');">
+                            <div class="container">
+                                <div class="row no-gutters slider-text align-items-center justify-content-center">
+                                    <div class="col-md-9 ftco-animate text-center">
+                                        <h1 class="mb-0 bread">'.$cate->category_name_th.'</h1>
+                                        <p class="breadcrumbs"><span class="mr-2"><a href="'.url('/').'">หน้าหลัก</a></span>/ <span>'.$cate->category_name_th.'</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+        $data  = array(
+            'html'      => $html,
+            'banner'      => $banner,
+
+        );
+
+        return $data;
     }
 
     public function DeleteProduct($id){

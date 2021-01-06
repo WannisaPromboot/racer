@@ -59,6 +59,7 @@ class PaymentController extends Controller
         
 
         Session::forget('product');
+        Session::forget('product_arr');
         return redirect('/')->with('success','ขอบคุณสำหรับการสั่งซื้อสินค้า');
 
     }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    @include('class.OrangeV1')
     <title>Racer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -1075,7 +1076,7 @@ label {
       
   </style>
 
-
+ 
   <body class="goto-here">
 		<div class="py-1 bg-primary">
     	<div class="container">
@@ -1096,13 +1097,13 @@ label {
                         </div>
                         <div class="col-md-4">
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-twitter"></span></a>
+								<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
 							</div>
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+								<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
 							</div>
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="#" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
 						   </div>
 
 					    </div>
@@ -1184,82 +1185,81 @@ label {
 
                     <h1 class="title-cart"><span class="icon-shopping_cart"></span>ประวัติการสั่งซื้อ</h1>
 
-<div class="shopping-cart">
+                        <div class="shopping-cart">
 
-<div class="column-labels">
-    <label class="product-image">Image</label>
-    <label class="product-details">Product</label>
-    <label class="product-price">ราคา</label>
-    <label class="product-quantity">จำนวน</label>
-    <label class="product-removal">Remove</label>
-    <label class="product-line-price">รวม</label>
-</div>
+                        <div class="column-labels">
+                            <label class="product-image">Image</label>
+                            <label class="product-details">Product</label>
+                            <label class="product-price">ราคา</label>
+                            <label class="product-quantity">จำนวน</label>
+                            <label class="product-removal">Remove</label>
+                            <label class="product-line-price">รวม</label>
+                        </div>
+                        
+                        @foreach ($order as $_order)
+                        <div class="product">
+                            <div class="product-image">
+                            <p class="pro-sub">คำสั่งซื้อ {{$_order->id_order}}</p>
+                            <p class="pro-sub">สั่งซื้อวันที่ {!! OrangeV1:: Date (date_create($_order->created_at)) !!} {{date_format($_order->created_at,'H:i:s')}}</p>
+                                <img  align="left" class="img-order-pro" src="{{asset('frontend/images/pro02.jpg')}}">
+                            </div>
+                            <div class="product-details">
+                            <?php $product = \App\Product::where('id_product',$_order->product_id)->first(); ?>
+                            <div class="product-title">{{$product->product_name_th}}</div>
+                            <p class="product-description"></p>
+                        </div>
+                        <div class="product-price">Qty: {{$_order->count}}</div>
 
-<div class="product">
-    <div class="product-image">
-    <p class="pro-sub">คำสั่งซื้อ 276637072504240</p>
-    <p class="pro-sub">สั่งซื้อวันที่ 26 ม.ค. 2020 17:43:53</p>
-        <img  align="left" class="img-order-pro" src="{{asset('frontend/images/pro02.jpg')}}">
-    </div>
-    <div class="product-details">
-    <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-    <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-    </div>
-<div class="product-price">Qty: 1</div>
+                        <div class="product-removal">
+                                <button class="remove-product">
+                                ส่งสินค้าแล้ว
+                                </button>
+                            </div>
+                            <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
+                        </div>
+                        @endforeach
+                        
 
-<div class="product-removal">
-        <button class="remove-product">
-        ส่งสินค้าแล้ว
-        </button>
-    </div>
-    <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
-</div>
+                        {{-- <div class="product">
+                            <div class="product-image">
+                                <p class="pro-sub">คำสั่งซื้อ 276637072504240</p>
+                                <p class="pro-sub">สั่งซื้อวันที่ 26 ม.ค. 2020 17:43:53</p>
+                                <img align="left" class="img-order-pro" src="{{asset('frontend/images/pro03.jpg')}}">
+                            </div>
+                            <div class="product-details">
+                                <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
+                                <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
+                            </div>
+                        <div class="product-price">Qty: 1</div>
 
-<div class="product">
-    <div class="product-image">
-        <p class="pro-sub">คำสั่งซื้อ 276637072504240</p>
-        <p class="pro-sub">สั่งซื้อวันที่ 26 ม.ค. 2020 17:43:53</p>
-        <img align="left" class="img-order-pro" src="{{asset('frontend/images/pro03.jpg')}}">
-    </div>
-    <div class="product-details">
-        <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-        <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-    </div>
-<div class="product-price">Qty: 1</div>
+                        <div class="product-removal">
+                            <button class="remove-product">
+                            ส่งสินค้าแล้ว
+                            </button>
+                        </div>
+                            <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
+                        </div> --}}
 
-<div class="product-removal">
-    <button class="remove-product">
-    ส่งสินค้าแล้ว
-    </button>
-</div>
-    <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
-</div>
+                        {{-- <div class="product">
+                            <div class="product-image">
+                            <p class="pro-sub">คำสั่งซื้อ 276637072504240</p>
+                            <p class="pro-sub">สั่งซื้อวันที่ 26 ม.ค. 2020 17:43:53</p>
+                            <img align="left" class="img-order-pro" src="{{asset('frontend/images/pro04.jpg')}}">
+                        </div>
+                        <div class="product-details">
+                            <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
+                            <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
+                        </div>
+                        <div class="product-price">Qty: 1</div>
 
-<div class="product">
-    <div class="product-image">
-    <p class="pro-sub">คำสั่งซื้อ 276637072504240</p>
-    <p class="pro-sub">สั่งซื้อวันที่ 26 ม.ค. 2020 17:43:53</p>
-    <img align="left" class="img-order-pro" src="{{asset('frontend/images/pro04.jpg')}}">
-</div>
-<div class="product-details">
-    <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-    <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-</div>
-<div class="product-price">Qty: 1</div>
+                        <div class="product-removal">
+                            <button class="remove-product">
+                            ส่งสินค้าแล้ว
+                            </button>
+                        </div>
+                            <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
+                        </div> --}}
 
-<div class="product-removal">
-    <button class="remove-product">
-    ส่งสินค้าแล้ว
-    </button>
-</div>
-    <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
-</div>
-
-
-
-
-
-            
             </div>
         </div>
        

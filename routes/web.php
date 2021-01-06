@@ -81,6 +81,7 @@ Route::get('/detail-product/{id}', function($id){
     $data = array(
         'item'  => \App\Product::where('id_product',$id)->first(),
         'imgs'  => \App\ProductGallery::where('id_product',$id)->orderby('sort')->get(),
+        'review' => \App\Review::where('product_id',$id)->get()
     );
     return view('frontend.detail-product',$data);
 });
@@ -100,7 +101,11 @@ Route::get('/news', function(){
 
 Route::group(['middleware'=>['loginfrontend']],function(){
     Route::get('/order-history', function(){
-        return view('frontend.order-history');
+        $data = array(
+            'order'  => \App\Order::join('product_order_item','product_order.id_order','=','product_order_item.id_order')
+                                    ->where('customer_id',Session::get('customer_id'))->orderby('product_order.created_at','desc')->get(),
+        );
+        return view('frontend.order-history',$data);
     });
     
     Route::get('/payment/{id}', function($id){
@@ -115,6 +120,10 @@ Route::group(['middleware'=>['loginfrontend']],function(){
 
      ////////////////////controller payment
      Route::post('/storepayment','Frontend\PaymentController@storePayment');
+
+
+     ////////////////controller review
+     Route::post('/comment', 'Admin\ReviewController@comment');
 });
 
 
@@ -122,10 +131,11 @@ Route::group(['middleware'=>['loginfrontend']],function(){
 
 Route::get('/product/{cat}', function($cat){
     $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
+    $product = \App\Product::where('product_display',0)->where('id_category',$category->id_category)->get();
     $data = array(
-        'cate' => $category,
+        'products'  => $product,
+        'cate'       => $category
     );
-    // dd($category);
     return view('frontend.product',$data);
 });
 
@@ -286,6 +296,13 @@ Route::get('/orederdetail/{id}', 'Admin\OrderController@OrederDetail');
 Route::get('receipt','Admin\OrderController@receipt');
 Route::get('changestatus','Admin\OrderController@changestatus');
 Route::get('changeshipping','Admin\OrderController@changeshipping');
+
+////review
+Route::get('/reviewcontent', 'Admin\ReviewController@ReviewContent');
+Route::get('/reviewdetail/{id}', 'Admin\ReviewController@ReviewDetail');
+Route::get('/changedisplay', 'Admin\ReviewController@changedisplay');
+
+
 
 ////////////////////new///////////////////////////
 Route::get('/addnew', 'Admin\NewsController@Addnew');

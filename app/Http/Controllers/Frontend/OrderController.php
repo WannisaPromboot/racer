@@ -28,7 +28,8 @@ class OrderController extends Controller
             $newOrderItem->price = $item;
             $newOrderItem->count = $request->count[$key];
             $newOrderItem->save();
-        }   
+        } 
+          
 
         return redirect('payment/'.$A.'');
    }

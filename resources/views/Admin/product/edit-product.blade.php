@@ -346,6 +346,24 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-3  mt-2">
+                                        <b>ข้อมูลเพิ่มเติม (ภาษาไทย)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_extra_th" name="product_extra_th" >{{$product->product_extra_th}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
+                                        <b>ข้อมูลเพิ่มเติม (ภาษาอังกฤษ)</b>
+                                    </div>
+                                    <div class="col-sm">
+                                        <textarea type="texe" class="form-control" id="product_extra_en" name="product_extra_en" >{{$product->product_extra_en}}</textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-3  mt-2">
                                         <b>ค่าส่ง </b>
                                     </div>
                                     <div class="col-1">
@@ -583,8 +601,55 @@
             }
         });
 
+        $("#product_extra_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
+        $("#product_extra_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        });
+
 
     });
+
+    
+    function sendFile(file, editor, welEditable) {
+        data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "{{url('summernoteupload')}}",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(url) {
+                editor.summernote('insertImage',url, function ($image) {
+                            });
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                if (xhr.responseText) {
+                    toastr.error(xhr.responseText, 'Inconceivable!')
+                } else {
+                    console.error("<div>Http status: " + xhr.status + " " + xhr.statusText + "</div>" + "<div>ajaxOptions: " + ajaxOptions + "</div>"
+                        + "<div>thrownError: " + thrownError + "</div>");
+                }
+            }
+        });
+    }
     
 </script>
 <script>

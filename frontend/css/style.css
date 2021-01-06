@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
     width: max-content;
   }
 .icon-shopping_cart{
-  color:  #41c8f5;
+ /* color:  #41c8f5;*/
   font-size: 18px;
 }
 .ftco-navbar-light .navbar-nav > .nav-item > #cart-col{
@@ -8504,7 +8504,7 @@ h1, h2, h3, h4, h5,
         bottom: 0;
         left: 0;
         right: 0;
-        background: #000000;
+       /* background: #000000;*/
         opacity: .2; }
       .owl-carousel.home-slider .slider-item .slider-text {
         height: 650px;
