@@ -501,10 +501,12 @@ a:hover, a:focus {
 			<div class="row">
 			   
 				<div class="col-md-6" id="">
-					<a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a>
+					{{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
+					<img class="pro-img" src="{{asset('frontend/images/S__2646148.jpg')}}">
 				</div>
 				<div class="col-md-6" id="">
-					<a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                        
+					{{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
+					<img class="pro-img" src="{{asset('frontend/images/S__2646161.jpg')}}">
 				</div>
 
 

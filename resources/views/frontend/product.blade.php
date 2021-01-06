@@ -313,7 +313,7 @@ div {
   </nav>
     <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}});">
+    <div class="hero-wrap hero-bread" style="background-image: url({{url('storage/app/'.$cate->category_img)}});">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
