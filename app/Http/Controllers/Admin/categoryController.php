@@ -56,7 +56,7 @@ class categoryController extends Controller
     }
 
     public function Updatecategory(Request $request,$id){
-      //  dd($request->all());
+      // dd($request->all());
         $UpdateCategory = Category::where('id_category',$id)->first();
 
         if(isset($request->category_th)){
@@ -66,7 +66,8 @@ class categoryController extends Controller
         if(isset($request->category_en)){
             $UpdateCategory->category_name_en = $request->category_en;
         }
-        if($request["filepath"][$id] !== null){
+
+        if(isset($request["filepath"])){
             $newimage = 'Cate/'.time().$request["filepath"][$id]->getClientOriginalName();
             Storage::put($newimage, file_get_contents($request["filepath"][$id]));
             $UpdateCategory->category_img = $newimage;

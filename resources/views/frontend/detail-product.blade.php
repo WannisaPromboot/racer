@@ -725,8 +725,9 @@ height: 165px;
 	</div>
   </nav>
     <!-- END nav -->
-
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
+    <?php  ?>
+    <?php $cate = \App\Category::where('id_category',$item->id_category)->first(); ?>
+    <div class="hero-wrap hero-bread" style="background-image: url({{ !empty($cate->category_img) ? url('storage/app/'.$cate->category_img) : asset('frontend/images/banner-detail.jpg')}}">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -920,7 +921,6 @@ height: 165px;
                       </div>
                       <div class="col-md-6" id="col-md-6">
                                                   <p class="title-pro">{{$item->product_name_th}}</p>
-                        <?php $cate = \App\Category::where('id_category',$item->id_category)->first(); ?>
                         <p class="sub-pro">({{$cate->category_name_th}})</p>
                         <hr class="line-height">
                         @if(($item->product_start <= date('Y-m-d') && $item->product_start != NULL ) && ($item->product_end >= date('Y-m-d') && $item->product_end != NULL))

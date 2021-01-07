@@ -33,6 +33,15 @@ Route::get('/', function(){
     return view('frontend.index',$data);
 });
 
+Route::get('/index', function(){
+    $data = array(
+        'data' => App\Slide::orderBy('slide_number','ASC')->get(),
+    // dd( $data['data']);
+        'cate'   => \App\Category::orderBy('sort')->get()
+    );
+    return view('frontend.index',$data);
+});
+
 Route::get('/about-us', function(){
     return view('frontend.about-us');
 });

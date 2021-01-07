@@ -387,8 +387,8 @@ a:hover, a:focus {
 					</div>
 					<div class="col-md-4">
 						<div class="icon mr-2 d-flex justify-content-center" id="social">
-							<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
-						</div>
+                            <a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
+                        </div>
 						<div class="icon mr-2 d-flex justify-content-center" id="social">
 							<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
 						</div>
@@ -406,6 +406,7 @@ a:hover, a:focus {
 {{-- start nav --}}
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
+        
 		<a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="oi oi-menu"></span> Menu
@@ -538,18 +539,18 @@ a:hover, a:focus {
                                     @endforeach
                                 </p> --}}
                                 <span class="dropdown2">
-                                    <span class="title-num" id="margin-pro">01</span> 
-                                    <span class="pro-title" id="margin-pro">Lighting</span>
-                                    <span class="popular" id="margin-pro"> #Popular searches</span>
+                                    <span class="title-num" id="margin-pro">{{$i}}</span> 
+                                    <span class="pro-title" id="margin-pro">{{strtoupper ($_cate->category_name_th)}}</span>
+                                    <span class="popular" id="margin-pro"> #Popular Searches</span>
                                     @foreach ($subcate as $_subcate)
-                                    <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
+                                    <a href="#" class="next-pro" id="margin-pro"> {{ucwords($_subcate->subcategory_name_th)}}</a>
                                     @endforeach
                                     @if($count > 0)
                                     <span class="dropdown">
-                                        <span class="next-pro" id="margin-pro">ALL PRODUCT</span>
+                                        <span class="next-pro" id="margin-pro">All Product</span>
                                         <div class="dropdown-content">
                                                 @foreach ($other_subcate as $_other)
-                                                <a href="#"> {{$_other->subcategory_name_th}}</a>
+                                                <a href="#"> {{ucwords($_other->subcategory_name_th)}}</a>
                                                 @endforeach
                                         </div>
                                     </span>
