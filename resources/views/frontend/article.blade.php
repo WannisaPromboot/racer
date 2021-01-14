@@ -537,7 +537,7 @@ a:hover {
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : xx xxx xxxx</span></div>
+							<span class="text"> : 02 811 1741 5 5</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon icon-envelope" style="color:#00b9e9"></span>
 							<span class="text"> : Racer.co.th</span></div>
@@ -617,7 +617,7 @@ a:hover {
                 <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
                     <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/en.jpg')}}"> TH</a>
-                    <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/en.jpg')}}"> EN</a>
+                    <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/united-states.png')}}"> EN</a>
                 </div>
             </li>
         </ul>
@@ -648,13 +648,14 @@ a:hover {
                 <div class="row">
                     @foreach($data as $item)
                         <div class="col-md-4" id="">
-                            <a href="{{url('/detail-article')}}"><img class="pro-img" src="{{url('storage/app/'.$item->blog_image)}}"></a>
+                            <a href="{{url('/detail-article')}}/{{$item->id_blog}}"><img class="pro-img" src="{{url('storage/app/'.$item->blog_image)}}"></a>
                         </div>
                         <div class="col-md-8" id="">
 
                             <div class="welcome_docmed_info">
-                                <h3 class="title-pan">{{$item->blog_th}}</h3>
-                                <p class="sub-pan">{!!$item->description_blog_th!!}</p>
+                                <a href="{{url('/detail-article')}}/{{$item->id_blog}}"><h3 class="title-pan">{{$item->blog_th}}</h3></a>
+                                {{-- <p class="sub-pan">{!!$item->description_blog_th!!}</p> --}}
+                                <p class="sub-pan">{!!substr($item->description_blog_th,0,500)!!}.........</p>
 
                                 <a href="{{url('/detail-article')}}/{{$item->id_blog}}" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
                                 
@@ -759,9 +760,10 @@ a:hover {
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
+137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
 	              </ul>
 	            </div>
             </div>

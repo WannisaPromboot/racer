@@ -70,7 +70,7 @@
                                         @endif
                                     </td>  
                                     <td>
-                                        <a href="{{url('editproduct/'.$datas->id_prid_slideoduct.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
+                                        <a href="{{url('editslide/'.$datas->id_slide.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
                                     </td>
                                     <td>
                                         <a href="javascript:void(0)" onclick="deldata({{$datas->id_slide}})" class="btn btn-danger btn-sm">{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>

@@ -222,7 +222,7 @@ Route::get('change_select','Admin\SlidesController@change_select');
 Route::get('viewslide/{id}','Admin\SlidesController@ViewSlide');
 
 Route::post('/saveslide', 'Admin\SlidesController@SaveSlide')->name('SaveSlide');
-Route::post('/updateslide/{id}', 'Admin\SlidesController@UpdateSlide')->name('UpdateSlide');
+Route::post('/updateslide', 'Admin\SlidesController@UpdateSlide');
 
 //////product categoryController
 /////->categoryController1
