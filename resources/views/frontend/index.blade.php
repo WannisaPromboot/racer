@@ -377,7 +377,7 @@ a:hover, a:focus {
 					<div class="col-md-8 pr-4 d-flex topper align-items-center">
 						<div class="icon mr-2 d-flex justify-content-center align-items-center">
 							<span class="icon-phone2" style="color:#00b9e9"></span>
-						<span class="text"> : 02 811 1741 5 5</span></div>
+						<span class="text"> : 02 811 1741 5</span></div>
 						<div class="icon mr-2 d-flex justify-content-center align-items-center">
 							<span class="icon icon-envelope" style="color:#00b9e9"></span>
 						<span class="text"> : Racer.co.th</span></div>
@@ -455,8 +455,8 @@ a:hover, a:focus {
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/en.jpg')}}"> TH</a>
-							<a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/united-states.png')}}"> EN</a>
+							<a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
+							<a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
 						</div>
 					</li>
 				</ul>
@@ -494,135 +494,133 @@ a:hover, a:focus {
     </section>
 
 	<div class="section-back" >
-
 		<div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
-
-		<div class="container">
-			<div class="row">
-			   
-				<div class="col-md-6" id="">
-					{{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
-					<img class="pro-img" src="{{asset('frontend/images/S__2646148.jpg')}}">
-				</div>
-				<div class="col-md-6" id="">
-					{{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
-					<img class="pro-img" src="{{asset('frontend/images/S__2646161.jpg')}}">
-				</div>
-
-
-	
-			</div>
-        </div>
-        <?php  $i = '01'; ?>
-        @foreach ($cate as $_cate)
-        <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
-                $banner = \App\Banner::where('category_id',$_cate->id_category)->orderBy('banner_number','ASC')->get();
-              $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(4)->get();
-              $count_sub = count(\App\SubCategory::where('id_category',$_cate->id_category)->get());
-              $count = $count_sub - 4;
-              if( $count > 0){
-                $other_subcate = \App\SubCategory::where('id_category',$_cate->id_category)->skip(4)->take($count)->get();
-              }
-         ?>
-        @if(count($product) > 0)
-        <div class="container">
-            <div class="row">
-               <div id="box">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12" >
-                                {{-- <p class="pro-index"><span class="title-num" id="margin-pro">{{$i}}</span> <span class="pro-title" id="margin-pro">{{$_cate->category_name_th}}</span>
-                                    <span class="popular" id="margin-pro"> #Popular searches</span>
-                                    @foreach ($subcate as $_subcate)
-                                        <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
-                                    @endforeach
-                                </p> --}}
-                                <span class="dropdown2">
-                                    <span class="title-num" id="margin-pro">01</span> 
-                                    <span class="pro-title" id="margin-pro">Lighting</span>
-                                    <span class="popular" id="margin-pro"> #Popular searches</span>
-                                    @foreach ($subcate as $_subcate)
-                                    <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
-                                    @endforeach
-                                    @if($count > 0)
-                                    <span class="dropdown">
-                                        <span class="next-pro" id="margin-pro">ALL PRODUCT</span>
-                                        <div class="dropdown-content">
-                                                @foreach ($other_subcate as $_other)
-                                                <a href="#"> {{$_other->subcategory_name_th}}</a>
-                                                @endforeach
-                                        </div>
-                                    </span>
-                                    @endif
-                                </span>
-                                <hr class="line-index">
-                            </div>
-
-                        </div>
+            <div class="container">
+                <div class="row">
+                
+                    <div class="col-md-6" id="">
+                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
+                        <img class="pro-img" src="{{asset('frontend/images/S__2646148.jpg')}}">
                     </div>
-                    <div class="container" >
-                        <div class="row">
-                            <div class="col-md-6" id="pro-mar">
-                                <a href="{{url(''.$banner[0]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
-                            </div>
-                            <div class="col-md-6" id="pro-mar">
-                                
-                                <div class="container" id="con-pro">
-                                    <div class="row" >
-                                        <div class="col-md-6" id="pro-mar">
-                                            <a href="{{url(''.$banner[1]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[1]->banner_image)}}"></a>
-                                        </div>
-                                        <div class="col-md-6" id="pro-mar">
-                                            <a href="{{url(''.$banner[2]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[2]->banner_image)}}"></a>
-                                        </div>
-                                        <div class="col-md-6" id="pro-mar">
-                                            <a href="{{url(''.$banner[3]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[3]->banner_image)}}"></a>
-                                        </div>
-                                        <div class="col-md-6" id="pro-mar">
-                                            <a href="{{url(''.$banner[4]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[4]->banner_image)}}"></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
+                    <div class="col-md-6" id="">
+                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
+                        <img class="pro-img" src="{{asset('frontend/images/S__2646161.jpg')}}">
                     </div>
+
+
+        
                 </div>
             </div>
+            <?php  $i = '01'; ?>
+            @foreach ($cate as $_cate)
+                <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
+                        $banner = \App\Banner::where('category_id',$_cate->id_category)->orderBy('banner_number','ASC')->get();
+                    $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(4)->get();
+                    $count_sub = count(\App\SubCategory::where('id_category',$_cate->id_category)->get());
+                    $count = $count_sub - 4;
+                    if( $count > 0){
+                        $other_subcate = \App\SubCategory::where('id_category',$_cate->id_category)->skip(4)->take($count)->get();
+                    }
+                ?>
+                @if(count($product) > 0)
+                    <div class="container">
+                        <div class="row">
+                        <div id="box">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12" >
+                                            {{-- <p class="pro-index"><span class="title-num" id="margin-pro">{{$i}}</span> <span class="pro-title" id="margin-pro">{{$_cate->category_name_th}}</span>
+                                                <span class="popular" id="margin-pro"> #Popular searches</span>
+                                                @foreach ($subcate as $_subcate)
+                                                    <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
+                                                @endforeach
+                                            </p> --}}
+                                            <span class="dropdown2">
+                                                <span class="title-num" id="margin-pro">01</span> 
+                                                <span class="pro-title" id="margin-pro">Lighting</span>
+                                                <span class="popular" id="margin-pro"> #Popular searches</span>
+                                                @foreach ($subcate as $_subcate)
+                                                <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
+                                                @endforeach
+                                                @if($count > 0)
+                                                <span class="dropdown">
+                                                    <span class="next-pro" id="margin-pro">ALL PRODUCT</span>
+                                                    <div class="dropdown-content">
+                                                            @foreach ($other_subcate as $_other)
+                                                            <a href="#"> {{$_other->subcategory_name_th}}</a>
+                                                            @endforeach
+                                                    </div>
+                                                </span>
+                                                @endif
+                                            </span>
+                                            <hr class="line-index">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="container" >
+                                    <div class="row">
+                                        <div class="col-md-6" id="pro-mar">
+                                            <a href="{{url(''.$banner[0]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
+                                        </div>
+                                        <div class="col-md-6" id="pro-mar">
+                                            
+                                            <div class="container" id="con-pro">
+                                                <div class="row" >
+                                                    <div class="col-md-6" id="pro-mar">
+                                                        <a href="{{url(''.$banner[1]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[1]->banner_image)}}"></a>
+                                                    </div>
+                                                    <div class="col-md-6" id="pro-mar">
+                                                        <a href="{{url(''.$banner[2]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[2]->banner_image)}}"></a>
+                                                    </div>
+                                                    <div class="col-md-6" id="pro-mar">
+                                                        <a href="{{url(''.$banner[3]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[3]->banner_image)}}"></a>
+                                                    </div>
+                                                    <div class="col-md-6" id="pro-mar">
+                                                        <a href="{{url(''.$banner[4]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[4]->banner_image)}}"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php $i = str_pad($i + 1, 2, 0, STR_PAD_LEFT); ?>
+                @endif
+            @endforeach
+            <div id="box2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-12" >
+                            <a href="{{url('news')}}"><img class="pro-img2" src="{{asset('frontend/images/Banner-NEWS.png')}}"></a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-12" >
+                            <center><img class="pro-img4" src="{{asset('frontend/images/icon.JPG')}}"></center>
+                        </div>
+                    
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <?php $i = str_pad($i + 1, 2, 0, STR_PAD_LEFT); ?>
-        @endif
-        @endforeach
-       <div id="box2">
-			<div class="container">
-				<div class="row">
-
-					<div class="col-md-12" >
-                        <a href="{{url('news')}}"><img class="pro-img2" src="{{asset('frontend/images/Banner-NEWS.png')}}"></a>
-					</div>
-
-				</div>
-			</div>
-
-			<div class="container">
-				<div class="row">
-
-					<div class="col-md-12" >
-						<center><img class="pro-img4" src="{{asset('frontend/images/icon.JPG')}}"></center>
-					</div>
-				
-
-				</div>
-			</div>
-
-		</div>
-	</div>
 	</div>
 
 
-	    <footer class="ftco-footer ftco-section">
-      <div class="container">
+	<footer class="ftco-footer ftco-section">
+        <div class="container">
       	<!-- <div class="row">
       		<div class="mouse">
 						<a href="#" class="mouse-icon">

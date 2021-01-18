@@ -162,15 +162,8 @@ Route::post('customerregister','Frontend\CustomerController@CustomerRegister');
 Route::get('/contact', function(){
     return view('frontend.contact');
 });
+Route::post('sendcontact','Frontend\CustomerController@Customersendmail');
 
-Route::get('tested',function(){
-    // Mail::send('email.register',[],function($message){
-    //     $message->to('s5904062630292@email.kmutnb.ac.th')
-    //             ->subject('test email')
-    //             ->from('58030218@kmail.ac.th');
-    // });
-    return view('email.forgotpassword');
-});
 Route::get('footerd',function(){
     return view('email.footer');
 });

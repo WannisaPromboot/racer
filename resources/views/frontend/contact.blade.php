@@ -31,7 +31,8 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  </head>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
+</head>
 
   <style>
       .img-logo {
@@ -858,7 +859,7 @@ textarea.form-control {
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : 02 811 1741 5 5</span></div>
+							<span class="text"> : 02 811 1741 5</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon icon-envelope" style="color:#00b9e9"></span>
 							<span class="text"> : Racer.co.th</span></div>
@@ -937,8 +938,8 @@ textarea.form-control {
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                    <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/en.jpg')}}"> TH</a>
-                    <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/united-states.png')}}"> EN</a>
+                    <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
+                    <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
                 </div>
             </li>
         </ul>
@@ -994,7 +995,7 @@ textarea.form-control {
                             137 หมู่9 ซอยเพชรเกษม91 <br>ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110
                           </p>
                           <p class="address-text"> <i class="fa fa-envelope" id="icon-con" aria-hidden="true"></i> info@gmail.com</p>
-                          <p class="address-text"> <span class="icon icon-phone" id="icon-con"></span> 02 811 1741 5 5</p>
+                          <p class="address-text"> <span class="icon icon-phone" id="icon-con"></span> 02 811 1741 5</p>
                           {{-- <p class="address-text"> <i class="fa fa-fax" id="icon-con" aria-hidden="true"></i> 00-000-0000</p> --}}
                       </div>
           
@@ -1009,26 +1010,27 @@ textarea.form-control {
                         <div class="col-md-6 col-lg-6">
                           <div class="block-form">
                               <div class="popup_inner">
-                                  <p class="form-title">Contact</p>
-                                  <i class="fa fa-envelope" id="icon-con2" aria-hidden="true"></i>
-                                  <form action="#">
-                                      <div class="row">
-                                          <div class="col-xl-12" id="col-xl-12">
-                                              <input class="form-control" type="text" placeholder="Your Name">
-                                              <input class="form-control" type="text" placeholder="Company Name">
-                                              <input class="form-control" type="email" placeholder="Your Email">
-                                              <!-- <input class="form-control" type="text"  placeholder="Re-enter Your Email"> -->
-                                              <!-- <input class="form-control" type="text" placeholder="Your Phone"> -->
-                                              <textarea class="form-control" type="text" id="cf_message" name="comments" placeholder="Your Message"></textarea>
-                                              <!-- <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                              <label for="vehicle1" class="check-text2"> I agree to MyKmutt-med <a href="#"><span class="term">Terms of Use</span></a></label> -->
-                                          </div>
-                                          
-                                          <div class="col-xl-12">
-                                              <center><button type="submit" class="boxed-btn3">SEND</button></center>
-                                          </div>
-                                      </div>
-                                  </form>
+                                    <p class="form-title">Contact</p>
+                                    <i class="fa fa-envelope" id="icon-con2" aria-hidden="true"></i>
+                                    <form action="{{url('sendcontact')}}" method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-xl-12" id="col-xl-12">
+                                                <input class="form-control" type="text" placeholder="Your Name" name="name">
+                                                <input class="form-control" type="text" placeholder="Company Name" name="company">
+                                                <input class="form-control" type="email" placeholder="Your Email" name="email">
+                                                <!-- <input class="form-control" type="text"  placeholder="Re-enter Your Email"> -->
+                                                <input class="form-control" type="text" name="subject" placeholder="Your Subject">
+                                                <textarea class="form-control" type="text" id="cf_message" name="comments" placeholder="Your Message"></textarea>
+                                                <!-- <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                                <label for="vehicle1" class="check-text2"> I agree to MyKmutt-med <a href="#"><span class="term">Terms of Use</span></a></label> -->
+                                            </div>
+                                            
+                                            <div class="col-xl-12">
+                                                <center><button type="submit" class="boxed-btn3">SEND</button></center>
+                                            </div>
+                                        </div>
+                                    </form>
                               </div>
                             </div>
                         </div>
@@ -1145,7 +1147,22 @@ textarea.form-control {
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
-
+  <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> 
+  <script>
+    var A  = "{{Session::get('success')}}";
+    var B  = "{{Session::get('error')}}";
+    if(A){
+      Swal.fire({
+            text:A,
+            type: 'success'
+        });
+    }else if(B){
+      Swal.fire({
+            text:B,
+            type: 'error'
+        });
+    }
+  </script>
     
   </body>
 </html>

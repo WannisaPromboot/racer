@@ -541,7 +541,7 @@ a:hover {
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : 02 811 1741 5 5</span></div>
+							<span class="text"> : 02 811 1741 5</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon icon-envelope" style="color:#00b9e9"></span>
 							<span class="text"> : Racer.co.th</span></div>

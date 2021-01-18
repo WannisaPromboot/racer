@@ -541,7 +541,7 @@ label {
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : 02 811 1741 5 5</span></div>
+							<span class="text"> : 02 811 1741 5</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon icon-envelope" style="color:#00b9e9"></span>
 							<span class="text"> : Racer.co.th</span></div>
@@ -620,8 +620,8 @@ label {
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
         <div class="dropdown-menu" aria-labelledby="dropdown04">
-          <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/en.jpg')}}"> TH</a>
-          <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/united-states.png')}}"> EN</a>
+          <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
+          <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
         </div>
       </li>
     </ul>
