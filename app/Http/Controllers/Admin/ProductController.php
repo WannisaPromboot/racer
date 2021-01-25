@@ -34,7 +34,7 @@ class ProductController extends Controller
         $data = array(
             'cate'   =>  Category::all(),
             'product'  => Product::where('id_product',$id)->first(),
-            'imgs'  => ProductGallery::where('id_product',$id)->get(),   /// id_pro == id ของตาราง product 
+            'imgs'  => ProductGallery::where('id_product',$id)->orderby('sort')->get(),   /// id_pro == id ของตาราง product 
         );
 
 

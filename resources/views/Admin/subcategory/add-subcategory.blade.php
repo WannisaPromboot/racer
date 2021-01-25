@@ -74,6 +74,15 @@
                                     </div>
                                 </div>
                                 <br>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <b>ลำดับการแสดง</b>
+                                    </div>
+                                    <div class="col-1">
+                                        <input class="form-control text-center sort" type="number" min="0" onchange="checknumber(this.value,'sort')"   name="sort"  required >
+                                    </div>
+                                </div>
+                                <br>
                                 <div class="row mt-5">
                                     <div class="col-sm text-left">
                                         <a  href="{{url('subcategorycontent')}}" class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
@@ -115,5 +124,20 @@
 
 <!-- tag input -->
 <script  src="{{ asset('assets/libs/bootstrap-tagsinput/src/bootstrap-tagsinput.js') }}"></script> 
+<script>
+     /////////check ว่าติดลบมั้ย
+     function checknumber(value,classname){
+        if(parseInt(value) < 0){
+            $('.'+classname).val("0");
+            swal.fire({
+                type:'warning',
+                text:'ห้ามกรอกข้อมูลน้อยกว่า 0',
+                confirmButtonColor: '#95ced4 ',
+
+            });
+            $('.'+classname).focus();
+        }   
+    }
+</script>
 
 @endsection

@@ -441,7 +441,7 @@ a:hover, a:focus {
 			</div>
 			<div class="col-md-4" id="pay-nemu">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('porduct')) ? '['.count(Session::get('porduct')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
+					<li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
 					@if(empty(Session::get('customer_id')))
 						<li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
 					@else
@@ -509,9 +509,6 @@ a:hover, a:focus {
 					{{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
 					<img class="pro-img" src="{{asset('frontend/images/S__2646161.jpg')}}">
 				</div>
-
-
-	
 			</div>
         </div>
         <?php  $i = '01'; ?>
@@ -541,16 +538,16 @@ a:hover, a:focus {
                                 <span class="dropdown2">
                                     <span class="title-num" id="margin-pro">{{$i}}</span> 
                                     <span class="pro-title" id="margin-pro">{{strtoupper ($_cate->category_name_th)}}</span>
-                                    <span class="popular" id="margin-pro"> #Popular Searches</span>
+                                    <span class="popular" id="margin-pro"> #Popular</span>
                                     @foreach ($subcate as $_subcate)
-                                    <a href="#" class="next-pro" id="margin-pro"> {{ucwords($_subcate->subcategory_name_th)}}</a>
+                                    <a href="{{url('product/'.$_cate->category_name_th.'/'.$_subcate->subcategory_name_th.'')}}" class="next-pro" id="margin-pro"> {{ucwords($_subcate->subcategory_name_th)}}</a>
                                     @endforeach
                                     @if($count > 0)
                                     <span class="dropdown">
                                         <span class="next-pro" id="margin-pro">All Product</span>
                                         <div class="dropdown-content">
                                                 @foreach ($other_subcate as $_other)
-                                                <a href="#"> {{ucwords($_other->subcategory_name_th)}}</a>
+                                                <a href="{{url('product/'.$_cate->category_name_t.'/'.$_other->subcategory_name_th.'')}}"> {{ucwords($_other->subcategory_name_th)}}</a>
                                                 @endforeach
                                         </div>
                                     </span>

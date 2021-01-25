@@ -115,14 +115,14 @@
                                     <b>ราคาปกติ </b>
                                 </div>
                                 <div class="col-3">
-                                    <input type="number" class="form-control" name="product_normal_price" min="0" required>
+                                    <input type="number" class="form-control price" onchange="checknumber(this.value,'price')" name="product_normal_price" min="0" required>
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                                 <div class="col-1 text-right  mt-2">
                                     <b>ราคาพิเศษ</b>
                                 </div>
                                 <div class="col-3">
-                                    <input type="number" class="form-control specialprice" min="0" name="product_special_price" >
+                                    <input type="number" class="form-control specialprice" onchange="checknumber(this.value,'specialprice')" min="0" name="product_special_price" >
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                             </div>
@@ -147,7 +147,7 @@
                                     <b>จำนวนสินค้า </b>
                                 </div>
                                 <div class="col-3">
-                                    <input type="number" class="form-control" name="product_count" min="0" >
+                                    <input type="number" class="form-control count" name="product_count" onchange="checknumber(this.value,'count')" min="0" >
                                 </div>
                                 <div class="col-1 mt-2">ชิ้น</div>
                             </div>
@@ -343,7 +343,7 @@
                                     <b>ค่าส่ง </b>
                                 </div>
                                 <div class="col-1">
-                                    <input type="number" class="form-control" name="product_distance_price" required>
+                                    <input type="number" class="form-control shipping" name="product_distance_price" onchange="checknumber(this.value,'shipping')" required>
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                                 {{-- <div class="col-1  mt-2">
@@ -828,6 +828,21 @@
             $('#notidate').css('display','none');
           }  
     });
+
+
+      /////////check ว่าติดลบมั้ย
+      function checknumber(value,classname){
+        if(parseInt(value) < 0){
+            $('.'+classname).val("0");
+            swal.fire({
+                type:'warning',
+                text:'ห้ามกรอกข้อมูลน้อยกว่า 0',
+                confirmButtonColor: '#95ced4 ',
+
+            });
+            $('.'+classname).focus();
+        }   
+    }
 
 </script>
 

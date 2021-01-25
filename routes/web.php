@@ -90,7 +90,7 @@ Route::get('/detail-product/{id}', function($id){
     $data = array(
         'item'  => \App\Product::where('id_product',$id)->first(),
         'imgs'  => \App\ProductGallery::where('id_product',$id)->orderby('sort')->get(),
-        'review' => \App\Review::where('product_id',$id)->get()
+        'review' => \App\Review::where('product_id',$id)->get(),
     );
     return view('frontend.detail-product',$data);
 });
@@ -147,6 +147,46 @@ Route::get('/product/{cat}', function($cat){
     );
     return view('frontend.product',$data);
 });
+
+
+Route::get('/product/{cat}/{subcate}', function($cat,$subcate){
+    if(!empty($subcate)){
+        $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
+        $subcategory =  \App\SubCategory::where('subcategory_name_th','like','%'.$subcate.'%')->orwhere('subcategory_name_en','like','%'.$subcate.'%')->first();
+        $product = \App\Product::where('product_display',0)->where('id_category',$category->id_category)
+                                                           ->where('id_subcategory', $subcategory->id_subcategory)->get();
+        $data = array(
+            'products'  => $product,
+            'cate'       => $category,
+            'subcate'   =>  $subcategory,
+        );
+        return view('frontend.product',$data);
+    }else{
+        $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
+        $product = \App\Product::where('product_display',0)->where('id_category',$category->id_category)->get();
+        $data = array(
+            'products'  => $product,
+            'cate'       => $category
+        );
+        return view('frontend.product',$data);
+    }
+ 
+});
+
+Route::get('/product-popular/{cat}', function($cat){
+  
+        $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
+        $product = \App\Product::where('product_display',0)->where('id_category',$category->id_category)->get();
+        $data = array(
+            'products'  => $product,
+            'cate'       => $category
+        );
+
+        return view('frontend.product',$data);
+
+});
+
+
 
 
 Route::get('/promotion', function(){
@@ -275,6 +315,13 @@ Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
 Route::get('/viewproduct', 'Admin\ProductController@ViewProduct');
 Route::get('/showproduct', 'Admin\ProductController@ShowProduct');
 Route::get('deleteproduct/{id}','Admin\ProductController@DeleteProduct');
+
+
+
+/////////////////////popularproduct
+Route::get('/populatproductcontent', 'Admin\PopularProductController@popularContent');
+Route::get('/editpoppularproduct/{id}', 'Admin\PopularProductController@Editpopular');
+Route::get('/selectproduct', 'Admin\PopularProductController@selectproduct');
 
 ///////////////production
 Route::get('/production', 'Admin\ProductionController@productioncontent');

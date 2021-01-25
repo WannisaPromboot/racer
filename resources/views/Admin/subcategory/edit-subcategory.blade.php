@@ -75,6 +75,15 @@
                                     </div>
                                 </div>
                                 <br>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <b>ลำดับการแสดง</b>
+                                    </div>
+                                    <div class="col-1">
+                                        <input class="form-control text-center sort" value="{{$item->sort}}" type="number" min="0" onchange="checknumber(this.value,'sort')"   name="sort"  required >
+                                    </div>
+                                </div>
+                                <br>
                                     <div class="row mt-5">
                                         <div class="col-10 text-left">
                                             <a  href="javascript:void(0)" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
@@ -120,19 +129,6 @@
 <script  src="{{ asset('assets/libs/bootstrap-tagsinput/src/bootstrap-tagsinput.js') }}"></script> 
 
 <script>
-$('.icon').change(function(){
-    value = $(this).val();
-    $.ajax({
-                url: "{{ url('geticon') }}",
-                method : 'GET',
-                data : { 'value' : value  },
-                dataType : 'html', 
-                success:function(result){
-                    $('#icon').html(result)
-
-                }
-        });
- });
 
     function canclebtn(){
     Swal.fire({
@@ -149,25 +145,19 @@ $('.icon').change(function(){
                 }
         });
     }
-</script>
-<script>
-    var B = "{{Session::get('Update')}}";
-    if(B){
-        swal(B);
+
+    function checknumber(value,classname){
+        if(parseInt(value) < 0){
+            $('.'+classname).val("0");
+            swal.fire({
+                type:'warning',
+                text:'ห้ามกรอกข้อมูลน้อยกว่า 0',
+                confirmButtonColor: '#95ced4 ',
+
+            });
+            $('.'+classname).focus();
+        }   
     }
-
-    
-    $('.edit').click(function(){
-        
-        $('#view').hide();
-        $('#edit').removeAttr('style');
-    });
-
-    $('.cancle').click(function(){
-        $('#view').show();
-        $('#edit').hide();
-  
-    });
 </script>
 
 @endsection
