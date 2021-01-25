@@ -19,7 +19,7 @@ class SlidesController extends Controller
 
     public function ShowSlideContent(){
         $data = array(
-            'data' => Slide::orderBy('slide_number','ASC')->get(),
+            'data' => Slide::orderBy('slide_number','ASC')->where('page',1)->get(),
         );
         return view('Admin.slide.slide-content',$data);
     }
@@ -53,6 +53,7 @@ class SlidesController extends Controller
             Storage::put($newFilename, file_get_contents($request->filepath));
             $SlideContent->slide_image = $newFilename;
         }
+        $SlideContent->page = 1;
 
         $SlideContent->save();
 

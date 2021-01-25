@@ -709,7 +709,7 @@ a:hover {
                 
                     <div class="col-md-12" id="">
                         <div class="welcome_docmed_info">
-                            <h3 class="title-pan">{{$data->blog_th}}</h3>
+                            <h3 class="title-pan" style="text-align: center;">{{$data->blog_th}}</h3>
                             <p class="sub-pan">{!!$data->description_blog_th!!}</p>
                             {{-- <p class="sub-pan">มีท่อนต่างๆ ของ Lorem Ipsum ให้หยิบมาใช้งานได้มากมาย แต่ส่วนใหญ่แล้วจะถูกนำไปปรับให้เป็นรูปแบบอื่นๆ อาจจะด้วยการสอดแทรกมุกตลก หรือด้วยคำที่มั่วขึ้นมาซึ่งถึงอย่างไรก็ไม่มีทางเป็นเรื่องจริงได้เลยแม้แต่น้อย ถ้าคุณกำลังคิดจะใช้ Lorem Ipsum สักท่อนหนึ่ง คุณจำเป็นจะต้องตรวจให้แน่ใจว่าไม่มีอะไรน่าอับอายซ่อนอยู่ภายในท่อนนั้นๆ ตัวสร้าง Lorem Ipsum บนอินเทอร์เน็ตทุกตัวมักจะเอาท่อนที่แน่ใจแล้วมาใช้ซ้ำๆ ทำให้กลายเป็นที่มาของตัวสร้างที่แท้จริงบนอินเทอร์เน็ต ในการสร้าง Lorem Ipsum ที่ดูเข้าท่า ต้องใช้คำจากพจนานุกรมภาษาละตินถึงกว่า 200 คำ ผสมกับรูปแบบโครงสร้างประโยคอีกจำนวนหนึ่ง เพราะฉะนั้น Lorem Ipsum ที่ถูกสร้างขึ้นใหม่นี้ก็จะไม่ซ้ำไปซ้ำมา ไม่มีมุกตลกซุกแฝงไว้ภายใน หรือไม่มีคำใดๆ ที่ไม่บ่งบอกความหมาย</p> --}}
                                                         
@@ -722,16 +722,16 @@ a:hover {
 
             <div class="container">
                 <div class="row">
-                
-                    <div class="col-md-12" id="">
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Gallery Photo</h3>
-                        
-                                                        
+                    @if(count($img)>0)
+                        <div class="col-md-12" id="">
+                            <div class="welcome_docmed_info">
+                                <h3 class="title-pan">Gallery Photo</h3>
                             
+                                                            
+                                
+                            </div>
                         </div>
-                    </div>
-        
+                    @endif
                 </div>
             </div>
 

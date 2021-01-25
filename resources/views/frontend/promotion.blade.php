@@ -617,7 +617,7 @@ a:hover {
   </nav>
         <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
+    <div class="hero-wrap hero-bread" style="background-image: url({{ !empty($banner) ? url('storage/app/'.$banner->slide_image) : asset('frontend/images/banner-detail.jpg')}});">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -635,27 +635,28 @@ a:hover {
             <div class="container">
                 <div class="row">
                    
-                    <div class="col-md-6" id="">
-                        <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a>
+                    <div class="col-md-6" >
+                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
+                        <img class="pro-img" src="{{asset('frontend/images/631113.AW_Web-01.jpg')}}">
                     </div>
-                    <div class="col-md-6" id="">
-                        <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                        
+                    <div class="col-md-6">
+                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
+                        <img class="pro-img" src="{{asset('frontend/images/Ads AIV FES G1+1_Web-01.jpg')}}">
                     </div>
-
-
-        
                 </div>
             </div>
 
             <div class="container">
                 <div class="row">
-                   
-                    <div class="col-md-12" id="">
-                        <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro002.jpg')}}"></a>
-                        <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro001.jpg')}}"></a>
-                        <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro003.jpg')}}"></a>
-                        <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro004.jpg')}}"></a>
-                    </div>
+                    @if(!empty($data))
+                        <div class="col-md-12" id="">
+                            @foreach ($data as $item)
+                                <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$item->promotion_image)}}"></a>
+                                
+                            @endforeach
+                            
+                        </div>
+                    @endif
                 
 
 

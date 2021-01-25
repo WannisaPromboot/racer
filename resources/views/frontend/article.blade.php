@@ -629,7 +629,7 @@ a:hover {
   </nav>
     <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
+    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/Banner-article.png')}}">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -645,8 +645,9 @@ a:hover {
 
         <div class="site-section bg-light">
             <div class="container">
-                <div class="row">
-                    @foreach($data as $item)
+                @foreach($data as $item)
+                    <div class="row">
+                    
                         <div class="col-md-4" id="">
                             <a href="{{url('/detail-article')}}/{{$item->id_blog}}"><img class="pro-img" src="{{url('storage/app/'.$item->blog_image)}}"></a>
                         </div>
@@ -662,9 +663,9 @@ a:hover {
                             </div>
                             
                         </div>
-                    @endforeach
+                    </div>
+                @endforeach
         
-                </div>
             </div>
 
 

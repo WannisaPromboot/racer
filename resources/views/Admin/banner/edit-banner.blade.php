@@ -36,12 +36,9 @@
                             <div class="row">
                                 <div class="col-2">หมวดหมู่   : </div>
                                 <div class="col-5">
-                                    <select class="form-control" name="id_category">
-                                        <option value=""> Please Select</option>
-                                        @foreach($data as $datas)
-                                            <option value="{{$datas->id_category}}" {{$datas->id_category==$idcate?'selected':''}} >{{$datas->category_name_th}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="hidden" class="form-control" name="id_category" value="{{$idcate}}">
+                                    <input type="text" class="form-control-plaintext" name="category" value="{{$data->category_name_th}}" disabled>
+                                    
                                 </div>
                             </div>
                             <br>

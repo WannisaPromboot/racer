@@ -31,7 +31,7 @@ class BannerController extends Controller
     public function Editbanner($id){
         $data = array(
             'banner'   => Banner::where('category_id',$id)->get(),
-            'data' => Category::get(),
+            'data' => Category::where('id_category',$id)->first(),
             'idcate' => $id
         );
 

@@ -30,6 +30,11 @@
   </head>
 
   <style>
+
+
+
+
+
   /* ----banner-slider---------- */
   .owl-carousel .owl-item img {
     display: block;
@@ -250,6 +255,7 @@ a:hover, a:focus {
     padding: 40px 0px 45px 0px;
 }
 
+
 }
 
 @media (max-width: 525px){
@@ -377,24 +383,31 @@ a:hover, a:focus {
 					<div class="col-md-8 pr-4 d-flex topper align-items-center">
 						<div class="icon mr-2 d-flex justify-content-center align-items-center">
 							<span class="icon-phone2" style="color:#00b9e9"></span>
-						<span class="text"> : 02 811 1741 5</span></div>
+						<span class="text"> : 02 811 1741</span></div>
 						<div class="icon mr-2 d-flex justify-content-center align-items-center">
 							<span class="icon icon-envelope" style="color:#00b9e9"></span>
-						<span class="text"> : Racer.co.th</span></div>
+						<span class="text"> :  racer_official@racerlighting.com</span></div>
 						<div class="icon mr-2 d-flex justify-content-center align-items-center">
 							<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
 						<span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
 					</div>
 					<div class="col-md-4">
-						<div class="icon mr-2 d-flex justify-content-center" id="social">
-							<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
-						</div>
+                    <div class="icon mr-2 d-flex justify-content-center" id="social">
+                            <a target="blank" href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-facebook.png"></a>
+                            <a target="blank" href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-ig.png"></a>
+                            <a target="blank" href="@racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-line.png"></a>
+                            <a target="blank" href="https://www.youtube.com/channel/UC8Af6KCm3uAnBeTya3rwuLA" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-yotube.png"></a>
+                            <a target="blank" href="https://www.tiktok.com/@racerlighting?" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-tiktok.png"></a>
+                    </div>
+						<!-- <div class="icon mr-2 d-flex justify-content-center" id="social">
+                            <a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
+                        </div>
 						<div class="icon mr-2 d-flex justify-content-center" id="social">
 							<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
 						</div>
 						<div class="icon mr-2 d-flex justify-content-center" id="social">
 							<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
-					   </div>
+					   </div> -->
 
 					</div>
 
@@ -406,6 +419,7 @@ a:hover, a:focus {
 {{-- start nav --}}
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
+        
 		<a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="oi oi-menu"></span> Menu
@@ -456,8 +470,8 @@ a:hover, a:focus {
 						<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
 							<a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
-							<a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
-						</div>
+                            <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
+                        </div>
 					</li>
 				</ul>
 			</div>
@@ -474,12 +488,16 @@ a:hover, a:focus {
 			@foreach($data as $datas)
 				{{-- @if(!empty($datas->slide_image)) --}}
 				<div class="slider-item">
-					<img src="{{url('storage/app/'.$datas->slide_image)}}"  style="width: 100%; height:auto;">
+                    <a href="{{$datas->url}}">
+                        <img src="{{url('storage/app/'.$datas->slide_image)}}"  style="width: 100%; height:auto;">
+                   
 				{{-- @else --}}
 				{{-- <iframe class="slider-item" src="{{$datas->slide_video}}?loop=1&controls=0" style="width: 100%; height:400px;" ></iframe> --}}
 				{{-- <div class="slider-item" style="background-image: url({{url('storage/app/'.$datas->slide_image)}});"> --}}
 				{{-- @endif --}}
-					<div class="overlay"></div>
+                    <div class="overlay"></div>
+                    
+                </a>
 						<div class="container">
 							<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 					
@@ -494,133 +512,156 @@ a:hover, a:focus {
     </section>
 
 	<div class="section-back" >
+
 		<div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
-            <div class="container">
-                <div class="row">
-                
-                    <div class="col-md-6" id="">
-                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
-                        <img class="pro-img" src="{{asset('frontend/images/S__2646148.jpg')}}">
-                    </div>
-                    <div class="col-md-6" id="">
-                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
-                        <img class="pro-img" src="{{asset('frontend/images/S__2646161.jpg')}}">
-                    </div>
 
-
-        
+		<div class="container">
+			<div class="row">
+                <div class="col-md-6" >
+                    {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
+                    <img class="pro-img" src="{{asset('frontend/images/S__2646148.jpg')}}">
                 </div>
-            </div>
-            <?php  $i = '01'; ?>
-            @foreach ($cate as $_cate)
-                <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
-                        $banner = \App\Banner::where('category_id',$_cate->id_category)->orderBy('banner_number','ASC')->get();
-                    $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->limit(4)->get();
-                    $count_sub = count(\App\SubCategory::where('id_category',$_cate->id_category)->get());
-                    $count = $count_sub - 4;
-                    if( $count > 0){
-                        $other_subcate = \App\SubCategory::where('id_category',$_cate->id_category)->skip(4)->take($count)->get();
-                    }
-                ?>
-                @if(count($product) > 0)
-                    <div class="container">
-                        <div class="row">
-                        <div id="box">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12" >
-                                            {{-- <p class="pro-index"><span class="title-num" id="margin-pro">{{$i}}</span> <span class="pro-title" id="margin-pro">{{$_cate->category_name_th}}</span>
-                                                <span class="popular" id="margin-pro"> #Popular searches</span>
-                                                @foreach ($subcate as $_subcate)
-                                                    <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
-                                                @endforeach
-                                            </p> --}}
-                                            <span class="dropdown2">
-                                                <span class="title-num" id="margin-pro">01</span> 
-                                                <span class="pro-title" id="margin-pro">Lighting</span>
-                                                <span class="popular" id="margin-pro"> #Popular searches</span>
-                                                @foreach ($subcate as $_subcate)
-                                                <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
-                                                @endforeach
-                                                @if($count > 0)
-                                                <span class="dropdown">
-                                                    <span class="next-pro" id="margin-pro">ALL PRODUCT</span>
-                                                    <div class="dropdown-content">
-                                                            @foreach ($other_subcate as $_other)
-                                                            <a href="#"> {{$_other->subcategory_name_th}}</a>
-                                                            @endforeach
-                                                    </div>
-                                                </span>
-                                                @endif
-                                            </span>
-                                            <hr class="line-index">
-                                        </div>
+                <div class="col-md-6">
+                    {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
+                    <img class="pro-img" src="{{asset('frontend/images/S__2646161.jpg')}}">
+                </div>
+			   
+				
 
+
+	
+			</div>
+        </div>
+        <?php  $i = '01';
+            // dd($cate);
+         ?>
+        @foreach ($cate as $_cate)
+            <?php $product = \App\Product::where('id_category',$_cate->id_category)->get();
+                $banner = \App\Banner::where('category_id',$_cate->id_category)->orderBy('banner_number','ASC')->get();
+                $subcate = \App\SubCategory::where('id_category',$_cate->id_category)->orderby('sort')->limit(4)->get();
+                $count_sub = count(\App\SubCategory::where('id_category',$_cate->id_category)->get());
+                $count = $count_sub - 4;
+                if( $count > 0){
+                    $other_subcate = \App\SubCategory::where('id_category',$_cate->id_category)->skip(4)->take($count)->get();
+                }
+                // dd($banner);
+            ?>
+            @if(count($product) > 0)
+                <div class="container">
+                    <div class="row">
+                        <div id="box">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12" >
+                                        {{-- <p class="pro-index"><span class="title-num" id="margin-pro">{{$i}}</span> <span class="pro-title" id="margin-pro">{{$_cate->category_name_th}}</span>
+                                            <span class="popular" id="margin-pro"> #Popular searches</span>
+                                            @foreach ($subcate as $_subcate)
+                                                <a href="#" class="next-pro" id="margin-pro"> {{$_subcate->subcategory_name_th}}</a>
+                                            @endforeach
+                                        </p> --}}
+                                        <span class="dropdown2">
+                                            <span class="title-num" id="margin-pro">{{$i}}</span> 
+                                            <span class="pro-title" id="margin-pro"><a style="color: #00b9e9" href="{{url('product/'.$_cate->category_name_th)}}">{{strtoupper ($_cate->category_name_th)}}</a></span>
+                                            <span class="popular" id="margin-pro"> #Popular</span>
+                                            @foreach ($subcate as $_subcate)
+                                            <a href="{{url('product/'.$_cate->category_name_th.'/'.$_subcate->subcategory_name_th.'')}}" class="next-pro" id="margin-pro"> {{ucwords($_subcate->subcategory_name_th)}}</a>
+                                            @endforeach
+                                            @if($count > 0)
+                                            <span class="dropdown">
+                                                <span class="next-pro" id="margin-pro">All Product</span>
+                                                <div class="dropdown-content">
+                                                        @foreach ($other_subcate as $_other)
+                                                        <a href="{{url('product/'.$_cate->category_name_th.'/'.$_other->subcategory_name_th.'')}}"> {{ucwords($_other->subcategory_name_th)}}</a>
+                                                        @endforeach
+                                                </div>
+                                            </span>
+                                            @endif
+                                        </span>
+                                        <hr class="line-index">
                                     </div>
+
                                 </div>
-                                <div class="container" >
-                                    <div class="row">
+                            </div>
+                            <div class="container" >
+                                <div class="row">
+                                    @if(!empty($banner))
                                         <div class="col-md-6" id="pro-mar">
-                                            <a href="{{url(''.$banner[0]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
+                                            @if(!empty($banner[0]->banner_link))
+                                                <a href="{{url(''.$banner[0]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
+                                            @endif
                                         </div>
-                                        <div class="col-md-6" id="pro-mar">
-                                            
+                                    @endif
+                                    <div class="col-md-6" id="pro-mar">
+                                        @if(!empty($banner))
                                             <div class="container" id="con-pro">
                                                 <div class="row" >
                                                     <div class="col-md-6" id="pro-mar">
-                                                        <a href="{{url(''.$banner[1]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[1]->banner_image)}}"></a>
+                                                        @if(!empty($banner[1]->banner_link))
+                                                            <a href="{{url(''.$banner[1]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[1]->banner_image)}}"></a>
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-6" id="pro-mar">
-                                                        <a href="{{url(''.$banner[2]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[2]->banner_image)}}"></a>
+                                                        @if(!empty($banner[2]->banner_link))
+                                                            <a href="{{url(''.$banner[2]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[2]->banner_image)}}"></a>
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-6" id="pro-mar">
-                                                        <a href="{{url(''.$banner[3]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[3]->banner_image)}}"></a>
+                                                        @if(!empty($banner[3]->banner_link))
+                                                            <a href="{{url(''.$banner[3]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[3]->banner_image)}}"></a>
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-6" id="pro-mar">
-                                                        <a href="{{url(''.$banner[4]->banner_link.'')}}"><img class="pro-img2" src="{{url('storage/app/'.$banner[4]->banner_image)}}"></a>
+                                                        @if(!empty($banner[4]->banner_link))
+                                                            <a href="{{url(''.$banner[4]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[4]->banner_image)}}"></a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        </div>
-
+                                        @endif
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 <?php $i = str_pad($i + 1, 2, 0, STR_PAD_LEFT); ?>
-                @endif
-            @endforeach
-            <div id="box2">
-                <div class="container">
-                    <div class="row">
+            @endif
+        @endforeach
+        <div id="box2">
+			<div class="container">
+				<div class="row">
 
-                        <div class="col-md-12" >
-                            <a href="{{url('news')}}"><img class="pro-img2" src="{{asset('frontend/images/Banner-NEWS.png')}}"></a>
-                        </div>
+					<div class="col-md-12" >
+                        <a href="{{url('news')}}"><img class="pro-img2" src="{{asset('frontend/images/Banner-NEWS.png')}}"></a>
+					</div>
 
-                    </div>
-                </div>
+				</div>
+			</div>
 
-                <div class="container">
-                    <div class="row">
+			<div class="container">
+				<div class="row">
 
-                        <div class="col-md-12" >
-                            <center><img class="pro-img4" src="{{asset('frontend/images/icon.JPG')}}"></center>
-                        </div>
-                    
+					<div class="col-md-12" >
+						<center><img class="pro-img4" src="{{asset('frontend/images/icon.JPG')}}"></center>
+					</div>
+				
 
-                    </div>
-                </div>
+				</div>
+			</div>
 
-            </div>
-        </div>
+		</div>
+		
+
+
+
+
 	</div>
 
+	</div>
 
 	<footer class="ftco-footer ftco-section">
-        <div class="container">
+      <div class="container">
       	<!-- <div class="row">
       		<div class="mouse">
 						<a href="#" class="mouse-icon">
@@ -674,8 +715,9 @@ a:hover, a:focus {
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
-137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
+                        137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
+                        <br>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741</span></a></li>
 	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
 	              </ul>
 	            </div>
