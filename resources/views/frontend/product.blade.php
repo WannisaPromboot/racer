@@ -399,22 +399,40 @@ div {
         
                                                 <div class="container">
                                                     <div class="row" id="contentproduct">
-                                                     
-                                                      @foreach ($products as $item)
-                                                      <div class="col-md-4 col-lg-4 mb-4" >
-                                                            <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$item->product_img)}}"></a>
-                                                            <center><p class="name-pro">{{!empty($item->product_name_th) ? $item->product_name_th : '' }}</p><center>
-                                                            @if(!empty(	$item->product_special_price))
-                                                                <center><p class="price-line">฿{{number_format($item->product_normal_price,2)}}</p><center>
-                                                            @endif
-                                                            @if(!empty(	$item->product_special_price))
-                                                            <center><p class="price-pro">฿{{number_format($item->product_special_price,2)}}</p><center>
-                                                            @else 
-                                                            <center><p class="price-pro">฿{{number_format($item->product_normal_price,2)}}</p><center>
-                                                            @endif
-                                                            <center><a href="javascript:void(0)" onclick="addcart('{{$item->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
-                                                       </div>
-                                                      @endforeach
+                                                      @if(!empty($products))
+                                                            @foreach ($products as $item)
+                                                            <div class="col-md-4 col-lg-4 mb-4" >
+                                                                    <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$item->product_img)}}"></a>
+                                                                    <center><p class="name-pro">{{!empty($item->product_name_th) ? $item->product_name_th : '' }}</p><center>
+                                                                    @if(!empty(	$item->product_special_price))
+                                                                        <center><p class="price-line">฿{{number_format($item->product_normal_price,2)}}</p><center>
+                                                                    @endif
+                                                                    @if(!empty(	$item->product_special_price))
+                                                                    <center><p class="price-pro">฿{{number_format($item->product_special_price,2)}}</p><center>
+                                                                    @else 
+                                                                    <center><p class="price-pro">฿{{number_format($item->product_normal_price,2)}}</p><center>
+                                                                    @endif
+                                                                    <center><a href="javascript:void(0)" onclick="addcart('{{$item->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
+                                                            </div>
+                                                            @endforeach
+                                                       @else 
+                                                            @foreach ($popular as $item)
+                                                                <?php $product = \App\Product::where('id_product',$item->id_product)->first(); ?>
+                                                            <div class="col-md-4 col-lg-4 mb-4" >
+                                                                    <a href="{{url('detail-product/'.$product->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$product->product_img)}}"></a>
+                                                                    <center><p class="name-pro">{{!empty($product->product_name_th) ? $product->product_name_th : '' }}</p><center>
+                                                                    @if(!empty(	$product->product_special_price))
+                                                                        <center><p class="price-line">฿{{number_format($product->product_normal_price,2)}}</p><center>
+                                                                    @endif
+                                                                    @if(!empty(	$product->product_special_price))
+                                                                    <center><p class="price-pro">฿{{number_format($product->product_special_price,2)}}</p><center>
+                                                                    @else 
+                                                                    <center><p class="price-pro">฿{{number_format($product->product_normal_price,2)}}</p><center>
+                                                                    @endif
+                                                                    <center><a href="javascript:void(0)" onclick="addcart('{{$product->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
+                                                            </div>
+                                                            @endforeach
+                                                       @endif
                                                     </div>
                                                 </div>
                                             </div>

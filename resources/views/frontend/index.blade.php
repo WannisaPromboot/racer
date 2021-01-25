@@ -538,7 +538,7 @@ a:hover, a:focus {
                                 <span class="dropdown2">
                                     <span class="title-num" id="margin-pro">{{$i}}</span> 
                                     <span class="pro-title" id="margin-pro">{{strtoupper ($_cate->category_name_th)}}</span>
-                                    <span class="popular" id="margin-pro"> #Popular</span>
+                                    <span class="popular" id="margin-pro"><a href="{{url('product-popular/'.$_cate->id_category.'')}}" class="next-pro" id="margin-pro"> #Popular</a></span>
                                     @foreach ($subcate as $_subcate)
                                     <a href="{{url('product/'.$_cate->category_name_th.'/'.$_subcate->subcategory_name_th.'')}}" class="next-pro" id="margin-pro"> {{ucwords($_subcate->subcategory_name_th)}}</a>
                                     @endforeach
@@ -547,7 +547,7 @@ a:hover, a:focus {
                                         <span class="next-pro" id="margin-pro">All Product</span>
                                         <div class="dropdown-content">
                                                 @foreach ($other_subcate as $_other)
-                                                <a href="{{url('product/'.$_cate->category_name_t.'/'.$_other->subcategory_name_th.'')}}"> {{ucwords($_other->subcategory_name_th)}}</a>
+                                                <a href="{{url('product/'.$_cate->category_name_th.'/'.$_other->subcategory_name_th.'')}}"> {{ucwords($_other->subcategory_name_th)}}</a>
                                                 @endforeach
                                         </div>
                                     </span>

@@ -176,12 +176,12 @@ Route::get('/product/{cat}/{subcate}', function($cat,$subcate){
 Route::get('/product-popular/{cat}', function($cat){
   
         $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
-        $product = \App\Product::where('product_display',0)->where('id_category',$category->id_category)->get();
+        $popular = \App\Popular::where('id_category',$category->id_category)->get();
         $data = array(
-            'products'  => $product,
-            'cate'       => $category
+            'popular'       => $popular,
+            'cate'          => $category
         );
-
+        
         return view('frontend.product',$data);
 
 });
@@ -322,6 +322,8 @@ Route::get('deleteproduct/{id}','Admin\ProductController@DeleteProduct');
 Route::get('/populatproductcontent', 'Admin\PopularProductController@popularContent');
 Route::get('/editpoppularproduct/{id}', 'Admin\PopularProductController@Editpopular');
 Route::get('/selectproduct', 'Admin\PopularProductController@selectproduct');
+Route::get('/removeproduct', 'Admin\PopularProductController@removeproduct');
+Route::get('/viewpopular', 'Admin\PopularProductController@viewpopular');
 
 ///////////////production
 Route::get('/production', 'Admin\ProductionController@productioncontent');

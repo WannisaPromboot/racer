@@ -63,7 +63,7 @@
                             <td>{{$item->category_name_th}}</td>
                             <td>{{$item->category_name_en}}</td>
                             <td>
-                                <a href="jacascript:void(0)" onclick="view({{$item->id_category}})" class="btn btn-secondary btn-sm">{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</a>
+                                <a href="javascript:void(0)" onclick="view({{$item->id_category}})" class="btn btn-secondary btn-sm">รายละเอียด</a>
                             </td>
                             <td>
                                 <a href="{{url('editpoppularproduct/'.$item->id_category.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
@@ -128,7 +128,7 @@
 
     function view(id){
         $.ajax({
-            url: '{{ url("viewcategory")}}',
+            url: '{{ url("viewpopular")}}',
             type: 'GET',
             dataType: 'HTML',
             data : {'id':id},
