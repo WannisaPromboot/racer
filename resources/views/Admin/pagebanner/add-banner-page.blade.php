@@ -88,7 +88,7 @@
                         <br>
                         <div data-repeater-item class="outer mt-3"> 
                             <button type="button" onclick="save('saveslide')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button>
-                            {{-- <a href="{{url('slidecontent')}}" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back '}}</a> --}}
+                            <a href="{{url('pagecontent')}}" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back '}}</a>
                         </div>
                     </form>
                 </div>

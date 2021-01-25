@@ -301,6 +301,9 @@ Route::get('reviewdetail/{id}', 'Admin\ReviewController@ReviewDetail');
 Route::get('changedisplay', 'Admin\ReviewController@changedisplay');
 
 ////pagebanner
+Route::get('pagecontent',function(){
+    return view('Admin.pagebanner.page-content');
+ });
 Route::get('banner/{id}', 'Admin\PageBannerController@AddPagebanner');
 Route::post('savepagebanner', 'Admin\PageBannerController@Savepagebanner');
 
