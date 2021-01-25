@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'สไลด์' :'SLIDE'}} @endsection
+@section('title') {{Session::get('lang')=='th'?'แบนเนอร์' :'BANNER'}} @endsection
 
 @section('css') 
         <!-- Summernote css -->
@@ -28,11 +28,11 @@
 <div class="row">
     <div class="col-6">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'สไลด์' :'SLIDE'}}</h4>
+        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'แบนเนอร์' :'BANNER'}}</h4>
         </div>
     </div>
     <div class="col-6">
-        <a href="{{url('addslide')}}" class="btn add" style="float:right;background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มสไลด์' :'+ Add Slide'}}</a>
+        {{-- <a href="{{url('addbanner')}}" class="btn add" style="float:right;background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มแบนเนอร์' :'+ Add BANNER'}}</a> --}}
     </div> 
 </div>     
 <!-- end page title -->
@@ -51,53 +51,47 @@
                         <table id="table1" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th  width="60px">{{Session::get('lang')=='th'?'ลำดับที่':'No.'}}</th>
-                                <th>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}}</th>
+                                <th>{{Session::get('lang')=='th'?'ลำดับที่':'No.'}}</th>
+                                <th>{{Session::get('lang')=='th'?'หน้าแสดงผล':'Category'}}</th>
                                 <th>{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</th>
-                                <th>{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <?php $i=1;?>
-                                @foreach($data as $datas)
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td>
-                                        @if(!empty($datas->slide_image))
-                                            <img src="{{url('storage/app/'.$datas->slide_image)}}" width="300px">
-                                        @else 
-                                            <iframe class="img-fluid" src="{{$datas->slide_video}}?loop=1&controls=0" ></iframe>
-                                        @endif
-                                    </td>  
-                                    <td>
-                                        <a href="{{url('editslide/'.$datas->id_slide.'')}}" class="btn btn-warning btn-sm">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
-                                    </td>
-                                    <td>
-                                        <a href="javascript:void(0)" onclick="deldata({{$datas->id_slide}})" class="btn btn-danger btn-sm">{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</a>
-                                    </td>
-                                </tr>
-                                <?php $i=$i+1;?>
-                                @endforeach
+                                    <tr>
+                                        <td>1</td>
+                                        <td>หน้าหลัก</td>  
+                                        <td><a href="{{url('slidecontent')}}" class="btn btn-warning">แก้ไข</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>หน้าเกี่ยวกับเรา</td>  
+                                        <td><a href="{{url('banner/2')}}" class="btn btn-warning">แก้ไข</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>หน้าข่าวสาร</td>  
+                                        <td><a href="{{url('banner/3')}}" class="btn btn-warning">แก้ไข</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>หน้าโปรโมชั่น</td>  
+                                        <td><a href="{{url('banner/4')}}" class="btn btn-warning">แก้ไข</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>หน้าบทความ</td>  
+                                        <td><a href="{{url('banner/5')}}" class="btn btn-warning">แก้ไข</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>หน้าติดต่อเรา</td>  
+                                        <td><a href="{{url('banner/6')}}" class="btn btn-warning">แก้ไข</button></td>
+                                    </tr>
+
+                                   
                             </tbody>
                         </table>  
                     </div>
-                    {{-- <div id="tablehistory" style="display: none">
-                        <table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                            <tr>
-                                <th>{{Session::get('lang')=='th'?'ลำดับที่':'No.'}}</th>
-                                <th>{{Session::get('lang')=='th'?'หัวข้อ':'Title'}}</th>
-                                <th>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}}</th>
-                                <th>{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($data as $datas)
-                                    <td></td>
-                                @endforeach
-                            </tbody>
-                        </table>  
-                    </div> --}}
                 </div>
             </div>
         </div>

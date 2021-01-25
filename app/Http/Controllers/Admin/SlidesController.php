@@ -19,14 +19,14 @@ class SlidesController extends Controller
 
     public function ShowSlideContent(){
         $data = array(
-            'data' => Slide::orderBy('slide_number','ASC')->get(),
+            'data' => Slide::orderBy('slide_number','ASC')->where('page',1)->get(),
         );
         return view('Admin.slide.slide-content',$data);
     }
 
     public function EditSlide($id){
         $data = array(
-            'slide'   => Slide::where('slide_id',$id)->first(),
+            'slide'   => Slide::where('id_slide',$id)->first(),
         );
 
         return view('Admin.slide.edit-slide',$data);
@@ -53,6 +53,7 @@ class SlidesController extends Controller
             Storage::put($newFilename, file_get_contents($request->filepath));
             $SlideContent->slide_image = $newFilename;
         }
+        $SlideContent->page = 1;
 
         $SlideContent->save();
 
@@ -61,43 +62,25 @@ class SlidesController extends Controller
     }
 
 
-    public function UpdateSlide(Request $request, $id){
-        $SlideContent = Slide::where('slide_id',$id)->first();
-        $SlideContent->title_th = $request->title_th;
-        $SlideContent->link = $request->link;
-        $SlideContent->sort = $request->sort;
-        $SlideContent->datefrom = $request->datefrom;
-        $SlideContent->dateto = $request->dateto;
-
-                    ////video youtube
-        $youtube =  str_replace("watch?v=", "embed/",$request->video);
-        $SlideContent->video = $youtube;
-
+    public function UpdateSlide(Request $request){
+        $SlideContent = Slide::where('id_slide',$request->sid)->first();
+        if(isset($request->video)){
+            $youtube =  str_replace("watch?v=", "embed/",$request->video);
+            $SlideContent->slide_video = $youtube;
+        }
+        if(isset( $request->sort)){
+            $SlideContent->slide_number = $request->sort;
+        }
         
         if($request->filepath !== null){
             $newFilename = 'Slide/'.time().$request->filepath->getClientOriginalName();
             Storage::put($newFilename, file_get_contents($request->filepath));
-            $SlideContent->filepath = $newFilename;
+            $SlideContent->slide_image = $newFilename;
         }
 
         $SlideContent->save();
-
-        if(isset($request->target)){
-            slideitem::where('slide_id',$id)->delete();
-
-            foreach($request['target'] as $key  => $item){
-                $SlideItemContent = new slideitem;
-    
-                $SlideItemContent->slide_id = $id;
-                $SlideItemContent->target = $item;
-    
-                $SlideItemContent->save();
-            }
-    
-    
-        }
             
-        return redirect('slidecontent')->with('Save','แก้ไขเนื้อหาเรียบร้อยแล้ว');
+        return redirect('slidecontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
 
     }
 

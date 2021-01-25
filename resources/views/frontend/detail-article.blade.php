@@ -600,13 +600,13 @@ a:hover {
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : xx xxx xxxx</span></div>
+							<span class="text"> : 02 811 1741 5</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon icon-envelope" style="color:#00b9e9"></span>
 							<span class="text"> : Racer.co.th</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันเสาร์ : 08.00น. - 19.00น.</span></div>
+						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
                         </div>
                         <div class="col-md-4">
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
@@ -709,7 +709,7 @@ a:hover {
                 
                     <div class="col-md-12" id="">
                         <div class="welcome_docmed_info">
-                            <h3 class="title-pan">{{$data->blog_th}}</h3>
+                            <h3 class="title-pan" style="text-align: center;">{{$data->blog_th}}</h3>
                             <p class="sub-pan">{!!$data->description_blog_th!!}</p>
                             {{-- <p class="sub-pan">มีท่อนต่างๆ ของ Lorem Ipsum ให้หยิบมาใช้งานได้มากมาย แต่ส่วนใหญ่แล้วจะถูกนำไปปรับให้เป็นรูปแบบอื่นๆ อาจจะด้วยการสอดแทรกมุกตลก หรือด้วยคำที่มั่วขึ้นมาซึ่งถึงอย่างไรก็ไม่มีทางเป็นเรื่องจริงได้เลยแม้แต่น้อย ถ้าคุณกำลังคิดจะใช้ Lorem Ipsum สักท่อนหนึ่ง คุณจำเป็นจะต้องตรวจให้แน่ใจว่าไม่มีอะไรน่าอับอายซ่อนอยู่ภายในท่อนนั้นๆ ตัวสร้าง Lorem Ipsum บนอินเทอร์เน็ตทุกตัวมักจะเอาท่อนที่แน่ใจแล้วมาใช้ซ้ำๆ ทำให้กลายเป็นที่มาของตัวสร้างที่แท้จริงบนอินเทอร์เน็ต ในการสร้าง Lorem Ipsum ที่ดูเข้าท่า ต้องใช้คำจากพจนานุกรมภาษาละตินถึงกว่า 200 คำ ผสมกับรูปแบบโครงสร้างประโยคอีกจำนวนหนึ่ง เพราะฉะนั้น Lorem Ipsum ที่ถูกสร้างขึ้นใหม่นี้ก็จะไม่ซ้ำไปซ้ำมา ไม่มีมุกตลกซุกแฝงไว้ภายใน หรือไม่มีคำใดๆ ที่ไม่บ่งบอกความหมาย</p> --}}
                                                         
@@ -722,16 +722,16 @@ a:hover {
 
             <div class="container">
                 <div class="row">
-                
-                    <div class="col-md-12" id="">
-                        <div class="welcome_docmed_info">
-                            <h3 class="title-pan">Gallery Photo</h3>
-                        
-                                                        
+                    @if(count($img)>0)
+                        <div class="col-md-12" id="">
+                            <div class="welcome_docmed_info">
+                                <h3 class="title-pan">Gallery Photo</h3>
                             
+                                                            
+                                
+                            </div>
                         </div>
-                    </div>
-        
+                    @endif
                 </div>
             </div>
 
@@ -812,9 +812,10 @@ a:hover {
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
+137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
 	              </ul>
 	            </div>
             </div>

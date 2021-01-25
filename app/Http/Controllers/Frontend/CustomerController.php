@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Mail;
 use App\Customer;
 use Crypt;
 
 class CustomerController extends Controller
 {
 
-    public function CustomerRegister(Request $request)
-    {
+    public function CustomerRegister(Request $request){
         $random = mt_rand(1000000000, 9999999999);
         $customer = new Customer;
         $customer->customer_id = $random;
@@ -56,6 +56,17 @@ class CustomerController extends Controller
 
         return redirect('userlogin')->with('success','สมัครสมาชิกเรียบร้อยแล้ว กรุณาล็อคอิน');
     
+    }
+
+    public function Customersendmail(Request $request)
+    {
+        Mail::raw($request->comments,function($message) use ($request){
+		$message->to('s5904062630292@email.kmutnb.ac.th')
+				->subject($request->subject)
+				->from('58030218@kmail.ac.th'); //คนส่ง
+        });
+        
+        return back()->with('success','ส่งอีเมลเรียบร้อยแล้ว');
     }
     
 }

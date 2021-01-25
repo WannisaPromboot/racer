@@ -35,11 +35,12 @@
                     </a> 
                 </li>
                 <li>
-                    <a href="{{url('slidecontent')}}" class=" waves-effect">
-                        <img src="{{asset('assets/images/racer/icon/banner.png')}}">
-                        <span>การจัดการ  Banner & Slide</span>
-                    </a>
+                    <a href="{{url('pagecontent')}}" class="waves-effect">
+                        <img src="{{asset('assets/images/racer/icon/news.png')}}">
+                        <span>การจัดการ Banner & Slide</span>
+                    </a> 
                 </li>
+               
                 <li>
                     <a href="{{url('blogcontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/racer/icon/blogging.png')}}">

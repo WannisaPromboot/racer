@@ -729,16 +729,16 @@ a:hover {
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : xx xxx xxxx</span></div>
+							<span class="text"> : 02 811 1741</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon icon-envelope" style="color:#00b9e9"></span>
-							<span class="text"> : Racer.co.th</span></div>
+							<span class="text"> :  racer_official@racerlighting.com</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันเสาร์ : 08.00น. - 19.00น.</span></div>
+						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
                         </div>
                         <div class="col-md-4">
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
+							<!-- <div class="icon mr-2 d-flex justify-content-center" id="social">
 								<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
 							</div>
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
@@ -746,7 +746,14 @@ a:hover {
 							</div>
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
 								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
-						   </div>
+               </div> -->
+               <div class="icon mr-2 d-flex justify-content-center" id="social">
+                            <a target="blank" href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-facebook.png"></a>
+                            <a target="blank" href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-ig.png"></a>
+                            <a target="blank" href="@racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-line.png"></a>
+                            <a target="blank" href="https://www.youtube.com/channel/UC8Af6KCm3uAnBeTya3rwuLA" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-yotube.png"></a>
+                            <a target="blank" href="https://www.tiktok.com/@racerlighting?" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/new-tiktok.png"></a>
+                </div>
 
 					    </div>
 
@@ -792,12 +799,28 @@ a:hover {
 		</ul>
 	</div>
 	<div class="col-md-4" id="pay-nemu">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item active"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</a></li>
-		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
-		</ul>
-	</div>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('porduct')) ? '['.count(Session::get('porduct')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
+      @if(empty(Session::get('customer_id')))
+        <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+      @else
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown04">
+            <a class="dropdown-item" href="{{url('/order-history')}}">ประวัติการซื้อ</a>
+            <a class="dropdown-item" href="{{url('/logout')}}">ลงชื่อออก </a>
+          </div>
+        </li>
+      @endif
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown04">
+          <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
+          <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 
 
 	  </div>
@@ -805,7 +828,7 @@ a:hover {
   </nav>
         <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
+    {{-- <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/BANNERS.jpg')}}">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -816,7 +839,7 @@ a:hover {
       </div>
     </div>
 
-        
+         --}}
         <div class="section-back">
 
             <div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
@@ -825,9 +848,9 @@ a:hover {
                     <div class="col-md-12 col-lg-12 mb-12" >
                       <div class="block__35630">
                         <h3 class="mb-3">เข้าสู่ระบบ</h3>
-                        <p class="about-title">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                        <hr class="line-re">
-                        <p class="sub-text-about">Lorem Ipsum is simply</p>
+                        <p class="about-title">Login</p>
+                        {{-- <hr class="line-re"> --}}
+                        
                         <center><a href="{{route('redirectToProvider','facebook')}}" class="boxed-btn3-white-2"> <span class="icon-facebook2"></span> Continue with facebook</a></center>
                       </div>
                     </div>
@@ -867,7 +890,7 @@ a:hover {
                     <div class="row" id="">
             
                       <div class="col-md-12 col-lg-12 mb-12" >
-                        <p class="text-re">Don't have an account yet? <a href="{{url('userregister')}}"><span class="re-col">สมัครสมาชิก</span></a></p>
+                        <p class="text-re"><a href="{{url('userregister')}}"><span class="re-col">Register/สมัครสมาชิก</span></a></p>
                         <center></center>
                     
             
@@ -951,11 +974,13 @@ a:hover {
             <div class="ftco-footer-widget mb-4">
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
+                <ul>
+                  <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
+                    137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
+                    <br>
+                  <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741</span></a></li>
+                  <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
+                </ul>
 	            </div>
             </div>
           </div>

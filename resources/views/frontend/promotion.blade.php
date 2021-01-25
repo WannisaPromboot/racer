@@ -541,13 +541,13 @@ a:hover {
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : xx xxx xxxx</span></div>
+							<span class="text"> : 02 811 1741 5</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<span class="icon icon-envelope" style="color:#00b9e9"></span>
 							<span class="text"> : Racer.co.th</span></div>
 							<div class="icon mr-2 d-flex justify-content-center align-items-center">
 								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันเสาร์ : 08.00น. - 19.00น.</span></div>
+						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
                         </div>
                         <div class="col-md-4">
 							<div class="icon mr-2 d-flex justify-content-center" id="social">
@@ -617,7 +617,7 @@ a:hover {
   </nav>
         <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
+    <div class="hero-wrap hero-bread" style="background-image: url({{ !empty($banner) ? url('storage/app/'.$banner->slide_image) : asset('frontend/images/banner-detail.jpg')}});">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -635,27 +635,28 @@ a:hover {
             <div class="container">
                 <div class="row">
                    
-                    <div class="col-md-6" id="">
-                        <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a>
+                    <div class="col-md-6" >
+                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
+                        <img class="pro-img" src="{{asset('frontend/images/631113.AW_Web-01.jpg')}}">
                     </div>
-                    <div class="col-md-6" id="">
-                        <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                        
+                    <div class="col-md-6">
+                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
+                        <img class="pro-img" src="{{asset('frontend/images/Ads AIV FES G1+1_Web-01.jpg')}}">
                     </div>
-
-
-        
                 </div>
             </div>
 
             <div class="container">
                 <div class="row">
-                   
-                    <div class="col-md-12" id="">
-                        <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro002.jpg')}}"></a>
-                        <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro001.jpg')}}"></a>
-                        <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro003.jpg')}}"></a>
-                        <a href="#"><img class="pro-img2" src="{{asset('frontend/images/pro004.jpg')}}"></a>
-                    </div>
+                    @if(!empty($data))
+                        <div class="col-md-12" id="">
+                            @foreach ($data as $item)
+                                <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$item->promotion_image)}}"></a>
+                                
+                            @endforeach
+                            
+                        </div>
+                    @endif
                 
 
 
@@ -730,9 +731,10 @@ a:hover {
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
+137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
 	              </ul>
 	            </div>
             </div>
