@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
-use Mail;
 use App\Customer;
 use Crypt;
+use Mail;
 
 class CustomerController extends Controller
 {
 
-    public function CustomerRegister(Request $request){
+    public function CustomerRegister(Request $request)
+    {
         $random = mt_rand(1000000000, 9999999999);
         $customer = new Customer;
         $customer->customer_id = $random;

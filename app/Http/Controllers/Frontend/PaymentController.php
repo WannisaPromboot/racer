@@ -39,13 +39,16 @@ class PaymentController extends Controller
             $newTax->address = $request->tax_address;
             $newTax->telephone = $request->tax_telephone;
             $newTax->fax = $request->tax_fax;
+            $newTax->method  = $request->payment_method;
+            $newTax->method  = $request->payment_method;
+            $newTax->tax_type  = $request->radio1;
+            $newTax->tax_personal_id  = $request->tax_personal_id;
+            $newTax->tax_org_id  = $request->tax_org_id;
+            $newTax->tax_organize  = $request->tax_organize;
             $newTax->save();
         }
 
         //////ลบจำนวนสินค้า
-
-
-     
 
         ///////////////Payment////////////////
         if($request["filename"] !== null){
@@ -54,6 +57,7 @@ class PaymentController extends Controller
             Storage::put($new_image, file_get_contents($request["filename"]));
             $newpayment->filepath = $new_image;
             $newpayment->id_order = $request->id_order;
+            $newpayment->bank      = $request->bank;
             $newpayment->save();
         }
         

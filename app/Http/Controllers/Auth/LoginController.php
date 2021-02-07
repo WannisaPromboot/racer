@@ -74,7 +74,7 @@ class LoginController extends Controller
             return $checkIfExist;
         }else{
             Session::put('customer_id',$id);
-            return Customer::create($input);
+            return Customer::insert($input);
         }
 	}
 

@@ -46,7 +46,7 @@ class PageBannerController extends Controller
         
 
 
-        return redirect('banner/'.$request->page.'')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
+        return redirect('pagecontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
 

@@ -31,7 +31,7 @@ class BannerController extends Controller
     public function Editbanner($id){
         $data = array(
             'banner'   => Banner::where('category_id',$id)->get(),
-            'data' => Category::where('id_category',$id)->first(),
+            'data' => Category::get(),
             'idcate' => $id
         );
 
@@ -167,7 +167,14 @@ class BannerController extends Controller
         Banner::where('slide_id',$request->slide_id)->update($data);
 
     }
+    public function Viewbanner($id){
+        $data = array(
+            'data' => Banner::where('category_id',$id)->leftJoin('category','banner.category_id','=','id_category')->get(),
+        );
 
+        // dd($data['data']);
+        return view('Admin.banner.detail-banner',$data);
+    }
 
     public function ViewSlide(Request $request,$id){
         $slide  =   Banner::where('slide_id',$id)->first();
@@ -288,12 +295,4 @@ class BannerController extends Controller
 
     }
 
-    public function Viewbanner($id){
-        $data = array(
-            'data' => Banner::where('category_id',$id)->leftJoin('category','banner.category_id','=','id_category')->get(),
-        );
-
-        // dd($data['data']);
-        return view('Admin.banner.detail-banner',$data);
-    }
 }

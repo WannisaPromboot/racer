@@ -19,23 +19,14 @@ Route::get('/clc', function() {
     Artisan::call('config:cache');
     Artisan::call('view:clear');
         // Artisan::call('view:clear');
-        // session()->forget('key');
+    Session::flush();
     return "Cleared!";
 
 });
 //Frontend
 Route::get('/', function(){
     $data = array(
-        'data' => App\Slide::orderBy('slide_number','ASC')->get(),
-    // dd( $data['data']);
-        'cate'   => \App\Category::orderBy('sort')->get()
-    );
-    return view('frontend.index',$data);
-});
-
-Route::get('/index', function(){
-    $data = array(
-        'data' => App\Slide::orderBy('slide_number','ASC')->get(),
+        'data' => App\Slide::orderBy('slide_number','ASC')->where('page',1)->get(),
     // dd( $data['data']);
         'cate'   => \App\Category::orderBy('sort')->get()
     );
@@ -43,11 +34,7 @@ Route::get('/index', function(){
 });
 
 Route::get('/about-us', function(){
-    $data = array(
-        'data' => App\Slide::where('page',2)->first(),
-    
-    );
-    return view('frontend.about-us', $data);
+    return view('frontend.about-us');
 });
 
 Route::get('/article', function(){
@@ -66,9 +53,11 @@ Route::get('/cart', function(){
 Route::get('/contact', function(){
     return view('frontend.caontact');
 });
+Route::post('sendcontact','Frontend\CustomerController@Customersendmail');
+
 
 Route::get('/privacy', function(){
-    return view('frontend.index');
+    return view('frontend.privacy');
 });
 
 
@@ -84,7 +73,7 @@ Route::get('/detail-article/{id}', function($id){
 Route::get('/detail-news/{id}', function($id){
     $data = array(
         'data' => \App\News::where('id_new',$id)->first(),
-        'img' => \App\News_Gallery::where('id_new',$id)->get(),
+        'img' => \App\News_gallery::where('id_new',$id)->get(),
     );
     return view('frontend.detail-news',$data);
 });
@@ -94,7 +83,7 @@ Route::get('/detail-product/{id}', function($id){
     $data = array(
         'item'  => \App\Product::where('id_product',$id)->first(),
         'imgs'  => \App\ProductGallery::where('id_product',$id)->orderby('sort')->get(),
-        'review' => \App\Review::where('product_id',$id)->get(),
+        'review' => \App\Review::where('product_id',$id)->where('display',1)->get()
     );
     return view('frontend.detail-product',$data);
 });
@@ -140,16 +129,29 @@ Route::group(['middleware'=>['loginfrontend']],function(){
 });
 
 
-Route::get('/product/{cat}', function($cat){
-    $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
-    $product = \App\Product::where('product_display',0)->where('id_category',$category->id_category)->get();
-    $data = array(
-        'products'  => $product,
-        'cate'       => $category
-    );
-    return view('frontend.product',$data);
-});
 
+
+Route::get('/product/{cat}', function($cat){
+    
+    if($cat == 'search'){
+        $data = array(
+            'search'  => Session::get('search_product'),
+            'cate'  =>  'search',
+            'keyword'   => Session::get('keyword'),
+        );
+        return view('frontend.product',$data);
+    }else{
+        $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
+     
+        $product = \App\Product::where('product_display',0)->where('id_category',$category->id_category)->get();
+        $data = array(
+            'products'  => $product,
+            'cate'       => $category
+        );
+        return view('frontend.product',$data);
+    }
+ 
+});
 
 Route::get('/product/{cat}/{subcate}', function($cat,$subcate){
     if(!empty($subcate)){
@@ -176,27 +178,40 @@ Route::get('/product/{cat}/{subcate}', function($cat,$subcate){
 });
 
 Route::get('/product-popular/{cat}', function($cat){
+
   
-        $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
+    $category =  \App\Category::where('category_name_th','like',$cat)->orwhere('category_name_en','like',$cat)->first();
+
+    if($category->status == 0){
+
+        $popular = \App\OrderItem::join('product','product_order_item.product_id','=','product.id_product')
+                                    ->select('product.id_product')
+                                    ->where('id_category',$category->id_category)
+                                    ->groupBy('id_product')
+                                    ->get();
+        $data = array(
+            'popular'       => $popular,
+            'cate'          => $category,
+        );
+        
+    }else{
         $popular = \App\Popular::where('id_category',$category->id_category)->get();
         $data = array(
             'popular'       => $popular,
-            'cate'          => $category
+            'cate'          => $category,
         );
         
-        return view('frontend.product',$data);
+    }
+  
+    return view('frontend.product',$data);
 
 });
-
 
 
 
 Route::get('/promotion', function(){
     $data = array(
         'data' => \App\Promotion::get(),
-        'banner' => App\Slide::where('page',4)->first(),
-        
-      
     );
     return view('frontend.promotion',$data);
 });
@@ -212,18 +227,27 @@ Route::get('getAmphure/{id}','Frontend\GetdataController@getAmphure');
 Route::get('getDistrict/{id}','Frontend\GetdataController@getDistrict');
 Route::get('getSubDistrict/{id}','Frontend\GetdataController@getSubDistrict');
 Route::post('customerregister','Frontend\CustomerController@CustomerRegister');
+Route::get('searchproduct','Frontend\GetdataController@searchproduct');
 
 Route::get('/contact', function(){
     return view('frontend.contact');
 });
-Route::post('sendcontact','Frontend\CustomerController@Customersendmail');
 
+Route::get('tested',function(){
+    // Mail::send('email.register',[],function($message){
+    //     $message->to('s5904062630292@email.kmutnb.ac.th')
+    //             ->subject('test email')
+    //             ->from('58030218@kmail.ac.th');
+    // });
+    return view('email.forgotpassword');
+});
 Route::get('footerd',function(){
     return view('email.footer');
 });
 /////////////////////////////////////////////////controller frontend
 
 Route::get('addcart/{id}', 'Frontend\AddacartController@addCart');
+Route::get('countproduct', 'Frontend\AddacartController@countproduct');
 Route::get('deleteitemincart', 'Frontend\AddacartController@deleteitemincart');
 
 
@@ -283,38 +307,36 @@ Route::get('/viewcategory', 'Admin\categoryController@ViewCategory');
 Route::get('/iewvcategory', 'Admin\categoryController@ViewCategory');
 
 /////->type2
-Route::get('addsubcategory', 'Admin\categoryController@Addsubcategory');
-Route::get('subcategorycontent', 'Admin\categoryController@ShowsubcategoryContent');
-Route::get('editsubcategory/{id}', 'Admin\categoryController@Editsubcategory');
-Route::post('savesubcategory', 'Admin\categoryController@SaveSubcategory');
-Route::post('updatesubcategory/{id}', 'Admin\categoryController@UpdateSubcategory');
-Route::get('getcategory', 'Admin\categoryController@Getcategory');
-Route::get('viewsubcategory', 'Admin\categoryController@ViewSubCategory');
+Route::get('/addsubcategory', 'Admin\categoryController@Addsubcategory');
+Route::get('/subcategorycontent', 'Admin\categoryController@ShowsubcategoryContent');
+Route::get('/editsubcategory/{id}', 'Admin\categoryController@Editsubcategory');
+Route::post('/savesubcategory', 'Admin\categoryController@SaveSubcategory');
+Route::post('/updatesubcategory/{id}', 'Admin\categoryController@UpdateSubcategory');
+Route::get('/getcategory', 'Admin\categoryController@Getcategory');
+Route::get('/viewsubcategory', 'Admin\categoryController@ViewSubCategory');
 
 /////////////banner of category
-Route::get('addbanner', 'Admin\BannerController@Addbanner');
-Route::get('editbanner/{id}', 'Admin\BannerController@Editbanner');
-Route::get('bannercontent', 'Admin\BannerController@ShowbannerContent');
+Route::get('/addbanner', 'Admin\BannerController@Addbanner');
+Route::get('/editbanner/{id}', 'Admin\BannerController@Editbanner');
+Route::get('/bannercontent', 'Admin\BannerController@ShowbannerContent');
 Route::get('change_sortbanner','Admin\BannerController@change_sortbanner');
 Route::get('change_select','Admin\BannerController@change_select');
 Route::get('viewbanner/{id}','Admin\BannerController@Viewbanner');
 
-Route::post('savebanner', 'Admin\BannerController@Savebanner');
-Route::post('updatebanner', 'Admin\BannerController@Updatebanner');
+Route::post('/savebanner', 'Admin\BannerController@Savebanner');
+Route::post('/updatebanner', 'Admin\BannerController@Updatebanner');
 
 ///////////////product
-Route::get('productcontent', 'Admin\ProductController@ProductContent');
-Route::get('addproduct', 'Admin\ProductController@AddProduct');
-Route::get('editproduct/{id}', 'Admin\ProductController@EditProduct');
-Route::post('saveproduct', 'Admin\ProductController@SaveProduct');
-Route::post('updateproduct/{id}', 'Admin\ProductController@UpdateProduct');
-Route::get('getsubcate', 'Admin\ProductController@GetSubCate');
-Route::get('displayproduct', 'Admin\ProductController@DisplayProduct');
-Route::get('viewproduct', 'Admin\ProductController@ViewProduct');
-Route::get('showproduct', 'Admin\ProductController@ShowProduct');
+Route::get('/productcontent', 'Admin\ProductController@ProductContent');
+Route::get('/addproduct', 'Admin\ProductController@AddProduct');
+Route::get('/editproduct/{id}', 'Admin\ProductController@EditProduct');
+Route::post('/saveproduct', 'Admin\ProductController@SaveProduct');
+Route::post('/updateproduct/{id}', 'Admin\ProductController@UpdateProduct');
+Route::get('/getsubcate', 'Admin\ProductController@GetSubCate');
+Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
+Route::get('/viewproduct', 'Admin\ProductController@ViewProduct');
+Route::get('/showproduct', 'Admin\ProductController@ShowProduct');
 Route::get('deleteproduct/{id}','Admin\ProductController@DeleteProduct');
-
-
 
 /////////////////////popularproduct
 Route::get('/populatproductcontent', 'Admin\PopularProductController@popularContent');
@@ -322,41 +344,44 @@ Route::get('/editpoppularproduct/{id}', 'Admin\PopularProductController@Editpopu
 Route::get('/selectproduct', 'Admin\PopularProductController@selectproduct');
 Route::get('/removeproduct', 'Admin\PopularProductController@removeproduct');
 Route::get('/viewpopular', 'Admin\PopularProductController@viewpopular');
+Route::get('/changedisplaypopular', 'Admin\PopularProductController@changedisplaypopular');
+
 
 ///////////////production
-Route::get('production', 'Admin\ProductionController@productioncontent');
-Route::get('updateproduction', 'Admin\ProductionController@updateproduction');
+Route::get('/production', 'Admin\ProductionController@productioncontent');
+Route::get('/updateproduction', 'Admin\ProductionController@updateproduction');
 
 ////////////////////blog///////////////////////////
-Route::get('addblog', 'Admin\BlogController@AddBlog');
-Route::get('deleteblog/{id}', 'Admin\BlogController@DeleteBlog');
-Route::get('editblog/{id}', 'Admin\BlogController@EditBlog');
-Route::get('blogcontent', 'Admin\BlogController@ShowBlogContent');
-Route::get('viewblog/{id}', 'Admin\BlogController@ViewBlog');
-Route::get('detailblog/{id}', 'Admin\BlogController@DetailBlog');
+Route::get('/addblog', 'Admin\BlogController@AddBlog');
+Route::get('/deleteblog/{id}', 'Admin\BlogController@DeleteBlog');
+Route::get('/editblog/{id}', 'Admin\BlogController@EditBlog');
+Route::get('/blogcontent', 'Admin\BlogController@ShowBlogContent');
+Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
+Route::get('/detailblog/{id}', 'Admin\BlogController@DetailBlog');
 
-Route::get('viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
+Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
 
 
-Route::post('saveviewblog', 'Admin\BlogController@SaveViewBlog');
-Route::post('saveblog', 'Admin\BlogController@SaveBlog');
-Route::post('updateblog/{id}', 'Admin\BlogController@UpdateBlog');
-Route::post('viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
-Route::get('viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
-Route::get('viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
+Route::post('/saveviewblog', 'Admin\BlogController@SaveViewBlog');
+Route::post('/saveblog', 'Admin\BlogController@SaveBlog');
+Route::post('/updateblog/{id}', 'Admin\BlogController@UpdateBlog');
+Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
+Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
+Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
 
 
 ////////////////order
-Route::get('ordercontent', 'Admin\OrderController@ShowOrder');
-Route::get('orederdetail/{id}', 'Admin\OrderController@OrederDetail');
+Route::get('/ordercontent', 'Admin\OrderController@ShowOrder');
+Route::get('/orederdetail/{id}', 'Admin\OrderController@OrederDetail');
 Route::get('receipt','Admin\OrderController@receipt');
 Route::get('changestatus','Admin\OrderController@changestatus');
 Route::get('changeshipping','Admin\OrderController@changeshipping');
 
 ////review
-Route::get('reviewcontent', 'Admin\ReviewController@ReviewContent');
-Route::get('reviewdetail/{id}', 'Admin\ReviewController@ReviewDetail');
-Route::get('changedisplay', 'Admin\ReviewController@changedisplay');
+Route::get('/reviewcontent', 'Admin\ReviewController@ReviewContent');
+Route::get('/reviewdetail/{id}', 'Admin\ReviewController@ReviewDetail');
+Route::get('/changedisplay', 'Admin\ReviewController@changedisplay');
+
 
 ////pagebanner
 Route::get('pagecontent',function(){
@@ -397,6 +422,14 @@ Route::post('/updatepromotion/{id}', 'Admin\PromotionController@Updatepromotion'
 // Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
 // Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
 
+////////////////////promotionproduct///////////////////////////
+Route::get('/addpromotionproduct', 'Admin\PromotionProductController@Addpromotionproduct');
+Route::get('/editpromotionproduct/{id}', 'Admin\PromotionProductController@Editpromotionproduct');
+Route::get('/promotionproductcontent', 'Admin\PromotionProductController@ShowpromotionproductContent');
+Route::post('/savepromotionproduct', 'Admin\PromotionProductController@savepromotionproduct');
+Route::post('/updatepromotionproduct/{id}', 'Admin\PromotionProductController@updatepromotionproduct');
+Route::get('/getsecondproduct', 'Admin\PromotionProductController@getsecondproduct');
+Route::get('/addproductpromotion', 'Admin\PromotionProductController@addproductpromotion');
 
 ////////////////////Report///////////////////////////
 Route::get('/reportcontent', 'Admin\ReportController@ReportContent');

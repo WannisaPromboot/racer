@@ -92,12 +92,12 @@
                         <span>สินค้ายอดนิยม</span>
                     </a> 
                 </li>
-                {{-- <li>
-                    <a href="javascript:void(0)" class=" waves-effect">
+                <li>
+                    <a href="{{url('promotionproductcontent')}}" class=" waves-effect">
                          <img src="{{asset('assets/images/racer/icon/bankbook.png')}}">
-                        <span>การจัดการชำระเงินออนไลน์(การโอนเงิน)</span>
+                        <span>การจัดการโปรโมชั่น</span>
                     </a>
-                </li> --}}
+                </li>
                 <li>
                     <a href="javascript:void(0)" class=" waves-effect">
                          <img src="{{asset('assets/images/racer/icon/seo-report.png')}}">

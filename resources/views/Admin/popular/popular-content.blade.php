@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'เมนูหลัก ' :'Category'}} @endsection
+@section('title')สินค้ายอดนิยม  @endsection
 
 @section('css') 
     <!-- Summernote css -->
@@ -13,6 +13,8 @@
 
         <!-- Sweertalert -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 @endsection
 
 @section('content')
@@ -26,7 +28,7 @@
 <div class="row">
     <div class="col-6">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'เมนูหลัก ' :'Category'}}</h4>     
+        <h4 class="mb-0 font-size-18">สินค้ายอดนิยม</h4>     
         </div>
     </div>
     {{-- <div class="col-6 text-right">
@@ -49,6 +51,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>ตั้งค่าการแสดง</th>
                         <th>หมวดหมู่ภาษาไทย</th>
                         <th>หมวดหมู่ภาษาอังกฤษ</th>
                         <th>รายละเอียด</th>
@@ -60,6 +63,9 @@
                         @foreach ($category as $item)
                         <tr>
                             <td>{{$i}}</td>
+                            <td>
+                                <input type="checkbox" class="check"  data-toggle="toggle" ref="{{$item->id_category}}" {{$item->status == 1 ? 'checked' : ''}}>
+                            </td>
                             <td>{{$item->category_name_th}}</td>
                             <td>{{$item->category_name_en}}</td>
                             <td>
@@ -106,6 +112,7 @@
 
   <!-- Sweert Alert -->
   <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>   
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -138,6 +145,79 @@
             }
         });
     }
+
+
+    $('.check').change(function(){
+        if(this.checked){
+            Swal.fire({
+                text: "คุณต้องการเปิดแสดงสินค้ายอดนิยมแบบตั้งค่าเองใช่หรือไม่",
+                type: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText:"ใช่",
+                cancelButtonText: "ไม่",
+                allowOutsideClick: false
+            }).then((result)=>{
+                if (result.value) {
+                        $.ajax({
+                            url: "{{ url('changedisplaypopular') }}",
+                            method : 'GET',
+                            data : {'check' : 1 , 'id' : $(this).attr('ref')  },
+                            dataType : 'html', 
+                            success:function(result){
+                                Swal.fire({
+                                    text: 'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                    type: 'success',
+                                    showConfirmButton : false,
+                                    allowOutsideClick: false
+                                });
+                            }
+                        
+                        });
+
+                      window.location.reload();
+                    }else{
+                       window.location.reload();
+                    }
+            });
+          
+            
+        }else{
+            Swal.fire({
+                text: "คุณต้องการปิดแสดงสินค้ายอดนิยมแบบตั้งค่าเองใช่หรือไม่",
+                type: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText:"ใช่",
+                cancelButtonText: "ไม่",
+                allowOutsideClick: false
+            }).then((result)=>{
+                if (result.value) {
+                        $.ajax({
+                            url: "{{ url('changedisplaypopular') }}",
+                            method : 'GET',
+                            data : {'check' : 0 , 'id' : $(this).attr('ref') },
+                            dataType : 'html', 
+                            success:function(result){
+                                Swal.fire({
+                                    text: 'บันทึกข้อมูลเรียบร้อยแล้ว',
+                                    type: 'success',
+                                    showConfirmButton : false,
+                                    allowOutsideClick: false
+                                });
+                            }
+                        
+                        });
+                        window.location.reload();
+                    }else{
+                       window.location.reload();
+                    }
+            });
+
+        }
+    });
 
 
 </script>

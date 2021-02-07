@@ -34,7 +34,7 @@ class ProductController extends Controller
         $data = array(
             'cate'   =>  Category::all(),
             'product'  => Product::where('id_product',$id)->first(),
-            'imgs'  => ProductGallery::where('id_product',$id)->orderby('sort')->get(),   /// id_pro == id ของตาราง product 
+            'imgs'  => ProductGallery::where('id_product',$id)->get(),   /// id_pro == id ของตาราง product 
         );
 
 
@@ -81,6 +81,14 @@ class ProductController extends Controller
             $newProduct->product_img = $newimage;
         }
 
+
+        if($request["filepdf"] !== null){
+            $pdf = 'Productfile/'.time().$request["filepdf"]->getClientOriginalName();
+            Storage::put($pdf, file_get_contents($request["filepdf"]));
+            $newProduct->pdf = $pdf;
+        }
+
+
         $newProduct->save();
        
         //dd($request->file('sub_gallery') );
@@ -123,7 +131,7 @@ class ProductController extends Controller
 
     public function UpdateProduct(Request $request,$id){
       
-     
+
         $updateProduct = Product::where('id_product',$id)->first();
         
         if(isset($request->sap_code)){
@@ -245,7 +253,14 @@ class ProductController extends Controller
             $newimage = 'Product/'.time().$request["filepath"][$id]->getClientOriginalName();
             Storage::put($newimage, file_get_contents($request["filepath"][$id]));
             $updateProduct->product_img = $newimage;
-        }  
+        } 
+        
+        
+        if($request["filepdf"] !== null){
+            $pdf = 'Productfile/'.time().$request["filepdf"]->getClientOriginalName();
+            Storage::put($pdf, file_get_contents($request["filepdf"]));
+            $updateProduct->pdf = $pdf;
+        }
 
 
         $updateProduct->save();
@@ -267,7 +282,7 @@ class ProductController extends Controller
          if(isset($request->sub_gallery)){
             foreach($request->sub_gallery as $key => $value){
                 $updateGallery  = ProductGallery::where('id_product_gallery',$key)->first();
-
+               
                 if(!empty($updateGallery)){
                     $updateGallery->sap_code   = $request->sap_code;
                     $updateGallery->sort        = $request->sub_sort[$key];
@@ -279,8 +294,6 @@ class ProductController extends Controller
         
                     $updateGallery->save();
                 }else{
-
-                    if(!empty($request->sub_gallery[$key])){
                         $newGallery = new ProductGallery;
                         $newGallery->sap_code   = $request->sap_code;
                         $newGallery->id_product   = $updateProduct->id_product;
@@ -292,7 +305,6 @@ class ProductController extends Controller
                         $newGallery->filepath = $newFilename;
             
                         $newGallery->save();
-                    }
              
                 }
                

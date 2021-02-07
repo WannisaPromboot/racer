@@ -68,30 +68,12 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm">
-                    <b>{{Session::get('lang')=='th'?'จำนวนการจอง':'number of booking'}}</b>
+                    <b>{{Session::get('lang')=='th'?'จำนวนคำสั่งซื้อ':'number of Order'}}</b>
                   </div>
                 </div>
                 <div class="row mt-4  mb-2">
                   <div class="col-sm text-center">
                     <h1> 26 </h1>
-                  </div>
-                </div>
-              </div>
-          </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-          <div class="card">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm">
-                    <b>{{Session::get('lang')=='th'?'จำนวนร้านค้า':'Store'}}</b>
-                  </div>
-                </div>
-                <div class="row mt-4  mb-2">
-                  <div class="col-sm text-center">
-                    <h1> 1<span style="color: #ffc186 "></span></h1>
                   </div>
                 </div>
               </div>

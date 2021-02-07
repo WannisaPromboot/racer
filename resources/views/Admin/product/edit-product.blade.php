@@ -120,14 +120,14 @@
                                         <b>ราคาปกติ </b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control price" onchange="checknumber(this.value,'price')" value="{{$product->product_normal_price}}" name="product_normal_price" required>
+                                        <input type="number" class="form-control" value="{{$product->product_normal_price}}" name="product_normal_price" required>
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                     <div class="col-1 text-right  mt-2">
                                         <b>ราคาพิเศษ</b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control specialprice" onchange="checknumber(this.value,'specialprice')" value="{{$product->product_special_price}}" name="product_special_price" >
+                                        <input type="number" class="form-control specialprice" value="{{$product->product_special_price}}" name="product_special_price" >
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                 </div>
@@ -170,7 +170,7 @@
                                         <b>จำนวนสินค้า </b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control count" onchange="checknumber(this.value,'count')" name="product_count" min="0" value="{{$product->product_count}}" required>
+                                        <input type="number" class="form-control" name="product_count" min="0" value="{{$product->product_count}}" required>
                                     </div>
                                     <div class="col-1 mt-2">ชิ้น</div>
                                 </div>
@@ -367,7 +367,7 @@
                                         <b>ค่าส่ง </b>
                                     </div>
                                     <div class="col-1">
-                                        <input type="number" class="form-control shipping" onchange="checknumber(this.value,'shipping')" name="product_distance_price" required value="{{$product->product_distance_price}}">
+                                        <input type="number" class="form-control" name="product_distance_price" required value="{{$product->product_distance_price}}">
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                     {{-- <div class="col-1  mt-2">
@@ -414,6 +414,28 @@
                                 <div id="newgallery" class="row"></div>
                                 <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
                                 {{-- end --}}
+                                <br>
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>ไฟล์ (PDF)</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="file" class="form-control" name="filepdf" accept=".pdf" value="{{!empty($product->pdf) ? $product->pdf : '' }}"> 
+                                    </div>
+                                    <div class="col-6">
+                                        @if(!empty($product->pdf))
+                                       <a href="{{url('storage/app/'.$picture->pdf)}}"  target="_blank">
+                                        <img src="{{asset('assets/images/racer/icon/pdf.png')}}" width="64px">
+                                       </a>
+                                       @endif
+                                    </div>
+                                </div>
+                                <br>
+
                                 <br>
                                 <div class="row mt-5">
                                     <div class="col-sm text-left">
@@ -468,6 +490,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_method_en").summernote({
@@ -478,6 +503,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_direction_th").summernote({
@@ -488,6 +516,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_direction_en").summernote({
@@ -498,6 +529,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
         
         $("#product_spec_th").summernote({
@@ -508,6 +542,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_spec_en").summernote({
@@ -518,6 +555,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         
@@ -529,6 +569,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_caution_en").summernote({
@@ -539,6 +582,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_selling_th").summernote({
@@ -549,6 +595,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_selling_en").summernote({
@@ -559,6 +608,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_property_th").summernote({
@@ -569,6 +621,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_property_en").summernote({
@@ -579,6 +634,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_installation_th").summernote({
@@ -589,6 +647,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_installation_en").summernote({
@@ -599,6 +660,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_extra_th").summernote({
@@ -609,6 +673,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_extra_en").summernote({
@@ -619,6 +686,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
 
@@ -785,21 +855,6 @@
             $('#notidate').css('display','none');
           }  
     });
-
-
-      /////////check ว่าติดลบมั้ย
-      function checknumber(value,classname){
-        if(parseInt(value) < 0){
-            $('.'+classname).val("0");
-            swal.fire({
-                type:'warning',
-                text:'ห้ามกรอกข้อมูลน้อยกว่า 0',
-                confirmButtonColor: '#95ced4 ',
-
-            });
-            $('.'+classname).focus();
-        }   
-    }
 
 
 </script>

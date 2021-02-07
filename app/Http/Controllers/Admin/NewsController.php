@@ -40,15 +40,16 @@ class NewsController extends Controller
     }
 
 
+
     public function Savenew(Request $request){
-        $New = new News();
+        $New = new News;
         $New->new_th	 = $request->new_th;
         $New->new_en	 = $request->new_en;
         $New->description_new_th	 = $request->description_new_th;
         $New->description_new_en	 = $request->description_new_en;
-        if($request["filepath"][0] !== null){
-            $new_image = 'News/'.time().$request["filepath"][0]->getClientOriginalName();
-            Storage::put($new_image, file_get_contents($request["filepath"][0]));
+        if($request->filepath !== null){
+            $new_image = 'News/'.time().$request->filepath->getClientOriginalName();
+            Storage::put($new_image, file_get_contents($request->filepath));
             $New->new_image = $new_image;
         }
 

@@ -37,6 +37,14 @@
   </head>
 
   <style>
+.download{
+    color: #808080;
+}
+.download:hover {
+    color: #222 !important;
+}
+
+
 
    /* ------star---------- */
    .rate {
@@ -225,7 +233,8 @@ height: 390px
     .pro-img {
     width: 100%;
     height: 400px;
-    object-fit: cover;
+    /* height: auto; */
+    object-fit: contain;
 }
     .btn-link:hover {
     color: #b36100;
@@ -402,7 +411,8 @@ img {
     opacity: 0.6;
     width: 100%;
     height: 140px;
-    object-fit: cover;
+    /* height: auto; */
+    object-fit: contain;
 }
 .active, .demo:hover {
     opacity: 1;
@@ -445,13 +455,13 @@ img {
     border-radius: 5px;
 }
 .text-detial {
-    font-size: 20px;
+    font-size: 17px;
     color: #000;
     margin-bottom: 0px;
     font-family: 'Prompt', sans-serif;
 }
 .sub-detial {
-    font-size: 16px;
+    font-size: 16px !important;
     color: #777;
     margin-bottom: 15px;
     font-family: 'Prompt', sans-serif;
@@ -510,7 +520,8 @@ a, a:hover, a:visited, a:active, a:link {
 .pro-img{
     width: 100%;
     height: 440px;
-    object-fit: cover;
+    /* height: auto; */
+    object-fit: contain;
 }
 .line-height{
     margin-top: 1rem;
@@ -557,7 +568,7 @@ a:hover {
     font-family: 'Prompt', sans-serif;
 }
 .text-detial {
-    font-size: 20px;
+    font-size: 17px;
     color: #000;
     margin-bottom: 0px;
     font-family: 'Prompt', sans-serif;
@@ -596,13 +607,15 @@ height: 252px;
 .pro-img {
     width: 100%;
     height: 390px;
-    object-fit: cover;
+    /* height: auto; */
+    object-fit: contain;
 }
 .demo {
     opacity: 0.6;
     width: 100%;
     height: 115px;
-    object-fit: cover;
+    /* height: auto; */
+    object-fit: contain;
 }
 .video-size {
     width: 100%;
@@ -620,13 +633,15 @@ height: 252px;
     .pro-img {
     width: 100%;
     height: 297px;
-    object-fit: cover;
+    /* height: auto; */
+    object-fit: contain;
 }
 .demo {
     opacity: 0.6;
     width: 100%;
     height: 95px;
-    object-fit: cover;
+    /* height: auto; */
+    object-fit: contain;
 }
 .video-size{
 width: 100%;
@@ -636,103 +651,296 @@ height: 165px;
 }
 
 
+/* ******* zoom *************** */
+.mySlides {
+  box-sizing: border-box;
+  border: 0px solid #f50057;
+  width: 100%;
+  overflow: hidden;
+  margin: 50px auto;
+  position: relative;
+  cursor: zoom-in;
+}
+.mySlides img {
+  width: 100%;
+  float: left;
+}
+.mySlides img.zoom {
+  position: absolute;
+  -moz-transition: width 0.2s ease-out, opacity 0.2s ease-out 0.2s;
+  -o-transition: width 0.2s ease-out, opacity 0.2s ease-out 0.2s;
+  -webkit-transition: width 0.2s ease-out, opacity 0.2s ease-out;
+  -webkit-transition-delay: 0s, 0.2s;
+  transition: width 0.2s ease-out, opacity 0.2s ease-out 0.2s;
+}
+
       
   </style>
 
 
   <body class="goto-here">
-		<div class="py-1 bg-primary">
-    	<div class="container">
-    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-	    		<div class="col-lg-12 d-block">
-		    		<div class="row d-flex">
-
+    <div class="py-1 bg-primary">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+    
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : 02 811 1741 5</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon icon-envelope" style="color:#00b9e9"></span>
-							<span class="text"> : Racer.co.th</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
-                        </div>
+                        <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon-phone2" style="color:#00b9e9"></span>
+                                <span class="text"> : 0-2811-1741-5</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon icon-envelope" style="color:#00b9e9"></span>
+                                <span class="text"> :  racer_official@racerlighting.com</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
+                                <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
+                            </div>
                         <div class="col-md-4">
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
-						   </div>
-
-					    </div>
-
-				    </div>
-			    </div>
-		    </div>
-		  </div>
+                        <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a target="blank" href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-01.png"></a>
+                                <a target="blank" href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-02.png"></a>
+                                <a target="blank" href="https://line.me/ti/p/~@racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-03.png"></a>
+                                <a target="blank" href="https://www.youtube.com/channel/UC8Af6KCm3uAnBeTya3rwuLA" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-04.png"></a>
+                                <a target="blank" href="https://www.tiktok.com/@racerlighting?" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-05.png"></a>
+                        </div>
+                            <!-- <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
+                            </div>
+                            <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+                            </div>
+                            <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+                           </div> -->
+    
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+          </div>
     </div>
-{{-- start nav --}}
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	<div class="container">
-	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="oi oi-menu"></span> Menu
-	  </button>
-
-	  <div class="collapse navbar-collapse" id="ftco-nav">
-
-		  <div class="col-md-8">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item "><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
-		  <li class="nav-item dropdown active">
-		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
-		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <?php $menu = \App\Category::orderby('sort')->get(); ?>
-                @foreach ($menu as $_menu)
-                    <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
-                @endforeach
-		  </div>
-		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
-		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-		  <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
-			<div class="dropdown-menu" aria-labelledby="dropdown04">
-				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
-				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
-			</div>
-		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
-
-		</ul>
-	</div>
-	<div class="col-md-4" id="pay-nemu">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored "><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span><span id="addcart">{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</span></a></li>
-		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
-		</ul>
-	</div>
-
-
-	  </div>
-	</div>
-  </nav>
+    {{-- start nav --}}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            
+            <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+    
+              <div class="collapse navbar-collapse" id="ftco-nav">
+    
+                <div class="col-md-8">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <?php $menu = \App\Category::orderby('sort')->get(); ?>
+                                    @foreach ($menu as $_menu)
+                                        <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
+                                    @endforeach
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
+                        <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
+                                <a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+                        <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4" id="pay-nemu">
+                    <ul class="navbar-nav ml-auto">
+    
+    
+                    <li class="nav-item">
+              <div class="container03">
+      <div class="search-toggle">
+        <button class="search-icon icon-search"></button>
+        <button class="search-icon icon-close"></button>
+      </div>
+      <div class="search-container03">
+        <form action="{{url('searchproduct')}}" method="get">
+            @csrf
+          <input type="text" name="search" id="search-terms" placeholder="Search terms..."  autocomplete="off"/>
+          <button type="submit" class="search-icon"></button>
+        </form>
+    
+      </div>
+    </div>
+              </li>
+                
+                               
+                            <!-- <li class="nav-item cta-colored" id="mobile"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li> -->
+                            <li class="nav-item cta-colored" id="mobile"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>
+                               
+                                <?php
+                                if(!empty(Session::get('product'))){
+                                    $qty = 0;
+                                        foreach (Session::get('product') as $key =>  $_item) {
+                                            $qty += $_item['qty'];
+                                        }
+                                }   
+                                
+                            ?>
+                                {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}
+                           
+                            <span class="menu-span-col"></span> </a></li>
+              <li class="nav-item dropdown" id="desk">
+                <a href="{{url('cart')}}" class="nav-link veiw" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-shopping_cart"></span>
+                    <span class="countcart">
+                        <?php
+                        if(!empty(Session::get('product'))){
+                            $qty = 0;
+                                foreach (Session::get('product') as $key =>  $_item) {
+                                    $qty += $_item['qty'];
+                                }
+                        }   
+                        
+                    ?>
+                    {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}
+                    </span>
+                </a>
+                <div class="dropdown-menu " aria-labelledby="dropdown04" id="dropdown-menu-cart">
+                    <div class="showcart">
+                    @if(Session::get('product') && count(Session::get('product')) > 0 )
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="shopping-cart" style="overflow: scroll;;
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 500px;">
+                                    <form  method="POST">
+                                        <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
+                                        <div class="column-labels">
+                                        </div>
+                                            {{-- product --}}
+                                            <?php $items = Session::get('product');  
+                                                    $sum  = 0;
+                                            ?>
+                                            @foreach ($items as $key => $_item)
+                                            <?php $product = \App\Product::where('id_product',$_item['product_id'])->first(); ?>
+                                            <div class="product">
+                                                <div class="product-image">
+                                                    <img src="{{url('storage/app/'.$product->product_img.'')}}">
+                                                </div>
+                                                <div class="product-details">
+                                                    <div class="product-title">{{$product->product_name_th}}</div>
+                                                    
+                                                </div>
+                                                @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                                    <div class="product-price price{{$product->id_product}}" >{{number_format($product->product_special_price)}}</div>
+                                                    <input type="hidden" name="price_item[{{$_item['product_id']}}]" value="{{$product->product_special_price}}">
+                                                @else 
+                                                    <div class="product-price price{{$product->id_product}}">{{number_format($product->product_normal_price)}}</div>
+                                                    <input type="hidden" name="price_item[{{$_item['product_id']}}]" value="{{$product->product_normal_price}}">
+                                                @endif                                
+                                                <div class="product-quantity">
+                                                    <div class="quantity_button">
+                                                        <span class="qt" id="qy{{$product->id_product}}">{{$_item['qty']}}</span>
+                                                        <span class="qt-plus" onclick="count('{{$product->id_product}}','add')">+</span>
+                                                        <span class="qt-minus" onclick="count('{{$product->id_product}}','sub')">-</span>
+                                                        <input type="hidden" class="text-center" id="inputqy{{$product->id_product}}" name="count[{{$_item['product_id']}}]" value="{{$_item['qty']}}" min="1">
+                                                    </div>
+                                                </div>
+                                                <div class="product-removal">
+                                                    <button type="button" class="remove-product" onclick="delitem({{$key}},{{$_item['product_id']}})">Remove</button>
+                                                </div>
+                                                
+                                                @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                                    <div class="product-line-price totalitem{{$product->id_product}}" >{{number_format($product->product_special_price * $_item['qty'])}}</div>
+                                                    <?php  $sum +=  $product->product_special_price * $_item['qty'];?>
+                                                    @else 
+                                                    <div class="product-line-price totalitem{{$product->id_product}}">{{number_format($product->product_normal_price * $_item['qty'])}}</div>
+                                                    <?php  $sum +=  $product->product_normal_price * $_item['qty'];?>
+                                                @endif
+                                            </div>
+                                            @endforeach
+                                            
+                                            {{-- total --}}
+                                                                    
+                                            <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
+                                    </form>
+                                    
+                                </div>
+                                
+                            </div>
+    
+                        </div>
+                    </div>
+                    @else 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                คุณยังไม่มีรายการสินค้าในตะกร้า
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    </div>
+                </div>
+               
+              </li>
+                        <!-- <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li> -->
+                        @if(empty(Session::get('customer_id')))
+                            <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                    <a class="dropdown-item" href="{{url('/order-history')}}">ประวัติการซื้อ</a>
+                                    <a class="dropdown-item" href="{{url('/logout')}}">ลงชื่อออก </a>
+                                </div>
+                            </li>
+                        @endif
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
+                                <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+    
+    
+              </div>
+        </div>
+    </nav>
     <!-- END nav -->
-    <?php  ?>
+    
     <?php $cate = \App\Category::where('id_category',$item->id_category)->first(); ?>
     <div class="hero-wrap hero-bread" style="background-image: url({{ !empty($cate->category_img) ? url('storage/app/'.$cate->category_img) : asset('frontend/images/banner-detail.jpg')}}">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-0 bread">รายละเอียดสินค้า</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>รายละเอียดสินค้า</span></p>
+            {{-- <h1 class="mb-0 bread">รายละเอียดสินค้า</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>รายละเอียดสินค้า</span></p> --}}
           </div>
         </div>
       </div>
@@ -748,40 +956,48 @@ height: 165px;
                     <div class="col-md-6" id="col-md-6">
 
                         <div class="container2">
-
+                                <div class="mySlides" id="imgpreview" style="display: block;">
+                                    <img class="pro-img" src="{{url('storage/app/'.$item->product_img.'')}}" style="width:100%">
+                                </div>
                             @foreach ($imgs as $img)
-                            @if(!empty($img->filepath))
-                            <div class="mySlides" style="display: block;">
-                                <img class="pro-img" src="{{url('storage/app/'.$img->filepath.'')}}" style="width:100%">
-                            </div>
-                            @else 
-                            <div class="mySlides" style="display: block;">
-                                <iframe class="pro-img" src="{{$img->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
-                            </div>
-                            @endif
+                                @if(!empty($img->filepath))
+                                    <div class="mySlides" id="img{{$img->id_product_gallery}}" style="display: block;">
+                                        <img class="pro-img" src="{{url('storage/app/'.$img->filepath.'')}}" style="width:100%">
+                                    </div>
+                                @else 
+                                    <div class="mySlides" style="display: block;">
+                                        <iframe class="pro-img" src="{{$img->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                @endif
                            
                             @endforeach
 
                           <div class="caption-container">
                             <p id="caption"></p>
                           </div>
+                          
                         <div class="owl-carousel owl-theme">
                           <div class="row">
+                                @if(!empty($item->product_img))
+                                    <div class="column">
+                                        <img class="demo cursor actve" src="{{url('storage/app/'.$item->product_img.'')}}" style="width:100%" onclick="currentSlide('preview',1)">
+                                    </div>
+                                @endif
                                 @if(!empty($imgs[0]))
-                                    @if(!empty($imgs[0]->filepath) )
+                                    @if(!empty($imgs[0]->filepath))
                                         <div class="column">
-                                            <img class="demo cursor actve" src="{{url('storage/app/'.$imgs[0]->filepath.'')}}" style="width:100%" onclick="currentSlide(1)">
+                                            <img class="demo cursor " src="{{url('storage/app/'.$imgs[0]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[0]->id_product_gallery}}',2)">
                                         </div>
                                     @else 
-                                    <div class="column">
-                                            <iframe class="img-fluid" src="{{$imgs[0]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
-                                    </div>
+                                        <div class="column">
+                                                <iframe class="img-fluid" src="{{$imgs[0]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                        </div>
                                     @endif
                                 @endif
                                 @if(!empty($imgs[1]))
                                     @if(!empty($imgs[1]->filepath))
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[1]->filepath.'')}}" style="width:100%" onclick="currentSlide(2)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[1]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[1]->id_product_gallery}}',3)">
                                     </div>
                                     @else 
                                     <div class="column">
@@ -789,7 +1005,7 @@ height: 165px;
                                     </div>
                                     @endif
                                 @endif
-                                @if(!empty($imgs[2]))
+                                {{-- @if(!empty($imgs[2]))
                                     @if(!empty($imgs[2]->filepath))
                                     <div class="column">
                                         <img class="demo cursor " src="{{url('storage/app/'.$imgs[2]->filepath.'')}}" style="width:100%" onclick="currentSlide(3)">
@@ -799,14 +1015,25 @@ height: 165px;
                                             <iframe class="img-fluid" src="{{$imgs[2]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
                                     </div>
                                     @endif
-                                @endif
+                                @endif --}}
                           </div>
-                          @if(!empty($imgs[3]))
+                          @if(!empty($imgs[2]))
                           <div class="row">
-                                @if(!empty($imgs[3]))
-                                    @if(!empty($imgs[3]->filepath))
+                                @if(!empty($imgs[2]))
+                                    @if(!empty($imgs[2]->filepath))
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[3]->filepath.'')}}" style="width:100%" onclick="currentSlide(4)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[2]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[2]->id_product_gallery}}',4)">
+                                    </div>
+                                    @else 
+                                    <div class="column">
+                                        <iframe class="img-fluid" src="{{$imgs[2]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
+                                    </div>
+                                    @endif
+                                @endif
+                                @if(!empty($imgs[3]))
+                                    @if( !empty($imgs[3]->filepath) )
+                                    <div class="column">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[3]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[3]->id_product_gallery}}',5)">
                                     </div>
                                     @else 
                                     <div class="column">
@@ -815,9 +1042,9 @@ height: 165px;
                                     @endif
                                 @endif
                                 @if(!empty($imgs[4]))
-                                    @if( !empty($imgs[4]->filepath) )
+                                    @if(!empty($imgs[4]))
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[4]->filepath.'')}}" style="width:100%" onclick="currentSlide(5)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[4]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[4]->id_product_gallery}}',6)">
                                     </div>
                                     @else 
                                     <div class="column">
@@ -825,10 +1052,14 @@ height: 165px;
                                     </div>
                                     @endif
                                 @endif
+                          </div>
+                          @endif
+                          @if(!empty($imgs[5]))
+                          <div class="row">
                                 @if(!empty($imgs[5]))
-                                    @if(!empty($imgs[5]))
+                                    @if(  !empty($imgs[5]->filepath) )
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[5]->filepath.'')}}" style="width:100%" onclick="currentSlide(6)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[5]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[5]->id_product_gallery}}',7)">
                                     </div>
                                     @else 
                                     <div class="column">
@@ -836,14 +1067,10 @@ height: 165px;
                                     </div>
                                     @endif
                                 @endif
-                          </div>
-                          @endif
-                          @if(!empty($imgs[6]))
-                          <div class="row">
                                 @if(!empty($imgs[6]))
-                                    @if(  !empty($imgs[6]->filepath) )
+                                    @if( !empty($imgs[6]->filepath))
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[6]->filepath.'')}}" style="width:100%" onclick="currentSlide(7)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[6]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[6]->id_product_gallery}}',8)">
                                     </div>
                                     @else 
                                     <div class="column">
@@ -852,9 +1079,9 @@ height: 165px;
                                     @endif
                                 @endif
                                 @if(!empty($imgs[7]))
-                                    @if( !empty($imgs[7]->filepath))
+                                    @if( !empty($imgs[7]->filepath) )
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[7]->filepath.'')}}" style="width:100%" onclick="currentSlide(8)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[7]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[7]->id_product_gallery}}',9)">
                                     </div>
                                     @else 
                                     <div class="column">
@@ -862,10 +1089,15 @@ height: 165px;
                                     </div>
                                     @endif
                                 @endif
+                          </div>
+                          @endif
+                        
+                          @if(!empty($imgs[8]))
+                          <div class="row">
                                 @if(!empty($imgs[8]))
                                     @if( !empty($imgs[8]->filepath) )
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide(9)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[8]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[8]->id_product_gallery}}',10)">
                                     </div>
                                     @else 
                                     <div class="column">
@@ -873,15 +1105,10 @@ height: 165px;
                                     </div>
                                     @endif
                                 @endif
-                          </div>
-                          @endif
-                        
-                          @if(!empty($imgs[9]))
-                          <div class="row">
-                                @if(!empty($imgs[0]))
-                                    @if( !empty($imgs[9]->filepath) )
+                                @if(!empty($imgs[9]))
+                                    @if(!empty($imgs[9]->filepath) )
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[9]->filepath.'')}}" style="width:100%" onclick="currentSlide(10)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[9]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[9]->id_product_gallery}}',11)">
                                     </div>
                                     @else 
                                     <div class="column">
@@ -890,24 +1117,13 @@ height: 165px;
                                     @endif
                                 @endif
                                 @if(!empty($imgs[10]))
-                                    @if(!empty($imgs[10]->filepath) )
+                                    @if(!empty($imgs[10]) && !empty($imgs[10]->filepath))
                                     <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[10]->filepath.'')}}" style="width:100%" onclick="currentSlide(11)">
+                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[10]->filepath.'')}}" style="width:100%" onclick="currentSlide('{{$imgs[10]->id_product_gallery}}',12)">
                                     </div>
                                     @else 
                                     <div class="column">
                                         <iframe class="img-fluid" src="{{$imgs[10]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
-                                    </div>
-                                    @endif
-                                @endif
-                                @if(!empty($imgs[11]))
-                                    @if(!empty($imgs[11]) && !empty($imgs[11]->filepath))
-                                    <div class="column">
-                                        <img class="demo cursor " src="{{url('storage/app/'.$imgs[11]->filepath.'')}}" style="width:100%" onclick="currentSlide(12)">
-                                    </div>
-                                    @else 
-                                    <div class="column">
-                                        <iframe class="img-fluid" src="{{$imgs[11]->video}}?loop=1&controls=0" allowfullscreen allow="autoplay;"></iframe>  
                                     </div>
                                     @endif
                                 @endif
@@ -924,13 +1140,13 @@ height: 165px;
                         <p class="sub-pro">({{$cate->category_name_th}})</p>
                         <hr class="line-height">
                         @if(($item->product_start <= date('Y-m-d') && $item->product_start != NULL ) && ($item->product_end >= date('Y-m-d') && $item->product_end != NULL))
-                        <p class="price"> <span class="price-span">฿{{number_format($item->product_normal_price)}}</span> ฿{{number_format($item->product_special_price)}} <span class="price-sale">{{($item->product_special_price/$item->product_normal_price)*100}}% ส่วนลด</span></p>
+                        <p class="price"> <span class="price-span">฿{{number_format($item->product_normal_price)}}</span> ฿{{number_format($item->product_special_price)}} <span class="price-sale">{{(@($item->product_special_price/$item->product_normal_price))*100}}% ส่วนลด</span></p>
                         @else 
                         <p class="price">฿{{number_format($item->product_normal_price)}}</p>
                         @endif
                        
-                        <p class="text-detial">ข้อมูลจำเพาะสินค้า :</p>
-                        <p class="sub-detial">{!! $item->product_spec_th !!}</p>
+                        <p class="text-detial">คุณสมบัติเด่น :</p>
+                        <p class="sub-detial">{!! $item->product_selling_th !!}</p>
                           {{-- <p class="text-detial">วิธีใช้ :</p>
                           <p class="sub-detial2">{!! $item->product_method_th !!}</p> --}}
                           @if($cate->category_name_th == 'project' || $cate->category_name_th == 'cable'  )
@@ -945,25 +1161,51 @@ height: 165px;
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12" id="back-col">
+                    <div class="col-md-6" id="back-col">
                     {{-- <p class="text-detial">dimension :</p>
                     <p class="sub-detial"><b>น้ำหนัก</b> {{$item->product_kg}} kg.<br><b>ขนาด </b>{{$item->product_width}} มม. X {{$item->product_lenght}} มม. X {{$item->product_height}} มม.</p> --}}
-                        <p class="text-detial">คุณสมบัติเด่น :</p>
-                        <p class="sub-detial2">{!!$item->product_selling_th!!}</p>
                         <p class="text-detial">คุณสมบัติทั่วไป :</p>
-                        <p class="sub-detial">{!!$item->product_property_th!!}</p>
+                        <p class="sub-detial2">{!!$item->product_property_th!!}</p>
+                        
                         <p class="text-detial">วิธีใช้งาน :</p>
-                        <p class="sub-detial">{!!$item->product_method_th!!}</p>
+                        <p class="sub-detial2">{!!$item->product_method_th!!}</p>
+                        
                         <p class="text-detial">การติดตั้ง :</p>
-                        <p class="sub-detial">{!!$item->product_installation_th!!}</p>
-                        <p class="text-detial">คำแนะนำ :</p>
-                        <p class="sub-detial2">{!!$item->product_direction_th!!}</p>
+                        <p class="sub-detial2">{!!$item->product_installation_th!!}</p>
+                        
+                    </div>
+                    <div class="col-md-6" id="back-col">
+                    {{-- <p class="text-detial">dimension :</p>
+                    <p class="sub-detial"><b>น้ำหนัก</b> {{$item->product_kg}} kg.<br><b>ขนาด </b>{{$item->product_width}} มม. X {{$item->product_lenght}} มม. X {{$item->product_height}} มม.</p> --}}
+                        <!-- <p class="text-detial">คุณสมบัติเด่น :</p>
+                        <p class="sub-detial2"></p> -->
+                        
+                         <p class="text-detial">คำแนะนำ :</p>
+                        <p class="sub-detial">{!!$item->product_direction_th!!}</p>
+                        
+                        
                         <p class="text-detial">ข้อควรระวัง :</p>
                         <p class="sub-detial2">{!!$item->product_caution_th!!}</p>
+
+                        
+                        <p class="text-detial">ข้อมูลจำเพาะสินค้า :</p>
+                        <p class="sub-detial2">{!!$item->product_spec_th!!}</p>
+                        @if(!empty($item->pdf))
+                        <p class="text-detial">ดาวน์โหลดเอกสาร :</p>
+                        <p class="sub-detial2"><a target="blank" class="download" href="{{url('storage/app/'.$item->pdf.'')}}"><img src="http://miu.orangeworkshop.info/racer/assets/images/racer/icon/pdf-1.png"> ดาวน์โหลดเอกสาร</a></p>
+                        @endif
                     </div>
-    
                 </div>
             </div>
+            <br>
+            {{-- @if(!empty($item->pdf))
+            <div class="row text-center">
+                <div class="col-sm"><a href="{{url('storage/app/'.$item->pdf.'')}}" target="_blank">
+                    <img src="{{asset('assets/images/racer/icon/pdf-1.png')}}"> <u>ดาวน์โหลดเอกสาร</u></a>
+                </div>
+            </div>
+           
+            @endif --}}
             <br>
             @if(!empty($item->product_extra_th ))
             <div class="container">
@@ -1099,88 +1341,30 @@ height: 165px;
                 
             </div>
         </div>   
+
+        {{-- add to cart --}}
+         {{-- modaL --}}
+         <div class="modal fade bd-example-modal-lg hide" id="main1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" >
+                        <div class="modal-header">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h5 style="color: #00c4ef">คุณได้เพิ่มสินค้าลงในตะกร้า</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body" id="sub1">
+                            
+                        </div>
+                </div>
+            </div>
+        </div>
+        {{-- end --}}
 		
 	{{-- footer --}}
 
-    <footer class="ftco-footer ftco-section">
-      <div class="container">
-      	<!-- <div class="row">
-      		<div class="mouse">
-						<a href="#" class="mouse-icon">
-							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-						</a>
-					</div>
-      	</div> -->
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Vegefoods</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-              <!-- <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul> -->
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Menu</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Shop</a></li>
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Journal</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Help</h2>
-              <div class="d-flex">
-	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
-	              </ul>
-	              <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
-	                <li><a href="#" class="py-2 d-block">Contact</a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
-137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </footer>
-    <footer class="ftco-footer2 ftco-section2">
-        <div class="container">
-            <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright-text">
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
-						 
-						</p>
-          </div>
-        </div>
-        </div>
-        </footer>
+    @include('frontend.inc_footer')
      
 
   <!-- loader -->
@@ -1215,8 +1399,9 @@ height: 165px;
       showSlides(slideIndex += n);
     }
 
-    function currentSlide(n) {
+    function currentSlide(id,n) {
       showSlides(slideIndex = n);
+      zoom(id);
     }
 
     function showSlides(n) {
@@ -1306,8 +1491,14 @@ function addcart(id){
         type: 'GET',
         dataType: 'HTML',
         success: function(data) {
-            $("#addcart").load(location.href + " #addcart");
+            $(".countcart").load(location.href + " .countcart");
+            $(".showcart").load(location.href + " .showcart");
           //  $(".addcart").attr('style','color:#41c8f5 !important;padding:0;');
+          $('#sub1').html(data);
+                $('#main1').modal('toggle');
+                setTimeout(function() {
+                    $('#main1').modal('hide');
+                }, 5000);
         }
     });
 }
@@ -1383,6 +1574,218 @@ $( document ).ready(function() {
         });
     }
 });
+
+$(".search-toggle").addClass("closed");
+
+$(".search-toggle .search-icon").click(function (e) {
+  if ($(".search-toggle").hasClass("closed")) {
+    $(".search-toggle").removeClass("closed").addClass("opened");
+    $(".search-toggle, .search-container03").addClass("opened");
+    $("#search-terms").focus();
+  } else {
+    $(".search-toggle").removeClass("opened").addClass("closed");
+    $(".search-toggle, .search-container03").removeClass("opened");
+  }
+});
+
+function  zoom(id) {
+    var src = $("#img"+id).find("img").attr("src");
+        $("#img"+id).append('<img class="zoom" src="' + src + '" >');
+
+        $("#img"+id).mouseenter(function () {
+            $(this).mousemove(function (event) {
+                var offset = $(this).offset();
+                var left = event.pageX - offset.left;
+                var top = event.pageY - offset.top;
+
+                $(this).find(".zoom").css({
+                width: "200%",
+                opacity: 1,
+                left: -left,
+                top: -top
+                });
+            });
+        });
+
+        $("#img"+id).mouseleave(function () {
+            $(this).find(".zoom").css({
+                width: "100%",
+                opacity: 0,
+                left: 0,
+                top: 0
+            });
+        });
+}
+
+var src = $("#imgpreview").find("img").attr("src");
+$("#imgpreview").append('<img class="zoom" src="' + src + '" >');
+
+$("#imgpreview").mouseenter(function () {
+  $(this).mousemove(function (event) {
+    var offset = $(this).offset();
+    var left = event.pageX - offset.left;
+    var top = event.pageY - offset.top;
+
+    $(this).find(".zoom").css({
+      width: "200%",
+      opacity: 1,
+      left: -left,
+      top: -top
+    });
+  });
+});
+
+$("#imgpreview").mouseleave(function () {
+  $(this).find(".zoom").css({
+    width: "100%",
+    opacity: 0,
+    left: 0,
+    top: 0
+  });
+});
+
+
+  //////cart
+  var taxRate = 0.00;
+  var shippingRate = 0.00; 
+  var fadeTime = 300;
+
+  ////get and change count
+  function count(id,type){
+            if(type == 'add'){
+                console.log($('#qy'+id) );
+                A = parseInt($('#qy'+id).text()) + 1;
+                $('#qy'+id).html(A);
+                $('#inputqy'+id).val(A);
+                updateQuantity(A,id);
+                countcart(id,type);
+            }else{
+                A = parseInt($('#qy'+id).text()) - 1;
+                if(A < 1){
+                    $('#qy'+id).html(1);
+                    $('#inputqy'+id).val(1);
+                    updateQuantity(1);
+                }else{
+                    $('#qy'+id).html(A);
+                    $('#inputqy'+id).val(A);
+                    updateQuantity(A,id);
+                    countcart(id,type);
+                }
+               
+            }
+
+           
+     }
+
+
+
+
+  
+  $('.product-removal button').click( function() {
+    removeItem(this);
+  });
+  
+  
+  /* Recalculate cart */
+  function recalculateCart()
+  {
+    var subtotal = 0;
+    
+    /* Sum up row totals */
+    $('.product').each(function () {
+      subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
+    });
+    
+    /* Calculate totals */
+    var tax = subtotal * taxRate;
+    var shipping = (subtotal > 0 ? shippingRate : 0);
+    var total = numberWithCommas(subtotal + tax + shipping);
+    
+    /* Update totals display */
+    $('.totals-value').fadeOut(fadeTime, function() {
+      $('#cart-subtotal').html(numberWithCommas(subtotal));
+      $('#cart-tax').html(tax);
+      $('#cart-shipping').html(shipping);
+      $('#cart-total').html(total);
+      $('#total').val(total);
+      if(total == 0){
+        $('.checkout').fadeOut(fadeTime);
+      }else{
+        $('.checkout').fadeIn(fadeTime);
+      }
+      $('.totals-value').fadeIn(fadeTime);
+    });
+  }
+  
+  
+  /* Update quantity */
+  function updateQuantity(quantityInput , id)
+  {
+    /* Calculate line price */
+    // var productRow = $(quantityInput).parent().parent();
+    // var price = parseInt(productRow.children('.product-price').text().replace(',',''));
+    var price = parseInt($('.price'+id).text().replace(',',''));
+    console.log(price);
+    var quantity = quantityInput;
+    var linePrice = numberWithCommas(price * quantity);
+    
+    /* Update line price display and recalc cart totals */
+    $('.totalitem'+id).each(function () {
+      $(this).fadeOut(fadeTime, function() {
+        $(this).text(linePrice);
+        recalculateCart();
+        $(this).fadeIn(fadeTime);
+      });
+    });  
+  }
+  
+  
+  /* Remove item from cart */
+  function removeItem(removeButton)
+  {
+    /* Remove row from DOM and recalc cart total */
+    var productRow = $(removeButton).parent().parent();
+    productRow.slideUp(fadeTime, function() {
+      productRow.remove();
+      recalculateCart();
+    });
+  }
+
+
+  //////////////////////convert to string with comma
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
+
+    ///////////////delitem
+    function delitem(item,id){
+        $.ajax({
+            url: '{{ url("deleteitemincart")}}',
+            type: 'GET',
+            data : {'item' : item , 'id' : id},
+            success: function(data) {
+                $(".countcart").load(location.href + " .countcart");
+                $(".showcart").load(location.href + " .showcart");
+            }
+        });
+    }
+
+    //////+- สินค้า
+
+    function countcart(value,type){
+    $.ajax({
+            url: '{{ url("countproduct")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id' : value , 'type' : type},
+            success: function(data) {
+                $(".countcart").load(location.href + " .countcart");
+                $(".showcart").load(location.href + " .showcart");
+            }
+        });
+    }
 
 </script>
     

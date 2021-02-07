@@ -32,6 +32,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
 </head>
 
   <style>
@@ -485,7 +491,28 @@ input[type=submit]:hover {
   clear: both;
 }
 
+#text-con{
+    padding: 0px 120px 0px 0px;
+}
+
+
+
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1300px) {
+
+#text-con {
+    padding: 0px 0px 0px 0px;
+    line-height: 30px;
+}
+#icon-con {
+    color: #00b9e9;
+    line-height: 40px !important;
+}
+
+}
+
+
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit] {
     width: 100%;
@@ -620,8 +647,11 @@ a:hover {
 
  .img-con {
     width: 95%;
-    height: 300px;
-    object-fit: cover;
+    /* height: 300px;
+    object-fit: cover; */
+    height: 340px;
+    object-fit: contain;
+    margin-bottom: 20px;
 }
 .address-text {
     line-height: 0px;
@@ -634,12 +664,14 @@ a:hover {
     line-height: 65px;
     padding: 0px 10px 0px 0px;
     font-size: 20px;
+    margin-bottom: -30px;
 }
 .block-form {
     background-color: rgb(239, 239, 239);
     padding: 15px 15px 50px 15px;
     box-shadow: 1px 1px 5px #777;
     margin-bottom: 30px;
+    margin-top: 25px;
 }
 .form-title {
     text-align: left;
@@ -845,117 +877,285 @@ textarea.form-control {
 }
 
 
+.map{
+    width: 95%;
+    height: 400px;
+    border: 0px solid #000;
+}
+.text-map{
+    color: #00b9eb;
+    font-family: 'Prompt', sans-serif;
+    font-size: 18px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
       
   </style>
 
 
   <body class="goto-here">
-		<div class="py-1 bg-primary">
-    	<div class="container">
-    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-	    		<div class="col-lg-12 d-block">
-		    		<div class="row d-flex">
-
+    <div class="py-1 bg-primary">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+    
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : 02 811 1741 5</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon icon-envelope" style="color:#00b9e9"></span>
-							<span class="text"> : Racer.co.th</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
-                        </div>
+                        <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon-phone2" style="color:#00b9e9"></span>
+                                <span class="text"> : 0-2811-1741-5</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon icon-envelope" style="color:#00b9e9"></span>
+                                <span class="text"> :  racer_official@racerlighting.com</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
+                                <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
+                            </div>
                         <div class="col-md-4">
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
-						   </div>
-
-					    </div>
-
-				    </div>
-			    </div>
-		    </div>
-		  </div>
+                        <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a target="blank" href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-01.png"></a>
+                                <a target="blank" href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-02.png"></a>
+                                <a target="blank" href="https://line.me/ti/p/~@racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-03.png"></a>
+                                <a target="blank" href="https://www.youtube.com/channel/UC8Af6KCm3uAnBeTya3rwuLA" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-04.png"></a>
+                                <a target="blank" href="https://www.tiktok.com/@racerlighting?" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-05.png"></a>
+                        </div>
+                            <!-- <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
+                            </div>
+                            <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+                            </div>
+                            <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+                           </div> -->
+    
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+          </div>
     </div>
     {{-- start nav --}}
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	<div class="container">
-	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="oi oi-menu"></span> Menu
-	  </button>
-
-	  <div class="collapse navbar-collapse" id="ftco-nav">
-
-		  <div class="col-md-8">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
-		  <li class="nav-item dropdown">
-		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
-		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <?php $menu = \App\Category::orderby('sort')->get(); ?>
-                @foreach ($menu as $_menu)
-                    <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
-                @endforeach
-		  </div>
-		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
-		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-		  <li class="nav-item dropdown ">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
-			<div class="dropdown-menu" aria-labelledby="dropdown04">
-				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
-				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
-			</div>
-		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
-		  <li class="nav-item active"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
-
-		</ul>
-	</div>
-	<div class="col-md-4" id="pay-nemu">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
-            @if(empty(Session::get('customer_id')))
-                <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-            @else
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="{{url('/order-history')}}">ประวัติการซื้อ</a>
-                        <a class="dropdown-item" href="{{url('/logout')}}">ลงชื่อออก </a>
-                    </div>
-                </li>
-            @endif
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown04">
-                    <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
-                    <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
+        <div class="container">
+            
+            <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+    
+              <div class="collapse navbar-collapse" id="ftco-nav">
+    
+                <div class="col-md-8">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <?php $menu = \App\Category::orderby('sort')->get(); ?>
+                                    @foreach ($menu as $_menu)
+                                        <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
+                                    @endforeach
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
+                        <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
+                                <a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+                        <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
+                    </ul>
                 </div>
-            </li>
-        </ul>
+                <div class="col-md-4" id="pay-nemu">
+                    <ul class="navbar-nav ml-auto">
+    
+    
+                    <li class="nav-item">
+              <div class="container03">
+      <div class="search-toggle">
+        <button class="search-icon icon-search"></button>
+        <button class="search-icon icon-close"></button>
+      </div>
+      <div class="search-container03">
+        <form action="{{url('searchproduct')}}" method="get">
+            @csrf
+          <input type="text" name="search" id="search-terms" placeholder="Search terms..."  autocomplete="off"/>
+          <button type="submit" class="search-icon"></button>
+        </form>
+    
+      </div>
     </div>
-
-	  </div>
-	</div>
-  </nav>
+              </li>
+                
+                               
+                            <!-- <li class="nav-item cta-colored" id="mobile"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li> -->
+                            <li class="nav-item cta-colored" id="mobile"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>
+                               
+                                <?php
+                                if(!empty(Session::get('product'))){
+                                    $qty = 0;
+                                        foreach (Session::get('product') as $key =>  $item) {
+                                            $qty += $item['qty'];
+                                        }
+                                }   
+                                
+                            ?>
+                                {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}
+                           
+                            <span class="menu-span-col"></span> </a></li>
+              <li class="nav-item dropdown" id="desk">
+                <a href="{{url('cart')}}" class="nav-link veiw" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-shopping_cart"></span>
+                    <span class="countcart">
+                        <?php
+                        if(!empty(Session::get('product'))){
+                            $qty = 0;
+                                foreach (Session::get('product') as $key =>  $item) {
+                                    $qty += $item['qty'];
+                                }
+                        }   
+                        
+                    ?>
+                    {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}
+                    </span>
+                </a>
+                <div class="dropdown-menu " aria-labelledby="dropdown04" id="dropdown-menu-cart">
+                    <div class="showcart">
+                    @if(Session::get('product') && count(Session::get('product')) > 0 )
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="shopping-cart" style="overflow: scroll;;
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 500px;">
+                                    <form  method="POST">
+                                        <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
+                                        <div class="column-labels">
+                                        </div>
+                                            {{-- product --}}
+                                            <?php $items = Session::get('product');  
+                                                    $sum  = 0;
+                                            ?>
+                                            @foreach ($items as $key => $item)
+                                            <?php $product = \App\Product::where('id_product',$item['product_id'])->first(); ?>
+                                            <div class="product">
+                                                <div class="product-image">
+                                                    <img src="{{url('storage/app/'.$product->product_img.'')}}">
+                                                </div>
+                                                <div class="product-details">
+                                                    <div class="product-title">{{$product->product_name_th}}</div>
+                                                    
+                                                </div>
+                                                @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                                    <div class="product-price price{{$product->id_product}}" >{{number_format($product->product_special_price)}}</div>
+                                                    <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_special_price}}">
+                                                @else 
+                                                    <div class="product-price price{{$product->id_product}}">{{number_format($product->product_normal_price)}}</div>
+                                                    <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_normal_price}}">
+                                                @endif                                
+                                                <div class="product-quantity">
+                                                    <div class="quantity_button">
+                                                        <span class="qt" id="qy{{$product->id_product}}">{{$item['qty']}}</span>
+                                                        <span class="qt-plus" onclick="count('{{$product->id_product}}','add')">+</span>
+                                                        <span class="qt-minus" onclick="count('{{$product->id_product}}','sub')">-</span>
+                                                        <input type="hidden" class="text-center" id="inputqy{{$product->id_product}}" name="count[{{$item['product_id']}}]" value="{{$item['qty']}}" min="1">
+                                                    </div>
+                                                </div>
+                                                <div class="product-removal">
+                                                    <button type="button" class="remove-product" onclick="delitem({{$key}},{{$item['product_id']}})">Remove</button>
+                                                </div>
+                                                
+                                                @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                                    <div class="product-line-price totalitem{{$product->id_product}}" >{{number_format($product->product_special_price * $item['qty'])}}</div>
+                                                    <?php  $sum +=  $product->product_special_price * $item['qty'];?>
+                                                    @else 
+                                                    <div class="product-line-price totalitem{{$product->id_product}}">{{number_format($product->product_normal_price * $item['qty'])}}</div>
+                                                    <?php  $sum +=  $product->product_normal_price * $item['qty'];?>
+                                                @endif
+                                            </div>
+                                            @endforeach
+                                            
+                                            {{-- total --}}
+                                                                    
+                                            <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
+                                    </form>
+                                    
+                                </div>
+                                
+                            </div>
+    
+                        </div>
+                    </div>
+                    @else 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                คุณยังไม่มีรายการสินค้าในตะกร้า
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    </div>
+                </div>
+               
+              </li>
+                        <!-- <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li> -->
+                        @if(empty(Session::get('customer_id')))
+                            <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                    <a class="dropdown-item" href="{{url('/order-history')}}">ประวัติการซื้อ</a>
+                                    <a class="dropdown-item" href="{{url('/logout')}}">ลงชื่อออก </a>
+                                </div>
+                            </li>
+                        @endif
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
+                                <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+    
+    
+              </div>
+        </div>
+    </nav>
         <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
+    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/messageImage_1611556530470.jpg')}}">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-0 bread">ติดต่อเรา</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>ติดต่อเรา</span></p>
+            {{-- <h1 class="mb-0 bread">ติดต่อเรา</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>ติดต่อเรา</span></p> --}}
           </div>
         </div>
       </div>
@@ -986,28 +1186,71 @@ textarea.form-control {
                     <div class="row">
                       <div class="col-md-6 col-lg-6">
                           <div class="subtitle-height">
-                              <img class="img-con" src="{{asset('frontend/images/pro01.jpg')}}">
+                          <a data-fancybox="gallery" targer="blank" href="{{asset('frontend/images/map1.jpg')}}"><img class="img-con" src="{{asset('frontend/images/map1.jpg')}}"></a>
+                              <!-- <img class="img-con" src="{{asset('frontend/images/map1.jpg')}}"> -->
                             </div>
                       </div>
                       <div class="col-md-6 col-lg-6">
-                          <p class="address-text">
+                          <p class="address-text" id="text-con">
                             <span class="icon icon-map-marker" id="icon-con"></span> บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
-                            137 หมู่9 ซอยเพชรเกษม91 <br>ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110
+                            137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110
                           </p>
-                          <p class="address-text"> <i class="fa fa-envelope" id="icon-con" aria-hidden="true"></i> info@gmail.com</p>
-                          <p class="address-text"> <span class="icon icon-phone" id="icon-con"></span> 02 811 1741 5</p>
+                          <p class="address-text"> <i class="fa fa-envelope" id="icon-con" aria-hidden="true"></i> Racer_Official@racerlighting.com</p>
+                          <p class="address-text"> <span class="icon icon-phone" id="icon-con"></span> 0-2811-1741-5</p>
+
+                          <p class="address-text" id="text-con">
+                            <span class="icon icon-map-marker" id="icon-con"></span> บริษัท เรเซอร์ การไฟฟ้า(ประเทศไทย)จำกัด สาขาลาดบัวหลวง
+99/9 หมู่ 2 ตำบล ลาดบัวหลวง อำเภอลาดบัวหลวง จังหวัด พระนครศรีอยุธยา 13230
+                          </p>
+                          <p class="address-text"> <span class="icon icon-phone" id="icon-con"></span>  035-379110</p>
+                     
                           {{-- <p class="address-text"> <i class="fa fa-fax" id="icon-con" aria-hidden="true"></i> 00-000-0000</p> --}}
                       </div>
           
                     </div>
                   </div>
+
+                  <!-- <div class="container">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-6">
+                          <div class="subtitle-height">
+                              <img class="img-con" src="{{asset('frontend/images/map1.jpg')}}">
+                            </div>
+                      </div>
+                      <div class="col-md-6 col-lg-6">
+                          <p class="address-text" id="text-con">
+                            <span class="icon icon-map-marker" id="icon-con"></span> บริษัท เรเซอร์ การไฟฟ้า(ประเทศไทย)จำกัด สาขาลาดบัวหลวง
+99/9 หมู่ 2 ตำบล ลาดบัวหลวง อำเภอลาดบัวหลวง จังหวัด พระนครศรีอยุธยา 13230
+                          </p>
+                          <p class="address-text"> <i class="fa fa-envelope" id="icon-con" aria-hidden="true"></i> info@gmail.com</p>
+                          <p class="address-text"> <span class="icon icon-phone" id="icon-con"></span>  035-379110</p>
+                          {{-- <p class="address-text"> <i class="fa fa-fax" id="icon-con" aria-hidden="true"></i> 00-000-0000</p> --}}
+                      </div>
+          
+                    </div>
+                  </div> -->
+
           
                   <div class="container">
                       <div class="row">
-                            <div class="col-md-6 d-flex">
-                                <div id="map" class="bg-white"></div>
+                      <div class="col-md-6">
+                                <p class="text-map">ออฟฟิศ</p>
+                                <!-- <div id="map" class="bg-white"></div> -->
+                                <div class="responsive-map">
+                                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.509686432534!2d100.31291381521534!3d13.68755180246589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e295f061cde319%3A0x8c695c0e4c4c6fdd!2z4Lia4Lij4Li04Lip4Lix4LiXIOC5gOC4o-C5gOC4i-C4reC4o-C5jOC4geC4suC4o-C5hOC4n-C4n-C5ieC4siDguJvguKPguLDguYDguJfguKjguYTguJfguKIg4LiI4Liz4LiB4Lix4LiU!5e0!3m2!1sth!2sth!4v1611544861965!5m2!1sth!2sth" ></iframe>
                             </div>
-                        <div class="col-md-6 col-lg-6">
+                                </div>
+
+                            <div class="col-md-6">
+                            <p class="text-map">โรงงาน</p>
+                                                                <div class="responsive-map">
+                                                                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3868.3956973666427!2d100.31433221521826!3d14.171586891244125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2640cac4f45c1%3A0xc974f2914bab570c!2z4Lia4Lij4Li04Lip4Lix4LiXIOC5gOC4o-C5gOC4i-C4reC4o-C5jOC4geC4suC4o-C5hOC4n-C4n-C5ieC4siAo4Lib4Lij4Liw4LmA4LiX4Lio4LmE4LiX4LiiKSDguIjguLPguIHguLHguJQ!5e0!3m2!1sth!2sth!4v1611544787007!5m2!1sth!2sth" ></iframe>
+</div>
+                            </div>
+                            <!-- <div class="col-md-6 d-flex">
+                                <div id="map" class="bg-white"></div>
+                            </div> -->
+                        <!-- <div class="col-md-6 col-lg-6">
                           <div class="block-form">
                               <div class="popup_inner">
                                     <p class="form-title">Contact</p>
@@ -1019,11 +1262,43 @@ textarea.form-control {
                                                 <input class="form-control" type="text" placeholder="Your Name" name="name">
                                                 <input class="form-control" type="text" placeholder="Company Name" name="company">
                                                 <input class="form-control" type="email" placeholder="Your Email" name="email">
-                                                <!-- <input class="form-control" type="text"  placeholder="Re-enter Your Email"> -->
+                                               
                                                 <input class="form-control" type="text" name="subject" placeholder="Your Subject">
                                                 <textarea class="form-control" type="text" id="cf_message" name="comments" placeholder="Your Message"></textarea>
-                                                <!-- <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                                <label for="vehicle1" class="check-text2"> I agree to MyKmutt-med <a href="#"><span class="term">Terms of Use</span></a></label> -->
+                                               
+                                            </div>
+                                            
+                                            <div class="col-xl-12">
+                                                <center><button type="submit" class="boxed-btn3">SEND</button></center>
+                                            </div>
+                                        </div>
+                                    </form>
+                              </div>
+                            </div>
+                        </div> -->
+            
+                      </div>
+                    </div>
+
+                    <div class="container">
+                      <div class="row">
+
+                <div class="col-md-12 col-lg-12">
+                          <div class="block-form">
+                              <div class="popup_inner">
+                                    <p class="form-title">Contact</p>
+                                    <i class="fa fa-envelope" id="icon-con2" aria-hidden="true"></i>
+                                    <form action="{{url('sendcontact')}}" method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-xl-12" id="col-xl-12">
+                                                <input class="form-control" type="text" placeholder="Your Name" name="name">
+                                                <input class="form-control" type="text" placeholder="Company Name" name="company">
+                                                <input class="form-control" type="email" placeholder="Your Email" name="email">
+                                               
+                                                <input class="form-control" type="text" name="subject" placeholder="Your Subject">
+                                                <textarea class="form-control" type="text" id="cf_message" name="comments" placeholder="Your Message"></textarea>
+                                               
                                             </div>
                                             
                                             <div class="col-xl-12">
@@ -1034,12 +1309,11 @@ textarea.form-control {
                               </div>
                             </div>
                         </div>
-            
-                      </div>
-                    </div>
+
+                                                                </div>
+                                                                </div>
           
                 </div>
-        
         </div> 
 
 		
@@ -1047,85 +1321,7 @@ textarea.form-control {
 		
 	
 
-    <footer class="ftco-footer ftco-section">
-      <div class="container">
-      	<!-- <div class="row">
-      		<div class="mouse">
-						<a href="#" class="mouse-icon">
-							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-						</a>
-					</div>
-      	</div> -->
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Vegefoods</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-              <!-- <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul> -->
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Menu</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Shop</a></li>
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Journal</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Help</h2>
-              <div class="d-flex">
-	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
-	              </ul>
-	              <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
-	                <li><a href="#" class="py-2 d-block">Contact</a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
-137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </footer>
-    <footer class="ftco-footer2 ftco-section2">
-        <div class="container">
-            <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright-text">
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
-						 
-						</p>
-          </div>
-        </div>
-        </div>
-        </footer>
+        @include('frontend.inc_footer')
   
 
   <!-- loader -->
@@ -1163,6 +1359,163 @@ textarea.form-control {
         });
     }
   </script>
+
+<script>
+$(".search-toggle").addClass("closed");
+
+$(".search-toggle .search-icon").click(function (e) {
+  if ($(".search-toggle").hasClass("closed")) {
+    $(".search-toggle").removeClass("closed").addClass("opened");
+    $(".search-toggle, .search-container03").addClass("opened");
+    $("#search-terms").focus();
+  } else {
+    $(".search-toggle").removeClass("opened").addClass("closed");
+    $(".search-toggle, .search-container03").removeClass("opened");
+  }
+});
+
+
+    //////cart
+    var taxRate = 0.00;
+  var shippingRate = 0.00; 
+  var fadeTime = 300;
+
+  ////get and change count
+  function count(id,type){
+            if(type == 'add'){
+                console.log($('#qy'+id) );
+                A = parseInt($('#qy'+id).text()) + 1;
+                $('#qy'+id).html(A);
+                $('#inputqy'+id).val(A);
+                updateQuantity(A,id);
+                countcart(id,type);
+            }else{
+                A = parseInt($('#qy'+id).text()) - 1;
+                if(A < 1){
+                    $('#qy'+id).html(1);
+                    $('#inputqy'+id).val(1);
+                    updateQuantity(1);
+                }else{
+                    $('#qy'+id).html(A);
+                    $('#inputqy'+id).val(A);
+                    updateQuantity(A,id);
+                    countcart(id,type);
+                }
+               
+            }
+
+           
+     }
+
+
+
+
+  
+  $('.product-removal button').click( function() {
+    removeItem(this);
+  });
+  
+  
+  /* Recalculate cart */
+  function recalculateCart()
+  {
+    var subtotal = 0;
+    
+    /* Sum up row totals */
+    $('.product').each(function () {
+      subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
+    });
+    
+    /* Calculate totals */
+    var tax = subtotal * taxRate;
+    var shipping = (subtotal > 0 ? shippingRate : 0);
+    var total = numberWithCommas(subtotal + tax + shipping);
+    
+    /* Update totals display */
+    $('.totals-value').fadeOut(fadeTime, function() {
+      $('#cart-subtotal').html(numberWithCommas(subtotal));
+      $('#cart-tax').html(tax);
+      $('#cart-shipping').html(shipping);
+      $('#cart-total').html(total);
+      $('#total').val(total);
+      if(total == 0){
+        $('.checkout').fadeOut(fadeTime);
+      }else{
+        $('.checkout').fadeIn(fadeTime);
+      }
+      $('.totals-value').fadeIn(fadeTime);
+    });
+  }
+  
+  
+  /* Update quantity */
+  function updateQuantity(quantityInput , id)
+  {
+    /* Calculate line price */
+    // var productRow = $(quantityInput).parent().parent();
+    // var price = parseInt(productRow.children('.product-price').text().replace(',',''));
+    var price = parseInt($('.price'+id).text().replace(',',''));
+    console.log(price);
+    var quantity = quantityInput;
+    var linePrice = numberWithCommas(price * quantity);
+    
+    /* Update line price display and recalc cart totals */
+    $('.totalitem'+id).each(function () {
+      $(this).fadeOut(fadeTime, function() {
+        $(this).text(linePrice);
+        recalculateCart();
+        $(this).fadeIn(fadeTime);
+      });
+    });  
+  }
+  
+  
+  /* Remove item from cart */
+  function removeItem(removeButton)
+  {
+    /* Remove row from DOM and recalc cart total */
+    var productRow = $(removeButton).parent().parent();
+    productRow.slideUp(fadeTime, function() {
+      productRow.remove();
+      recalculateCart();
+    });
+  }
+
+
+  //////////////////////convert to string with comma
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
+
+    ///////////////delitem
+    function delitem(item,id){
+        $.ajax({
+            url: '{{ url("deleteitemincart")}}',
+            type: 'GET',
+            data : {'item' : item , 'id' : id},
+            success: function(data) {
+                $(".countcart").load(location.href + " .countcart");
+                $(".showcart").load(location.href + " .showcart");
+            }
+        });
+    }
+
+    //////+- สินค้า
+
+    function countcart(value,type){
+    $.ajax({
+            url: '{{ url("countproduct")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id' : value , 'type' : type},
+            success: function(data) {
+                $(".countcart").load(location.href + " .countcart");
+            }
+        });
+    }
+ </script>
     
   </body>
 </html>
