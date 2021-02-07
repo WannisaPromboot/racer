@@ -46,9 +46,64 @@ class PageBannerController extends Controller
         
 
 
-        return redirect('banner/'.$request->page.'')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
+        return redirect('pagecontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
+
+    public function EditSubbanner($id){
+        $data = array(
+            'data' => DB::Table('subbanner')->where('subbanner_page',$id)->get(),
+            'idpage' => $id
+        );
+        
+        return view('Admin.pagebanner.editsub-banner',$data);
+        
+        
+        
+    }
+
+
+    public function SaveSubbanner(Request $request){
+        // dd($request->all());/
+        $pagebanner = DB::Table('subbanner')->where('subbanner_page', $request->page)->first();
+        if(empty($pagebanner)){
+            if($request->filepath1 !== null){
+                $newFilename = 'Banner/'.time().$request->filepath1->getClientOriginalName();
+                Storage::put($newFilename, file_get_contents($request->filepath1));
+                DB::Table('subbanner')->insert(['subbanner_image'=>$newFilename,'subbanner_page'=>$request->page,'subbanner_sort'=>1]);
+            }
+            if($request->filepath2 !== null){
+                $newFilename = 'Banner/'.time().$request->filepath2->getClientOriginalName();
+                Storage::put($newFilename, file_get_contents($request->filepath2));
+                DB::Table('subbanner')->insert(['subbanner_image'=>$newFilename,'subbanner_page'=>$request->page,'subbanner_sort'=>2]);
+            }
+            
+        }else{
+            if($request->filepath1 !== null){
+                $newFilename = 'Banner/'.time().$request->filepath1->getClientOriginalName();
+                Storage::put($newFilename, file_get_contents($request->filepath1));
+                DB::Table('subbanner')->where('subbanner_sort',1)->where('subbanner_page',$request->page)->update(['subbanner_image'=>$newFilename]);
+            }
+            
+            if($request->filepath2 !== null){
+                $newFilename = 'Banner/'.time().$request->filepath2->getClientOriginalName();
+                Storage::put($newFilename, file_get_contents($request->filepath2));
+                DB::Table('subbanner')->where('subbanner_sort',2)->where('subbanner_page',$request->page)->update(['subbanner_image'=>$newFilename]);
+            }
+        }
+        
+        if(isset($request->link1)){
+           
+            DB::Table('subbanner')->where('subbanner_sort',1)->where('subbanner_page',$request->page)->update(['subbanner_link'=>$request->link1]);
+        }
+        if(isset($request->link2)){
+       
+            DB::Table('subbanner')->where('subbanner_sort',2)->where('subbanner_page',$request->page)->update(['subbanner_link'=>$request->link2]);
+        }
+
+
+        return redirect('subbanner')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
+    }
 
     
 

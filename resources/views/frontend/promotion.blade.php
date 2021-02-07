@@ -634,15 +634,15 @@ a:hover {
         <div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about02.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
             <div class="container">
                 <div class="row">
+                    @foreach($subbanner as $sub)
+
+                        <div class="col-md-6" >
+                            {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
+                            <img class="pro-img" src="{{url('storage/app/'.$sub->subbanner_image)}}">
+                        </div>
+                        
+                    @endforeach
                    
-                    <div class="col-md-6" >
-                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
-                        <img class="pro-img" src="{{asset('frontend/images/631113.AW_Web-01.jpg')}}">
-                    </div>
-                    <div class="col-md-6">
-                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
-                        <img class="pro-img" src="{{asset('frontend/images/Ads AIV FES G1+1_Web-01.jpg')}}">
-                    </div>
                 </div>
             </div>
 
@@ -651,7 +651,7 @@ a:hover {
                     @if(!empty($data))
                         <div class="col-md-12" id="">
                             @foreach ($data as $item)
-                                <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$item->promotion_image)}}"></a>
+                                <a href="{{!(empty($item->promotion_link))?$item->promotion_link:'javascript:void(0)'}}"><img class="pro-img2" src="{{url('storage/app/'.$item->promotion_image)}}"></a>
                                 
                             @endforeach
                             

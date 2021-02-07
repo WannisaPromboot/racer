@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') แบนเนอร์หลัก @endsection
+@section('title')แบนเนอร์ย่อย @endsection
 
 @section('css') 
         <!-- Summernote css -->
@@ -28,10 +28,11 @@
 <div class="row">
     <div class="col-6">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">แบนเนอร์หลัก</h4>
+        <h4 class="mb-0 font-size-18">แบนเนอร์ย่อย</h4>
         </div>
     </div>
     <div class="col-6">
+        {{-- <a href="{{url('addbanner')}}" class="btn add" style="float:right;background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มแบนเนอร์' :'+ Add BANNER'}}</a> --}}
     </div> 
 </div>     
 <!-- end page title -->
@@ -56,35 +57,15 @@
                                     <tr>
                                         <td>1</td>
                                         <td>หน้าหลัก</td>  
-                                        <td><a href="{{url('slidecontent')}}" class="btn btn-warning">แก้ไข</button></td>
+                                        <td><a href="{{url('editsub/1')}}" class="btn btn-warning">แก้ไข</button></td>
                                     </tr>
+                                    
                                     <tr>
                                         <td>2</td>
-                                        <td>หน้าเกี่ยวกับเรา</td>  
-                                        <td><a href="{{url('banner/2')}}" class="btn btn-warning">แก้ไข</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>หน้าข่าวสาร</td>  
-                                        <td><a href="{{url('banner/3')}}" class="btn btn-warning">แก้ไข</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
                                         <td>หน้าโปรโมชั่น</td>  
-                                        <td><a href="{{url('banner/4')}}" class="btn btn-warning">แก้ไข</button></td>
+                                        <td><a href="{{url('editsub/2')}}" class="btn btn-warning">แก้ไข</button></td>
                                     </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>หน้าบทความ</td>  
-                                        <td><a href="{{url('banner/5')}}" class="btn btn-warning">แก้ไข</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>หน้าติดต่อเรา</td>  
-                                        <td><a href="{{url('banner/6')}}" class="btn btn-warning">แก้ไข</button></td>
-                                    </tr>
-
-                                   
+                                    
                             </tbody>
                         </table>  
                     </div>

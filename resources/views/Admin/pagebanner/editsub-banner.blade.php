@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title')แก้ไขแบนเนอร์หลัก@endsection
+@section('title')แก้ไขแบนเนอร์ย่อย@endsection
 
 @section('css') 
 <!-- Summernote css -->
@@ -36,7 +36,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">แก้ไขแบนเนอร์หลัก</h4>
+        <h4 class="mb-0 font-size-18">แก้ไขแบนเนอร์ย่อย</h4>
         </div>
     </div>
 </div>     
@@ -47,7 +47,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                    <form action="{{url('savepagebanner')}}" method="POST" enctype="multipart/form-data" id="savepagebanner">
+                    <form action="{{url('savesubbanner')}}" method="POST" enctype="multipart/form-data" id="savesubbanner">
                         @csrf
                         <input type="hidden" class="form-control" name="page" value="{{$idpage}}">
                         <div class="row">
@@ -57,38 +57,56 @@
                                 </h5>
                             </div>
                         </div>
+                        
                         <br>
                         <div class="row">
-                            <div class="col-1">รูปภาพ : </div>
+                            <div class="col-1">รูปภาพ 1 : </div>
                             <div class="col-5">
-                                <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');">
+                                <input type="file" class="form-control" name="filepath1" id="filepath1" onchange="readImage(this,'filepath1');">
                                 <br>
-                                @if(!empty($data))
-                                    <img src="{{url('storage/app/'.$data->slide_image)}}" id="imgpreview_filepath" style="max-height:200px;" >
+                                @if(!empty($data[0]->subbanner_image))
+                                    <img src="{{url('storage/app/'.$data[0]->subbanner_image)}}" id="imgpreview_filepath1" style="max-height:200px;" >
                                 @else
-                                    <img src="" id="imgpreview_filepath" style="max-height:200px;">
+                                    <img src="" id="imgpreview_filepath1" style="max-height:200px;">
                                 @endif
                                 {!! OrangeV1::ImagePreviewJs() !!}  
                             </div>
-                            <div class="col-1 mt-2">หน้าแสดงผล : </div>
-                            <div class="col-2">
-                                @if($idpage==2)
-                                    <input type="text" class="form-control-plaintext" value="หน้าเกี่ยวกับเรา">
-                                @elseif($idpage==3)
-                                    <input type="text" class="form-control-plaintext" value="หน้าข่าวสาร">
-                                @elseif($idpage==4)
-                                    <input type="text" class="form-control-plaintext" value="หน้าโปรโมชั่น">
-                                @elseif($idpage==5)
-                                    <input type="text" class="form-control-plaintext" value="หน้าบทความ">
+                            <div class="col-1">
+                                <b>ลิงก์ 1 : </b>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="form-control" name="link1" value="{{!(empty($data[0]->subbanner_link))?$data[0]->subbanner_link:''}}" style="width: 478px;">
+                               
+                            </div>
+                           
+                        </div>
+                        <br>
+                        
+                        <div class="row">
+                            <div class="col-1">รูปภาพ 2 : </div>
+                            <div class="col-5">
+                                <input type="file" class="form-control" name="filepath2" id="filepath2" onchange="readImage(this,'filepath2');">
+                                <br>
+                                @if(!empty($data[1]->subbanner_image))
+                                    <img src="{{url('storage/app/'.$data[1]->subbanner_image)}}" id="imgpreview_filepath2" style="max-height:200px;" >
                                 @else
-                                    <input type="text" class="form-control-plaintext" value="หน้าติดต่อเรา">
+                                    <img src="" id="imgpreview_filepath2" style="max-height:200px;">
                                 @endif
+                                {!! OrangeV1::ImagePreviewJs() !!}  
+                            </div>
+                            <div class="col-1">
+                                <b>ลิงก์ 2 : </b>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" class="form-control" name="link2"  value="{{!(empty($data[1]->subbanner_link))?$data[1]->subbanner_link:''}}" style="width: 478px;">
+                               
                             </div>
                         </div>
                         <br>
+                        
                         <div data-repeater-item class="outer mt-3"> 
-                            <button type="button" onclick="save('savepagebanner')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button>
-                            <a href="{{url('pagecontent')}}" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back '}}</a>
+                            <button type="button" onclick="save('savesubbanner')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button>
+                            <a href="{{url('subbanner')}}" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back '}}</a>
                         </div>
                     </form>
                 </div>
@@ -137,7 +155,7 @@
         }).then((result)=>{
             if (result.value) {
                 
-                $('#savepagebanner').submit();
+                $('#savesubbanner').submit();
                 }
         });
     }

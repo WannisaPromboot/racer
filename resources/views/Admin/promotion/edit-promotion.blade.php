@@ -43,8 +43,17 @@
                             </div>
                         </div>
                        
-                        <hr style=" border-top: 1px solid #556ee6;">
-                        
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                <b>ลิงก์ : </b>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" name="link" value="{{!(empty($item->promotion_link))?$item->promotion_link:''}}" style="width: 478px;">
+                               
+                            </div>
+                        </div>
+
                         <div data-repeater-item class="row mt-5"> 
                             <div class="col-6">
                                 <a href="javascript:void(0)"  onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'ยกเลิก ':'Cancel'}}</a>

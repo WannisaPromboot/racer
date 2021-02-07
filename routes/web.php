@@ -27,6 +27,7 @@ Route::get('/clc', function() {
 Route::get('/', function(){
     $data = array(
         'data' => App\Slide::orderBy('slide_number','ASC')->get(),
+        'subbanner' =>  DB::Table('subbanner')->where('subbanner_page',1)->orderBy('subbanner_sort','ASC')->get(),
     // dd( $data['data']);
         'cate'   => \App\Category::orderBy('sort')->get()
     );
@@ -146,6 +147,7 @@ Route::get('/promotion', function(){
     $data = array(
         'data' => \App\Promotion::get(),
         'banner' => App\Slide::where('page',4)->first(),
+        'subbanner' =>  DB::Table('subbanner')->where('subbanner_page',2)->orderBy('subbanner_sort','ASC')->get(),
         
       
     );
@@ -306,6 +308,12 @@ Route::get('pagecontent',function(){
  });
 Route::get('banner/{id}', 'Admin\PageBannerController@AddPagebanner');
 Route::post('savepagebanner', 'Admin\PageBannerController@Savepagebanner');
+
+Route::get('subbanner',function(){
+    return view('Admin.pagebanner.sub-banner');
+ });
+Route::get('editsub/{id}', 'Admin\PageBannerController@EditSubbanner');
+Route::post('savesubbanner', 'Admin\PageBannerController@SaveSubbanner');
 
 
 ////////////////////new///////////////////////////

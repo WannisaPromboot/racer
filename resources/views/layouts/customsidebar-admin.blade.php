@@ -34,11 +34,17 @@
                         <span>การจัดการสิทธิ์และบทบาท</span>
                     </a> 
                 </li>
+               
+
                 <li>
-                    <a href="{{url('pagecontent')}}" class="waves-effect">
-                        <img src="{{asset('assets/images/racer/icon/news.png')}}">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <img src="{{asset('assets/images/racer/icon/grid.png')}}">
                         <span>การจัดการ Banner & Slide</span>
-                    </a> 
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{url('pagecontent')}}">Banner หลัก</a></li>
+                        <li><a href="{{url('subbanner')}}">Banner ย่อย</a></li>
+                    </ul> 
                 </li>
                
                 <li>
