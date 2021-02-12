@@ -120,14 +120,14 @@
                                         <b>ราคาปกติ </b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control" value="{{$product->product_normal_price}}" name="product_normal_price" required>
+                                        <input type="number" class="form-control price" onchange="checknumber(this.value,'price')" value="{{$product->product_normal_price}}" name="product_normal_price" required>
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                     <div class="col-1 text-right  mt-2">
                                         <b>ราคาพิเศษ</b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control specialprice" value="{{$product->product_special_price}}" name="product_special_price" >
+                                        <input type="number" class="form-control specialprice" onchange="checknumber(this.value,'specialprice')" value="{{$product->product_special_price}}" name="product_special_price" >
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                 </div>
@@ -170,7 +170,7 @@
                                         <b>จำนวนสินค้า </b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control" name="product_count" min="0" value="{{$product->product_count}}" required>
+                                        <input type="number" class="form-control count" onchange="checknumber(this.value,'count')" name="product_count" min="0" value="{{$product->product_count}}" required>
                                     </div>
                                     <div class="col-1 mt-2">ชิ้น</div>
                                 </div>
@@ -367,7 +367,7 @@
                                         <b>ค่าส่ง </b>
                                     </div>
                                     <div class="col-1">
-                                        <input type="number" class="form-control" name="product_distance_price" required value="{{$product->product_distance_price}}">
+                                        <input type="number" class="form-control shipping" onchange="checknumber(this.value,'shipping')" name="product_distance_price" required value="{{$product->product_distance_price}}">
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                     {{-- <div class="col-1  mt-2">
@@ -785,6 +785,21 @@
             $('#notidate').css('display','none');
           }  
     });
+
+
+      /////////check ว่าติดลบมั้ย
+      function checknumber(value,classname){
+        if(parseInt(value) < 0){
+            $('.'+classname).val("0");
+            swal.fire({
+                type:'warning',
+                text:'ห้ามกรอกข้อมูลน้อยกว่า 0',
+                confirmButtonColor: '#95ced4 ',
+
+            });
+            $('.'+classname).focus();
+        }   
+    }
 
 
 </script>

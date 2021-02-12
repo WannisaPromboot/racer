@@ -454,7 +454,7 @@ a:hover, a:focus {
 			</div>
 			<div class="col-md-4" id="pay-nemu">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('porduct')) ? '['.count(Session::get('porduct')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
+					<li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
 					@if(empty(Session::get('customer_id')))
 						<li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
 					@else
@@ -560,7 +560,7 @@ a:hover, a:focus {
                                         <span class="dropdown2">
                                             <span class="title-num" id="margin-pro">{{$i}}</span> 
                                             <span class="pro-title" id="margin-pro"><a style="color: #00b9e9" href="{{url('product/'.$_cate->category_name_th)}}">{{strtoupper ($_cate->category_name_th)}}</a></span>
-                                            <span class="popular" id="margin-pro"> #Popular</span>
+                                            <span class="popular" id="margin-pro"> <a href="{{url('product-popular/'.$_cate->category_name_th.'')}}" class="next-pro" id="margin-pro">#Popular</a></span>
                                             @foreach ($subcate as $_subcate)
                                             <a href="{{url('product/'.$_cate->category_name_th.'/'.$_subcate->subcategory_name_th.'')}}" class="next-pro" id="margin-pro"> {{ucwords($_subcate->subcategory_name_th)}}</a>
                                             @endforeach

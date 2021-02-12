@@ -56,7 +56,7 @@ class categoryController extends Controller
     }
 
     public function Updatecategory(Request $request,$id){
-      //  dd($request->all());
+      // dd($request->all());
         $UpdateCategory = Category::where('id_category',$id)->first();
 
         if(isset($request->category_th)){
@@ -66,7 +66,8 @@ class categoryController extends Controller
         if(isset($request->category_en)){
             $UpdateCategory->category_name_en = $request->category_en;
         }
-        if($request["filepath"][$id] !== null){
+
+        if(isset($request["filepath"])){
             $newimage = 'Cate/'.time().$request["filepath"][$id]->getClientOriginalName();
             Storage::put($newimage, file_get_contents($request["filepath"][$id]));
             $UpdateCategory->category_img = $newimage;
@@ -144,6 +145,7 @@ class categoryController extends Controller
         $NewSubCategory->id_category = $request->category;
         $NewSubCategory->subcategory_name_th = $request->subcategory_name_th;
         $NewSubCategory->subcategory_name_en = $request->subcategory_name_en;
+        $NewSubCategory->sort = $request->sort;
 
         //dd($NewSubCategory);
 
@@ -164,6 +166,11 @@ class categoryController extends Controller
 
         if(isset($request->subcategory_name_en)){
             $updateSubCategory->subcategory_name_en = $request->subcategory_name_en;
+        }
+
+        
+        if(isset($request->sort)){
+            $updateSubCategory->sort = $request->sort;
         }
        
         $updateSubCategory->save();
@@ -189,6 +196,10 @@ class categoryController extends Controller
                 <div class="row mt-2">
                     <div class="col-6 "><b>ชื่อหมวดหมู่ย่อย 1 (ภาษาอังกฤษ) :</b></div>
                     <div class="col-5">'.$item->subcategory_name_en.'</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-6 "><b>ลำดับการแสดง :</b></div>
+                    <div class="col-5">'.$item->sort.'</div>
                 </div>';
     }
 
