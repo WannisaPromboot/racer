@@ -638,7 +638,7 @@ a:hover {
 
                         <div class="col-md-6" >
                             {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
-                            <img class="pro-img" src="{{url('storage/app/'.$sub->subbanner_image)}}">
+                            <a href="{{!(empty($sub->subbanner_link))?$sub->subbanner_link:'javascript:void(0)'}}"><img class="pro-img" src="{{url('storage/app/'.$sub->subbanner_image)}}"></a>
                         </div>
                         
                     @endforeach

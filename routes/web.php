@@ -26,9 +26,9 @@ Route::get('/clc', function() {
 //Frontend
 Route::get('/', function(){
     $data = array(
-        'data' => App\Slide::orderBy('slide_number','ASC')->get(),
+        'data' => App\Slide::orderBy('slide_number','ASC')->where('page',1)->get(),
         'subbanner' =>  DB::Table('subbanner')->where('subbanner_page',1)->orderBy('subbanner_sort','ASC')->get(),
-    // dd( $data['data']);
+        'bannernew' => App\Slide::where('page',3)->first(),
         'cate'   => \App\Category::orderBy('sort')->get()
     );
     return view('frontend.index',$data);
@@ -36,8 +36,7 @@ Route::get('/', function(){
 
 Route::get('/about-us', function(){
     $data = array(
-        'data' => App\Slide::where('page',2)->first(),
-    
+        'banner' => App\Slide::where('page',2)->first(),
     );
     return view('frontend.about-us', $data);
 });
@@ -98,7 +97,9 @@ Route::get('/userlogin', function(){
 
 Route::get('/news', function(){
     $data = array(
-        'data' => \App\News::paginate(6),
+        'data' => \App\News::orderBy('id_new','DESC')->get(),
+        'banner' => App\Slide::where('page',3)->first(),
+
     );
     // dd($data['data']);
     return view('frontend.news',$data);
