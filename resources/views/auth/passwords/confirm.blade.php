@@ -10,7 +10,7 @@ Confirm Password
 
 @section('content')
         <div class="home-btn d-none d-sm-block">
-            <a href="{{url('index')}}" class="text-dark"><i class="fas fa-home h2"></i></a>
+            <a href="{{url('/')}}" class="text-dark"><i class="fas fa-home h2"></i></a>
         </div>
         <div class="account-pages my-5 pt-5">
             <div class="container">
@@ -20,7 +20,7 @@ Confirm Password
                             <div class="bg-primary">
                                 <div class="text-primary text-center p-4">
                                     <h5 class="text-white font-size-20 p-2">Confirm Password</h5>
-                                    <a href="{{url('index')}}" class="logo logo-admin">
+                                    <a href="{{url('/')}}" class="logo logo-admin">
                                         <img src="/assets/images/logo-sm.png" height="24" alt="logo">
                                     </a>
                                 </div>

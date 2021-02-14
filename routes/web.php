@@ -24,24 +24,8 @@ Route::get('/clc', function() {
 
 });
 //Frontend
-Route::get('/', function(){
-    $data = array(
-        'data' => App\Slide::orderBy('slide_number','ASC')->where('page',1)->get(),
-        'subbanner' =>  DB::Table('subbanner')->where('subbanner_page',1)->orderBy('subbanner_sort','ASC')->get(),
-        'bannernew' => App\Slide::where('page',3)->first(),
-        'cate'   => \App\Category::orderBy('sort')->get()
-    );
-    return view('frontend.index',$data);
-});
+Route::get('/', 'Frontend\HomeController@Home');
 
-Route::get('/index', function(){
-    $data = array(
-        'data' => App\Slide::orderBy('slide_number','ASC')->get(),
-    // dd( $data['data']);
-        'cate'   => \App\Category::orderBy('sort')->get()
-    );
-    return view('frontend.index',$data);
-});
 
 Route::get('/about-us', function(){
     $data = array(
@@ -106,7 +90,7 @@ Route::get('/userlogin', function(){
 
 Route::get('/news', function(){
     $data = array(
-        'data' => \App\News::orderBy('id_new','DESC')->get(),
+        'data' => \App\News::orderBy('id_new','DESC')->where('status_new',NULL)->get(),
         'banner' => App\Slide::where('page',3)->first(),
 
     );
@@ -126,6 +110,8 @@ Route::group(['middleware'=>['loginfrontend']],function(){
     Route::get('/payment/{id}', function($id){
         $data = array(
             'id'   => $id,
+            'customer'=> App\Customer::where('customer_id',Session::get('customer_id'))->first(),
+
         );
         return view('frontend.payment',$data);
     });
@@ -383,6 +369,7 @@ Route::get('/newcontent', 'Admin\NewsController@ShownewContent');
 Route::get('/detailnew/{id}', 'Admin\NewsController@Detailnew');
 Route::post('/savenew', 'Admin\NewsController@Savenew');
 Route::post('/updatenew/{id}', 'Admin\NewsController@Updatenew');
+Route::get('/changestatusnew', 'Admin\NewsController@ChangeStatusNew');
 
 
 
@@ -408,14 +395,12 @@ Route::post('/updatepromotion/{id}', 'Admin\PromotionController@Updatepromotion'
 
 
 ////////////////////Report///////////////////////////
-Route::get('/reportcontent', 'Admin\ReportController@ReportContent');
+Route::get('/report/{id}', 'Admin\ReportController@ReportContent');
+Route::get('/report-content', 'Admin\ReportController@ReportContent');
 Route::get('/getreport', 'Admin\ReportController@GetReport');
 
-Route::get('/report1', 'Admin\ExportExcelController@Report1');
-Route::get('/report2', 'Admin\ExportExcelController@Report2');
-Route::get('/report3', 'Admin\ExportExcelController@Report3');
-Route::get('/report4', 'Admin\ExportExcelController@Report4');
-Route::get('/report5', 'Admin\ExportExcelController@Report5');
+
+
 
 ////////////////////Home///////////////////////////
 Route::get('/home', 'Admin\HomeController@Home');
