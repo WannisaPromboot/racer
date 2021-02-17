@@ -15,6 +15,8 @@ class PaymentController extends Controller
 {
     public function storePayment(Request $request){
 
+
+      //  dd($request->all());
         $updateOrder = Order::where('id_order',$request->id_order)->first();
         $updateOrder->firstname = $request->firstname;
         $updateOrder->lastname = $request->lastname;
@@ -26,6 +28,11 @@ class PaymentController extends Controller
         $updateOrder->status_payment = 1;
         $updateOrder->status_process = 1;
         $updateOrder->status_delivery = 0;
+        $updateOrder->method  = $request->payment_method;
+        $updateOrder->tax_type  = $request->radio1;
+        $updateOrder->tax_personal_id  = $request->tax_personal_id;
+        $updateOrder->tax_org_id  = $request->tax_org_id;
+        $updateOrder->tax_organize  = $request->tax_organize;
         $updateOrder->save();
 
 
@@ -39,16 +46,21 @@ class PaymentController extends Controller
             $newTax->address = $request->tax_address;
             $newTax->telephone = $request->tax_telephone;
             $newTax->fax = $request->tax_fax;
-            $newTax->method  = $request->payment_method;
-            $newTax->method  = $request->payment_method;
-            $newTax->tax_type  = $request->radio1;
-            $newTax->tax_personal_id  = $request->tax_personal_id;
-            $newTax->tax_org_id  = $request->tax_org_id;
-            $newTax->tax_organize  = $request->tax_organize;
+            
             $newTax->save();
         }
 
         //////ลบจำนวนสินค้า
+        $oraderItem = OrderItem::where('id_order',$request->id_order)->get();
+        foreach($oraderItem as $item){
+            $product = \App\Product::where('id_product',$item->product_id)->first();
+            if($product->product_count != 0 || $product->product_count != NULL){
+                $product->product_count =  $product->product_count - $item->count ;
+                $product->save();
+            }
+           
+        }
+
 
         ///////////////Payment////////////////
         if($request["filename"] !== null){

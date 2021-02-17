@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'เพิ่มโปรโมชั่น':' Add promotion'}} @endsection
+@section('title') เพิ่มโปรโมชั่น@endsection
 
 @section('css') 
         <!-- Summernote css -->
@@ -39,7 +39,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'เพิ่มโปรโมชั่น':' Add promotion'}}</h4>
+        <h4 class="mb-0 font-size-18">เพิ่มโปรโมชั่น</h4>
         </div>
     </div>
 </div>     
@@ -55,7 +55,7 @@
                         
                         <div class="row">
                             <div class="col-2">
-                                <b>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}} : </b>
+                                <b>รูปภาพ : </b>
                             </div>
                             <div class="col-8">
                                 <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');" style="width: 478px;">
@@ -64,17 +64,26 @@
                         
                             </div>
                         </div>
-                        
+                        <br>
+                        <div class="row">
+                            <div class="col-2">
+                                <b>ลิงก์ : </b>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" name="link" style="width: 478px;">
+                               
+                            </div>
+                        </div>
                         
                         {{-- <hr style=" border-top: 1px solid #556ee6;"> --}}
                         
                         <div data-repeater-item class="row mt-5"> 
                             <div class="col-9">
-                                <a href="{{url('promotioncontent')}}" style="float:left;"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back'}}</a>
+                                <a href="{{url('promotioncontent')}}" style="float:left;"  class="btn btn-danger">กลับ </a>
                             </div>
                             <div class="col-3 text-right">
-                                {{-- <button type="submit" formaction="{{url('saveviewpromotion')}}"  class="btn btn-info mr-2" >  <i class="bx bx-show" style="font-size:18px ="></i>{{Session::get('lang')=='th'?'มุมมองของลูกค้า ' :'Customer View'}}</button> --}}
-                                <button type="button" class="btn" onclick="save('savepromotion')"  style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm'}}</button>
+                                {{-- <button type="submit" formaction="{{url('saveviewpromotion')}}"  class="btn btn-info mr-2" >  <i class="bx bx-show" style="font-size:18px ="></i>มุมมองของลูกค้า ' :'Customer View'}}</button> --}}
+                                <button type="button" class="btn" onclick="save('savepromotion')"  style="background-color: #03dc74 !important;color:white !important;">ยืนยัน </button>
                                 {!! OrangeV1:: AlertMessage ('savepromotion') !!}
                             </div>
                         </div>

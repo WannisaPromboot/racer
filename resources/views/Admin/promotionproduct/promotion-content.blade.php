@@ -65,20 +65,22 @@
                         </thead>
                         <tbody>
                            @foreach ($all as $item)
-                           <tr>
-                                <td>{{date_format(date_create($item->datefrom),'d-m-Y')}}</td>
-                                <td>{{date_format(date_create($item->dateto),'d-m-Y')}}</td>
-                                <td>{{$item->promotion_title}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary">รายละเอียด</button>
-                                </td>
-                                <td>
-                                    <a type="button" class="btn btn-warning" href="{{url('editpromotionproduct/'.$item->id_promotion.'')}}">แก้ไข</a>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger">ลบ</button>
-                                </td>
-                            </tr>
+                            @if($item->datefrom <= date('Y-m-d') && $item->dateto >= date('Y-m-d') )
+                            <tr>
+                                    <td>{{date_format(date_create($item->datefrom),'d-m-Y')}}</td>
+                                    <td>{{date_format(date_create($item->dateto),'d-m-Y')}}</td>
+                                    <td>{{$item->promotion_title}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary">รายละเอียด</button>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-warning" href="{{url('editpromotionproduct/'.$item->id_promotion.'')}}">แก้ไข</a>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" onclick="deldata({{$item->id_promotion}})">ลบ</button>
+                                    </td>
+                                </tr>
+                                @endif
                            @endforeach
                         </tbody>
                     </table>
@@ -87,17 +89,34 @@
                     <table id="table1" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            {{-- <th>#</th> --}}
                             <th>เวลาเริ่มต้น</th>
                             <th>เวลาสิ้นสุด</th>
                             <th>ชื่อโปรโมชั่น</th>
                             <th>รายละเอียด</th>
                             <th>แก้ไข</th>
+                            <th>ลบ</th>
                         </tr>
                         </thead>
                         <tbody>
-                           
-               
+                            @foreach ($all as $item)
+                            @if($item->datefrom > date('Y-m-d'))
+                            <tr>
+                                    <td>{{date_format(date_create($item->datefrom),'d-m-Y')}}</td>
+                                    <td>{{date_format(date_create($item->dateto),'d-m-Y')}}</td>
+                                    <td>{{$item->promotion_title}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary">รายละเอียด</button>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-warning" href="{{url('editpromotionproduct/'.$item->id_promotion.'')}}">แก้ไข</a>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" onclick="deldata({{$item->id_promotion}})">ลบ</button>
+                                    </td>
+                                </tr>
+                                @endif
+                           @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -106,7 +125,7 @@
                     <table id="table2" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            {{-- <th>#</th> --}}
                             <th>เวลาเริ่มต้น</th>
                             <th>เวลาสิ้นสุด</th>
                             <th>ชื่อโปรโมชั่น</th>
@@ -115,8 +134,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                           
-               
+                            @foreach ($all as $item)
+                            @if($item->dateto < date('Y-m-d'))
+                            <tr>
+                                    <td>{{date_format(date_create($item->datefrom),'d-m-Y')}}</td>
+                                    <td>{{date_format(date_create($item->dateto),'d-m-Y')}}</td>
+                                    <td>{{$item->promotion_title}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary">รายละเอียด</button>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-warning" href="{{url('editpromotionproduct/'.$item->id_promotion.'')}}">แก้ไข</a>
+                                    </td>
+                                </tr>
+                                @endif
+                           @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -166,7 +198,7 @@
         $(this).addClass('btnactive');
         $('#comming').removeClass('btnactive');
         $('#history').removeClass('btnactive');
-        $('#tablecoming').css('display','none');
+        $('#tablecomming').css('display','none');
         $('#tablehistory').css('display','none');
         $('#tableprocess').removeAttr('style');
         $('.add').show();
@@ -177,7 +209,7 @@
         $(this).addClass('btnactive');
         $('#history').removeClass('btnactive');
         $('#process').removeClass('btnactive');
-        $('#tablecoming').removeAttr('style');
+        $('#tablecomming').removeAttr('style');
         $('#tablehistory').css('display','none');
         $('#tableprocess').css('display','none');
         $('.add').hide();
@@ -188,7 +220,7 @@
         $('#comming').removeClass('btnactive');
         $('#process').removeClass('btnactive');
         $('#tablehistory').removeAttr('style');
-        $('#tablecoming').css('display','none');
+        $('#tablecomming').css('display','none');
         $('#tableprocess').css('display','none');
         $('.add').hide();
     });
@@ -215,6 +247,34 @@
                 $('#main').modal('show');
             }
         });
+    }
+
+    function deldata(id){
+        Swal.fire({
+        text: "คุณต้องการลบข้อมูลใช่หรือไม่",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'yes'
+        }).then((result)=>{
+            if (result.value) {
+                $.ajax({
+                    url: '{{ url("delete2table")}}/PromotionProduct/PromotionProductItem/'+ id +'/id_promotion/NULL',
+                    type: 'GET',
+                    dataType: 'HTML',
+                    success: function(data) {
+                        Swal.fire({
+                            text: "ลบข้อมูลเรียบร้อย",
+                            type: 'success'
+                        });
+
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+
     }
 
 

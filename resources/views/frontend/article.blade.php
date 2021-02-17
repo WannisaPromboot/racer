@@ -45,15 +45,13 @@
 #pro-top{
     margin-top: 40px;
 }
-.pro-img{
- width: 100%;
-    }
-    .pro-img {
-    width: 100%;
-    height: 400px;
+
+.pro-img {
+    width: 300px;
+    height: 300px;
     object-fit: cover;
 }
-    .btn-link:hover {
+.btn-link:hover {
     color: #b36100;
     text-decoration: none;
 }
@@ -319,8 +317,8 @@ a, a:hover, a:visited, a:active, a:link {
     text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 .pro-img{
-    width: 100%;
-    height: 440px;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
 }
 .line-height{
@@ -391,8 +389,8 @@ a:hover {
     border: 1px solid #00b9e9;
 }
 .pro-img {
-    width: 100%;
-    height: 245px;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
     margin-bottom: 20px;
 }
@@ -464,9 +462,9 @@ a:hover {
     border-radius: 5px;
 }
 .pro-img {
-    width: 100%;
-    /* height: 265px; */
-    height: auto;
+    width: 300px;
+    height: 300px;
+
     object-fit: cover;
 }
 
@@ -486,9 +484,8 @@ a:hover {
     overflow: hidden;
 }
 .pro-img {
-    width: 100%;
-    /* height: 210px; */
-    height: auto;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
 }
 .title-pan {
@@ -499,9 +496,8 @@ a:hover {
 
 @media (max-width: 525px){
 .pro-img {
-    width: 100%;
-    /* height: 390px; */
-    height: auto;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
 }
 .demo {
@@ -513,17 +509,17 @@ a:hover {
 }
 @media (max-width: 375px){
     .pro-img {
-    width: 100%;
-    /* height: 297px; */
-    height: auto;
-    object-fit: cover;
-}
-.demo {
-    opacity: 0.6;
-    width: 100%;
-    height: 95px;
-    object-fit: cover;
-}
+        width: 300px;
+        height: 300px;
+    
+        object-fit: cover;
+    }
+    .demo {
+        opacity: 0.6;
+        width: 100%;
+        height: 95px;
+        object-fit: cover;
+    }
 
 }
 
@@ -531,7 +527,7 @@ a:hover {
       
   </style>
 
-
+@include('frontend.inc_header')
   <body class="goto-here">
 	<div class="py-1 bg-primary">
         <div class="container">
@@ -672,7 +668,7 @@ a:hover {
                                 <div class="shopping-cart" style="overflow: scroll;;
         overflow-x: auto;
         overflow-y: auto;
-        max-height: 500px;">
+        max-height: 300px;">
                                     <form  method="POST">
                                         <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
                                         <div class="column-labels">
@@ -722,7 +718,28 @@ a:hover {
                                             
                                             {{-- total --}}
                                                                     
-                                            <div class="totals">
+                                            <!-- <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                    </form>
+                                    
+                                </div>
+
+                                <div class="totals">
                                                 <div class="totals-item">
                                                     <label>ยอดรวม</label>
                                                 <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
@@ -739,9 +756,6 @@ a:hover {
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
                                             <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
-                                    </form>
-                                    
-                                </div>
                                 
                             </div>
     
@@ -788,7 +802,7 @@ a:hover {
     </nav>
     <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/Banner-article.png')}}">
+    <div class="hero-wrap hero-bread" style="background-image: url({{ !empty($banner) ? url('storage/app/'.$banner->slide_image) : asset('frontend/images/banner-detail.jpg')}});">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -804,29 +818,35 @@ a:hover {
 
         <div class="site-section bg-light">
             <div class="container">
-                @foreach($data as $item)
-                    <div class="row">
-                    
-                        <div class="col-md-4" id="">
-                            <a href="{{url('/detail-article')}}/{{$item->id_blog}}">
-                                <img class="pro-img" src="{{url('storage/app/'.$item->blog_image)}}">
-                            </a>
-                        </div>
-                        <div class="col-md-8" id="">
-
-                            <div class="welcome_docmed_info">
-                                <h3 class="title-pan" >{{$item->blog_th}}</h3>
-                                <p class="sub-pan" >{!!substr($item->description_blog_th,0,500)!!}.........</p>
-
-                                <a href="{{url('/detail-article')}}/{{$item->id_blog}}" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                                
-                            </div>
+                <div class="row">
+                    @foreach($data as $item)
+                            <div class="col-6">
+                                <div class="row" id="" style="text-align: center">
+                                    <div class="col-12">
+                                        <a href="{{url('/detail-article')}}/{{$item->id_blog}}">
+                                            <img class="pro-img" src="{{url('storage/app/'.$item->blog_image)}}" width="auto" height="auto">
+                                        </a>
+                                    </div>
+                                </div>
                             
-                        </div>
-                    </div>
+                                <div class="row" id="" style="text-align: center">
+                                    <div class="col-12">
+                                        <h3 class="title-pan" >{{$item->blog_th}}</h3>
+                                        <?php $len = strlen($item->description_blog_th)/4?>
+                                        <p class="sub-pan" >{!!substr($item->description_blog_th,0,600)!!}....</p>
+                                        <br>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row" id="" style="text-align: center">
+                                    <div class="col-12">
+                                        <a href="{{url('/detail-article')}}/{{$item->id_blog}}" class="boxed-btn3-white-2">See more details <i class="fas fa-angle-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
 
-                 @endforeach
-        
+                    @endforeach
+                </div>
             </div>
 
 

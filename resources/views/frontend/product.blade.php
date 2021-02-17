@@ -226,11 +226,14 @@ div {
     background-color: #f7f7f7!important;
 }
 
+/* .prd-top .button{
+    margin-top: 20px;
+} */
 
       
   </style>
 
-
+@include('frontend.inc_header')
   <body class="goto-here">
 	<div class="py-1 bg-primary">
         <div class="container">
@@ -371,7 +374,7 @@ div {
                                 <div class="shopping-cart" style="overflow: scroll;;
                                                             overflow-x: auto;
                                                             overflow-y: auto;
-                                                            max-height: 500px;">
+                                                            max-height: 300px;">
                                     <form  method="POST">
                                         <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
                                         <div class="column-labels">
@@ -421,7 +424,28 @@ div {
                                             
                                             {{-- total --}}
                                                                     
-                                            <div class="totals">
+                                            <!-- <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                    </form>
+                                    
+                                </div>
+
+                                <div class="totals">
                                                 <div class="totals-item">
                                                     <label>ยอดรวม</label>
                                                 <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
@@ -438,9 +462,6 @@ div {
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
                                             <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
-                                    </form>
-                                    
-                                </div>
                                 
                             </div>
     
@@ -486,9 +507,12 @@ div {
         </div>
     </nav>
     <!-- END nav -->
-    <?php $catelight = \App\Category::where('id_category',4)->first(); ?>
     <div id="bannernew">
-        <div class="hero-wrap hero-bread" style="background-image: url({{ !empty($cate->category_img) ? url('storage/app/'.$cate->category_img) : url('storage/app/'.$catelight->category_img)}});">
+        @if(!empty($cate->category_img))
+        <div class="hero-wrap hero-bread" style="background-image: url({{url('storage/app/'.$cate->category_img)}});">
+        @else 
+        <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/all-BANNERS.jpg')}});">
+        @endif
             <div class="container">
                 <div class="row no-gutters slider-text align-items-center justify-content-center">
                     <div class="col-md-9 ftco-animate text-center">
@@ -531,14 +555,14 @@ div {
                                             <div class="panel-heading" id="heading{{$i}}" role="tab">
                                                 <h4 class="panel-title">
                                                     @if($cate == 'search')
-                                                        <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}</a>
+                                                        <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}"   aria-expanded="false" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}</a>
                                                     @else
                                                         @if($item->id_category == $cate->id_category)
                                                         <!-- <a  class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}<i class="pull-right fa fa-plus"></i></a> -->
-                                                        <a  class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}</a>
+                                                        <a  class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="true" aria-controls="collapse{{$i}}" onclick="selectproduct({{$item->id_category}},'null')">{{strtoupper($item->category_name_th)}}</a>
                                                         @else 
                                                         <!-- <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}<i class="pull-right fa fa-plus"></i></a> -->
-                                                        <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}</a>
+                                                        <a  class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$i}}" aria-expanded="false" onclick="selectproduct({{$item->id_category}},'null')" aria-controls="collapse{{$i}}">{{strtoupper($item->category_name_th)}}</a>
                                                         @endif
                                                     @endif
                                                    
@@ -557,7 +581,7 @@ div {
                                                     <div class="nav nav-pills faq-nav" id="faq-tabs" role="tablist" aria-orientation="vertical">
                                                         <?php  $subcate = \App\SubCategory::where('id_category',$item->id_category)->get();?>
                                                         @foreach ($subcate as $_sub)
-                                                        <button type="button" class="nav-link text-left" data-toggle="pill" role="tab" onclick="selectproduct({{$_sub->id_subcategory}})" aria-selected="true" style="   cursor: pointer; ">
+                                                        <button type="button" class="nav-link text-left" data-toggle="pill" role="tab" onclick="selectproduct({{$item->id_category}},{{$_sub->id_subcategory}})" aria-selected="true" style="   cursor: pointer; ">
                                                             <i class="mdi mdi-help-circle"></i> {{$_sub->subcategory_name_th}}
                                                         </button>
                                                         @endforeach
@@ -597,17 +621,29 @@ div {
                                                       @if(!empty($products))
                                                             @foreach ($products as $item)
                                                             <div class="col-md-4 col-lg-4 mb-4" >
+                                                            <div class="prd-top">
                                                                     <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$item->product_img)}}"></a>
                                                                     <center><p class="name-pro">{{!empty($item->product_name_th) ? $item->product_name_th : '' }}</p><center>
+                                                                    
                                                                     @if(!empty(	$item->product_special_price))
-                                                                        <center><p class="price-line">฿{{number_format($item->product_normal_price,2)}}</p><center>
+                                                                        <center><p class="price-line">฿{{number_format($item->product_special_price,2)}}</p><center>
                                                                     @endif
-                                                                    @if(!empty(	$item->product_special_price))
-                                                                    <center><p class="price-pro">฿{{number_format($item->product_special_price,2)}}</p><center>
+                                                                    
+                                                                    @if(!empty(	$item->product_special_price) || !empty($item->product_normal_price))
+                                                                        @if(!empty(	$item->product_special_price))
+                                                                        <center><p class="price-pro">฿{{number_format($item->product_special_price,2)}}</p><center>
+                                                                        @else 
+                                                                        <center><p class="price-pro">฿{{number_format($item->product_normal_price,2)}}</p><center>
+                                                                        @endif
+                                                                    @endif
+                                                                    </div>
+
+                                                                    @if($item->id_category == 10 || $item->id_category == 11  )
+                                                                    <center><a href="https://line.me/ti/p/~@racerlighting" ><p class="button"><span class="icon-shopping_cart"></span> สอบถามเพิ่มเติม</p></a></center>
                                                                     @else 
-                                                                    <center><p class="price-pro">฿{{number_format($item->product_normal_price,2)}}</p><center>
-                                                                    @endif
                                                                     <center><a href="javascript:void(0)" onclick="addcart('{{$item->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
+                                                                     @endif 
+                                                                    
                                                             </div>
                                                             @endforeach
                                                        @elseif(!empty($popular)) 
@@ -707,13 +743,12 @@ div {
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
    <script>
-    function selectproduct(id){
-            console.log(id);
+    function selectproduct(main,sub){
         $.ajax({
             url: '{{ url("showproduct")}}',
             type: 'GET',
             dataType: 'HTML',
-            data : {'id':id},
+            data : {'main':main , 'sub' : sub},
             success: function(data) {
                 
                  text = JSON.parse(data);   
@@ -748,7 +783,7 @@ div {
                 $('#main').modal('toggle');
                 setTimeout(function() {
                     $('#main').modal('hide');
-                }, 5000);
+                }, 3000);
             //  $(".addcart").attr('style','color:#41c8f5 !important;padding:0;');
             }
         });

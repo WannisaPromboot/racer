@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title')เพิ่มแบนเนอร์@endsection
+@section('title')แก้ไขแบนเนอร์หลัก@endsection
 
 @section('css') 
 <!-- Summernote css -->
@@ -36,7 +36,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">เพิ่มแบนเนอร์</h4>
+        <h4 class="mb-0 font-size-18">แก้ไขแบนเนอร์หลัก</h4>
         </div>
     </div>
 </div>     
@@ -87,7 +87,7 @@
                         </div>
                         <br>
                         <div data-repeater-item class="outer mt-3"> 
-                            <button type="button" onclick="save('saveslide')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button>
+                            <button type="button" onclick="save('savepagebanner')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button>
                             <a href="{{url('pagecontent')}}" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back '}}</a>
                         </div>
                     </form>

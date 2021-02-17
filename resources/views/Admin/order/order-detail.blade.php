@@ -71,7 +71,7 @@
                     <?php $product = \App\Product::where('id_product',$_pro->product_id)->first(); ?>
                     <div class="col-7">{{$product->product_name_th}}</div>
                     <div class="col-2 text-center">{{$_pro->count}}</div>
-                    <div class="col-3 text-center">{{$_pro->price}}</div>
+                    <div class="col-3 text-center">{{number_format($_pro->price)}}</div>
                 </div>
                 <hr>
                 @endforeach
@@ -82,8 +82,13 @@
                 </div>
                 <div class="row p-3">
                     <div class="col-7"></div>
+                    <div class="col-2 text-center">ส่วนลด</div>
+                    <div class="col-3 text-center">-{{number_format($order->discount)}}</div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-7"></div>
                     <div class="col-2 text-center">รวม</div>
-                    <div class="col-3 text-center">{{$order->total}}</div>
+                    <div class="col-3 text-center">{{number_format($order->total)}}</div>
                 </div>
                 <div >
                     <div class="col-sm">

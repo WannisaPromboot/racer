@@ -1,4 +1,4 @@
-<meta charset="utf-8">
+{{-- <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
@@ -24,4 +24,14 @@
 <link rel="stylesheet" href="{{asset('frontend/css/icomoon.css')}}">
 <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
 
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}"> --}}
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+{{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X2FWC94N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B5X2FWC94N');
+</script> --}}

@@ -381,7 +381,8 @@ a:hover, a:focus {
 }
 
 </style>
-
+<?php use App\Http\Controllers\Frontend\GetdataController; ?>
+@include('frontend.inc_header')
   <body class="goto-here">
 	<div class="py-1 bg-primary">
 	<div class="container">
@@ -522,7 +523,7 @@ a:hover, a:focus {
                             <div class="shopping-cart" style="overflow: scroll;;
     overflow-x: auto;
     overflow-y: auto;
-    max-height: 500px;">
+    max-height: 300px;">
                                 <form  method="POST">
                                     <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
                                     <div class="column-labels">
@@ -560,7 +561,7 @@ a:hover, a:focus {
                                                 <button type="button" class="remove-product" onclick="delitem({{$key}},{{$item['product_id']}})">Remove</button>
                                             </div>
                                             
-                                            @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                            @if(!empty($product->product_special_price) && ($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
                                                 <div class="product-line-price totalitem{{$product->id_product}}" >{{number_format($product->product_special_price * $item['qty'])}}</div>
                                                 <?php  $sum +=  $product->product_special_price * $item['qty'];?>
                                                 @else 
@@ -572,7 +573,7 @@ a:hover, a:focus {
                                         
                                         {{-- total --}}
                                                                 
-                                        <div class="totals">
+                                        <!-- <div class="totals">
                                             <div class="totals-item">
                                                 <label>ยอดรวม</label>
                                             <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
@@ -588,10 +589,34 @@ a:hover, a:focus {
                                         </div>
                                         </div>
                                         {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
-                                        <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
+                                        <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
                                 </form>
                                 
                             </div>
+
+                            <div class="totals">
+                                            <div class="totals-item">
+                                                <label>ยอดรวม</label>
+                                            <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum,'2','.',',') : '0'}}</div>
+                                        </div>
+                                        <div class="totals-item">
+                                            <label>ส่วนลด</label>
+                                            <div class="totals-value" id="cart-shipping" style="">{!! Session::get('product') ?  number_format(GetdataController::checkprice($sum)['discount'],'2','.',',') :'0' !!}</div>
+                                            <input type="hidden"  id="discount" value="{{Session::get('product') ? GetdataController::checkprice($sum)['discount'] : '0'}}">
+                                            
+                                        </div>
+                                        <div class="totals-item">
+                                            <label>ค่าส่ง</label>
+                                            <div class="totals-value" id="cart-shipping" style="">0</div>
+                                        </div>
+                                        <div class="totals-item totals-item-total">
+                                            <label>ยอดรวมทั้งสิ้น</label>
+                                            <?php  $result  = $sum - GetdataController::checkprice($sum)['discount'];  ?>
+                                            <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($result,'2','.',',') : '0.00'}}</div>
+                                        </div>
+                                        </div>
+                                        {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                        <a href="{{url('cart')}}"><button type="button" class="checkout">ตะกร้าสินค้า</button></a>
                             
                         </div>
 
@@ -644,7 +669,7 @@ a:hover, a:focus {
 			@foreach($data as $datas)
 				{{-- @if(!empty($datas->slide_image)) --}}
 				<div class="slider-item">
-                    <a href="{{$datas->url}}">
+                    <a href="{{!(empty($datas->url))?$datas->url:'javascript:void(0)'}}">
                         <img src="{{url('storage/app/'.$datas->slide_image)}}"  style="width: 100%; height:auto;">
                    
 				{{-- @else --}}
@@ -652,8 +677,8 @@ a:hover, a:focus {
 				{{-- <div class="slider-item" style="background-image: url({{url('storage/app/'.$datas->slide_image)}});"> --}}
 				{{-- @endif --}}
                     <div class="overlay"></div>
-                    
                 </a>
+                    
 						<div class="container">
 							<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 					
@@ -678,19 +703,13 @@ a:hover, a:focus {
 
 		<div class="container">
 			<div class="row">
-                <div class="col-md-6" >
-                    {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
-                    <img class="pro-img" src="{{asset('frontend/images/S__2646148.jpg')}}">
-                </div>
-                <div class="col-md-6">
-                    {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
-                    <img class="pro-img" src="{{asset('frontend/images/S__2646161.jpg')}}">
-                </div>
-			   
-				
+                @foreach($subbanner as $sub)
 
-
-	
+                    <div class="col-md-6" >
+                        <a href="{{!(empty($sub->subbanner_link))?$sub->subbanner_link:'javascript:void(0)'}}"><img class="pro-img" src="{{url('storage/app/'.$sub->subbanner_image)}}"></a>
+                    </div>
+                    
+                @endforeach
 			</div>
         </div>
         <?php  $i = '01';
@@ -748,8 +767,11 @@ a:hover, a:focus {
                                     @if(!empty($banner))
                                         <div class="col-md-6" id="pro-mar">
                                             @if(!empty($banner[0]->banner_link))
-                                                <a href="{{url(''.$banner[0]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
+                                                <a href="{{url('product/'.$_cate->category_name_th.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}"></a>
+                                            @else
+                                                <img class="pro-img3" src="{{url('storage/app/'.$banner[0]->banner_image)}}">
                                             @endif
+
                                         </div>
                                     @endif
                                     <div class="col-md-6" id="pro-mar">
@@ -757,30 +779,30 @@ a:hover, a:focus {
                                             <div class="container" id="con-pro">
                                                 <div class="row" >
                                                     <div class="col-md-6" id="pro-mar">
-                                                        @if(!empty($banner[1]->banner_image) && !empty($banner[1]->banner_link) )
+                                                        @if(!empty($banner[1]->banner_link))
                                                             <a href="{{url(''.$banner[1]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[1]->banner_image)}}"></a>
-                                                        @elseif(!empty($banner[1]->banner_image) && empty($banner[1]->banner_link))
+                                                        @else
                                                             <img class="pro-img3" src="{{url('storage/app/'.$banner[1]->banner_image)}}">
                                                         @endif
                                                     </div>
                                                     <div class="col-md-6" id="pro-mar">
-                                                        @if(!empty($banner[2]->banner_image) && !empty($banner[2]->banner_link) )
+                                                        @if(!empty($banner[2]->banner_link))
                                                             <a href="{{url(''.$banner[2]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[2]->banner_image)}}"></a>
-                                                        @elseif(!empty($banner[2]->banner_image) && empty($banner[2]->banner_link))
+                                                        @else
                                                             <img class="pro-img3" src="{{url('storage/app/'.$banner[2]->banner_image)}}">
                                                         @endif
                                                     </div>
                                                     <div class="col-md-6" id="pro-mar">
-                                                        @if(!empty($banner[3]->banner_image) && !empty($banner[3]->banner_link) )
+                                                        @if(!empty($banner[3]->banner_link))
                                                             <a href="{{url(''.$banner[3]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[3]->banner_image)}}"></a>
-                                                        @elseif(!empty($banner[3]->banner_image) && empty($banner[3]->banner_link))
+                                                        @else
                                                             <img class="pro-img3" src="{{url('storage/app/'.$banner[3]->banner_image)}}">
                                                         @endif
                                                     </div>
                                                     <div class="col-md-6" id="pro-mar">
-                                                        @if(!empty($banner[4]->banner_image) && !empty($banner[4]->banner_link) )
+                                                        @if(!empty($banner[4]->banner_link))
                                                             <a href="{{url(''.$banner[4]->banner_link.'')}}"><img class="pro-img3" src="{{url('storage/app/'.$banner[4]->banner_image)}}"></a>
-                                                        @elseif(!empty($banner[4]->banner_image) && empty($banner[4]->banner_link))
+                                                        @else
                                                             <img class="pro-img3" src="{{url('storage/app/'.$banner[4]->banner_image)}}">
                                                         @endif
                                                     </div>
@@ -802,7 +824,8 @@ a:hover, a:focus {
 				<div class="row">
 
 					<div class="col-md-12" >
-                        <a href="{{url('news')}}"><img class="pro-img2" src="{{asset('frontend/images/Banner-NEWS.png')}}"></a>
+                        <a href="{{url('news')}}"><img class="pro-img2" src="{{url('storage/app/'.$bannernew->slide_image)}}"></a>
+
 					</div>
 
 				</div>
@@ -917,6 +940,8 @@ a:hover, a:focus {
   <!-- Sweert Alert -->
 <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script> 
 
+
+
   <script>
 $(".search-toggle").addClass("closed");
 
@@ -996,8 +1021,9 @@ $(".search-toggle .search-icon").click(function (e) {
     
     /* Calculate totals */
     var tax = subtotal * taxRate;
+    var discount = $('#discount').val();
     var shipping = (subtotal > 0 ? shippingRate : 0);
-    var total = numberWithCommas(subtotal + tax + shipping);
+    var total = numberWithCommas((subtotal + tax + shipping)-discount);
     
     /* Update totals display */
     $('.totals-value').fadeOut(fadeTime, function() {
@@ -1013,6 +1039,9 @@ $(".search-toggle .search-icon").click(function (e) {
       }
       $('.totals-value').fadeIn(fadeTime);
     });
+
+    $(".countcart").load(location.href + " .countcart");
+    $(".showcart").load(location.href + " .showcart");
   }
   
   

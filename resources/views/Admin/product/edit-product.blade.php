@@ -132,8 +132,8 @@
                                     <div class="col-1  mt-2">บาท</div>
                                 </div>
                                 <br>
-                                @if($product->product_start == '0000-00-00' ||  $product->product_start == NULL)
-                                <div class="row mt-2" id="date" style="display: none">
+                                @if($product->product_special_price == NULL )
+                                <div class="row mb-4" id="date" style="display: none">
                                     <div class="col-3  mt-2">
                                         <b>วันที่เริ่ม </b>
                                     </div>
@@ -143,13 +143,13 @@
                                     <div class="col-2 text-right  mt-2">
                                         <b>ถึง</b>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-3">
                                         <input type="date" class="form-control dateto" name="product_end" value="" min="{{date('Y-m-d')}}" >
                                         <div class="text-danger"  id="notidate" style="display: none">ควรใส่วันสิ้นสุดมากกว่าหรือเท่ากับวันที่เริ่มต้น</div>
                                     </div>
                                 </div>
                                 @else 
-                                <div class="row" >
+                                <div class="row mb-4" id="date">
                                     <div class="col-3  mt-2">
                                         <b>วันที่เริ่ม </b>
                                     </div>
@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                <div class="row" id="date">
+                                <div class="row" >
                                     <div class="col-3  mt-2">
                                         <b>จำนวนสินค้า </b>
                                     </div>
@@ -400,7 +400,7 @@
                                                     @else
                                                         <img id="gallerypreview{{$picture->id_product_gallery}}" style="max-height:250px ;opacity: 20%;" alt="{{url('no-image.jpg')}}" src="{{asset('images/brows.png')}}" />
                                                     @endif
-                                                    <input type="text" id="vdo{{$picture->id_product_gallery}}" name="video[{{$picture->id_product_gallery}}]" class="form-control"  placeholder="youtube.com" onchange="insertvideo({{$picture->id_product_gallery}})" value="{{$picture->video}}">
+                                                    {{-- <input type="text" id="vdo{{$picture->id_product_gallery}}" name="video[{{$picture->id_product_gallery}}]" class="form-control"  placeholder="youtube.com" onchange="insertvideo({{$picture->id_product_gallery}})" value="{{$picture->video}}"> --}}
                                                     <br>
                                                     <input type="text" name="sub_sort[{{$picture->id_product_gallery}}]"  class="form-control text-center" value="{{$picture->sort}}" />
                                                     <button  type="button" class="btn btn-danger" onclick="deletegallery({{$picture->id_product_gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>
@@ -737,7 +737,6 @@
                 '<div class="col-sm-12">'+
                     '<input type="file" style="display: none;"  name="sub_gallery['+(gallery).toString()+']" class="form-control chooseImage'+gallery+'" id="slidepicture'+gallery+'" multiple="multiple" onchange="readGalleryURL2(this,'+gallery+')">'+
                     '<img id="gallerypreview'+gallery+'" style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage('+gallery+')" />'+
-                    '<input type="text" id="vdo'+gallery+'" name="video['+(gallery).toString()+']" class="form-control"  placeholder="youtube.com" onchange="insertvideo('+gallery+')">'+
                     '<br>'+
                     '<input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center" required>'+
                     '<button  type="button" class="btn btn-danger" onclick="deletegallery('+gallery+')" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>'+

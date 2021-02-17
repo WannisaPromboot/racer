@@ -942,7 +942,7 @@ text-align: left;
       
   </style>
 
-
+@include('frontend.inc_header')
   <body class="goto-here">
     <div class="py-1 bg-primary">
         <div class="container">
@@ -1044,133 +1044,9 @@ text-align: left;
               </li>
                 
                                
-                            <!-- <li class="nav-item cta-colored" id="mobile"><a href="cart.php" class="nav-link"><span class="icon-shopping_cart"></span>[1]</a></li> -->
-                            <li class="nav-item cta-colored" id="mobile"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>
+                            <li class="nav-item cta-colored"><a href="javascript:void(0)" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span><span class="menu-span-col" id="addcart">
                                
-                                <?php
-                                if(!empty(Session::get('product'))){
-                                    $qty = 0;
-                                        foreach (Session::get('product') as $key =>  $item) {
-                                            $qty += $item['qty'];
-                                        }
-                                }   
-                                
-                            ?>
-                                {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}
-                           
-                            <span class="menu-span-col"></span> </a></li>
-              <li class="nav-item dropdown" id="desk">
-                <a href="{{url('cart')}}" class="nav-link veiw" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-shopping_cart"></span>
-                    <span class="countcart">
-                        <?php
-                        if(!empty(Session::get('product'))){
-                            $qty = 0;
-                                foreach (Session::get('product') as $key =>  $item) {
-                                    $qty += $item['qty'];
-                                }
-                        }   
-                        
-                    ?>
-                    {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}
-                    </span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown04" id="dropdown-menu-cart">
-                    <div class="showcart">
-                    @if(Session::get('product') && count(Session::get('product')) > 0 )
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="shopping-cart" style="overflow: scroll;;
-        overflow-x: auto;
-        overflow-y: auto;
-        max-height: 500px;">
-                                    <form  method="POST">
-                                        <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
-                                        <div class="column-labels">
-                                        </div>
-                                            {{-- product --}}
-                                            <?php $items = Session::get('product');  
-                                                    $sum  = 0;
-                                            ?>
-                                            @foreach ($items as $key => $item)
-                                            <?php $product = \App\Product::where('id_product',$item['product_id'])->first(); ?>
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <img src="{{url('storage/app/'.$product->product_img.'')}}">
-                                                </div>
-                                                <div class="product-details">
-                                                    <div class="product-title">{{$product->product_name_th}}</div>
-                                                    
-                                                </div>
-                                                @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-                                                    <div class="product-price price{{$product->id_product}}" >{{number_format($product->product_special_price)}}</div>
-                                                    <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_special_price}}">
-                                                @else 
-                                                    <div class="product-price price{{$product->id_product}}">{{number_format($product->product_normal_price)}}</div>
-                                                    <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_normal_price}}">
-                                                @endif                                
-                                                <div class="product-quantity">
-                                                    <div class="quantity_button">
-                                                        <span class="qt" id="qy{{$product->id_product}}">{{$item['qty']}}</span>
-                                                        <span class="qt-plus" onclick="count('{{$product->id_product}}','add')">+</span>
-                                                        <span class="qt-minus" onclick="count('{{$product->id_product}}','sub')">-</span>
-                                                        <input type="hidden" class="text-center" id="inputqy{{$product->id_product}}" name="count[{{$item['product_id']}}]" value="{{$item['qty']}}" min="1">
-                                                    </div>
-                                                </div>
-                                                <div class="product-removal">
-                                                    <button type="button" class="remove-product" onclick="delitem({{$key}},{{$item['product_id']}})">Remove</button>
-                                                </div>
-                                                
-                                                @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-                                                    <div class="product-line-price totalitem{{$product->id_product}}" >{{number_format($product->product_special_price * $item['qty'])}}</div>
-                                                    <?php  $sum +=  $product->product_special_price * $item['qty'];?>
-                                                    @else 
-                                                    <div class="product-line-price totalitem{{$product->id_product}}">{{number_format($product->product_normal_price * $item['qty'])}}</div>
-                                                    <?php  $sum +=  $product->product_normal_price * $item['qty'];?>
-                                                @endif
-                                            </div>
-                                            @endforeach
-                                            
-                                            {{-- total --}}
-                                                                    
-                                            <div class="totals">
-                                                <div class="totals-item">
-                                                    <label>ยอดรวม</label>
-                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
-                                            </div>
-                                            <div class="totals-item">
-                                                <label>ค่าส่ง</label>
-                                                <div class="totals-value" id="cart-shipping" style="">0</div>
-                                            </div>
-                                            <div class="totals-item totals-item-total">
-                                                <label>ยอดรวมทั้งสิ้น</label>
-                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
-                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
-                                            </div>
-                                            </div>
-                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
-                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
-                                    </form>
-                                    
-                                </div>
-                                
-                            </div>
-    
-                        </div>
-                    </div>
-                    @else 
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                คุณยังไม่มีรายการสินค้าในตะกร้า
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    </div>
-                </div>
-               
-              </li>
+                               </span> </a></li>
                         <!-- <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li> -->
                         @if(empty(Session::get('customer_id')))
                             <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
@@ -1253,19 +1129,19 @@ text-align: left;
                                 {{-- <form action="/action_page.php"> --}}
                                     <div class="row">
                                         <div class="col-75">
-                                        <input type="text" id="desk_fname" name="firstname" placeholder="Name*" >
+                                        <input type="text" id="desk_fname" name="firstname" value="{{$customer->name}}">
                                         </div>
                                     </div>
                                     <div class="row">
                                     
                                         <div class="col-75">
-                                        <input type="text" id="desk_email" name="email" placeholder="E-mail*" >
+                                        <input type="text" id="desk_email" name="email" value="{{$customer->email}}" >
                                         </div>
                                     </div>
                                     <div class="row">
                                     
                                         <div class="col-75">
-                                        <input type="text" id="desk_address" name="address" placeholder="Address*" >
+                                        <input type="text" id="desk_address" name="address" value="{{$customer->address}}" >
                                         </div>
                                     </div>
                                 {{-- </form> --}}
@@ -1276,19 +1152,19 @@ text-align: left;
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="desk_lname" name="lastname" placeholder="Last Name*" >
+                                    <input type="text" id="desk_lname" name="lastname" value="{{$customer->lastname}}" >
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="desk_telephone" name="telephone" placeholder="Phone No.*" >
+                                    <input type="text" id="desk_telephone" name="telephone" value="{{$customer->phone}}" >
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="desk_fax" name="fax" placeholder="postcode*" >
+                                    <input type="text" id="desk_fax" name="fax" value="{{$customer->postalcode}}" >
                                     </div>
                                 </div>
                 
@@ -1454,11 +1330,6 @@ text-align: left;
                             </div>      
                             
                         </div>
-
-
-
-
-
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-2 col-lg-2 mb-2" ></div>

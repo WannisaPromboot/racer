@@ -676,7 +676,7 @@ height: 165px;
 
       
   </style>
-
+@include('frontend.inc_header')
 
   <body class="goto-here">
     <div class="py-1 bg-primary">
@@ -818,7 +818,7 @@ height: 165px;
                                 <div class="shopping-cart" style="overflow: scroll;;
         overflow-x: auto;
         overflow-y: auto;
-        max-height: 500px;">
+        max-height: 300px;">
                                     <form  method="POST">
                                         <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
                                         <div class="column-labels">
@@ -868,7 +868,28 @@ height: 165px;
                                             
                                             {{-- total --}}
                                                                     
-                                            <div class="totals">
+                                            <!-- <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                    </form>
+                                    
+                                </div>
+
+                                <div class="totals">
                                                 <div class="totals-item">
                                                     <label>ยอดรวม</label>
                                                 <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
@@ -885,9 +906,6 @@ height: 165px;
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
                                             <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
-                                    </form>
-                                    
-                                </div>
                                 
                             </div>
     
@@ -1139,12 +1157,13 @@ height: 165px;
                                                   <p class="title-pro">{{$item->product_name_th}}</p>
                         <p class="sub-pro">({{$cate->category_name_th}})</p>
                         <hr class="line-height">
-                        @if(($item->product_start <= date('Y-m-d') && $item->product_start != NULL ) && ($item->product_end >= date('Y-m-d') && $item->product_end != NULL))
-                        <p class="price"> <span class="price-span">฿{{number_format($item->product_normal_price)}}</span> ฿{{number_format($item->product_special_price)}} <span class="price-sale">{{(@($item->product_special_price/$item->product_normal_price))*100}}% ส่วนลด</span></p>
-                        @else 
-                        <p class="price">฿{{number_format($item->product_normal_price)}}</p>
+                        @if(!empty($item->product_normal_price) || !empty($item->product_special_price))
+                            @if(($item->product_start <= date('Y-m-d') && $item->product_start != NULL ) && ($item->product_end >= date('Y-m-d') && $item->product_end != NULL))
+                            <p class="price"> <span class="price-span">฿{{number_format($item->product_normal_price)}}</span> ฿{{number_format($item->product_special_price)}} <span class="price-sale">{{number_format(@((($item->product_normal_price-$item->product_special_price)*100)/$item->product_normal_price),'2','.','')}}% ส่วนลด</span></p>
+                            @else 
+                            <p class="price">฿{{number_format($item->product_normal_price)}}</p>
+                            @endif
                         @endif
-                       
                         <p class="text-detial">คุณสมบัติเด่น :</p>
                         <p class="sub-detial">{!! $item->product_selling_th !!}</p>
                           {{-- <p class="text-detial">วิธีใช้ :</p>
@@ -1498,7 +1517,7 @@ function addcart(id){
                 $('#main1').modal('toggle');
                 setTimeout(function() {
                     $('#main1').modal('hide');
-                }, 5000);
+                }, 3000);
         }
     });
 }

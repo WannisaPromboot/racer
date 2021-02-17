@@ -165,14 +165,38 @@
 
     function shipping (id,value){
         // console.log(id);
-        $.ajax({
-            url: '{{ url("changeshipping")}}',
-            type: 'GET',
-            data: {'id' : id, 'value' : value},
-            success: function(data) {
-              
-            }
-        });
+        if(value ==  1  ){
+            Swal.fire({
+            html: 'กรุณากรอกเลขการติดตามพัสดุ<br>'+
+                   '<input type="text" class="form-control" id="tracking">',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'yes'
+            }).then((result)=>{
+                if (result.value) {
+                    $.ajax({
+                        url: '{{ url("changeshipping")}}',
+                        type: 'GET',
+                        dataType: 'HTML',
+                        data: {'id' : id, 'value' : value , 'tracking' : $('#tracking').val()},
+                        success: function(data) {                           
+                        }
+                    });
+                }
+            });
+        }else{
+            $.ajax({
+                url: '{{ url("changeshipping")}}',
+                type: 'GET',
+                data: {'id' : id, 'value' : value},
+                success: function(data) {
+                
+                }
+            });
+        }
+       
     }
 
 

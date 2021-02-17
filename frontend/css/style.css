@@ -10589,6 +10589,7 @@ textarea.form-control {
 
 
 
+
     @media (max-width: 1300px){
       .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
         font-size: 14px;
@@ -10762,3 +10763,202 @@ textarea.form-control {
 
   }
 
+  /* ******cookeis******** */
+
+body {
+  background: #fff;
+  font-family: sans-serif;
+}
+body a {
+  color: #046ec1;
+  text-decoration: none;
+}
+body a:hover {
+  text-decoration: underline;
+}
+
+.ib {
+  display: inline-block;
+}
+
+#cookies-eu-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #eee;
+  border-top: 1px solid #ddd;
+  box-sizing: border-box;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 1em 2em;
+  text-align: center;
+  transform: translateY(100%);
+}
+#cookies-eu-banner[style*="display: block"] {
+  animation: 1s ease-in-out 1s forwards showCookieBanner;
+}
+#cookies-eu-banner.before-remove {
+  animation: 1s ease-in-out forwards hideCookieBanner;
+}
+
+#cookies-eu-more {
+  padding: 0 0.25em;
+  white-space: nowrap;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.25em 0.5em 0.2em;
+  transition: 300ms all;
+}
+
+#cookies-eu-reject {
+  background: none;
+  border: 1px solid #b7b7b7;
+  color: #6b6b6b;
+}
+#cookies-eu-reject:hover {
+  border-color: #6b6b6b;
+  color: #333;
+}
+
+#cookies-eu-accept {
+  background: #1976D2;
+  border: 1px solid #1976D2;
+  color: #FFFFFF;
+}
+#cookies-eu-accept:hover {
+  background: none;
+  color: #1976D2;
+}
+
+@keyframes showCookieBanner {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+@keyframes hideCookieBanner {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* **popuo**** */
+.modal-cookies {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 99; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content-cookies {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  margin-bottom: 70px;
+}
+
+/* The Close Button */
+.close-cookies {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-cookies:hover,
+.close-cookies:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ****custom radio***** */
+
+/* The container */
+.container-custom {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* float:left; */
+}
+
+/* Hide the browser's default radio button */
+.container-custom input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container-custom:hover input ~ .checkmark-custom {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container-custom input:checked ~ .checkmark-custom {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark-custom:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-custom input:checked ~ .checkmark-custom:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container-custom .checkmark-custom:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+.label-custom{
+	width: 100%;
+}
+
+/* ****** end cookeis ******** */

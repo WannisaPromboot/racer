@@ -255,6 +255,15 @@ div {
   content: '฿';
 }
 
+ .promotion-discount:before {
+  content: '- ฿';
+  
+}
+
+.promotion-discount{
+    color: red;
+}
+
 
 
 h1 {
@@ -589,7 +598,8 @@ label {
       
   </style>
 
-
+  <?php use App\Http\Controllers\Frontend\GetdataController; ?>
+  @include('frontend.inc_header')
   <body class="goto-here">
 		<div class="py-1 bg-primary">
     	<div class="container">
@@ -727,7 +737,7 @@ label {
   </nav>
     <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/BANNER-cart.jpg')}})">
+    <!--div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/BANNER-cart.jpg')}})">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -736,7 +746,7 @@ label {
           </div>
         </div>
       </div>
-    </div>
+    </div-->
 
     <!-- <section class="ftco-section ftco-no-pb ftco-no-pt bg-light" id="pro-top">
 			<div class="container">
@@ -767,8 +777,7 @@ label {
                                 <label class="product-removal">Remove</label>
                                 <label class="product-line-price" style="    color: #00b9eb;">รวม</label>
                                 </div>
-
-                                    @if(!empty(Session::get('product')))
+                                    @if(!empty(Session::get('product')) && count(Session::get('product')) > 0)
                                     <?php $items = Session::get('product');  
                                         $sum  = 0;
                                     ?>
@@ -780,33 +789,35 @@ label {
                                             </div>
                                             <div class="product-details">
                                                 <div class="product-title">{{$product->product_name_th}}</div>
-                                                <?php  $checkpromotion = \App\PromotionProduct::join('promotion_type1','promotion_type1.id_promotion','=','promotion.id_promotion')
+                                                <?php  $checkpromotion = \App\PromotionProduct::join('promotion_item','promotion_item.id_promotion','=','promotion.id_promotion')
                                                                                                 ->where('product_1',$item['product_id'])
+                                                                                                ->where('type',1)
                                                                                                 ->where('datefrom','<=',date('Y-m-d'))
                                                                                                 ->where('dateto','>=',date('Y-m-d'))
                                                                                                 ->first();
                                                         
                                                 ?>
                                                 {{-- สินค้า promotion --}}
-                                                @if(!empty($checkpromotion ))
+                                                <div>
+                                                @if(!empty($checkpromotion ) && $item['qty'] >=  $checkpromotion->count_1)
                                                     <?php  $promotion_product = \App\Product::where('id_product',$checkpromotion->product_2)->first();  ?>
                                                     <p class="product-description">
                                                         <div class="row">
-                                                            <div class="col-2">แถมฟรี</div>
+                                                            <?php  $count  = (floor($item['qty'] / $checkpromotion->count_1))*$checkpromotion->count_2;   ?>
+                                                            <div class="col-3">แถมฟรี {{$count}} ชิ้น</div>
                                                             <div class="col-2">
                                                                 <img src="{{url('storage/app/'.$promotion_product->product_img.'')}}" width="100%">
                                                             </div>
-                                                            <div class="col-8">
+                                                            <div class="col-7">
                                                                 <div class="product-title">{{$promotion_product->product_name_th}}</div>
                                                             </div>
-                                                           
                                                         </div>
                                                     </p>
-                                                 
                                                 @endif
+                                                </div>
                                                 {{-- end promotion --}}
                                             </div>
-                                            @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                            @if( !empty($product->product_special_price) && ($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
                                                 <div class="product-price price{{$product->id_product}}" >{{number_format($product->product_special_price)}}</div>
                                                 <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_special_price}}">
                                             @else 
@@ -828,7 +839,7 @@ label {
                                             <div class="product-removal">
                                                 <button type="button" class="remove-product" onclick="delitem({{$key}},{{$item['product_id']}})">Remove</button>
                                             </div>
-                                            @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                            @if(  !empty($product->product_special_price) && ($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
                                             <div class="product-line-price totalitem{{$product->id_product}}" >{{number_format($product->product_special_price * $item['qty'])}}</div>
                                             <?php  $sum +=  $product->product_special_price * $item['qty'];?>
                                             @else 
@@ -838,21 +849,69 @@ label {
                                         </div>
                                     
                                         @endforeach
+                                   
+                                        {{-- ส่วนลด --}}
+                                        <?php $result  = $sum - GetdataController::checkprice($sum)['discount']; 
+                                                $checkpromotion_dis = \App\PromotionProduct::where('promotion.type',2)
+                                                                                            ->where('datefrom','<=',date('Y-m-d'))
+                                                                                            ->where('dateto','>=',date('Y-m-d'))
+                                                                                            ->first();
+                                        
+                                        ?>
+                                        @if(count(GetdataController::checkprice($sum)['promotion']) > 0  || !empty($checkpromotion_dis ))
+                                        <h1 class="title-cart"><span class="icon-shopping_cart"></span>ส่วนลด</h1>
+                                        <div class="product ml-2">
+                                            @foreach (GetdataController::checkprice($sum)['promotion'] as $_pro)
+                                                <?php      $pro  = \App\PromotionProduct::where('id_promotion',$_pro['id_promotion'])->first(); ?>
+                                                <div class="row mb-2">
+                                                    <div class="col-9 ">{{$pro->promotion_title}}</div>
+                                                    <input type="hidden" name="promotion[{{$_pro['id_promotion']}}]" value="{{$_pro['id_promotion']}}" >
+                                                    <div class="col-3 text-right promotion-discount">{{number_format($_pro['total'],2,'.',',')}}</div>
+                                                    <input type="hidden" name="total[{{$_pro['id_promotion']}}]" value="{{$_pro['total']}}" >
+                                                </div>
+                                            @endforeach
+                                            @if(!empty( $checkpromotion_dis) && $result >= $checkpromotion_dis->total)
+                                            <div class="row mb-2">
+                                                <div class="col-9 mb-2">{{$checkpromotion_dis->promotion_title}}
+                                                    <div class="row">
+                                                        <?php $pro_free = \App\Product::where('id_product', $checkpromotion_dis->product)->first(); ?>
+                                                        <div class="col-2">แถมฟรี</div>
+                                                        <input type="hidden" name="promotion[{{ $checkpromotion_dis->id_promotion}}]" value="{{ $checkpromotion_dis->id_promotion}}" >
+                                                        <input type="hidden" name="total[{{ $checkpromotion_dis->id_promotion}}]" value="0" >
+                                                        <div class="col-2">
+                                                            <img src="{{url('storage/app/'.$pro_free->product_img.'')}}" width="100%">
+                                                        </div>
+                                                        <div class="col-8">{{$pro_free->product_name_th}}</div>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="col-3 text-right promotion-discount">{{number_format($_pro['total'],2,'.',',')}}</div> --}}
+                                            </div>
+                                            @endif
+                                            
+                                        </div>
+                                        @endif
                                     @endif
+                                    {{-- total --}}
                             
                                     <div class="totals">
                                         <div class="totals-item">
                                             <label>ยอดรวม</label>
-                                        <div class="totals-value" id="cart-subtotal">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                        <div class="totals-value" id="cart-subtotal">{{!empty(Session::get('product'))?number_format($sum,2,'.',',') : '0'}}</div>
                                     </div>
                                     <!-- <div class="totals-item">
                                     <label>Tax (5%)</label>
                                     <div class="totals-value" id="cart-tax">3.60</div>
                                     </div> -->
                                     <div class="totals-item">
+                                        <label>ส่วนลด</label>
+                                        <div class="totals-value" id="cart-discount">{!! Session::get('product') ?  number_format(GetdataController::checkprice($sum)['discount'],'2','.',',') :'0' !!}</div>
+                                        <input type="hidden" name="price_discount" id="discount" value="{{Session::get('product') ? GetdataController::checkprice($sum)['discount'] : '0'}}">
+                                    </div>
+                                    <div class="totals-item">
                                         <label>ค่าส่ง</label>
                                         <div class="totals-value" id="cart-shipping">0</div>
                                     </div>
+                                  
                                     <!-- <div class="totals-item">
                                     <div class="container">
                                         <div class="row">
@@ -866,10 +925,11 @@ label {
                                         </div>
                                     </div>
                                     </div> -->
+                                  
                                     <div class="totals-item totals-item-total">
                                         <label>ยอดรวมทั้งสิ้น</label>
-                                        <div class="totals-value" id="cart-total">{{Session::get('product')? number_format($sum) : '0'}}</div>
-                                        <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                        <div class="totals-value" id="cart-total">{{Session::get('product')? number_format($result,2,'.',',') : '0'}}</div>
+                                        <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $result : '0'}}">
                                     </div>
                                 </div>
                                 @if(!empty(Session::get('product')))
@@ -964,6 +1024,8 @@ label {
                
             }
 
+      
+            
            
      }
 
@@ -983,17 +1045,25 @@ label {
     
     /* Sum up row totals */
     $('.product').each(function () {
-      subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
+       
+      if($(this).children('.product-line-price').text() != ''){
+        subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
+      }
+     
     });
     
+   
     /* Calculate totals */
     var tax = subtotal * taxRate;
     var shipping = (subtotal > 0 ? shippingRate : 0);
-    var total = numberWithCommas(subtotal + tax + shipping);
+    var discount = $('#discount').val();
+    var total = numberWithCommas((subtotal + tax + shipping)-discount);
+ 
     
     /* Update totals display */
     $('.totals-value').fadeOut(fadeTime, function() {
       $('#cart-subtotal').html(numberWithCommas(subtotal));
+     // $('#cart-discount').html(numberWithCommas(discount));
       $('#cart-tax').html(tax);
       $('#cart-shipping').html(shipping);
       $('#cart-total').html(total);
@@ -1005,6 +1075,8 @@ label {
       }
       $('.totals-value').fadeIn(fadeTime);
     });
+
+    $('.section-back').load(location.href + " .section-back");
   }
   
   
@@ -1027,6 +1099,7 @@ label {
         $(this).fadeIn(fadeTime);
       });
     });  
+    
   }
   
   
@@ -1056,7 +1129,7 @@ label {
             type: 'GET',
             data : {'item' : item , 'id' : id},
             success: function(data) {
-                
+                $('.section-back').load(location.href + " .section-back");
             }
         });
     }

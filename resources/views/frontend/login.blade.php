@@ -718,7 +718,7 @@ a:hover {
       
   </style>
 
-
+@include('frontend.inc_header')
   <body class="goto-here">
     <div class="py-1 bg-primary">
         <div class="container">
@@ -859,7 +859,7 @@ a:hover {
                                 <div class="shopping-cart" style="overflow: scroll;;
         overflow-x: auto;
         overflow-y: auto;
-        max-height: 500px;">
+        max-height: 300px;">
                                     <form  method="POST">
                                         <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
                                         <div class="column-labels">
@@ -909,7 +909,28 @@ a:hover {
                                             
                                             {{-- total --}}
                                                                     
-                                            <div class="totals">
+                                            <!-- <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                    </form>
+                                    
+                                </div>
+
+                                <div class="totals">
                                                 <div class="totals-item">
                                                     <label>ยอดรวม</label>
                                                 <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
@@ -926,9 +947,6 @@ a:hover {
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
                                             <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
-                                    </form>
-                                    
-                                </div>
                                 
                             </div>
     
@@ -1036,12 +1054,15 @@ a:hover {
                   <div class="container">
                     <div class="row" id="">
             
-                      <div class="col-md-12 col-lg-12 mb-12" >
+                      <div class="col-md-12 col-lg-12" >
                         <p class="text-re"><a href="{{url('userregister')}}"><span class="re-col">Register/สมัครสมาชิก</span></a></p>
+                        <p class="text-re"><a href="{{url('forgot')}}"><span class="re-col" style="color: gray">Forgot Password/ลืมรหัสผ่าน</span></a></p>
                         <center></center>
                     
             
                       </div>
+                      
+
                     </div>
                   </div>
             

@@ -154,7 +154,7 @@
             tags: true,
             //minimumResultsForSearch: -1,
             //maximumSelectionLength: 10,
-            tokenSeparators: [',', ' '],
+          //  tokenSeparators: [',', ' '],
             placeholder: "-เลือกสินค้า-",
         });
 

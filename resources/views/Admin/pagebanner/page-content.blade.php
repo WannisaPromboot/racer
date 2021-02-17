@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'แบนเนอร์' :'BANNER'}} @endsection
+@section('title') แบนเนอร์หลัก @endsection
 
 @section('css') 
         <!-- Summernote css -->
@@ -28,11 +28,10 @@
 <div class="row">
     <div class="col-6">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'แบนเนอร์' :'BANNER'}}</h4>
+        <h4 class="mb-0 font-size-18">แบนเนอร์หลัก</h4>
         </div>
     </div>
     <div class="col-6">
-        {{-- <a href="{{url('addbanner')}}" class="btn add" style="float:right;background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มแบนเนอร์' :'+ Add BANNER'}}</a> --}}
     </div> 
 </div>     
 <!-- end page title -->
@@ -41,19 +40,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-4">
-                        {{-- <div class="col-sm">
-                            <button id="comming" type="button" class="btn btn-secondary active" >{{Session::get('lang')=='th'?'เร็ว ๆ นี้':'Upcoming'}}</button>
-                            <button id="history" type="button" class="btn btn-secondary">{{Session::get('lang')=='th'?'ประวัติ':'History'}}</button>
-                        </div> --}}
+                       
                         
                     </div>
                     <div id="tablecoming">
                         <table id="table1" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th>{{Session::get('lang')=='th'?'ลำดับที่':'No.'}}</th>
-                                <th>{{Session::get('lang')=='th'?'หน้าแสดงผล':'Category'}}</th>
-                                <th>{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</th>
+                                <th>ลำดับที่</th>
+                                <th>หน้าแสดงผล</th>
+                                <th>แก้ไข</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -106,7 +102,7 @@
                   </div>
     
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">{{Session::get('lang')=='th'?'ปิด' :'Close'}}</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
                 
                   </div>
             </div>
@@ -201,7 +197,7 @@
                             dataType: 'HTML',
                             success: function(data) {
                                 Swal.fire({
-                                    text: "ลบข้อมูลเรียบร้อย",
+                                    text: "ลบข้อมูลเรียบร้อยแล้ว",
                                     type:"success"
                                 
                                 });

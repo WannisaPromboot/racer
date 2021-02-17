@@ -45,7 +45,7 @@
       <div class="row">
         <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
-            <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'ลำดับประเภทที่เข้าชมมากที่สุด':'Top 5 category'}}</h4>
+            <h4 class="mb-0 font-size-18">ลำดับสินค้าที่สั่งซื้อมากที่สุด 5 ลำดับ</h4>
             </div>
         </div>
       </div>   
@@ -68,12 +68,13 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm">
-                    <b>{{Session::get('lang')=='th'?'จำนวนคำสั่งซื้อ':'number of Order'}}</b>
+                    <b>จำนวนคำสั่งซื้อ</b>
                   </div>
                 </div>
+                <?php $order = \App\Order::where('status_process',1)->get(); ?>
                 <div class="row mt-4  mb-2">
                   <div class="col-sm text-center">
-                    <h1> 26 </h1>
+                    <h1>{{count($order)}}</h1>
                   </div>
                 </div>
               </div>
@@ -86,12 +87,13 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm">
-                    <b>{{Session::get('lang')=='th'?'จำนวนลูกค้า':'Member / Customer'}}</b>
+                    <b>จำนวนสมาชิก</b>
                   </div>
                 </div>
+                <?php $user = \App\Customer::all(); ?>
                 <div class="row mt-4  mb-2">
                   <div class="col-sm text-center">
-                    <h1> 20 <span style="color: #ffc186 "></span></h1>
+                    <h1> {{count($user)}}</h1>
                   </div>
                 </div>
               </div>
@@ -101,7 +103,7 @@
   </div>
 </div>
 <!--ผู้ชม-->
-<div class="row">
+{{-- <div class="row">
   <div class="col-12">
       <div class="page-title-box d-flex align-items-center justify-content-between">
       <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'การจอง':'Booking'}}</h4>
@@ -122,10 +124,31 @@
           </div>
       </div>
   </div>
-</div>
+</div> --}}
 
 <!--ผู้ชม-->
-  
+ <?php  $booking_graph = \App\OrderItem::select(DB::raw('count(product_order_item.product_id) as count'),'product_order_item.product_id','product_name_th')
+                                ->join('product_order','product_order.id_order','=','product_order_item.id_order')
+                                ->join('product','product.id_product','=','product_order_item.product_id')
+                                ->groupBy('product_order_item.product_id')
+                                ->where('product_order.status_process',1)
+                                ->orderby('count','desc')
+                                ->limit(5)
+                                ->get(); 
+        $booking_count  = array();
+        $booking_name  = array();  
+        
+        foreach ($booking_graph as $key => $value) {
+
+            if(in_array($value->product_name_th,$booking_name)==false){
+                array_push($booking_count,$value->count);
+                array_push($booking_name,$value->product_name_th);
+            }
+          
+        }
+        
+                                
+    ?> 
                         
 
 @endsection
@@ -167,11 +190,16 @@ $(document).ready(function() {
 
 //////////pie
 
+
+var book_name = <?php echo json_encode($booking_name); ?>;
+var book_count = <?php echo json_encode($booking_count); ?>;
+
+
 var ctx = document.getElementById("piechart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ['A','A','A','A','A'],
+    labels: book_name,
     datasets: [{
       backgroundColor: [
         "#2ecc71",
@@ -180,94 +208,10 @@ var myChart = new Chart(ctx, {
         "#9b59b6",
         "#f1c40f",
       ],
-      data: ['20','30','20','50','110']
+      data: book_count
     }]
   }
 });
 
-
-//////payment
-
-$('.payment').click(function(){ 
- var id = $(this).attr('ref');
- 
- console.log(id);
-         $.ajax({
-         url:'{{ url("checkpayment") }}/'+id,
-         type: 'GET',
-         dataType: 'HTML',
-         async: true,
-         success: function(data){
-         
-         swal({
-                         title: "การชำระเงิน",
-                         html:  '<html>'+
-                         '<div >' + data +'</div>'+
-                         '<div class="d-inline-block p-2"></div>'+
-                         '<div style="text-align:left; margin-left:100px">'+
-                         '<div class="form-check">'+
-                             '<input class="form-check-input" type="radio" name="orders_status" id="checkstatus" value="2" checked>'+
-                             '<label class="form-check-label" for="exampleRadios1">ผ่านการตรวจ</label>'+
-                         '</div>'+
-                         '<div class="form-check">'+
-                             '<input class="form-check-input" type="radio" name="orders_status" id="checkstatus" value="1">'+
-                             '<label class="form-check-label" for="exampleRadios2">ไม่ผ่านการตรวจสอบ</label>'+
-                         '</div>'+
-                         '</div>'+
-                         '</html>',
-                         showCloseButton: true,
-                         focusConfirm: false,
-                         allowOutsideClick: false,
-                     }).then(function(isConfirm) {
-
-                        if(isConfirm.value){
-                                $.ajax({
-                                type: 'GET',
-                                url: '{{ url("updatestatuspayment") }}/'+id,
-                                data:  {
-                                    "_token": "{{ csrf_token() }}",
-                                    orders_status: $("#checkstatus:checked").val()
-                                },
-
-                            
-                            });
-                            
-                            window.location.reload();
-                        }else{
-                            return false;
-                        }
-
-             
-                     })
-             }
-
-     });
-
- });
-
- ///////////show payment when update status
- $('.showpayment').click(function(){ 
- var id = $(this).attr('ref');
-         $.ajax({
-         url:'{{ url("checkpayment") }}/'+id,
-         type: 'GET',
-         dataType: 'HTML',
-         async: true,
-         success: function(data){
-         
-            swal({
-                    title: "การชำระเงิน",
-                    html:  '<html>'+
-                    '<div >' + data +'</div>'+
-                    '</html>',
-                    showCloseButton: true,
-                    focusConfirm: false,
-                    allowOutsideClick: false,
-                });
-            }
-
-     });
-
- });
 </script>
 @endsection

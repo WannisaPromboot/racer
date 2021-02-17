@@ -87,17 +87,17 @@
                                 <select class="form-control type" name="type" required>
                                     <option>-เลือกประเภท-</option>
                                     <option value="1">ซื้อ X แถม Y</option>
-                                    <option value="2" disabled>ซื้อครบ X บาท รับพรีเมียม</option>
-                                    <option value="3" disabled>ซื้อครบ X บาท ลดเพิ่ม Y บาท</option>
-                                    <option value="4" disabled>ซื้อครบ X บาท ลดเพิ่ม Y % </option>
-                                    <option value="5" disabled>ลด X % ทั้งร้าน</option>
+                                    <option value="2" >ซื้อครบ X บาท รับพรีเมียม</option>
+                                    <option value="3" >ซื้อครบ X บาท ลดเพิ่ม Y บาท</option>
+                                    <option value="4" >ซื้อครบ X บาท ลดเพิ่ม Y % </option>
+                                    <option value="5" >ลด X % ทั้งร้าน</option>
                                 </select>
                              </div>
                         </div>
                         <br>
                         {{-- type 1 --}}
                        
-                        <div id="type1" >
+                        <div id="type1" style="display: none">
                             <div class="row mb-2">
                                 <div class="col-sm">
                                     <h4>รายการสินค้า</h4>
@@ -110,28 +110,28 @@
                                 </div>
                                 <div class="col-3">
                                     <select class="form-control product" name="get_product_1[1]" required>
-                                        <option>-เลือกสินค้า-</option>
+                                        <option value="">-เลือกสินค้า-</option>
                                         @foreach ($products as $item)
                                             <option value="{{$item->id_product}}">{{$item->product_name_th}}</option>
                                         @endforeach
                                     </select>
                                  </div>
                                  <div class="col-1">
-                                   <input type="number" class="form-control" name="count_1[1]" >
+                                   <input type="number" class="form-control count1" onchange="checknumber(this.value,'count1')" name="count_1[1]" >
                                  </div>
                                  <div class="col-1  mt-2">
-                                    สินค้าชิ้นที่ 2
+                                    สินค้าแถม
                                 </div>
                                 <div class="col-3">
                                     <select class="form-control product" name="get_product_2[1]" required>
-                                        <option>-เลือกสินค้า-</option>
+                                        <option value=""> -เลือกสินค้า-</option>
                                         @foreach ($products as $item)
                                             <option value="{{$item->id_product}}">{{$item->product_name_th}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-1">
-                                    <input type="number" class="form-control" name="count_2[1]" >
+                                    <input type="number" class="form-control count2" onchange="checknumber(this.value,'count2')" name="count_2[1]" >
                                 </div>
                             </div>
                             <div id="new"></div>
@@ -142,8 +142,134 @@
                                 </div>
                             </div>
                         </div>
+                      
+                        {{-- grouop --}}
+                        <div id="group" style="display: none">
+                            <?php $category = \App\Category::all(); ?>
+                            <div class="row" >
+                                <div class="col-2 mt-2">
+                                    เลือกกลุ่ม
+                                </div>
+                                <div class="col-4">
+                                    <select class="form-control group" name="group" >
+                                        <option value="">-เลือกกลุ่ม-</option>
+                                        <option value="all">ทั้งหมด</option>
+                                        <option value="some">เลือกสินค้า</option>
+                                        @foreach ($category as $item)
+                                        <option value="{{$item->id_category}}">{{$item->category_name_th}}</option>
+                                        @endforeach
+                                    </select>
+                                 </div>
+                            </div>
+                        </div>
+                        <div id="group1" style="display: none">
+                            <?php $category = \App\Category::all(); ?>
+                            <div class="row" >
+                                <div class="col-2 mt-2">
+                                    เลือกกลุ่ม
+                                </div>
+                                <div class="col-4">
+                                    <select class="form-control group" name="group_1" >
+                                        <option value="">-เลือกกลุ่ม-</option>
+                                        <option value="all">ทั้งหมด</option>
+                                        @foreach ($category as $item)
+                                        <option value="{{$item->id_category}}">{{$item->category_name_th}}</option>
+                                        @endforeach
+                                    </select>
+                                 </div>
+                            </div>
+                        </div>
                         <br>
-                        {{-- end type 1  --}}
+                         {{-- type 2 --}}
+                         <div id="type2" style="display: none">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-1 mt-2">ซื้อครบ</div>
+                                <div class="col-1">
+                                    <input type="number" class="form-control type2_total" onchange="checknumber(this.value,'type2_total')" name="type2_total">
+                                </div>
+                                <div class="col-1 mt-2">บาท</div>
+                                <div class="col-1 mt-2">รับสินค้า</div>
+                                <div class="col-3">
+                                    <select class="form-control product" name="product">
+                                        <option value="">-เลือกสินค้า-</option>
+                                        @foreach ($products as $item)
+                                            <option value="{{$item->id_product}}">{{$item->product_name_th}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                         {{-- type 3 --}}
+                        <div id="type3" style="display: none">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-1 mt-2">ซื้อครบ</div>
+                                <div class="col-1">
+                                    <input type="number" class="form-control type3_total" onchange="checknumber(this.value,'type3_total')" name="type3_total">
+                                </div>
+                                <div class="col-1 mt-2">บาท</div>
+                                <div class="col-1 mt-2">ลด</div>
+                                <div class="col-1">
+                                    <input type="number" class="form-control type3_discount" onchange="checknumber(this.value,'type3_discount')" name="type3_discount">
+                                </div>
+                                <div class="col-1 mt-2">บาท</div>
+                            </div>
+                        </div>
+                         {{-- type 4 --}}
+                         <div id="type4" style="display: none">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-1 mt-2">ซื้อครบ</div>
+                                <div class="col-1">
+                                    <input type="number" class="form-control type4_total"  onchange="checknumber(this.value,'type4_total')" name="type4_total">
+                                </div>
+                                <div class="col-1 mt-2">บาท</div>
+                                <div class="col-1 mt-2">ลด</div>
+                                <div class="col-1">
+                                    <input type="number" class="form-control type4_discount" onchange="checknumber(this.value,'type4_discount')" name="type4_discount">
+                                </div>
+                                <div class="col-1 mt-2">%</div>
+                            </div>
+                        </div>
+                         {{-- type 5 --}}
+                         <div id="type5" style="display: none">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-1 mt-2">ลดราคา</div>
+                                <div class="col-1">
+                                    <input type="number" class="form-control type5_discount" onchange="checknumber(this.value,'type5_discount')" name="type5_discount">
+                                </div>
+                                <div class="col-1 mt-2">%</div>
+                            </div>
+                        </div>
+                        <br>
+                        {{-- บางชิ้น --}}
+                        <div id="someproduct" style="display: none">
+                            <div class="row" >
+                                <div class="col-2 "></div>
+                                <div class="col-1 mt-2">
+                                    เลือกสินค้า
+                                </div>
+                                <div class="col-4">
+                                    <select class="form-control product" name="some_get_product_1[1]" required>
+                                        <option value="">-เลือกสินค้า-</option>
+                                        @foreach ($products as $item)
+                                            <option value="{{$item->id_product}}">{{$item->product_name_th}}</option>
+                                        @endforeach
+                                    </select>
+                                 </div>
+                            </div>
+                            <div id="newsome"></div>
+                            <br>
+                            <div class="row">
+                                <div class="col-2 "></div>
+                                <div class="col-2">
+                                    <button type="button" class="btn btn-info" onclick="newsome()">+ Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- end --}}
                         <br>
                         <br>
                         <div class="row">
@@ -192,9 +318,6 @@
 
 <script>
          $('.product').select2({
-            tags: true,
-            //minimumResultsForSearch: -1,
-            //maximumSelectionLength: 10,
             tokenSeparators: [',', ' '],
             placeholder: "-เลือกสินค้า-",
         });
@@ -222,9 +345,57 @@
             if($(this).val() == 1){
                 $('#type1').removeAttr('style');
                 $('#type2').css('display','none');
-            }else{
-                $('#type2').removeAttr('style');
+                $('#type3').css('display','none');
+                $('#type4').css('display','none');
+                $('#type5').css('display','none');
+                $('#someproduct').css('display','none');
+                $('#group').css('display','none');
+                $('#group1').css('display','none');
+            }else if($(this).val() == 2){
                 $('#type1').css('display','none');
+                $('#type2').removeAttr('style');
+                $('#type3').css('display','none');
+                $('#type4').css('display','none');
+                $('#type5').css('display','none');
+                $('#someproduct').css('display','none');
+                $('#group').removeAttr('style');
+                $('#group1').css('display','none');
+            }else if($(this).val() == 3){
+                $('#type1').css('display','none');
+                $('#type2').css('display','none');
+                $('#type3').removeAttr('style');
+                $('#type4').css('display','none');
+                $('#type5').css('display','none');
+                $('#someproduct').css('display','none');
+                $('#group').removeAttr('style');
+                $('#group1').css('display','none');
+            }else if($(this).val() == 4){
+                $('#type1').css('display','none');
+                $('#type2').css('display','none');
+                $('#type3').css('display','none');
+                $('#type4').removeAttr('style');
+                $('#type5').css('display','none');
+                $('#someproduct').css('display','none');
+                $('#group').removeAttr('style');
+                $('#group1').css('display','none');
+            }else if($(this).val() == 5){
+                $('#type1').css('display','none');
+                $('#type2').css('display','none');
+                $('#type3').css('display','none');
+                $('#type4').css('display','none');
+                $('#type5').removeAttr('style');
+                $('#someproduct').css('display','none');
+                $('#group').css('display','none');
+                $('#group1').removeAttr('style');
+            }
+    });
+
+
+    $('.group').change(function(){
+            if($(this).val() == 'some'){
+                $('#someproduct').removeAttr('style');
+            }else{
+                $('#someproduct').css('display','none');
             }
     });
 
@@ -259,7 +430,7 @@
                 $('#new').append(data);
 
                 $('.product').select2({
-                        // tokenSeparators: [',', ' '],
+                        tokenSeparators: [',', ' '],
                         placeholder: "-เลือกสินค้า-",
                 });
 
@@ -278,6 +449,53 @@
 }
 
 
+
+/////clone newsome
+   function newsome(){
+
+        count++;
+
+        $.ajax({
+            url: '{{ url("addnewsome")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'count':count},
+            success: function(data) {
+                $('#newsome').append(data);
+
+                $('.product').select2({
+                         tokenSeparators: [',', ' '],
+                        placeholder: "-เลือกสินค้า-",
+                });
+
+            
+            }
+        });
+     
+    }
+
+    function deletesome(num){
+
+            $('#some'+num).remove();
+            //gallery--;
+            $('#delete').append('<input type="hidden" name="deletedkey['+num+']" value="'+num+'">');
+
+    }
+
+
+    ////check 
+    function checknumber(value,classname){
+        if(parseInt(value) < 0){
+        $('.'+classname).val("0");
+        swal.fire({
+            type:'warning',
+            text:'ห้ามกรอกข้อมูลน้อยกว่า 0',
+            confirmButtonColor: '#3085d6',
+
+        });
+        $('.'+classname).focus();
+        }
+    }
 
 </script>
 

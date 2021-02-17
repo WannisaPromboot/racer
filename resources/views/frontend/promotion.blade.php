@@ -530,7 +530,7 @@ a:hover {
       
   </style>
 
-
+@include('frontend.inc_header')
   <body class="goto-here">
     <div class="py-1 bg-primary">
         <div class="container">
@@ -671,7 +671,7 @@ a:hover {
                                 <div class="shopping-cart" style="overflow: scroll;;
         overflow-x: auto;
         overflow-y: auto;
-        max-height: 500px;">
+        max-height: 300px;">
                                     <form  method="POST">
                                         <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
                                         <div class="column-labels">
@@ -721,7 +721,28 @@ a:hover {
                                             
                                             {{-- total --}}
                                                                     
-                                            <div class="totals">
+                                            <!-- <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                    </form>
+                                    
+                                </div>
+
+                                <div class="totals">
                                                 <div class="totals-item">
                                                     <label>ยอดรวม</label>
                                                 <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
@@ -738,9 +759,6 @@ a:hover {
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
                                             <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
-                                    </form>
-                                    
-                                </div>
                                 
                             </div>
     
@@ -787,8 +805,8 @@ a:hover {
     </nav>
         <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/Banner-Promotion-1.png')}}">
-      <div class="container">
+    <div class="hero-wrap hero-bread" style="background-image: url({{ !empty($banner) ? url('storage/app/'.$banner->slide_image) : asset('frontend/images/banner-detail.jpg')}});">
+        <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
             {{-- <h1 class="mb-0 bread">โปรโมชั่น</h1>
@@ -800,35 +818,30 @@ a:hover {
 
         
         <div class="section-back">
-
-        <div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about02.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
-            <div class="container">
-                <div class="row">
-                   
-                    <div class="col-md-6" >
-                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion01.jpg')}}"></a> --}}
-                        <img class="pro-img" src="{{asset('frontend/images/631113.AW_Web-01.jpg')}}">
-                    </div>
-                    <div class="col-md-6">
-                        {{-- <a href="{{url('/detail-article.')}}"><img class="pro-img" src="{{asset('frontend/images/promotion02.jpg')}}"></a>                         --}}
-                        <img class="pro-img" src="{{asset('frontend/images/Ads AIV FES G1+1_Web-01.jpg')}}">
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12" id="">
-                        @foreach ($data as $item)
-                            <a href="#"><img class="pro-img2" src="{{url('storage/app/'.$item->promotion_image)}}"></a>
-                            
+            <div class="site-section bg-light" style="background-image: url({{asset('frontend/images/back-about02.jpg')}}) !important; background-size: cover !important; background-repeat: no-repeat !important; background-position: center center !important;">
+                <div class="container">
+                    <div class="row">
+                        @foreach($subbanner as $sub)
+                            <div class="col-md-6" >
+                                <a href="{{!(empty($sub->subbanner_link))?$sub->subbanner_link:'javascript:void(0)'}}"><img class="pro-img" src="{{url('storage/app/'.$sub->subbanner_image)}}"></a>
+                            </div>
                         @endforeach
-                        
                     </div>
                 </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12" id="">
+                            @foreach ($data as $item)
+                                <a href="{{!(empty($item->promotion_link))?$item->promotion_link:'javascript:void(0)'}}"><img class="pro-img2" src="{{url('storage/app/'.$item->promotion_image)}}"></a>
+                                
+                            @endforeach
+                            
+                        </div>
+                    </div>
+                </div>
+            
             </div>
-        
-        </div>
         </div> 
 
         @include('frontend.inc_footer')

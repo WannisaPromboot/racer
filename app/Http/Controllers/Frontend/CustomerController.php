@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Customer;
+use App\CustomerLogin;
 use Crypt;
 use Mail;
 
@@ -53,7 +54,22 @@ class CustomerController extends Controller
         if(isset($request->phone)){
             $customer->phone = $request->phone;
         }
+        if(isset($request->age)){
+            $customer->age = $request->age;
+        }
+        if(isset($request->gender)){
+            $customer->gender = $request->gender;
+        }
+        if(isset($request->birth)){
+            $customer->birthday = $request->birth;
+        }
         $customer->save();
+      
+            // $NewLogin   = new CustomerLogin;
+            // $NewLogin->customer_id = $random ;
+            // $NewLogin->count=  1;
+            // $NewLogin->save();
+        
 
         return redirect('userlogin')->with('success','สมัครสมาชิกเรียบร้อยแล้ว กรุณาล็อคอิน');
     

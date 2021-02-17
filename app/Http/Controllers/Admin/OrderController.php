@@ -37,7 +37,16 @@ class OrderController extends Controller
     }
 
     public function changeshipping(Request $request){
-        DB::table('product_order')->where('id_order',$request->id)->update(['status_delivery' => $request->value]);
+        if(!empty($request->tracking)){
+            $data = array(
+                'status_delivery' => $request->value,
+                'tracking' => $request->tracking
+            );
+            DB::table('product_order')->where('id_order',$request->id)->update($data);
+        }else{
+            DB::table('product_order')->where('id_order',$request->id)->update(['status_delivery' => $request->value]);
+        }
+        
 
     }
 }

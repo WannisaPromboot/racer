@@ -261,7 +261,31 @@
         }
     }
 
-                    
+    function sendFile(file, editor, welEditable) {
+        data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "{{url('summernoteupload')}}",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(url) {
+                editor.summernote('insertImage',url, function ($image) {
+                            });
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                if (xhr.responseText) {
+                    toastr.error(xhr.responseText, 'Inconceivable!')
+                } else {
+                    console.error("<div>Http status: " + xhr.status + " " + xhr.statusText + "</div>" + "<div>ajaxOptions: " + ajaxOptions + "</div>"
+                        + "<div>thrownError: " + thrownError + "</div>");
+                }
+            }
+        });
+    }           
 </script>
 <script>
     var A = "{{Session::get('Update')}}";

@@ -24,22 +24,19 @@ Route::get('/clc', function() {
 
 });
 //Frontend
-Route::get('/', function(){
-    $data = array(
-        'data' => App\Slide::orderBy('slide_number','ASC')->where('page',1)->get(),
-    // dd( $data['data']);
-        'cate'   => \App\Category::orderBy('sort')->get()
-    );
-    return view('frontend.index',$data);
-});
+Route::get('/', 'Frontend\HomeController@Home');
 
 Route::get('/about-us', function(){
-    return view('frontend.about-us');
+    $data = array(
+        'banner' => App\Slide::where('page',2)->first(),
+    );
+    return view('frontend.about-us',$data);
 });
 
 Route::get('/article', function(){
     $data = array(
         'data' => \App\Blog::paginate(6),
+        'banner' => App\Slide::where('page',5)->first(),
     );
     return view('frontend.article',$data);
 });
@@ -85,6 +82,18 @@ Route::get('/detail-product/{id}', function($id){
         'imgs'  => \App\ProductGallery::where('id_product',$id)->orderby('sort')->get(),
         'review' => \App\Review::where('product_id',$id)->where('display',1)->get()
     );
+    ///////////////update view
+    $view  = \App\ProductView::where('id_product',$id)->first();
+    if(!empty($view)){
+        $view->view = $view->view + 1;
+        $view->save();
+    }else{
+        $newView = new \App\ProductView;
+        $newView->view = 1;
+        $newView->id_product = $id;
+        $newView->save();
+    }
+
     return view('frontend.detail-product',$data);
 });
 
@@ -92,10 +101,15 @@ Route::get('/detail-product/{id}', function($id){
 Route::get('/userlogin', function(){
     return view('frontend.login');
 });
+Route::get('/forgot', function(){
+    return view('frontend.forgot');
+});
 
 Route::get('/news', function(){
     $data = array(
-        'data' => \App\News::paginate(6),
+        'data' => \App\News::orderBy('created_at','DESC')->where('status_new',NULL)->paginate(6),
+        'banner' => App\Slide::where('page',3)->first(),
+
     );
     // dd($data['data']);
     return view('frontend.news',$data);
@@ -111,9 +125,11 @@ Route::group(['middleware'=>['loginfrontend']],function(){
     });
     
     Route::get('/payment/{id}', function($id){
-        $data = array(
-            'id'   => $id,
-        );
+        // dd(Session::all());
+            $data = array(
+                'id'   => $id,
+                'customer'=> App\Customer::where('customer_id',Session::get('customer_id'))->first(),
+            );
         return view('frontend.payment',$data);
     });
 
@@ -212,6 +228,8 @@ Route::get('/product-popular/{cat}', function($cat){
 Route::get('/promotion', function(){
     $data = array(
         'data' => \App\Promotion::get(),
+        'banner' => App\Slide::where('page',4)->first(),
+        'subbanner' =>  DB::Table('subbanner')->where('subbanner_page',2)->orderBy('subbanner_sort','ASC')->get(),
     );
     return view('frontend.promotion',$data);
 });
@@ -228,17 +246,15 @@ Route::get('getDistrict/{id}','Frontend\GetdataController@getDistrict');
 Route::get('getSubDistrict/{id}','Frontend\GetdataController@getSubDistrict');
 Route::post('customerregister','Frontend\CustomerController@CustomerRegister');
 Route::get('searchproduct','Frontend\GetdataController@searchproduct');
+Route::get('checkprice/{price}','Frontend\GetdataController@checkprice');
 
 Route::get('/contact', function(){
     return view('frontend.contact');
 });
 
 Route::get('tested',function(){
-    // Mail::send('email.register',[],function($message){
-    //     $message->to('s5904062630292@email.kmutnb.ac.th')
-    //             ->subject('test email')
-    //             ->from('58030218@kmail.ac.th');
-    // });
+    $d = Crypt::decryptString('eyJpdiI6IktISTVtZDJSdzVLRnlGSzQrYUMwV0E9PSIsInZhbHVlIjoidmR4WXBtam5VWmpcL3N1TkVseVlra2c9PSIsIm1hYyI6IjJlZWM4MGNlZjY3NjAyMWQ4NDg2OGNhNzI1NzA2NzMzYWQ5NjE3NGNjMjhjZTBhNGI2MWI3ZGJiYjA5MGViNmYifQ==');
+    dd($d);
     return view('email.forgotpassword');
 });
 Route::get('footerd',function(){
@@ -260,7 +276,7 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 //////normal login
 Route::post('createcustomer/{id}/{model}', 'Auth\RegisterController@CreatedCustomer')->name('createCustomer');
 Route::post('logincustomer/{model}', 'Auth\LoginController@LogIn')->name('LogIn');
-// Route::post('forgotpassword/{model}','Auth\ForgotPasswordController@ForgotPassword')->name('ForgotPassword');
+Route::post('forgotpassword','Auth\ForgotPasswordController@ForgotPassword')->name('ForgotPassword');
 
 /////login
 
@@ -390,6 +406,12 @@ Route::get('pagecontent',function(){
 Route::get('banner/{id}', 'Admin\PageBannerController@AddPagebanner');
 Route::post('savepagebanner', 'Admin\PageBannerController@Savepagebanner');
 
+Route::get('subbanner',function(){
+    return view('Admin.pagebanner.sub-banner');
+ });
+Route::get('editsub/{id}', 'Admin\PageBannerController@EditSubbanner');
+Route::post('savesubbanner', 'Admin\PageBannerController@SaveSubbanner');
+
 
 ////////////////////new///////////////////////////
 Route::get('/addnew', 'Admin\NewsController@Addnew');
@@ -399,8 +421,7 @@ Route::get('/newcontent', 'Admin\NewsController@ShownewContent');
 Route::get('/detailnew/{id}', 'Admin\NewsController@Detailnew');
 Route::post('/savenew', 'Admin\NewsController@Savenew');
 Route::post('/updatenew/{id}', 'Admin\NewsController@Updatenew');
-
-
+Route::get('/changestatusnew', 'Admin\NewsController@ChangeStatusNew');
 
 
 
@@ -429,17 +450,16 @@ Route::get('/promotionproductcontent', 'Admin\PromotionProductController@Showpro
 Route::post('/savepromotionproduct', 'Admin\PromotionProductController@savepromotionproduct');
 Route::post('/updatepromotionproduct/{id}', 'Admin\PromotionProductController@updatepromotionproduct');
 Route::get('/getsecondproduct', 'Admin\PromotionProductController@getsecondproduct');
+
 Route::get('/addproductpromotion', 'Admin\PromotionProductController@addproductpromotion');
+Route::get('addnewsome','Admin\PromotionProductController@addnewsome');
+
 
 ////////////////////Report///////////////////////////
-Route::get('/reportcontent', 'Admin\ReportController@ReportContent');
+Route::get('/report/{id}', 'Admin\ReportController@ReportContent');
+Route::get('/report-content', 'Admin\ReportController@ReportContent');
 Route::get('/getreport', 'Admin\ReportController@GetReport');
 
-Route::get('/report1', 'Admin\ExportExcelController@Report1');
-Route::get('/report2', 'Admin\ExportExcelController@Report2');
-Route::get('/report3', 'Admin\ExportExcelController@Report3');
-Route::get('/report4', 'Admin\ExportExcelController@Report4');
-Route::get('/report5', 'Admin\ExportExcelController@Report5');
 
 ////////////////////Home///////////////////////////
 Route::get('/home', 'Admin\HomeController@Home');

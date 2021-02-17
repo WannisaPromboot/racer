@@ -45,33 +45,15 @@ class PromotionController extends Controller
             $image = 'Promotion/'.time().$request->filepath->getClientOriginalName();
             Storage::put($image, file_get_contents($request->filepath));
         }
-        Promotion::insert(['promotion_image'=>$image]);
-        // $Blog = new Blog();
-        // $Blog->blog_th	 = $request->blog_th;
-        // $Blog->blog_en	 = $request->blog_en;
-        // $Blog->blog_description_th	 = $request->blog_description_th;
-        // $Blog->blog_description_en	 = $request->blog_description_en;
-        // if($request->filepath !== null){
-        //     $blog_image = 'Promotion/'.time().$request->filepath->getClientOriginalName();
-        //     Storage::put($blog_image, file_get_contents($request->filepath));
-        //     $Blog->blog_image = $blog_image;
-        // }
+        if(isset($request->link)){
+            Promotion::insert(['promotion_image'=>$image,'promotion_link'=>$request->link]);
 
-        // $Blog->save();
-        // // dd($Blog);
-        // if(isset($request["sub_gallery"])){      
-        //     $foreignId = $Blog->id_blog;
-        //     foreach($request["sub_gallery"] as $key => $subgallery){
-        //         $gallery = new Blog_gallery;
-        //         $gallery->id_blog = $foreignId;
-        //         $newFilename = 'Blog_Gallery/'.time().$subgallery->getClientOriginalName();
-        //         Storage::put($newFilename, file_get_contents($subgallery));
-        //         $gallery->blog_gallery_image = $newFilename;
-                
-        //         $gallery->save();
-        //     }
-        // }
-        return redirect('promotioncontent')->with('Save','บันทึกข้อมูลสำเร็จ');
+        }
+        Promotion::insert(['promotion_image'=>$image]);
+
+        
+        
+        return redirect('promotioncontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
         
     }
 
@@ -158,8 +140,12 @@ class PromotionController extends Controller
             Storage::put($promotion_image, file_get_contents($request->filepath));
             Promotion::where('id_new_promotion',$id)->update(['promotion_image'=>$promotion_image]);
         }
+        if(isset($request->link)){
+           
+            Promotion::where('id_new_promotion',$id)->update(['promotion_link'=>$request->link]);
+        }
         
-        return redirect('promotioncontent')->with('Save','บันทึกข้อมูลสำเร็จ');
+        return redirect('promotioncontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
     public function ViewUpdateBlog(Request $request,$id){

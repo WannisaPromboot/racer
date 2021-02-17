@@ -51,12 +51,13 @@
                         <table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>{{Session::get('lang')=='th'?'หัวข้อ':'Title'}}</th>
-                                <th>{{Session::get('lang')=='th'?'รูปภาพ':'Image'}}</th>
-                                <th>{{Session::get('lang')=='th'?'รายละเอียด' :'Detail'}}</th>
-                                <th>{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</th>
-                                <th>{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</th>
+                                <th>ลำดับที่</th>
+                                <th>การแสดงผล</th>
+                                <th>หัวข้อ</th>
+                                <th>รูปภาพ</th>
+                                <th>รายละเอียด</th>
+                                <th>แก้ไข</th>
+                                <th>ลบ</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -64,6 +65,7 @@
                                 @foreach($data as $item)
                                     <tr>
                                         <td>{{$i}}</td>
+                                        <td><input type="checkbox" class="chk" value="{{$item->id_new}}" {{$item->status_new==NULL?'checked':''}}></td>
                                         <td>{{$item->new_th}}</td>
                                         <td><img src="{{url('storage/app/'.$item->new_image)}}" alt="" style="max-height: 200px;"></td>
                                         <td>
@@ -124,28 +126,37 @@
             'responsive': true,
             'scrollX': true,
         });
-        var table1 = $('#table1').DataTable( {
-            'responsive': true,
-            'scrollX': true,
-        });
+      
         
     });
 
-    // $('#comming').click(function(){
-    //     $(this).addClass('active');
-    //     $('#history').removeClass('active');
-    //     $('#tablecoming').removeAttr('style');
-    //     $('#tablehistory').css('display','none');
-    //     $('.add').show();
-    // });
-      
-    // $('#history').click(function(){
-    //     $(this).addClass('active');
-    //     $('#comming').removeClass('active');
-    //     $('#tablehistory').removeAttr('style');
-    //     $('#tablecoming').css('display','none');
-    //     $('.add').hide();
-    // });
+    $('.chk').click(function(){
+        var chk = this.value;
+        if(this.checked){
+            var k =1; //tik
+        }else{
+            var k =0;
+
+        }
+        // console.log(k);
+        $.ajax({
+            url: '{{ url("changestatusnew")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'k':k,'val':chk},
+            success: function(data) {
+                Swal.fire({
+                    text:'อัพเดตข้อมูลเรียบร้อยแล้ว',
+                    type: 'success',
+                }).then((result)=>{
+                    if (result.value) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    });
+
 </script>
 <script>
     var A = "{{Session::get('success')}}";

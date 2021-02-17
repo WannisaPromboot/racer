@@ -34,6 +34,19 @@
   </head>
 
   <style>
+    :focus {
+        outline: -webkit-focus-ring-color auto 0px;
+    }
+    .form-control {
+    height: 52px !important;
+    background: #fff !important;
+    color: #777 !important;
+    font-size: 15px;
+    border-radius: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    font-weight: 400;
+}
         #mobile{
     display: none;
   }
@@ -733,7 +746,7 @@ a:hover {
       
   </style>
 
-
+@include('frontend.inc_header')
   <body class="goto-here">
 	<div class="py-1 bg-primary">
         <div class="container">
@@ -874,7 +887,7 @@ a:hover {
                                 <div class="shopping-cart" style="overflow: scroll;;
         overflow-x: auto;
         overflow-y: auto;
-        max-height: 500px;">
+        max-height: 300px;">
                                     <form  method="POST">
                                         <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
                                         <div class="column-labels">
@@ -924,7 +937,28 @@ a:hover {
                                             
                                             {{-- total --}}
                                                                     
-                                            <div class="totals">
+                                            <!-- <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                    </form>
+                                    
+                                </div>
+
+                                <div class="totals">
                                                 <div class="totals-item">
                                                     <label>ยอดรวม</label>
                                                 <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
@@ -941,9 +975,6 @@ a:hover {
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
                                             <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
-                                    </form>
-                                    
-                                </div>
                                 
                             </div>
     
@@ -1063,12 +1094,20 @@ a:hover {
                                   <input type="text" id="zipcode" name="postal" placeholder="Postal code" readonly>
                                 </div>
                               </div>
-              
-                              <!-- <div class="row">
+                              <div class="row">
                                 <div class="col-75">
-                                  <input type="text" name="facebook" placeholder="Facebook">
+                                  <input type="date"  name="birth" placeholder="Date of birth" class="form-control">
                                 </div>
-                              </div> -->
+                              </div>
+                              <div class="row">
+                                <div class="col-75">
+                                 <select class="form-control" name="gender">
+                                   <option>กรุณาเลือก</option>
+                                   <option>ชาย</option>
+                                   <option>หญิง</option>
+                                 </select>
+                                </div>
+                              </div>
               
                           </div>
             
@@ -1116,11 +1155,11 @@ a:hover {
                               </div>
                             
                               
-                              <!-- <div class="row">
+                              <div class="row">
                                 <div class="col-75">
-                                  <input type="text" name="lineid" placeholder="Line ID">
+                                  <input type="number" name="age" placeholder="Age" class="form-control">
                                 </div>
-                              </div> -->
+                              </div>
 
                           </div>
 
