@@ -29,38 +29,46 @@ class LoginController extends Controller
        return Socialite::driver($provider)->redirect();
     }
     public function handleProviderCallback($provider,Request $request)
-    {       
-        $random = mt_rand(1000000000, 9999999999);
-        try {
-            $user = Socialite::driver($provider)->stateless()->user();
-            $input['customer_id']=  $random ;
-            $input['name'] = $user->getName();
-            $input['email'] = $user->getEmail();
-            $input['provider'] = $provider;
-            $input['provider_id']=  $user->getId();
+    {   
+        if(!empty($request->error_code)){
+           return redirect('userlogin');
 
-            $authUser = $this->findOrCreate($input,$provider,$user->getId(),$random );
-            Session::put('username',$user->getName()); 
-            $this->customerlogin(Session::get('customer_id'));
-            // Session::put('currency','THB');
+        }else{
 
-            // $this->getIP( Session::get('customer_id'),$request->getClientIp());
+            $random = mt_rand(1000000000, 9999999999);
+            try {
+                $user = Socialite::driver($provider)->user();
+            
+                $input['customer_id']=  $random ;
+                $input['name'] = $user->getName();
+                $input['email'] = $user->getEmail();
+                $input['provider'] = $provider;
+                $input['provider_id']=  $user->getId();
 
-            // if(!empty(Session::get('paynow')) || !empty(Session::get('paystore')) || !empty(Session::get('booknow')) ){
-            //     return redirect('appointment/'.Session::get('id_store').'');
-            // }else if(!empty(Session::get('flashsale'))){
-            //     return redirect('payment_method/'.Session::get('flashsale')['booking_id']);
-            // }else{
+                $authUser = $this->findOrCreate($input,$provider,$user->getId(),$random );
+                Session::put('username',$user->getName()); 
+                $this->customerlogin(Session::get('customer_id'));
+                // Session::put('currency','THB');
 
-                return redirect('/');
-            // }
-           
+                // $this->getIP( Session::get('customer_id'),$request->getClientIp());
 
-        } catch (Exception $e) {
+                // if(!empty(Session::get('paynow')) || !empty(Session::get('paystore')) || !empty(Session::get('booknow')) ){
+                //     return redirect('appointment/'.Session::get('id_store').'');
+                // }else if(!empty(Session::get('flashsale'))){
+                //     return redirect('payment_method/'.Session::get('flashsale')['booking_id']);
+                // }else{
 
-            return redirect('userlogin');
+                    return redirect('/');
+                // }
+            
 
+            } catch (Exception $e) {
+
+                return redirect('userlogin');
+
+            }
         }
+        
     }
     /////////find or create 
     public function findOrCreate($input,$provider,$provider_id,$id){
