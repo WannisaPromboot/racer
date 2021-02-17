@@ -816,6 +816,8 @@ label {
                                                             <div class="col-7">
                                                                 <div class="product-title">{{$promotion_product->product_name_th}}</div>
                                                             </div>
+                                                            <input type="hidden" name="promotion[{{ $checkpromotion->id_promotion}}]" value="{{ $checkpromotion->id_promotion}}" >
+                                                            <input type="hidden" name="total[{{ $checkpromotion->id_promotion}}]" value="0" >
                                                         </div>
                                                     </p>
                                                 @endif

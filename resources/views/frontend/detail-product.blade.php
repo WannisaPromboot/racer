@@ -888,7 +888,7 @@ use App\Http\Controllers\Frontend\GetdataController;
                                             </div>
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
-                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">ตะกร้าสินค้า</button></a> -->
                                     </form>
                                     
                                 </div>
@@ -915,7 +915,7 @@ use App\Http\Controllers\Frontend\GetdataController;
                                 </div>
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
-                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">ตะกร้าสินค้า</button></a>
                                 
                             </div>
     

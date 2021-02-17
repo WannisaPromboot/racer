@@ -445,7 +445,7 @@ use App\Http\Controllers\Frontend\GetdataController;
                                             </div>
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
-                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">ตะกร้าสินค้า</button></a> -->
                                     </form>
                                     
                                 </div>
@@ -472,7 +472,7 @@ use App\Http\Controllers\Frontend\GetdataController;
                                 </div>
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
-                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">ตะกร้าสินค้า</button></a>
                                 
                             </div>
     
@@ -634,12 +634,12 @@ use App\Http\Controllers\Frontend\GetdataController;
                                                             <div class="col-md-4 col-lg-4 mb-4" >
                                                             <div class="prd-top">
                                                                     <a href="{{url('detail-product/'.$item->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$item->product_img)}}"></a>
-                                                                    <center><p class="name-pro">{{!empty($item->product_name_th) ? $item->product_name_th : '' }}</p><center>
-                                                                    
-                                                                    @if(!empty(	$item->product_special_price))
+                                                                    <center >
+                                                                        <p class="name-pro" style="height: 84px;">{{!empty($item->product_name_th) ? $item->product_name_th : '' }}</p>
+                                                                        @if(!empty(	$item->product_special_price))
                                                                         <center><p class="price-line">฿{{number_format($item->product_special_price,2)}}</p><center>
-                                                                    @endif
-                                                                    
+                                                                        @endif
+                                                                    <center>
                                                                     @if(!empty(	$item->product_special_price) || !empty($item->product_normal_price))
                                                                         @if(!empty(	$item->product_special_price))
                                                                         <center><p class="price-pro">฿{{number_format($item->product_special_price,2)}}</p><center>
@@ -647,10 +647,10 @@ use App\Http\Controllers\Frontend\GetdataController;
                                                                         <center><p class="price-pro">฿{{number_format($item->product_normal_price,2)}}</p><center>
                                                                         @endif
                                                                     @endif
-                                                                    </div>
+                                                            </div>
 
                                                                     @if($item->id_category == 10 || $item->id_category == 11  )
-                                                                    <center><a href="https://line.me/ti/p/~@racerlighting" ><p class="button"><span class="icon-shopping_cart"></span> สอบถามเพิ่มเติม</p></a></center>
+                                                                    <center><a href="https://line.me/ti/p/~@racerlighting" style="height: 84px;"><p class="button"><span class="icon-shopping_cart"></span> สอบถามเพิ่มเติม</p></a></center>
                                                                     @else 
                                                                     <center><a href="javascript:void(0)" onclick="addcart('{{$item->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
                                                                      @endif 
@@ -662,14 +662,17 @@ use App\Http\Controllers\Frontend\GetdataController;
                                                             <?php $product = \App\Product::where('id_product',$item->id_product)->first(); ?>
                                                             <div class="col-md-4 col-lg-4 mb-4" >
                                                                     <a href="{{url('detail-product/'.$product->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$product->product_img)}}"></a>
-                                                                    <center><p class="name-pro">{{!empty($product->product_name_th) ? $product->product_name_th : '' }}</p><center>
-                                                                    @if(!empty(	$product->product_special_price))
+                                                                    <center>
+                                                                        <p class="name-pro" style="height: 84px;">{{!empty($product->product_name_th) ? $product->product_name_th : '' }}</p>
+                                                                        @if(!empty(	$product->product_special_price))
                                                                         <center><p class="price-line">฿{{number_format($product->product_normal_price,2)}}</p><center>
-                                                                    @endif
+                                                                        @endif    
+                                                                    <center>
+                                                                   
                                                                     @if(!empty(	$product->product_special_price))
                                                                     <center><p class="price-pro">฿{{number_format($product->product_special_price,2)}}</p><center>
                                                                     @else 
-                                                                    <center><p class="price-pro">฿{{number_format($product->product_normal_price,2)}}</p><center>
+                                                                    <center><p class="price-pro">{{ $product->product_normal_price != 0 ? '฿'.number_format($product->product_normal_price,2) : ''}}</p><center>
                                                                     @endif
                                                                     <center><a href="javascript:void(0)" onclick="addcart('{{$product->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
                                                             </div>
@@ -680,14 +683,16 @@ use App\Http\Controllers\Frontend\GetdataController;
                                                                 <?php $product = \App\Product::where('id_product',$item)->first(); ?>
                                                                 <div class="col-md-4 col-lg-4 mb-4" >
                                                                         <a href="{{url('detail-product/'.$product->id_product.'')}}"><img class="pro-img" src="{{url('storage/app/'.$product->product_img)}}"></a>
-                                                                        <center><p class="name-pro">{{!empty($product->product_name_th) ? $product->product_name_th : '' }}</p><center>
-                                                                        @if(!empty(	$product->product_special_price))
+                                                                        <center><p class="name-pro" style="height: 84px;">{{!empty($product->product_name_th) ? $product->product_name_th : '' }}</p>
+                                                                            @if(!empty(	$product->product_special_price))
                                                                             <center><p class="price-line">฿{{number_format($product->product_normal_price,2)}}</p><center>
-                                                                        @endif
+                                                                            @endif
+                                                                        <center>
+                                                                       
                                                                         @if(!empty(	$product->product_special_price))
                                                                             <center><p class="price-pro">฿{{number_format($product->product_special_price,2)}}</p><center>
                                                                         @else 
-                                                                            <center><p class="price-pro">฿{{number_format($product->product_normal_price,2)}}</p><center>
+                                                                            <center><p class="price-pro">{{ $product->product_normal_price != 0 ? '฿'.number_format($product->product_normal_price,2) : ''}}</p><center>
                                                                         @endif
                                                                             <center><a href="javascript:void(0)" onclick="addcart('{{$product->id_product}}')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>
                                                                 </div>
