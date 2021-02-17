@@ -140,10 +140,13 @@ class PromotionController extends Controller
             Storage::put($promotion_image, file_get_contents($request->filepath));
             Promotion::where('id_new_promotion',$id)->update(['promotion_image'=>$promotion_image]);
         }
-        if(isset($request->link)){
-           
+        if($request->link==''){
+            Promotion::where('id_new_promotion',$id)->update(['promotion_link'=>NULL]);
+        }else{
             Promotion::where('id_new_promotion',$id)->update(['promotion_link'=>$request->link]);
+
         }
+
         
         return redirect('promotioncontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
     }

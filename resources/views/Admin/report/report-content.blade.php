@@ -233,7 +233,33 @@
         $json_barcount = json_encode( $barcount);
         $json_barcolor = json_encode( $barcolor);
 
-?>                         
+
+        $tranfer = \App\Order::select(DB::raw('count(id_order) as count'))->where('method','tranfer')->first();
+        $credit = \App\Order::select(DB::raw('count(id_order) as count'))->where('method','credit')->first();
+
+        $typepayname = array('tranfer', 'credit');
+        $typepaycount = array($tranfer->count,$credit->count);
+        $typepaycolor = array('#'.dechex(rand(0x000000, 0xFFFFFF)),'#'.dechex(rand(0x000000, 0xFFFFFF)));
+
+        $json_typepayname = json_encode( $typepayname);
+        $json_typepaycount = json_encode( $typepaycount);
+        $json_typepaycolor = json_encode( $typepaycolor);
+
+        $male = \App\Order::leftJoin('customer','product_order.customer_id','customer.customer_id')
+                             ->where('gender','ชาย')->get();
+        $female = \App\Order::leftJoin('customer','product_order.customer_id','customer.customer_id')
+                                ->where('gender','หญิง')->get();
+        $na = \App\Order::leftJoin('customer','product_order.customer_id','customer.customer_id')
+                            ->where('gender','ไม่ระบุ')->get();
+        // dd($na);
+        $gendername = array('ชาย', 'หญิง' ,'ไม่ระบุ');
+        $gendercount  = array(count($male),count($female),count($na));
+        $gendercolor = array('#'.dechex(rand(0x000000, 0xFFFFFF)),'#'.dechex(rand(0x000000, 0xFFFFFF)),'#'.dechex(rand(0x000000, 0xFFFFFF)));
+
+        $json_gendername = json_encode( $gendername);
+        $json_gendercount = json_encode( $gendercount);
+        $json_gendercolor = json_encode( $gendercolor);
+?>                        
 
 @endsection
 
@@ -268,7 +294,7 @@
 
     $('#selectreport').change(function(){
 
-        if($(this).val() != 9){
+        if($(this).val() != 9 || $(this).val() != 15 || $(this).val() != 19){
                  /////display
             $('#chart').css('display','none');
         }
@@ -282,23 +308,19 @@
             document.getElementById('dmy').style.display='none';
             document.getElementById('startend').style.display='';
             $('#new').removeAttr('style');
+            $('#datem').css('display','none');
 
-        }else if($(this).val()==2){
+        }else if($(this).val()==2 || $(this).val()==12 || $(this).val()==5){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';
             document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
             document.getElementById('textselect').style.display='';
             $('#new').removeAttr('style');
+            $('#datem').css('display','none');
 
-        }else if($(this).val()==5){
-            document.getElementById('m').style.display='none';
-            document.getElementById('dmy').style.display='';
-            document.getElementById('startend').style.display='none';
-            $('.selectall').attr('disabled',false);
-            document.getElementById('textselect').style.display='';
-            $('#new').removeAttr('style');
-        }else if($(this).val()==6){
+
+        }else if($(this).val()==6 || $(this).val()==13){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='none';
             document.getElementById('startend').style.display='none';
@@ -322,7 +344,29 @@
         }else if($(this).val()==7){  ////bar
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
-           
+            //////bar
+            var ctx = document.getElementById("bar").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                options: {
+                    legend: {
+                    display: false,
+                    }
+                },
+                data: {
+                        labels: <?php echo  $json_barname ?>,
+                        label: false,
+                        datasets: [{
+                            barPercentage: 0.5,
+                            barThickness: 6,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: <?php echo    $json_barcount ?>,
+                            backgroundColor: <?php echo    $json_barcolor ?>,
+                        }]
+                    },
+                
+            });
             $('#new').css('display','none');
             $.ajax({
                 url: '{{ url("getreport")}}',
@@ -331,7 +375,11 @@
                 data : {'report' : $(this).val()},
                 success: function(data) {
                     if(data==1){
-                        alert('ไม่พบข้อมูล');
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                     }else{
                         //$('#new').removeAttr('style');
                         $('#barchart').removeAttr('style');
@@ -343,7 +391,25 @@
         }else if($(this).val()==9){
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
-           
+            $('#datem').css('display','none');
+
+           ///chart
+            var ctx = document.getElementById("piechart").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                        labels: <?php echo  $json_name ?>,
+                        datasets: [{
+                            barPercentage: 0.5,
+                            barThickness: 6,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: <?php echo    $json_count ?>,
+                            backgroundColor: <?php echo    $json_color ?>,
+                        }]
+                    },
+                
+            });
             $('#new').css('display','none');
             $.ajax({
                 url: '{{ url("getreport")}}',
@@ -352,7 +418,11 @@
                 data : {'report' : $(this).val()},
                 success: function(data) {
                     if(data==1){
-                        alert('ไม่พบข้อมูล');
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                     }else{
                         //$('#new').removeAttr('style');
                         $('#chart').removeAttr('style');
@@ -381,7 +451,11 @@
                 data : {'report' : $(this).val()},
                 success: function(data) {
                     if(data==1){
-                        alert('ไม่พบข้อมูล');
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                     }else{
                         $('#new').removeAttr('style');
                         $('#new').html(data);
@@ -397,6 +471,90 @@
                     }
                 }
             });
+        }else if($(this).val()==15){
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+           ///chart
+            var ctx = document.getElementById("piechart").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                        labels: <?php echo  $json_typepayname ?>,
+                        datasets: [{
+                            barPercentage: 0.5,
+                            barThickness: 6,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: <?php echo    $json_typepaycount ?>,
+                            backgroundColor: <?php echo    $json_typepaycolor ?>,
+                        }]
+                    },
+                
+            });
+            $('#new').css('display','none');
+            $.ajax({
+                url: '{{ url("getreport")}}',
+                type: 'GET',
+                dataType: 'HTML',
+                data : {'report' : $(this).val()},
+                success: function(data) {
+                    if(data==1){
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
+                    }else{
+                        //$('#new').removeAttr('style');
+                        $('#chart').removeAttr('style');
+                        $('#chart_excel').html(data);
+                    }
+                }
+            });
+
+
+        }else if($(this).val()==18){
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+           ///chart
+            var ctx = document.getElementById("piechart").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                        labels: <?php echo  $json_gendername ?>,
+                        datasets: [{
+                            barPercentage: 0.5,
+                            barThickness: 6,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: <?php echo    $json_gendercount ?>,
+                            backgroundColor: <?php echo    $json_gendercolor ?>,
+                        }]
+                    },
+                
+            });
+            $('#new').css('display','none');
+            $.ajax({
+                url: '{{ url("getreport")}}',
+                type: 'GET',
+                dataType: 'HTML',
+                data : {'report' : $(this).val()},
+                success: function(data) {
+                    if(data==1){
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
+                    }else{
+                        //$('#new').removeAttr('style');
+                        $('#chart').removeAttr('style');
+                        $('#chart_excel').html(data);
+                    }
+                }
+            });
+
+
         }
 
     });
@@ -411,7 +569,11 @@
             data : {'report' :report,'monthselect':monthselect},
             success: function(data) {
                 if(data==1){
-                    alert('ไม่พบข้อมูล');
+                    Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                 }else{
                     $('#new').removeAttr('style');
                     $('#new').html(data);
@@ -464,7 +626,11 @@
             data : {'report' :report,'datestart':datestart,'dateend':dateend},
             success: function(data) {
                 if(data==1){
-                    alert('ไม่พบข้อมูล');
+                    Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                 }else{
                     $('#new').html(data);
                     var table = $('#table').DataTable( {
@@ -542,47 +708,9 @@
     });
 
 
-    ///chart
-    var ctx = document.getElementById("piechart").getContext('2d');
-    var myBarChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-                labels: <?php echo  $json_name ?>,
-                datasets: [{
-                    barPercentage: 0.5,
-                    barThickness: 6,
-                    maxBarThickness: 8,
-                    minBarLength: 2,
-                    data: <?php echo    $json_count ?>,
-                    backgroundColor: <?php echo    $json_color ?>,
-                }]
-            },
-        
-    });
+    
 
-    //////bar
-    var ctx = document.getElementById("bar").getContext('2d');
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        options: {
-            legend: {
-            display: false,
-            }
-        },
-        data: {
-                labels: <?php echo  $json_barname ?>,
-                label: false,
-                datasets: [{
-                    barPercentage: 0.5,
-                    barThickness: 6,
-                    maxBarThickness: 8,
-                    minBarLength: 2,
-                    data: <?php echo    $json_barcount ?>,
-                    backgroundColor: <?php echo    $json_barcolor ?>,
-                }]
-            },
-        
-    });
+   
 
    
 </script>

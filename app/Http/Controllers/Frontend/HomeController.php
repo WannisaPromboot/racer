@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Session;
 
 class HomeController extends Controller
 {
@@ -12,6 +13,10 @@ class HomeController extends Controller
     public function Home(Request $request){
         $ip  = $request->getClientIp();
         $sql = DB::Table('guest')->where('guest_ip',$ip)->first();
+        if(empty(Session::get('langfrontend'))){
+            Session::put('langfrontend','th');
+        }
+
         if(!empty($sql)){
 
         }else{
@@ -24,6 +29,10 @@ class HomeController extends Controller
             'cate'   => \App\Category::orderBy('sort')->get()
         );
         return view('frontend.index',$data);
+    }
+
+    public function ChangeLang(Request $request){
+        Session::put('langfrontend',$request->lang);
     }
 
 }

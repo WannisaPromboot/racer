@@ -25,6 +25,7 @@ Route::get('/clc', function() {
 });
 //Frontend
 Route::get('/', 'Frontend\HomeController@Home');
+Route::get('/changelang', 'Frontend\HomeController@ChangeLang');
 
 Route::get('/about-us', function(){
     $data = array(

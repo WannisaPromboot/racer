@@ -47,14 +47,7 @@ class NewsController extends Controller
        
         return redirect('newcontent')->with('success','บันทึกข้อมูลเรียบร้อยแล้ว');
     }
-    public function ChangeStatusNew(Request $request){
-        if($request->k==1){
-            News::where('id_new',$request->val)->update(['status_new'=>NULL]);
-        }else{
-            News::where('id_new',$request->val)->update(['status_new'=>1]);
-            
-        }
-    }
+   
 
 
 

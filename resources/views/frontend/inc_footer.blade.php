@@ -213,6 +213,19 @@
                 >
         </div> --}}
 </footer>
+<script>
+  function changelang(x){
+    $.ajax({
+        url: '{{ url("changelang")}}',
+        type: 'GET',
+        dataType: 'HTML',
+        data : {'lang' : x},
+        success: function(data) {
+            window.location.reload();
+        }
+    });
+  }
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B5X2FWC94N"></script>
 
         

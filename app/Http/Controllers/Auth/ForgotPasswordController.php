@@ -20,7 +20,7 @@ class ForgotPasswordController extends Controller
             $psw = mt_rand(0000000, 9999999);
             $newpsw = Crypt::encryptString($psw);
             Customer::where('email',$email)->update(['password'=>$newpsw]);
-            Mail::raw('ถึง คุณ '.$sql->firstname.'  '.$sql->lastname.'รหัสผ่านใหม่ของคุณ คือ '.$psw,  
+            Mail::raw('เรียนคุณ '.$sql->firstname.'  '.$sql->lastname.'รหัสผ่านใหม่ของคุณ คือ '.$psw,  
                 function($message) use ($email){
                     $message->to($email)
                             ->subject('การเปลี่ยนรหัสผ่าน')

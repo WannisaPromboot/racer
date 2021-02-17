@@ -29,14 +29,14 @@ class ReportController extends Controller
     }
 
     public function GetReport(Request $request){
+
+        
             if($request->report == 1){
                 $i =1;
-                // dd((date_create($request->datestart)));
                 $stat = '';
                 $customer = OrderItem::whereBetween(DB::raw('DATE(created_at)'), [$request->datestart, $request->dateend])
                                     ->select(DB::raw('COUNT(product_id) as count'),'product_id','created_at')
                                     ->groupBy('product_id')->get();
-                // dd($customer);
                 if(count($customer)>0){
                     echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
@@ -62,44 +62,10 @@ class ReportController extends Controller
                 }else{
                     return 1;
                 }
-            }elseif($request->report == 5){
-                $i =1;
-                $customer = Customer::where(DB::raw('DATE(created_at)'), $request->dateselect)->get();
-                if(count($customer)>0){
-                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>ลำดับที่</th>
-                                            <th>ชื่อ</th>
-                                            <th>นามสกุล</th>
-                                            <th>อีเมล</th>
-                                            <th>วันที่สมัคร</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>';
-                                foreach($customer as $_item){
-                        echo       '<tr>
-                                        <td>'.$i.'</td>
-                                        <td>'.$_item->name.'</td>
-                                        <td>'.$_item->lastname.'</td>
-                                        <td>'.$_item->email.'</td>
-                                        <td>'.$_item->created_at.'</td>
-                                    </tr>';
-                                    $i =$i+1;
-                                }
-                                            
-                    echo     '</tbody>
-                        </table>';
-                }else{
-                    return 1;
-                }
-               
-    
             }elseif($request->report == 2){
                 // dd($request->all());
                 $i =1;
-                $sql = Order::where('created_at','like','%'.$request->dateselect.'%')->get();
+                $sql = Order::where(DB::raw('DATE(created_at)'), $request->dateselect)->get();
                 // dd($sql);
                 if(count($sql)>0){
                         echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -195,6 +161,39 @@ class ReportController extends Controller
                 }else{
                     return 1;
                 }
+            }elseif($request->report == 5){
+                $i =1;
+                $customer = Customer::where(DB::raw('DATE(created_at)'), $request->dateselect)->get();
+                if(count($customer)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>ลำดับที่</th>
+                                            <th>ชื่อ</th>
+                                            <th>นามสกุล</th>
+                                            <th>อีเมล</th>
+                                            <th>วันที่สมัคร</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>';
+                                foreach($customer as $_item){
+                        echo       '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$_item->name.'</td>
+                                        <td>'.$_item->lastname.'</td>
+                                        <td>'.$_item->email.'</td>
+                                        <td>'.$_item->created_at.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo     '</tbody>
+                        </table>';
+                }else{
+                    return 1;
+                }
+                   
             }else if($request->report == 6){
                 $sql = \App\Product::where('product_display',0)->orderby('id_category')->get();
                 if(count($sql)>0){
@@ -296,6 +295,7 @@ class ReportController extends Controller
                     return 1;
                 }
             }elseif($request->report == 11){
+                
                 $i =1;
                 $sql = Customer::whereMonth('birthday', $request->monthselect)->get();
                 if(count($sql)>0){
@@ -328,9 +328,78 @@ class ReportController extends Controller
                 }else{
                     return 1;
                 }
+            }elseif($request->report == 12){
+                $effectiveDate = date('Y-m-d', strtotime("-".'1'." months", strtotime($request->dateselect)));    
+                $sql = Order::whereBetween(DB::raw('DATE(updated_at)'), [$effectiveDate,date('Y-m-d')])->where('status_payment',0)->get();
+                // dd($sql );    
+                $i =1;
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>หมายเลขคำสั่งซื้อ</th>
+                                        <th>ชื่อ</th>
+                                        <th>นามสกุล</th>
+                                        <th>อีเมล</th>
+                                        <th>วันที่ซื้อสินค้า</th> 
+                                        </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                                    $cus = Customer::where('customer_id',$_item->customer_id)->first();
+                        echo        '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$_item->id_order.'</td>
+                                        <td>'.$cus->name.'</td>
+                                        <td>'.$cus->lastname.'</td>
+                                        <td>'.$cus->email.'</td>
+                                        <td>'.$_item->created_at.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
+
+            }elseif($request->report == 13){
+                $effectiveDate = date('Y-m-d', strtotime("-".$request->dateselect." months", strtotime(date('Y-m-d'))));        
+                $sql = Customer::whereNotBetween(DB::raw('DATE(lastlogin)'), [$effectiveDate,date('Y-m-d')])->get();
+                $i =1;
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>ชื่อ</th>
+                                        <th>นามสกุล</th>
+                                        <th>อีเมล</th>
+                                        <th>วันที่เข้าระบบล่าสุด</th> 
+                                        </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                        echo        '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$_item->name.'</td>
+                                        <td>'.$_item->lastname.'</td>
+                                        <td>'.$_item->email.'</td>
+                                        <td>'.$_item->lastlogin.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
+
                 
             }elseif($request->report == 14){
-
                 $i =1;
                 $sql = \App\CustomerLogin::Orderby('count','Desc')->get();
                 if(count($sql)>0){
@@ -362,8 +431,36 @@ class ReportController extends Controller
                 }else{
                     return 1;
                 }
-                
-
+            }elseif($request->report == 15){
+                $i =1;
+                $sql = Order::select(DB::raw('count(*) as paycount, method'))
+                                ->groupBy('method')
+                                ->orderBy('paycount','DESC')
+                                ->get();
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>ประเภทการชำระเงิน</th>
+                                        <th>จำนวน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                        echo        '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$_item->method.'</td>
+                                        <td>'.$_item->paycount.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
             }elseif($request->report == 17){
                 $i =1;
                 $sql = DB::Table('guest')->get();
@@ -383,6 +480,35 @@ class ReportController extends Controller
                                         <td>'.$_item->guest_ip.'</td>
                                     
                                         <td>'.$_item->created_at.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                                
+                    echo    '</tbody>
+                        </table>';
+                }else{
+                    return 1;
+                }
+                
+            }elseif($request->report == 18){
+                $i =1;
+                $sql = Order::leftJoin('customer','product_order.customer_id','=','customer.customer_id')
+                            ->select(DB::raw('COUNT(product_order.customer_id) as count'),'age')->groupBy('age')->get();
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>อายุ</th>
+                                        <th>จำนวนรวมที่ซื้อสินค้า</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                        echo       '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$_item->age.'</td>
+                                        <td>'.$_item->count.'</td>
                                     </tr>';
                                     $i =$i+1;
                                 }

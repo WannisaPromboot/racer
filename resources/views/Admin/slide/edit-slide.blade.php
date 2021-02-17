@@ -1,7 +1,7 @@
 @extends('layouts.templatemaster-admin')
 @include('class.OrangeV1')
 
-@section('title') {{Session::get('lang')=='th'?'แก้ไขสไลด์' :'Edit Slide'}} @endsection
+@section('title') แก้ไขสไลด์ @endsection
 
 @section('css') 
     <!-- Summernote css -->
@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-        <h4 class="mb-0 font-size-18"> {{Session::get('lang')=='th'?'แก้ไขสไลด์' :'Edit Slide'}}</h4>
+        <h4 class="mb-0 font-size-18"> แก้ไขสไลด์</h4>
         </div>
     </div>
 </div>     
@@ -36,12 +36,12 @@
                         <div class="row">
                             <div class="col-sm">
                                 <h5>
-                                    <b>{{Session::get('lang')=='th'?'รูปภาพหรือวิดีโอ':'Image/Video '}}</b>
+                                    <b>รูปภาพหรือวิดีโอ</b>
                                 </h5>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-2">{{Session::get('lang')=='th'?'รูปภาพ':'Image'}} : </div>
+                            <div class="col-2">รูปภาพ : </div>
                             <div class="col-5">
                                 <input type="file" class="form-control" name="filepath" id="filepath" onchange="readImage(this,'filepath');">
                                 @if(!empty($slide->slide_image))
@@ -49,14 +49,14 @@
                                 @endif
                                 {!! OrangeV1::ImagePreviewJs() !!}  
                             </div>
-                            <div class="col-2">{{Session::get('lang')=='th'?'ลำดับรูปภาพ':'Number sequence'}} : </div>
+                            <div class="col-2">ลำดับรูปภาพ : </div>
                             <div class="col-1">
                                 <input type="number" class="form-control" name="sort" value="{{!empty($slide->slide_number)? $slide->slide_number:'' }}">
                             </div>
                         </div>
                         <hr style=" border-top: 1px solid #f1734f;">
                         <div class="row">
-                            <div class="col-2">{{Session::get('lang')=='th'?'วิดิโอ':'Video'}} : </div>
+                            <div class="col-2">วิดิโอ : </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" name="video" placeholder="youtube">
                                 @if(!empty($slide->slide_video))
@@ -65,15 +65,22 @@
                             </div>
                         </div>
                         <br>
-                       
+                        <hr style=" border-top: 1px solid #f1734f;">
+                        <div class="row">
+                            <div class="col-2">ลิงก์ : </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control" name="link" placeholder="link" value="{{!empty($slide->url)? $slide->url:'' }}">
+                               
+                            </div>
+                        </div>
                         <br>
                         <div class="row">
                             <div class="col-sm">
-                                <a href="javascript:void(0)" type="button" style="float:left;" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back '}}</a>
+                                <a href="javascript:void(0)" type="button" style="float:left;" onclick="canclebtn()"  class="btn btn-danger">กลับ</a>
                             </div>
                             <div class="col-sm">
                             
-                                <button type="button" onclick="save('saveside')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button>
+                                <button type="button" onclick="save('saveside')" class="btn btn-success" style="float:right;">ยืนยัน</button>
                             </div>
                             
                         </div>                

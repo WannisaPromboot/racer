@@ -69,69 +69,22 @@
                                 <input type="number" class="form-control" name="sort">
                             </div>
                         </div>
-                        {{-- <hr style=" border-top: 1px solid #556ee6;">
+                        <hr style=" border-top: 1px solid #556ee6;">
                         <div class="row">
                             <div class="col-2">{{Session::get('lang')=='th'?'วิดิโอ':'Video'}} : </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="youtube" name="video">
                             </div>
-                        </div>   --}}
+                        </div>  
                         <br> 
-                        {{-- <hr style=" border-top: 1px solid #556ee6;">
+                        <hr style=" border-top: 1px solid #556ee6;">
                         <div class="row">
                             <div class="col-2">{{Session::get('lang')=='th'?'ลิงค์':'Link'}} : </div>
                             <div class="col-8">
                                 <input type="text" class="form-control" placeholder="link" name="link">
                             </div>
-                        </div>                  --}}
-                        {{-- <hr style=" border-top: 1px solid #556ee6;">
-                        <div class="row">
-                            <div class="col-sm">
-                                <h5>
-                                    <b>{{Session::get('lang')=='th'?'ระยะเวลาแสดง Slide & banner':'Period'}}</b>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="row mr-3 mt-3">
-                            <div class="col-2 mt-2">
-                                <b>{{Session::get('lang')=='th'?'จากวันที่':'From'}} : </b>
-                            </div>
-                            <div class="col-3">
-                                <input type="date" class="form-control" name="datefrom" min="{{date('Y-m-d')}}">
-                            </div>
-                            <div class="col-1 mt-2">
-                                <b>{{Session::get('lang')=='th'?'ถึงวันที่':'To'}} : </b>
-                            </div>
-                            <div class="col-3">
-                                <input type="date" class="form-control" name="dateto">
-                            </div>
-                        </div> --}}
-                        {{-- <hr style=" border-top: 1px solid #556ee6;">
-                        <div class="row">
-                            <div class="col-sm">
-                                <h5>
-                                    <b>{{Session::get('lang')=='th'?'กลุ่มลูกค้า':'Target'}}</b>
-                                </h5>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="row mt-3">
-                            <div class="col-6">
-                                <label for="name">{{Session::get('lang')=='th'?'กลุ่มลูกค้า':'Target'}} :</label>
-                                <select name="target[]" data-role="tagsinput" multiple="multiple"  class="form-control functional" name="target">
-                                        <option class="item_type" value="all">all</option>
-                                        <option class="item_type" value="spa">สปา & นวด</option>
-                                        <option class="item_type" value="hair">ครบเครื่องเรื่องทำผม</option>
-                                        <option class="item_type" value="nail">ทำเล็บ</option>
-                                        <option class="item_type" value="eye">ขนตาและคิ้ว</option>
-                                        <option class="item_type" value="depilatory">บริการกำจัดขน</option>
-                                        <option class="item_type" value="beayty">คลินิกความงาม</option>
-                                        <option class="item_type" value="surgery">ศัลยกรรม</option>
-                                        <option class="item_type" value="dentist">คลินิคทำฟัน</option>
-                                        <option class="item_type" value="IVF">IVF & CHECK UP</option>
-                                        <option class="item_type" value="fitness">ฟิตเนส</option>
-                                </select>  
-                            </div>
-                        </div> --}}
+                        </div>                 
+                        
                         <div data-repeater-item class="outer mt-3"> 
                             <button type="button" onclick="save('saveslide')" class="btn btn-success" style="float:right;">{{Session::get('lang')=='th'?'ยืนยัน ' :'Confirm '}}</button>
                             <a href="{{url('slidecontent')}}" onclick="canclebtn()"  class="btn btn-danger">{{Session::get('lang')=='th'?'กลับ ' :'Back '}}</a>

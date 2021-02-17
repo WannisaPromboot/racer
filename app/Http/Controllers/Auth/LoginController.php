@@ -44,8 +44,11 @@ class LoginController extends Controller
                 $input['email'] = $user->getEmail();
                 $input['provider'] = $provider;
                 $input['provider_id']=  $user->getId();
+                $input['lastlogin']=  date("Y-m-d");
 
                 $authUser = $this->findOrCreate($input,$provider,$user->getId(),$random );
+                Customer::where('email',$user->getEmail())->update(['lastlogin'=> date("Y-m-d")]);
+
                 Session::put('username',$user->getName()); 
                 $this->customerlogin(Session::get('customer_id'));
                 // Session::put('currency','THB');
@@ -97,6 +100,7 @@ class LoginController extends Controller
                 Session::put('username',$emailuser->name); 
                 // Session::put('currency','THB');
                 $CustomerModel::where('email',$request->email)->update(['count'=> 0]);
+                $CustomerModel::where('email',$request->email)->update(['lastlogin'=> date("Y-m-d")]);
             
                 // $this->getIP($emailuser->customer_id,$request->getClientIp());
                 $this->customerlogin($emailuser->customer_id);
