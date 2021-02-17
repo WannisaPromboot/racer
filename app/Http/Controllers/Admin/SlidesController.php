@@ -35,23 +35,29 @@ class SlidesController extends Controller
 
     public function SaveSlide(Request $request){
         $SlideContent = new Slide;
-        if($request->sort !== null){
+        if($request->sort != null){
             $SlideContent->slide_number = $request->sort;
         }else{
             $SlideContent->slide_number = 0;
 
         }
                     ////video youtube
-        if($request->video !== null){
+        if($request->video != null){
             $youtube =  str_replace("watch?v=", "embed/",$request->video);
             $SlideContent->slide_video = $youtube;
         }
 
         
-        if($request->filepath !== null){
+        if($request->filepath != null){
             $newFilename = 'Slide/'.time().$request->filepath->getClientOriginalName();
             Storage::put($newFilename, file_get_contents($request->filepath));
             $SlideContent->slide_image = $newFilename;
+        }
+        if($request->link==''){
+            $SlideContent->url = NULL;
+        }else{
+            $SlideContent->url = $request->link;
+
         }
 
         $SlideContent->save();
@@ -71,10 +77,16 @@ class SlidesController extends Controller
             $SlideContent->slide_number = $request->sort;
         }
         
-        if($request->filepath !== null){
+        if($request->filepath != null){
             $newFilename = 'Slide/'.time().$request->filepath->getClientOriginalName();
             Storage::put($newFilename, file_get_contents($request->filepath));
             $SlideContent->slide_image = $newFilename;
+        }
+        if($request->link==''){
+            $SlideContent->url = NULL;
+        }else{
+            $SlideContent->url = $request->link;
+
         }
 
         $SlideContent->save();

@@ -25,6 +25,7 @@ Route::get('/clc', function() {
 });
 //Frontend
 Route::get('/', 'Frontend\HomeController@Home');
+Route::get('/changelang', 'Frontend\HomeController@ChangeLang');
 
 Route::get('/about-us', function(){
     $data = array(
@@ -62,6 +63,8 @@ Route::get('/detail-article/{id}', function($id){
     $data = array(
         'data' => \App\Blog::where('id_blog',$id)->first(),
         'img' => \App\Blog_gallery::where('id_blog',$id)->get(),
+        'banner' => App\Slide::where('page',5)->first(),
+
     );
     return view('frontend.detail-article',$data);
 });

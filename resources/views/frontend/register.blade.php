@@ -768,7 +768,7 @@ a:hover {
                                 <span class="text"> :  racer_official@racerlighting.com</span></div>
                                 <div class="icon mr-2 d-flex justify-content-center align-items-center">
                                     <i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-                                <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
+                                <span class="text"> : {{Session::get('langfrontend')=='th'?'วันจันทร์ - วันศุกร์':'Monday - Friday '}} : 08.00น. - 17.00น.</span></div>
                             </div>
                         <div class="col-md-4">
                         <div class="icon mr-2 d-flex justify-content-center" id="social">
@@ -805,12 +805,12 @@ a:hover {
             </button>
     
               <div class="collapse navbar-collapse" id="ftco-nav">
-    
+                
                 <div class="col-md-8">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+                        <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">{{Session::get('langfrontend')=='th'?'หน้าหลัก':'Home'}} <span class="menu-span-col">|</span> </a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('langfrontend')=='th'?'สินค้า':'Product'}}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
                                 <?php $menu = \App\Category::orderby('sort')->get(); ?>
                                     @foreach ($menu as $_menu)
@@ -818,17 +818,17 @@ a:hover {
                                     @endforeach
                             </div>
                         </li>
-                        <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
-                        <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+                        <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> {{Session::get('langfrontend')=='th'?'เกี่ยวกับเรา':'About Us'}}</a></li>
+                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> {{Session::get('langfrontend')=='th'?'ข่าวสารและโปรโมชั่น':'News & Promotion'}}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                <a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
-                                <a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+                                <a class="dropdown-item" href="{{url('/news')}}">{{Session::get('langfrontend')=='th'?'ข่าวสาร':'News'}}</a>
+                                <a class="dropdown-item" href="{{url('/promotion')}}">{{Session::get('langfrontend')=='th'?'โปรโมชั่น':'Promotion'}}</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
-                        <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
+                        <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> {{Session::get('langfrontend')=='th'?'บทความ':'Article'}}</a></li>
+                        <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> {{Session::get('langfrontend')=='th'?'ติดต่อเรา':'Contact Us'}}</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4" id="pay-nemu">
@@ -985,8 +985,8 @@ a:hover {
                                 </div>
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
-                                            <a href="{{url('cart')}}"><button type="button" class="checkout">ตะกร้าสินค้า</button></a>
-                                
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">{{Session::get('langfrontend')=='th'?'ดูตระกร้าสินค้า':'View Cart'}}</button></a>
+                                            
                             </div>
     
                         </div>
@@ -1006,22 +1006,22 @@ a:hover {
               </li>
                         <!-- <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li> -->
                         @if(empty(Session::get('customer_id')))
-                            <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-                        @else
+                            <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">{{Session::get('langfrontend')=='th'?'ลงชื่อเข้าใช้':'Sign In'}}</a></li>
+                        @else 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                    <a class="dropdown-item" href="{{url('/order-history')}}">ประวัติการซื้อ</a>
-                                    <a class="dropdown-item" href="{{url('/logout')}}">ลงชื่อออก </a>
+                                    <a class="dropdown-item" href="{{url('/order-history')}}">{{Session::get('langfrontend')=='th'?'ประวัติการซื้อ':'Order History'}}</a>
+                                    <a class="dropdown-item" href="{{url('/logout')}}">{{Session::get('langfrontend')=='th'?'ลงชื่อออก':'Logout'}} </a>
                                 </div>
                             </li>
                         @endif
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> {{Session::get('langfrontend')=='th'?'ภาษา':'Language'}}</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
-                                <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
-                            </div>
+                              <a class="dropdown-item" href="javascript:void(0)" onclick="changelang('th');"><img src="{{asset('frontend/images/th.jpg')}}"> {{Session::get('langfrontend')=='th'?'ภาษาไทย':'TH'}}</a>
+                              <a class="dropdown-item" href="javascript:void(0)" onclick="changelang('en');"><img src="{{asset('frontend/images/england.png')}}"> {{Session::get('langfrontend')=='th'?'ภาษาอังกฤษ':'EN'}}</a>
+                          </div>
                         </li>
                     </ul>
                 </div>
@@ -1075,26 +1075,26 @@ a:hover {
                               <div class="row">
                             
                                 <div class="col-75">
-                                  <input type="text" name="name" placeholder="Name*">
+                                  <input type="text" name="name" placeholder="{{Session::get('langfrontend')=='th'?'ชื่อ*':'Name*'}}">
                                 </div>
                               </div>
                               <div class="row">
                             
                                 <div class="col-75">
-                                  <input type="text" name="email" placeholder="E-mail*">
+                                  <input type="text" name="email" placeholder="{{Session::get('langfrontend')=='th'?'อีเมล*':'E-mail*'}}">
                                 </div>
                               </div>
                               <div class="row">
                             
                                 <div class="col-75">
-                                  <input type="text" name="address" placeholder="Address*">
+                                  <input type="text" name="address" placeholder="{{Session::get('langfrontend')=='th'?'ที่อยู่*':'Address*'}}">
                                 </div>
                               </div>
                               <div class="row">
                             
                                 <div class="col-75">
                                   <select id="amphure" name="amphure">
-                                    <option value="">Specify Amphure*</option>
+                                    <option value="">{{Session::get('langfrontend')=='th'?'เลือกอำเภอ*':'Specify Amphure*'}}</option>
                                     
                                   </select>
                                 </div>
@@ -1102,7 +1102,7 @@ a:hover {
 
                               <div class="row">
                                 <div class="col-75">
-                                  <input type="text" id="zipcode" name="postal" placeholder="Postal code" readonly>
+                                  <input type="text" id="zipcode" name="postal" placeholder="{{Session::get('langfrontend')=='th'?'รหัสไปรษณีย์':'Postal code'}}" readonly>
                                 </div>
                               </div>
                               <div class="row">
@@ -1113,9 +1113,10 @@ a:hover {
                               <div class="row">
                                 <div class="col-75">
                                  <select class="form-control" name="gender">
-                                   <option>กรุณาเลือก</option>
-                                   <option>ชาย</option>
-                                   <option>หญิง</option>
+                                   <option value="">{{Session::get('langfrontend')=='th'?'กรุณาเลือก':'Please Select'}}</option>
+                                   <option value="ชาย">{{Session::get('langfrontend')=='th'?'ชาย':'Male'}}</option>
+                                   <option value="หญิง">{{Session::get('langfrontend')=='th'?'หญิง':'Female'}}</option>
+                                   <option value="หญิง">{{Session::get('langfrontend')=='th'?'หญิง':'Not specified'}}</option>
                                  </select>
                                 </div>
                               </div> 
@@ -1126,13 +1127,13 @@ a:hover {
                               <div class="row">
                             
                                 <div class="col-75">
-                                  <input type="text" name="lastname" placeholder="Last Name*">
+                                  <input type="text" name="lastname" placeholder="{{Session::get('langfrontend')=='th'?'นามสกุล*':'Last Name*'}}">
                                 </div>
                               </div>
                               <div class="row">
                             
                                 <div class="col-75">
-                                  <input type="text" name="phone" placeholder="Phone No.*">
+                                  <input type="text" name="phone" placeholder="{{Session::get('langfrontend')=='th'?'เบอร์โทรศัพท์*':'Phone No.*'}}">
                                 </div>
                               </div>
 
@@ -1140,9 +1141,9 @@ a:hover {
                             
                                 <div class="col-75">
                                   <select id="province" name="province"  style="height: 50px">
-                                    <option value="">Spacify Province*</option>
+                                    <option value="">{{Session::get('langfrontend')=='th'?'เลือกจังหวัด*':'Spacify Province*'}}</option>
                                     @foreach($province as $pro)
-                                      <option value="{{$pro->id}}">{{$pro->name_th}}</option>
+                                      <option value="{{$pro->id}}">{{Session::get('langfrontend')=='th'?$pro->name_th:$pro->name_en}}</option>
 
                                     @endforeach
                                   </select>
@@ -1153,15 +1154,15 @@ a:hover {
                             
                                 <div class="col-75">
                                   <select id="district" name="district"  style="height: 50px">
-                                    <option value="">Specify District</option>
-                                   
+                                    <option value="">{{Session::get('langfrontend')=='th'?'เลือกตำบล':'Specify District'}}</option>
+                                    
                                   </select>
                                 </div>
                               </div>
 
                               <div class="row">
                                 <div class="col-75">
-                                  <input type="password" name="password" placeholder="password">
+                                  <input type="password" name="password" placeholder=" {{Session::get('langfrontend')=='th'?'รหัสผ่าน*':'password*'}}">
                                 </div>
                               </div>
                             
@@ -1188,10 +1189,10 @@ a:hover {
                     <div class="col-md-12 col-lg-12 mb-12" >
                       
                         <div class="but">
-                          <center><button type="submit" class="submit2">สมัครสมาชิก</button></center>
+                          <center><button type="submit" class="submit2"> {{Session::get('langfrontend')=='th'?'สมัครสมาชิก':'Confirm'}}</button></center>
                         </div>
                    
-          
+                       
                     </div>
                   </div>
                 </div>

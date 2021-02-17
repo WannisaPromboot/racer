@@ -206,11 +206,9 @@
 
         }
       
- 
         $json_name  = json_encode( $name);
         $json_count = json_encode( $count);
         $json_color = json_encode( $color);
-
 
         /////bar 
         $bar = \App\CustomerPage::select(DB::raw('count(id) as count'),'page')
@@ -235,7 +233,33 @@
         $json_barcount = json_encode( $barcount);
         $json_barcolor = json_encode( $barcolor);
 
-?>                         
+
+        $tranfer = \App\Order::select(DB::raw('count(id_order) as count'))->where('method','tranfer')->first();
+        $credit = \App\Order::select(DB::raw('count(id_order) as count'))->where('method','credit')->first();
+
+        $typepayname = array('tranfer', 'credit');
+        $typepaycount = array($tranfer->count,$credit->count);
+        $typepaycolor = array('#'.dechex(rand(0x000000, 0xFFFFFF)),'#'.dechex(rand(0x000000, 0xFFFFFF)));
+
+        $json_typepayname = json_encode( $typepayname);
+        $json_typepaycount = json_encode( $typepaycount);
+        $json_typepaycolor = json_encode( $typepaycolor);
+
+        $male = \App\Order::leftJoin('customer','product_order.customer_id','customer.customer_id')
+                             ->where('gender','ชาย')->get();
+        $female = \App\Order::leftJoin('customer','product_order.customer_id','customer.customer_id')
+                                ->where('gender','หญิง')->get();
+        $na = \App\Order::leftJoin('customer','product_order.customer_id','customer.customer_id')
+                            ->where('gender','ไม่ระบุ')->get();
+        // dd($na);
+        $gendername = array('ชาย', 'หญิง' ,'ไม่ระบุ');
+        $gendercount  = array(count($male),count($female),count($na));
+        $gendercolor = array('#'.dechex(rand(0x000000, 0xFFFFFF)),'#'.dechex(rand(0x000000, 0xFFFFFF)),'#'.dechex(rand(0x000000, 0xFFFFFF)));
+
+        $json_gendername = json_encode( $gendername);
+        $json_gendercount = json_encode( $gendercount);
+        $json_gendercolor = json_encode( $gendercolor);
+?>                        
 
 @endsection
 
@@ -270,7 +294,7 @@
 
     $('#selectreport').change(function(){
 
-        if($(this).val() != 9){
+        if($(this).val() != 9 || $(this).val() != 15 || $(this).val() != 19){
                  /////display
             $('#chart').css('display','none');
         }
@@ -283,19 +307,20 @@
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='none';
             document.getElementById('startend').style.display='';
+            $('#new').removeAttr('style');
+            $('#datem').css('display','none');
 
-        }else if($(this).val()==2){
+        }else if($(this).val()==2 || $(this).val()==12 || $(this).val()==5){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';
             document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
+            document.getElementById('textselect').style.display='';
+            $('#new').removeAttr('style');
+            $('#datem').css('display','none');
 
-        }else if($(this).val()==5){
-            document.getElementById('m').style.display='none';
-            document.getElementById('dmy').style.display='';
-            document.getElementById('startend').style.display='none';
-            $('.selectall').attr('disabled',false);
-        }else if($(this).val()==6){
+
+        }else if($(this).val()==6 || $(this).val()==13){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='none';
             document.getElementById('startend').style.display='none';
@@ -307,18 +332,42 @@
             document.getElementById('dmy').style.display='none';
             document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
+            document.getElementById('textselect').style.display='';
+            $('#new').removeAttr('style');
 
         }else if($(this).val()==8){
 
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
             window.open('https://analytics.google.com/analytics/web/?authuser=2#/p262553732/realtime/overview?params=_u..nav%3Ddefault%26_u..comparisons%3D%5B%7B%22name%22:%22All%20Users%22,%22filters%22:%5B%7B%22isCaseSensitive%22:true,%22expression%22:%220%22,%22fieldName%22:%22audience%22%7D%5D%7D%5D%26_u.comparisonOption%3Ddisabled%26_u.dateOption%3Dlast30Days', '_blank');
+        
         }else if($(this).val()==7){  ////bar
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
-           
+            //////bar
+            var ctx = document.getElementById("bar").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                options: {
+                    legend: {
+                    display: false,
+                    }
+                },
+                data: {
+                        labels: <?php echo  $json_barname ?>,
+                        label: false,
+                        datasets: [{
+                            barPercentage: 0.5,
+                            barThickness: 6,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: <?php echo    $json_barcount ?>,
+                            backgroundColor: <?php echo    $json_barcolor ?>,
+                        }]
+                    },
+                
+            });
             $('#new').css('display','none');
-
             $.ajax({
                 url: '{{ url("getreport")}}',
                 type: 'GET',
@@ -326,23 +375,42 @@
                 data : {'report' : $(this).val()},
                 success: function(data) {
                     if(data==1){
-                        alert('ไม่พบข้อมูล');
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                     }else{
                         //$('#new').removeAttr('style');
                         $('#barchart').removeAttr('style');
                         $('#barchart_excel').html(data);
                     }
-                  
-                
                 }
             });
         
         }else if($(this).val()==9){
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
-           
-            $('#new').css('display','none');
+            $('#datem').css('display','none');
 
+           ///chart
+            var ctx = document.getElementById("piechart").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                        labels: <?php echo  $json_name ?>,
+                        datasets: [{
+                            barPercentage: 0.5,
+                            barThickness: 6,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: <?php echo    $json_count ?>,
+                            backgroundColor: <?php echo    $json_color ?>,
+                        }]
+                    },
+                
+            });
+            $('#new').css('display','none');
             $.ajax({
                 url: '{{ url("getreport")}}',
                 type: 'GET',
@@ -350,14 +418,16 @@
                 data : {'report' : $(this).val()},
                 success: function(data) {
                     if(data==1){
-                        alert('ไม่พบข้อมูล');
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                     }else{
                         //$('#new').removeAttr('style');
                         $('#chart').removeAttr('style');
                         $('#chart_excel').html(data);
                     }
-                  
-                
                 }
             });
 
@@ -367,7 +437,8 @@
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
             window.open('https://analytics.google.com/analytics/web/?authuser=2#/p262553732/reports/dashboard?params=_u..nav%3Ddefault%26_u..comparisons%3D%5B%7B%22name%22:%22All%20Users%22,%22filters%22:%5B%7B%22isCaseSensitive%22:true,%22expression%22:%220%22,%22fieldName%22:%22audience%22%7D%5D%7D%5D%26_u.comparisonOption%3Ddisabled%26_u.dateOption%3Dtoday&r=user-demographics-overview', '_blank');
-        }else if($(this).val()==17 || $(this).val()==3  || $(this).val()==4  || $(this).val()==14){
+        
+        }else if($(this).val()==17 || $(this).val()==3  || $(this).val()==4  || $(this).val()==14 ){
             $('.selectall').attr('disabled',true);
             document.getElementById('startend').style.display='none';
             document.getElementById('dmy').style.display='none';
@@ -380,7 +451,11 @@
                 data : {'report' : $(this).val()},
                 success: function(data) {
                     if(data==1){
-                        alert('ไม่พบข้อมูล');
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                     }else{
                         $('#new').removeAttr('style');
                         $('#new').html(data);
@@ -394,10 +469,92 @@
                             ]
                         });
                     }
-                  
-                
                 }
             });
+        }else if($(this).val()==15){
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+           ///chart
+            var ctx = document.getElementById("piechart").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                        labels: <?php echo  $json_typepayname ?>,
+                        datasets: [{
+                            barPercentage: 0.5,
+                            barThickness: 6,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: <?php echo    $json_typepaycount ?>,
+                            backgroundColor: <?php echo    $json_typepaycolor ?>,
+                        }]
+                    },
+                
+            });
+            $('#new').css('display','none');
+            $.ajax({
+                url: '{{ url("getreport")}}',
+                type: 'GET',
+                dataType: 'HTML',
+                data : {'report' : $(this).val()},
+                success: function(data) {
+                    if(data==1){
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
+                    }else{
+                        //$('#new').removeAttr('style');
+                        $('#chart').removeAttr('style');
+                        $('#chart_excel').html(data);
+                    }
+                }
+            });
+
+
+        }else if($(this).val()==18){
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+           ///chart
+            var ctx = document.getElementById("piechart").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                        labels: <?php echo  $json_gendername ?>,
+                        datasets: [{
+                            barPercentage: 0.5,
+                            barThickness: 6,
+                            maxBarThickness: 8,
+                            minBarLength: 2,
+                            data: <?php echo    $json_gendercount ?>,
+                            backgroundColor: <?php echo    $json_gendercolor ?>,
+                        }]
+                    },
+                
+            });
+            $('#new').css('display','none');
+            $.ajax({
+                url: '{{ url("getreport")}}',
+                type: 'GET',
+                dataType: 'HTML',
+                data : {'report' : $(this).val()},
+                success: function(data) {
+                    if(data==1){
+                        Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
+                    }else{
+                        //$('#new').removeAttr('style');
+                        $('#chart').removeAttr('style');
+                        $('#chart_excel').html(data);
+                    }
+                }
+            });
+
+
         }
 
     });
@@ -412,7 +569,11 @@
             data : {'report' :report,'monthselect':monthselect},
             success: function(data) {
                 if(data==1){
-                    alert('ไม่พบข้อมูล');
+                    Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                 }else{
                     $('#new').removeAttr('style');
                     $('#new').html(data);
@@ -465,7 +626,11 @@
             data : {'report' :report,'datestart':datestart,'dateend':dateend},
             success: function(data) {
                 if(data==1){
-                    alert('ไม่พบข้อมูล');
+                    Swal.fire({
+                            text: "ไม่พบข้อมูล",
+                            type:"error"
+                        
+                        });
                 }else{
                     $('#new').html(data);
                     var table = $('#table').DataTable( {
@@ -543,47 +708,9 @@
     });
 
 
-    ///chart
-    var ctx = document.getElementById("piechart").getContext('2d');
-    var myBarChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-                labels: <?php echo  $json_name ?>,
-                datasets: [{
-                    barPercentage: 0.5,
-                    barThickness: 6,
-                    maxBarThickness: 8,
-                    minBarLength: 2,
-                    data: <?php echo    $json_count ?>,
-                    backgroundColor: <?php echo    $json_color ?>,
-                }]
-            },
-        
-    });
+    
 
-    //////bar
-    var ctx = document.getElementById("bar").getContext('2d');
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        options: {
-            legend: {
-            display: false,
-            }
-        },
-        data: {
-                labels: <?php echo  $json_barname ?>,
-                label: false,
-                datasets: [{
-                    barPercentage: 0.5,
-                    barThickness: 6,
-                    maxBarThickness: 8,
-                    minBarLength: 2,
-                    data: <?php echo    $json_barcount ?>,
-                    backgroundColor: <?php echo    $json_barcolor ?>,
-                }]
-            },
-        
-    });
+   
 
    
 </script>

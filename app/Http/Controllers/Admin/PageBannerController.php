@@ -18,12 +18,7 @@ class PageBannerController extends Controller
         );
         
         return view('Admin.pagebanner.add-banner-page',$data);
-        
-        
-        
     }
-
-
 
     public function Savepagebanner(Request $request){
         $pagebanner = Slide::where('page', $request->page)->first();
@@ -42,9 +37,6 @@ class PageBannerController extends Controller
                 Slide::where('page',$request->page)->update(['slide_image'=>$newFilename]);
             }
         }
-        
-        
-
 
         return redirect('pagecontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
     }
@@ -57,9 +49,6 @@ class PageBannerController extends Controller
         );
         
         return view('Admin.pagebanner.editsub-banner',$data);
-        
-        
-        
     }
 
 
@@ -92,11 +81,11 @@ class PageBannerController extends Controller
             }
         }
         
-        if(isset($request->link1)){
+        if($request->link1 != ''){
            
             DB::Table('subbanner')->where('subbanner_sort',1)->where('subbanner_page',$request->page)->update(['subbanner_link'=>$request->link1]);
         }
-        if(isset($request->link2)){
+        if($request->link2 != ''){
        
             DB::Table('subbanner')->where('subbanner_sort',2)->where('subbanner_page',$request->page)->update(['subbanner_link'=>$request->link2]);
         }
