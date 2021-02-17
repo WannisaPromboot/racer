@@ -10,6 +10,7 @@ use App\Customer;
 use App\Order;
 use App\Product;
 use App\OrderItem;
+use PDF;
 
 class ReportController extends Controller
 {
@@ -166,8 +167,100 @@ class ReportController extends Controller
                 }else{
                     return 1;
                 }
+            }else if($request->report == 4){
+                $i =1;
+                $sql = \App\Order::select(DB::raw('SUM(total) as sum'),'customer_id')
+                                    ->where('status_process',1)
+                                    ->orderby('sum','desc')
+                                    ->groupby('customer_id')
+                                    ->get();
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>ชื่อ - สกุล</th>
+                                        <th>ยอดสั่งซื้อ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
 
-            
+                                    $cus = Customer::where('customer_id',$_item->customer_id)->first();
+                        echo        '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$cus->name.'   '.$cus->lastname.'</td>
+                                        <td>'.number_format($_item->sum).'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
+            }elseif($request->report == 7){
+                $i =1;
+                $sql = \App\CustomerPage::select(DB::raw('count(id) as count'),'page')
+                                    ->orderby('count','desc')
+                                    ->groupby('page')
+                                    ->get();
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>หน้า</th>
+                                        <th>จำนวน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+
+                                    $cus = Customer::where('customer_id',$_item->customer_id)->first();
+                        echo        '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$_item->page.'</td>
+                                        <td>'.$_item->count.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
+            }else if($request->report == 9){
+                $i =1;
+                $sql = \App\CustomerDevice::all();
+                if(count($sql)>0){
+                    echo    '<table class="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>อุปกรณ์</th>
+                                        <th>บราวเซอร์</th>
+                                        <th>จำนวน</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                        echo        '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$_item->device.'</td>
+                                        <td>'.$_item->browser.'</td>
+                                        <td>'.$_item->count.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
             }elseif($request->report == 11){
                 $i =1;
                 $sql = Customer::whereMonth('birthday', $request->monthselect)->get();
@@ -297,6 +390,14 @@ class ReportController extends Controller
         return $result;
         
         
+    }
+
+    public function exportPDF(){
+        $data = [];
+        $pdf = PDF::loadView('Admin.report.device_chart', $data);
+        return $pdf->download('customer_device.pdf');
+
+        //return view('Admin.report.device_chart');
     }
 
 }

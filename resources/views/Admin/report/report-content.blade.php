@@ -44,7 +44,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-1 text-right mt-2"><b>รายงาน </b></div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <select class="form-control" id="selectreport" style="display:">
                             <option value="">กรุณาเลือก</option>
                             <option value="1">รายงานสินค้าขายดี</option>
@@ -92,6 +92,20 @@
                         <div class="col-4" id="dmy" style="display:">
                             <input type="date" name="date" id="dateselect" class="form-control selectall">
                         </div>
+
+                        {{-- เดือน --}}
+                        <div class="col-5" id="date"  style="display: none"> 
+                           <div class="row">
+                               <div class="col-sm">
+                                   <input type="date" class="form-control" id="datefrom">
+                               </div>
+                               <div class="col-1 mt-2">-</div>
+                               <div class="col-sm">
+                                <input type="date" class="form-control" id="dateto" disabled>
+                            </div>
+                           </div>
+                        </div>
+                        <input type="hidden" id="report" value="">
                     
                     <div class="col-4" id="m" style="display:none"> 
                         <select class="form-control selectall" id="monthselect" >
@@ -119,6 +133,7 @@
                    
                 </div>
                 <br>
+          
                
                 <div class="row">  
                     <div class="col-sm" id="btn">
@@ -129,12 +144,88 @@
                 <br>
                 <div class="row p-3" id="new">
                 </div>
+                <br>
+                <div id="chart" style="display: none">
+                    <div class="row">
+                       {{-- <div class="col-2">
+                           <a href="{{url('exportPDF')}}" class="btn btn-danger">Export PDF</a>
+                       </div> --}}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <canvas id="piechart" style="width: 800px;height:300px;"></canvas>
+                        </div>
+                        <div class="col-sm" id="chart_excel">
+                            <div ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="barchart" style="display: none">
+                    <div class="row">
+                       {{-- <div class="col-2">
+                           <a href="{{url('exportPDF')}}" class="btn btn-danger">Export PDF</a>
+                       </div> --}}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <canvas id="bar" style="width: 800px;height:300px;"></canvas>
+                        </div>
+                        <div class="col-sm" id="barchart_excel">
+                            <div ></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 <!-- end row -->
-                        
+{{-- chart --}}
+<?php  $graph =  \App\CustomerDevice::all();
+        $count  = array();
+        $name  = array();  
+        $color  = array();
+
+        foreach ($graph as $key => $value) {
+
+            array_push($count,$value->count);
+            array_push($name,$value->device.' ใช้ '.$value->browser);
+            array_push($color , '#'.dechex(rand(0x000000, 0xFFFFFF)));
+
+        }
+      
+ 
+        $json_name  = json_encode( $name);
+        $json_count = json_encode( $count);
+        $json_color = json_encode( $color);
+
+
+        /////bar 
+        $bar = \App\CustomerPage::select(DB::raw('count(id) as count'),'page')
+                                    ->orderby('count','desc')
+                                    ->groupby('page')
+                                    ->get();
+       
+        $barcount  = array();
+        $barname  = array();  
+        $barcolor  = array();
+
+        foreach ($bar as $key => $value) {
+
+            array_push($barcount,$value->count);
+            array_push($barname,$value->page);
+            array_push($barcolor , '#'.dechex(rand(0x000000, 0xFFFFFF)));
+
+        }
+      
+     
+        $json_barname  = json_encode( $barname);
+        $json_barcount = json_encode( $barcount);
+        $json_barcolor = json_encode( $barcolor);
+
+?>                         
 
 @endsection
 
@@ -161,9 +252,23 @@
 
 <!-- Bootstrap tags input -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+
+<!-- chart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 <script>
 
     $('#selectreport').change(function(){
+
+        if($(this).val() != 9){
+                 /////display
+            $('#chart').css('display','none');
+        }
+        if($(this).val() != 7){
+                 /////display
+            $('#barchart').css('display','none');
+        }
+
         if($(this).val()==1){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='none';
@@ -186,8 +291,67 @@
             document.getElementById('dmy').style.display='none';
             document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
-            
-        }else if($(this).val()==17 || $(this).val()==3 || $(this).val()==14 ){
+
+        }else if($(this).val()==8){
+
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+            window.open('https://analytics.google.com/analytics/web/?authuser=2#/p262553732/realtime/overview?params=_u..nav%3Ddefault%26_u..comparisons%3D%5B%7B%22name%22:%22All%20Users%22,%22filters%22:%5B%7B%22isCaseSensitive%22:true,%22expression%22:%220%22,%22fieldName%22:%22audience%22%7D%5D%7D%5D%26_u.comparisonOption%3Ddisabled%26_u.dateOption%3Dlast30Days', '_blank');
+        }else if($(this).val()==7){  ////bar
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+           
+            $('#new').css('display','none');
+
+            $.ajax({
+                url: '{{ url("getreport")}}',
+                type: 'GET',
+                dataType: 'HTML',
+                data : {'report' : $(this).val()},
+                success: function(data) {
+                    if(data==1){
+                        alert('ไม่พบข้อมูล');
+                    }else{
+                        //$('#new').removeAttr('style');
+                        $('#barchart').removeAttr('style');
+                        $('#barchart_excel').html(data);
+                    }
+                  
+                
+                }
+            });
+        
+        }else if($(this).val()==9){
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+           
+            $('#new').css('display','none');
+
+            $.ajax({
+                url: '{{ url("getreport")}}',
+                type: 'GET',
+                dataType: 'HTML',
+                data : {'report' : $(this).val()},
+                success: function(data) {
+                    if(data==1){
+                        alert('ไม่พบข้อมูล');
+                    }else{
+                        //$('#new').removeAttr('style');
+                        $('#chart').removeAttr('style');
+                        $('#chart_excel').html(data);
+                    }
+                  
+                
+                }
+            });
+
+
+        }else if($(this).val() == 10) {
+
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+            window.open('https://analytics.google.com/analytics/web/?authuser=2#/p262553732/reports/dashboard?params=_u..nav%3Ddefault%26_u..comparisons%3D%5B%7B%22name%22:%22All%20Users%22,%22filters%22:%5B%7B%22isCaseSensitive%22:true,%22expression%22:%220%22,%22fieldName%22:%22audience%22%7D%5D%7D%5D%26_u.comparisonOption%3Ddisabled%26_u.dateOption%3Dtoday&r=user-demographics-overview', '_blank');
+        }else if($(this).val()==17 || $(this).val()==3  || $(this).val()==4  || $(this).val()==14 ){
             $('.selectall').attr('disabled',true);
             document.getElementById('startend').style.display='none';
             document.getElementById('dmy').style.display='none';
@@ -202,6 +366,7 @@
                     if(data==1){
                         alert('ไม่พบข้อมูล');
                     }else{
+                        $('#new').removeAttr('style');
                         $('#new').html(data);
                         var table = $('#table').DataTable( {
                             "scrollX": true,
@@ -233,6 +398,7 @@
                 if(data==1){
                     alert('ไม่พบข้อมูล');
                 }else{
+                    $('#new').removeAttr('style');
                     $('#new').html(data);
                     var table = $('#table').DataTable( {
                         "scrollX": true,
@@ -249,6 +415,27 @@
         });
     });
 
+    // $('#dateto').change(function(){
+    //     $.ajax({
+    //             url: '{{ url("getreport")}}',
+    //             type: 'GET',
+    //             dataType: 'HTML',
+    //             data : {'report' : $('#report').val() , 'datefrom' : $('#datefrom').val() , 'dateto' : $('#dateto').val()   },
+    //             success: function(data) {
+    //                 if(data==1){
+    //                     alert('ไม่พบข้อมูล');
+    //                 }else{
+
+    //                 }
+                  
+                
+    //             }
+    //         });
+    // });
+
+    // $('#datefrom').change(function(){
+    //         $('#dateto').removeAttr('disabled');
+    // });
     $('#dateend').change(function(){
         var dateend = $(this).val();
         var datestart = document.getElementById('datestart').value;
@@ -308,6 +495,43 @@
         });
     });
 
+
+    ///chart
+    var ctx = document.getElementById("piechart").getContext('2d');
+    var myBarChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+                labels: <?php echo  $json_name ?>,
+                datasets: [{
+                    barPercentage: 0.5,
+                    barThickness: 6,
+                    maxBarThickness: 8,
+                    minBarLength: 2,
+                    data: <?php echo    $json_count ?>,
+                    backgroundColor: <?php echo    $json_color ?>,
+                }]
+            },
+        
+    });
+
+    //////bar
+    var ctx = document.getElementById("bar").getContext('2d');
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+                labels: <?php echo  $json_barname ?>,
+                label: false,
+                datasets: [{
+                    barPercentage: 0.5,
+                    barThickness: 6,
+                    maxBarThickness: 8,
+                    minBarLength: 2,
+                    data: <?php echo    $json_barcount ?>,
+                    backgroundColor: <?php echo    $json_barcolor ?>,
+                }]
+            },
+        
+    });
 
    
 </script>

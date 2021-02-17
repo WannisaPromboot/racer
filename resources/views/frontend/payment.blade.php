@@ -945,6 +945,7 @@ text-align: left;
   </style>
 
 @include('frontend.inc_header')
+<?php $page = 'payment'; ?>
   <body class="goto-here">
     <div class="py-1 bg-primary">
         <div class="container">

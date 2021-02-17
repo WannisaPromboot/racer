@@ -383,8 +383,28 @@ a:hover, a:focus {
 }
 
 </style>
-<?php use App\Http\Controllers\Frontend\GetdataController; ?>
+<?php use App\Http\Controllers\Frontend\GetdataController; 
+      use Jenssegers\Agent\Agent;
+        $agent = new Agent();
+        $device  = $agent->device();
+        $browser = $agent->browser();
+        $UpdateDevice  = \App\CustomerDevice::where('device', $device)->where('browser',$browser)->first();
+
+        if(!empty($UpdateDevice)){
+            $UpdateDevice->count  =  $UpdateDevice->count  +1 ;
+            $UpdateDevice->save();
+
+        }else{
+            $NewDevice = New \App\CustomerDevice;
+            $NewDevice->device  = $device;
+            $NewDevice->browser  = $browser;
+            $NewDevice->count  = 1;
+            $NewDevice->save();
+        }
+
+?>
 @include('frontend.inc_header')
+<?php $page = 'index'; ?>
   <body class="goto-here">
 	<div class="py-1 bg-primary">
 	<div class="container">

@@ -1,3 +1,13 @@
+<?php 
+        if(!empty($page)){
+            $newPage  = new \App\CustomerPage;
+            $newPage->page = $page;
+            $newPage->count = 1;
+            $newPage->save();
+        }
+      
+
+?>
 <div id="cookies-eu-banner" style="display: none;" data-wait-remove="1200">
   เราใช้คุ้กกี้เพื่อพัฒนาเว็บไซต์ของเรา การดำเนินการต่อบนเว็บไซต์นี้ถือว่าคุณยินยอมให้มีการใช้งานคุกกี้
 

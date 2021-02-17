@@ -679,7 +679,7 @@ height: 165px;
       
   </style>
 @include('frontend.inc_header')
-
+<?php $page = 'detail-product'; ?>
   <body class="goto-here">
     <div class="py-1 bg-primary">
         <div class="container">
