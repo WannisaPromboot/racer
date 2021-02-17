@@ -32,7 +32,7 @@ class LoginController extends Controller
     {       
         $random = mt_rand(1000000000, 9999999999);
         try {
-            $user = Socialite::driver($provider)->user();
+            $user = Socialite::driver($provider)->stateless()->user();
             $input['customer_id']=  $random ;
             $input['name'] = $user->getName();
             $input['email'] = $user->getEmail();
@@ -67,8 +67,6 @@ class LoginController extends Controller
     	$checkIfExist = Customer::where('provider',$provider)
                            ->where('provider_id',$provider_id)					   	 
                            ->first();
-
-    //    dd($checkIfExist);
 
         if(!empty($checkIfExist)){
             Session::put('customer_id',$checkIfExist->customer_id);

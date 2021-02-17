@@ -110,6 +110,36 @@
                         <span>รายงาน</span>
                     </a>
                 </li>
+                {{-- <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <img src="{{asset('assets/images/racer/icon/seo-report.png')}}">
+                        <span>รายงาน</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{url('report/1')}}">รายงานสินค้าขายดี</a></li>
+                        <li><a href="{{url('report/2')}}">รายงานยอดขายรายวัน</a></li>
+                        <li><a href="{{url('report/3')}}">รายงานจำนวนผู้เข้าชมสินค้าสูงสุด</a></li>
+                        <li><a href="{{url('report/4')}}">สมาชิกที่มียอดซื้อมากที่สุด</a></li>
+                        <li><a href="{{url('report/5')}}">รายงานสมาชิกสมัครใหม่รายวัน</a></li>
+                        <li><a href="{{url('report/6')}}">รายงานสินค้าคงที่</a></li>
+                        <li><a href="{{url('report/7')}}">รายงานหน้าที่ผู้ชมนิยม</a></li>
+                        <li><a href="{{url('report/8')}}">รายงานจำนวนผู้เข้าชมรายวัน</a></li>
+                        <li><a href="{{url('report/9')}}">รายงานอุปกรณ์และ Browser ที่เปิดเข้ามา</a></li>
+                        <li><a href="{{url('report/10')}}">รายงานรายประเทศ</a></li>
+                        <li><a href="{{url('report/11')}}">รายงานเดือนเกิดสมาชิก</a></li>
+                        <li><a href="{{url('report/12')}}">รายงานสมาชิกค้างโอน</a></li>
+                        <li><a href="{{url('report/13')}}">รายงานสมาชิกขาดการเข้าระบบ</a></li>
+                        <li><a href="{{url('report/14')}}">รายงานสมาชิกเข้าระบบสูงสุด</a></li>
+                        <li><a href="{{url('report/16')}}">รายงานประเภทการชำระเงิน</a></li>
+                        <li><a href="{{url('report/17')}}">รายงานช่วงเวลาที่มีผู้ชมเข้ามากสุด</a></li>
+                        <li><a href="{{url('report/18')}}">การจดจำ ID ผู้เข้าชม Website (Cookie)</a></li>
+                        <li><a href="{{url('report/19')}}">สินค้าที่ลูกค้าซื้อแบ่งตามเพศ อายุ</a></li>
+                        <li><a href="{{url('report/20')}}">แหล่งที่มาจากลิงค์ที่เข้ามาใน Website</a></li>
+                        <li><a href="{{url('report/21')}}">รายงานกลุ่มอายุของผู้เข้าชม Website</a></li>
+                        <li><a href="{{url('report/22')}}">รายงานสินค้าที่ลูกค้าเข้าชมแบ่งตามเพศและอายุ</a></li>
+                    </ul> 
+                </li> --}}
+               
             </ul>
         </div>
         <!-- Sidebar -->

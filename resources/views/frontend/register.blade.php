@@ -1107,7 +1107,7 @@ a:hover {
                                    <option>หญิง</option>
                                  </select>
                                 </div>
-                              </div>
+                              </div> 
               
                           </div>
             
@@ -1155,11 +1155,11 @@ a:hover {
                               </div>
                             
                               
-                              <div class="row">
+                              <!-- <div class="row">
                                 <div class="col-75">
                                   <input type="number" name="age" placeholder="Age" class="form-control">
                                 </div>
-                              </div>
+                              </div> -->
 
                           </div>
 

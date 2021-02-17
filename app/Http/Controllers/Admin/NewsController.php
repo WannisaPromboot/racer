@@ -32,6 +32,15 @@ class NewsController extends Controller
         return view('Admin.news.edit-new',$data);
     }
 
+    public function ChangeStatusNew(Request $request){
+        if($request->k==1){
+            News::where('id_new',$request->val)->update(['status_new'=>NULL]);
+        }else{
+            News::where('id_new',$request->val)->update(['status_new'=>1]);
+            
+        }
+    }
+
     public function Deletenew($id){
         News_gallery::where('id_new',$id)->delete();
         News::where('id_new',$id)->delete();

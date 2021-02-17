@@ -710,6 +710,13 @@ a:hover, a:focus {
                     </div>
                     
                 @endforeach
+				
+
+                    <div class="col-md-6" >
+                        <a href="{{!(empty($sub->subbanner_link))?$sub->subbanner_link:'javascript:void(0)'}}"><img class="pro-img" src="{{url('storage/app/'.$sub->subbanner_image)}}"></a>
+                    </div>
+                    
+                @endforeach
 			</div>
         </div>
         <?php  $i = '01';
@@ -825,7 +832,6 @@ a:hover, a:focus {
 
 					<div class="col-md-12" >
                         <a href="{{url('news')}}"><img class="pro-img2" src="{{url('storage/app/'.$bannernew->slide_image)}}"></a>
-
 					</div>
 
 				</div>

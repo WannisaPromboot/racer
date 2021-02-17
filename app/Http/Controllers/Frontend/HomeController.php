@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 
-
 class HomeController extends Controller
 {
 
@@ -19,9 +18,9 @@ class HomeController extends Controller
             DB::Table('guest')->insert(['guest_ip'=>$ip]);
         }
         $data = array(
-            'data' => \App\Slide::orderBy('slide_number','ASC')->where('page',1)->get(),
+            'data' => App\Slide::orderBy('slide_number','ASC')->where('page',1)->get(),
             'subbanner' =>  DB::Table('subbanner')->where('subbanner_page',1)->orderBy('subbanner_sort','ASC')->get(),
-            'bannernew' => \App\Slide::where('page',3)->first(),
+            'bannernew' => App\Slide::where('page',3)->first(),
             'cate'   => \App\Category::orderBy('sort')->get()
         );
         return view('frontend.index',$data);

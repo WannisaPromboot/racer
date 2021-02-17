@@ -140,8 +140,6 @@
 <script>
 
     $('#selectreport').change(function(){
-        withoutdate = [17,3];
-
         if($(this).val()==2){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';

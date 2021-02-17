@@ -10,7 +10,7 @@ Login
 
 @section('content')
     <div class="home-btn d-none d-sm-block">
-        <a href="{{url('index')}}" class="text-dark"><i class="fas fa-home h2"></i></a>
+        <a href="{{url('/')}}" class="text-dark"><i class="fas fa-home h2"></i></a>
     </div>
     <div class="account-pages my-5 pt-5">
         <div class="container">
@@ -32,7 +32,7 @@ Login
                         </div>
                         <div class="card-body pt-0"> 
                             <div>
-                                <a href="{{url('index')}}">
+                                <a href="{{url('/')}}">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
                                             <img src="assets/images/logo.svg" alt="" class="rounded-circle" height="34">
