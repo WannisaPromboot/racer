@@ -49,13 +49,13 @@
                
                 <li>
                     <a href="{{url('blogcontent')}}" class=" waves-effect">
-                        <img src="{{asset('assets/images/racer/icon/blogging.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/news.png')}}">
                         <span>การจัดการบทความ</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <img src="{{asset('assets/images/racer/icon/news.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/grid.png')}}">
                         <span>ข่าวสารและโปรโมชั่น</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -99,8 +99,14 @@
                     </a> 
                 </li>
                 <li>
+                    <a href="{{url('promotionproductcontent')}}" class=" waves-effect">
+                         <img src="{{asset('assets/images/racer/icon/bankbook.png')}}">
+                        <span>การจัดการโปรโมชั่น</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{url('report-content')}}" class=" waves-effect">
-                         <img src="{{asset('assets/images/racer/icon/seo-report.png')}}">
+                        <img src="{{asset('assets/images/racer/icon/seo-report.png')}}">
                         <span>รายงาน</span>
                     </a>
                 </li>

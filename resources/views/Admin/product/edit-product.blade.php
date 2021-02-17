@@ -120,20 +120,20 @@
                                         <b>ราคาปกติ </b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control price" onchange="checknumber(this.value,'price')" value="{{$product->product_normal_price}}" name="product_normal_price" required>
+                                        <input type="number" class="form-control" value="{{$product->product_normal_price}}" name="product_normal_price" required>
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                     <div class="col-1 text-right  mt-2">
                                         <b>ราคาพิเศษ</b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control specialprice" onchange="checknumber(this.value,'specialprice')" value="{{$product->product_special_price}}" name="product_special_price" >
+                                        <input type="number" class="form-control specialprice" value="{{$product->product_special_price}}" name="product_special_price" >
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                 </div>
                                 <br>
-                                @if($product->product_start == '0000-00-00' ||  $product->product_start == NULL)
-                                <div class="row mt-2" id="date" style="display: none">
+                                @if($product->product_special_price == NULL )
+                                <div class="row mb-4" id="date" style="display: none">
                                     <div class="col-3  mt-2">
                                         <b>วันที่เริ่ม </b>
                                     </div>
@@ -143,13 +143,13 @@
                                     <div class="col-2 text-right  mt-2">
                                         <b>ถึง</b>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-3">
                                         <input type="date" class="form-control dateto" name="product_end" value="" min="{{date('Y-m-d')}}" >
                                         <div class="text-danger"  id="notidate" style="display: none">ควรใส่วันสิ้นสุดมากกว่าหรือเท่ากับวันที่เริ่มต้น</div>
                                     </div>
                                 </div>
                                 @else 
-                                <div class="row" >
+                                <div class="row mb-4" id="date">
                                     <div class="col-3  mt-2">
                                         <b>วันที่เริ่ม </b>
                                     </div>
@@ -165,12 +165,12 @@
                                     </div>
                                 </div>
                                 @endif
-                                <div class="row" id="date">
+                                <div class="row" >
                                     <div class="col-3  mt-2">
                                         <b>จำนวนสินค้า </b>
                                     </div>
                                     <div class="col-3">
-                                        <input type="number" class="form-control count" onchange="checknumber(this.value,'count')" name="product_count" min="0" value="{{$product->product_count}}" required>
+                                        <input type="number" class="form-control" name="product_count" min="0" value="{{$product->product_count}}" required>
                                     </div>
                                     <div class="col-1 mt-2">ชิ้น</div>
                                 </div>
@@ -367,7 +367,7 @@
                                         <b>ค่าส่ง </b>
                                     </div>
                                     <div class="col-1">
-                                        <input type="number" class="form-control shipping" onchange="checknumber(this.value,'shipping')" name="product_distance_price" required value="{{$product->product_distance_price}}">
+                                        <input type="number" class="form-control" name="product_distance_price" required value="{{$product->product_distance_price}}">
                                     </div>
                                     <div class="col-1  mt-2">บาท</div>
                                     {{-- <div class="col-1  mt-2">
@@ -400,7 +400,7 @@
                                                     @else
                                                         <img id="gallerypreview{{$picture->id_product_gallery}}" style="max-height:250px ;opacity: 20%;" alt="{{url('no-image.jpg')}}" src="{{asset('images/brows.png')}}" />
                                                     @endif
-                                                    <input type="text" id="vdo{{$picture->id_product_gallery}}" name="video[{{$picture->id_product_gallery}}]" class="form-control"  placeholder="youtube.com" onchange="insertvideo({{$picture->id_product_gallery}})" value="{{$picture->video}}">
+                                                    {{-- <input type="text" id="vdo{{$picture->id_product_gallery}}" name="video[{{$picture->id_product_gallery}}]" class="form-control"  placeholder="youtube.com" onchange="insertvideo({{$picture->id_product_gallery}})" value="{{$picture->video}}"> --}}
                                                     <br>
                                                     <input type="text" name="sub_sort[{{$picture->id_product_gallery}}]"  class="form-control text-center" value="{{$picture->sort}}" />
                                                     <button  type="button" class="btn btn-danger" onclick="deletegallery({{$picture->id_product_gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>
@@ -414,6 +414,28 @@
                                 <div id="newgallery" class="row"></div>
                                 <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
                                 {{-- end --}}
+                                <br>
+                                <hr>
+                                <br>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>ไฟล์ (PDF)</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="file" class="form-control" name="filepdf" accept=".pdf" value="{{!empty($product->pdf) ? $product->pdf : '' }}"> 
+                                    </div>
+                                    <div class="col-6">
+                                        @if(!empty($product->pdf))
+                                       <a href="{{url('storage/app/'.$picture->pdf)}}"  target="_blank">
+                                        <img src="{{asset('assets/images/racer/icon/pdf.png')}}" width="64px">
+                                       </a>
+                                       @endif
+                                    </div>
+                                </div>
+                                <br>
+
                                 <br>
                                 <div class="row mt-5">
                                     <div class="col-sm text-left">
@@ -468,6 +490,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_method_en").summernote({
@@ -478,6 +503,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_direction_th").summernote({
@@ -488,6 +516,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_direction_en").summernote({
@@ -498,6 +529,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
         
         $("#product_spec_th").summernote({
@@ -508,6 +542,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_spec_en").summernote({
@@ -518,6 +555,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         
@@ -529,6 +569,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_caution_en").summernote({
@@ -539,6 +582,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_selling_th").summernote({
@@ -549,6 +595,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_selling_en").summernote({
@@ -559,6 +608,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_property_th").summernote({
@@ -569,6 +621,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_property_en").summernote({
@@ -579,6 +634,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_installation_th").summernote({
@@ -589,6 +647,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_installation_en").summernote({
@@ -599,6 +660,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_extra_th").summernote({
@@ -609,6 +673,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_extra_en").summernote({
@@ -619,6 +686,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
 
@@ -667,7 +737,6 @@
                 '<div class="col-sm-12">'+
                     '<input type="file" style="display: none;"  name="sub_gallery['+(gallery).toString()+']" class="form-control chooseImage'+gallery+'" id="slidepicture'+gallery+'" multiple="multiple" onchange="readGalleryURL2(this,'+gallery+')">'+
                     '<img id="gallerypreview'+gallery+'" style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage('+gallery+')" />'+
-                    '<input type="text" id="vdo'+gallery+'" name="video['+(gallery).toString()+']" class="form-control"  placeholder="youtube.com" onchange="insertvideo('+gallery+')">'+
                     '<br>'+
                     '<input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center" required>'+
                     '<button  type="button" class="btn btn-danger" onclick="deletegallery('+gallery+')" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>'+
@@ -785,21 +854,6 @@
             $('#notidate').css('display','none');
           }  
     });
-
-
-      /////////check ว่าติดลบมั้ย
-      function checknumber(value,classname){
-        if(parseInt(value) < 0){
-            $('.'+classname).val("0");
-            swal.fire({
-                type:'warning',
-                text:'ห้ามกรอกข้อมูลน้อยกว่า 0',
-                confirmButtonColor: '#95ced4 ',
-
-            });
-            $('.'+classname).focus();
-        }   
-    }
 
 
 </script>

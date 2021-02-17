@@ -135,6 +135,39 @@ class ReportController extends Controller
                     return 1;
                 }
 
+            }elseif($request->report == 3){
+                $i =1;
+                $sql = \App\ProductView::orderby('view','desc')->get();
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>สินค้า</th>
+                                        <th>หมวดหมู่</th>
+                                        <th>ผุ้ชม</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                                    $product = \App\Product::where('id_product',$_item->id_product)->first();
+                                    $cate = \App\Category::where('id_category',$product->id_category)->first();
+                        echo        '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$product->product_name_th.'</td>
+                                        <td>'.$cate->category_name_th.'</td>
+                                        <td>'.number_format($_item->view).'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
+
+            
             }elseif($request->report == 11){
                 $i =1;
                 $sql = Customer::whereMonth('birthday', $request->monthselect)->get();
@@ -159,6 +192,40 @@ class ReportController extends Controller
                                         <td>'.$_item->email.'</td>
                                         <td>'.$_item->birthday.'</td>
                                         <td>'.$_item->phone.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
+                
+            }elseif($request->report == 14){
+
+                $i =1;
+                $sql = \App\CustomerLogin::Orderby('count','Desc')->get();
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>ชื่อ</th>
+                                        <th>นามสกุล</th>
+                                        <th>อีเมล</th>
+                                        <th>จำนวนครั้ง</th> 
+                                        </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                                    $customer = \App\Customer::where('customer_id',$_item->customer_id)->first();
+                        echo        '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$customer->name.'</td>
+                                        <td>'.$customer->lastname.'</td>
+                                        <td>'.$customer->email.'</td>
+                                        <td>'.$_item->count.'</td>
                                     </tr>';
                                     $i =$i+1;
                                 }

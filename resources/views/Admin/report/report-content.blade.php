@@ -70,12 +70,28 @@
                             <option value="21">รายงานสินค้าที่ลูกค้าเข้าชมแบ่งตามเพศและอายุ</option>
                         </select>
                     </div>
-                
-                    <div class="col-1 text-right mt-2">กรุณาเลือก </div>
-
-                    <div class="col-4" id="dmy" style="display:">
-                        <input type="date" name="date" id="dateselect" class="form-control selectall">
-                    </div>
+                   
+                        <div class="col-1 text-right mt-2" id="textselect" >กรุณาเลือก : </div>
+                        <div class="col-4" id="m" style="display:none"> 
+                            <select class="form-control selectall" id="monthselect" >
+                                <option value="">กรุณาเลือกเดือนที่ต้องการ</option>
+                                <option value="01">1</option>
+                                <option value="02">2</option>
+                                <option value="03">3</option>
+                                <option value="04">4</option>
+                                <option value="05">5</option>
+                                <option value="06">6</option>
+                                <option value="07">7</option>
+                                <option value="08">8</option>
+                                <option value="09">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                        <div class="col-4" id="dmy" style="display:">
+                            <input type="date" name="date" id="dateselect" class="form-control selectall">
+                        </div>
                     
                     <div class="col-4" id="m" style="display:none"> 
                         <select class="form-control selectall" id="monthselect" >
@@ -171,14 +187,17 @@
             document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
             
-        }else if($(this).val()==17){
+        }else if($(this).val()==17 || $(this).val()==3 || $(this).val()==14 ){
             $('.selectall').attr('disabled',true);
             document.getElementById('startend').style.display='none';
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('textselect').style.display='none';
+            // document.getElementsByClassName('form-control').disabled = true;
             $.ajax({
                 url: '{{ url("getreport")}}',
                 type: 'GET',
                 dataType: 'HTML',
-                data : {'report' :17},
+                data : {'report' : $(this).val()},
                 success: function(data) {
                     if(data==1){
                         alert('ไม่พบข้อมูล');

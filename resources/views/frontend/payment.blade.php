@@ -42,6 +42,37 @@
   </head>
 
   <style>
+      .image-bank{
+        float: left;
+    padding: 18px 15px 25px 0px;
+    width: 8%;
+      }
+      #top-checkmark{
+    top: 30px;
+
+      }
+.bank-form{
+    margin-bottom:0px;
+}
+      #bank-select{
+        padding: 0px 0px 0px 13px;
+
+      }
+
+
+      input[type=text], select, textarea {
+    width: 100%;
+    padding: 0px 0px 0px 15px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: 'Prompt', sans-serif;
+}
+:focus {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -126,6 +157,78 @@ input[type=number] {
 	background: white;
 }
     /* ------------ */
+
+  /* ---custom radio bank ---- */
+  .container3 {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 16px;
+    font-weight: normal;
+}
+
+/* Hide the browser's default radio button */
+.container3 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark-bank {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* height: 25px;
+  width: 25px; */
+  height: 20px;
+    width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container3:hover input ~ .checkmark-bank {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container3 input:checked ~ .checkmark-bank {
+  background-color: #2196F3;
+}
+
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark-bank:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container3 input:checked ~ .checkmark-bank:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container3 .checkmark-bank:after {
+ 	/* top: 9px;
+  left: 9px; */
+  top: 6px;
+    left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+    /* ------------ */  
 
 
       .img-logo {
@@ -358,7 +461,7 @@ input[type=submit]:hover {
     margin-bottom: 50px;
 }
 .submit2 {
-    width: 25%;
+    /* width: 25%; */
     background-color: #777;
     color: white;
     padding: 10px 50px;
@@ -480,6 +583,11 @@ input[type="text"], input[type="password"], input[type="email"], select {
     .col-50{
         width: 50%;
     float: left;
+    }
+    .col-100{
+        width: 100%;
+    float: left;
+
     }
     .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #555;
@@ -669,6 +777,15 @@ text-align: left;
     margin-top: 50px;
     margin-bottom: 0px !important;
 }
+.block__35630 .new-pay {
+    color: #00b9e9;
+    font-size: 2.4rem;
+    text-align: center;
+    font-weight: 600;
+    font-family: 'Prompt', sans-serif;
+    margin-top: 0px;
+    margin-bottom: 0px !important;
+}
 .about-title {
     text-align: center;
     color: #777;
@@ -725,7 +842,14 @@ text-align: left;
 .fade.in {
     opacity: 1;
 }
+@media (max-width: 1024px){
+    .image-bank {
+    float: left;
+    padding: 25px 15px 25px 0px;
+    width: 8%;
+}
 
+}
 @media (max-width: 768px){
     .bank-text {
     font-size: 12px;
@@ -743,6 +867,12 @@ text-align: left;
 .block__35630 h3 {
     font-size: 25px;
     margin-top: 30px;
+}
+.block__35630 .new-pay {
+    font-size: 25px;
+}
+.image-bank {
+    width: 12%;
 }
 
 }
@@ -787,12 +917,26 @@ text-align: left;
 #form-pad2 {
     padding: 0px 15px 0px 10px;
 }
+#bank-select {
+    padding: 0px 0px 0px 13px;
+}
+.bank-form {
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+.image-bank {
+    /* font-size: 10px; */
+    width: 12%;
+    padding: 25px 15px 40px 0px;
+}
 
 
 }
 
-@media (max-width: 375px){
-
+@media (max-width: 376px){
+    .image-bank {
+    width: 15%;
+}
 
 }
 
@@ -800,103 +944,149 @@ text-align: left;
       
   </style>
 
-
+@include('frontend.inc_header')
   <body class="goto-here">
-		<div class="py-1 bg-primary">
-    	<div class="container">
-    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-	    		<div class="col-lg-12 d-block">
-		    		<div class="row d-flex">
-
+    <div class="py-1 bg-primary">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+    
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : 02 811 1741 5</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon icon-envelope" style="color:#00b9e9"></span>
-							<span class="text"> : Racer.co.th</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
-                        </div>
+                        <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon-phone2" style="color:#00b9e9"></span>
+                                <span class="text"> : 0-2811-1741-5</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon icon-envelope" style="color:#00b9e9"></span>
+                                <span class="text"> :  racer_official@racerlighting.com</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
+                                <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
+                            </div>
                         <div class="col-md-4">
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
-						   </div>
-
-					    </div>
-
-				    </div>
-			    </div>
-		    </div>
-		  </div>
+                        <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a target="blank" href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-01.png"></a>
+                                <a target="blank" href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-02.png"></a>
+                                <a target="blank" href="https://line.me/ti/p/~@racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-03.png"></a>
+                                <a target="blank" href="https://www.youtube.com/channel/UC8Af6KCm3uAnBeTya3rwuLA" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-04.png"></a>
+                                <a target="blank" href="https://www.tiktok.com/@racerlighting?" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-05.png"></a>
+                        </div>
+                            <!-- <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
+                            </div>
+                            <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+                            </div>
+                            <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+                           </div> -->
+    
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+          </div>
     </div>
-       {{-- start nav --}}
-       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	<div class="container">
-	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="oi oi-menu"></span> Menu
-	  </button>
-
-	  <div class="collapse navbar-collapse" id="ftco-nav">
-
-		  <div class="col-md-8">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
-		  <li class="nav-item dropdown">
-		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
-		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <?php $menu = \App\Category::orderby('sort')->get(); ?>
-                @foreach ($menu as $_menu)
-                    <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
-                @endforeach
-		  </div>
-		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
-		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-		  <li class="nav-item dropdown ">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
-			<div class="dropdown-menu" aria-labelledby="dropdown04">
-				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
-				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
-			</div>
-		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
-
-		</ul>
-	</div>
-	<div class="col-md-4" id="pay-nemu">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored active"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</a></li>
-		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
-		</ul>
-	</div>
-
-
-	  </div>
-	</div>
-  </nav>
+    {{-- start nav --}}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            
+            <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+    
+              <div class="collapse navbar-collapse" id="ftco-nav">
+    
+                <div class="col-md-8">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <?php $menu = \App\Category::orderby('sort')->get(); ?>
+                                    @foreach ($menu as $_menu)
+                                        <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
+                                    @endforeach
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
+                        <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
+                                <a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+                        <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4" id="pay-nemu">
+                    <ul class="navbar-nav ml-auto">
+    
+    
+                    <li class="nav-item">
+              <div class="container03">
+      <div class="search-toggle">
+        <button class="search-icon icon-search"></button>
+        <button class="search-icon icon-close"></button>
+      </div>
+      <div class="search-container03">
+        <form action="{{url('searchproduct')}}" method="get">
+            @csrf
+          <input type="text" name="search" id="search-terms" placeholder="Search terms..."  autocomplete="off"/>
+          <button type="submit" class="search-icon"></button>
+        </form>
+    
+      </div>
+    </div>
+              </li>
+                
+                               
+                            <li class="nav-item cta-colored"><a href="javascript:void(0)" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span><span class="menu-span-col" id="addcart">
+                               
+                               </span> </a></li>
+                        <!-- <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li> -->
+                        @if(empty(Session::get('customer_id')))
+                            <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                    <a class="dropdown-item" href="{{url('/order-history')}}">ประวัติการซื้อ</a>
+                                    <a class="dropdown-item" href="{{url('/logout')}}">ลงชื่อออก </a>
+                                </div>
+                            </li>
+                        @endif
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
+                                <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+    
+    
+              </div>
+        </div>
+    </nav>
         <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
+    <!-- <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/BANNERS.jpg')}}">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-0 bread">ชำระเงิน</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>ชำระเงิน</span></p>
+            {{-- <h1 class="mb-0 bread">ชำระเงิน</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>ชำระเงิน</span></p> --}}
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
         
@@ -911,8 +1101,8 @@ text-align: left;
                   <div class="col-md-12 col-lg-12 mb-12" >
                     <div class="block__35630">
                         <h3 class="mb-3">ชำระเงิน</h3>
-                        <p class="about-title">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                       <center><hr class="line-re"></center>
+                      <h3 class="new-pay">Payment</h3>
                     </div>
                   </div>
         
@@ -941,19 +1131,19 @@ text-align: left;
                                 {{-- <form action="/action_page.php"> --}}
                                     <div class="row">
                                         <div class="col-75">
-                                        <input type="text" id="desk_fname" name="firstname" placeholder="Name*" >
+                                        <input type="text" id="desk_fname" name="firstname" value="{{$customer->name}}">
                                         </div>
                                     </div>
                                     <div class="row">
                                     
                                         <div class="col-75">
-                                        <input type="text" id="desk_email" name="email" placeholder="E-mail*" >
+                                        <input type="text" id="desk_email" name="email" value="{{$customer->email}}" >
                                         </div>
                                     </div>
                                     <div class="row">
                                     
                                         <div class="col-75">
-                                        <input type="text" id="desk_address" name="address" placeholder="Address*" >
+                                        <input type="text" id="desk_address" name="address" value="{{$customer->address}}" >
                                         </div>
                                     </div>
                                 {{-- </form> --}}
@@ -964,19 +1154,19 @@ text-align: left;
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="desk_lname" name="lastname" placeholder="Last Name*" >
+                                    <input type="text" id="desk_lname" name="lastname" value="{{$customer->lastname}}" >
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="desk_telephone" name="telephone" placeholder="Phone No.*" >
+                                    <input type="text" id="desk_telephone" name="telephone" value="{{$customer->phone}}" >
                                     </div>
                                 </div>
                                 <div class="row">
                                 
                                     <div class="col-75">
-                                    <input type="text" id="desk_fax" name="fax" placeholder="Fax*" >
+                                    <input type="text" id="desk_fax" name="fax" value="{{$customer->postalcode}}" >
                                     </div>
                                 </div>
                 
@@ -1000,7 +1190,7 @@ text-align: left;
                             <div class="col-md-8 col-lg-8 mb-8" >
                                 <p class="title-pay">ขอใบกำกับภาษี</p>
             
-                                <label class="container2">ตามที่อยู่เดิม
+                                <label class="container2">ที่อยู่เดียวกับที่อยู่จัดส่ง
                                     <input type="radio" checked="checked" name="radio" value="old" class="deskold">
                                     <span class="checkmark"></span>
                                 </label>
@@ -1023,6 +1213,8 @@ text-align: left;
                     
                                 <div class="col-md-4 col-lg-4 mb-4" >
                                 {{-- <form action="/action_page.php"> --}}
+
+
                                     <div class="row">
                                     <div class="col-75">
                                         <input type="text" id="tax_fname" name="tax_firstname" placeholder="Name*">
@@ -1048,10 +1240,10 @@ text-align: left;
                                 <div class="col-md-4 col-lg-4 mb-4" >
                                 {{-- <form action="/action_page.php"> --}}
                                     <div class="row">
-                                
-                                    <div class="col-75">
-                                        <input type="text" id="tax_lname" name="tax_lastname" placeholder="Last Name*">
-                                    </div>
+                                    
+                                        <div class="col-75">
+                                            <input type="text" id="tax_lname" name="tax_lastname" placeholder="Last Name*">
+                                        </div>
                                     </div>
                                     <div class="row">
                                 
@@ -1062,7 +1254,7 @@ text-align: left;
                                     <div class="row">
                                 
                                     <div class="col-75">
-                                        <input type="text" id="tax_fax" name="tax_fax" placeholder="Fax*">
+                                        <input type="text" id="tax_fax" name="tax_fax" placeholder="postcode*">
                                     </div>
                                     </div>
                 
@@ -1074,6 +1266,71 @@ text-align: left;
                     
                             </div>
                         
+                        </div>
+
+
+                      
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 mb-2" ></div>
+                                <div class="col-md-8 col-lg-8 mb-8" >
+                                    <p class="title-pay">ใบกำกับภาษีเต็มรูปแบบ</p>
+                                    <div class="row">
+                                        <div class="col-75" id="bank-select">
+                                            <label class="container2">ส่วนบุคคล
+                                                <input type="radio" checked="checked" name="radio1" value="personal" class="personal">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="container2">บริษัท
+                                                <input type="radio" name="radio1" value="organize" class="organize">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <!-- <select id="country" name="country">
+
+                                                <option value="australia">เลือกใบกำกับภาษี</option>
+                                                <option value="usa">ส่วนบุคคล</option>
+                                                <option value="canada">บริษัท</option>
+                                                
+                                                </select> -->
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col-md-2 col-lg-2 mb-2" ></div>
+                            </div>
+                        </div>
+                        <div class="container inputpersonal" >
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 mb-2" >
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-4 mb-4" >
+                                    <div class="row">
+                                        <div class="col-75">
+                                            <input type="text" id="tax_lname" name="tax_personal_id" placeholder="หมายเลขประจำผู้เสียภาษี">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container inputorganize" style="display: none">
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 mb-2" >
+                                </div>
+                    
+                                <div class="col-md-4 col-lg-4 mb-4" >
+                                    <div class="row">
+                                        <div class="col-75">
+                                            <input type="text" id="tax_lname" name="tax_org_id" placeholder="หมายเลขประจำผู้เสียภาษี">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-75">
+                                            <input type="text" id="tax_lname" name="tax_organize" placeholder="ชื่อบริษัท">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>      
+                            
                         </div>
                         <div class="container">
                             <div class="row">
@@ -1097,13 +1354,52 @@ text-align: left;
                             
                             <div class="tab-content">
                                 <div id="home" class="tab-pane fade in active">
-                                    <div class="col-50">            
+                                    <!-- <div class="col-50">            
                                         <img class="bank-img" src="{{asset('frontend/images/bank.jpg')}}">
-                                    </div>
-                                    <div class="col-50">
-                                        <p class="bank-text">ชื่อบัญชี : xxxxxxxxx xxxxx</p>
-                                        <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
-                                        <p class="upload2">กรุณาอัปโหลดหลักฐานการชำระเงินเพื่อช่วยให้เรายืนยันการชำระเงินได้รวดเร็วขึ้น</p>
+                                    </div> -->
+                                    <div class="col-100">
+
+                                    <label class="container3">
+                                    <img class="image-bank" src="http://miu.orangeworkshop.info/racer/frontend/images/kasit-bank.png">
+                                    <p class="bank-form">ธนาคารกสิกรไทย</p>
+                                    <p class="bank-form">ชื่อบัญชี บริษัท เรเซอร์การไฟฟ้า (ประเทศไทย) จำกัด</p>
+                                    <p class="bank-form">เลขที่บัญชี 331-102578-2</p>
+                                    <input type="radio" checked="checked" name="bank" value="kbank" >
+                                    <span class="checkmark-bank" id="top-checkmark"></span>
+                                </label>
+                                <label class="container3">
+                                    <img class="image-bank" src="http://miu.orangeworkshop.info/racer/frontend/images/thai-bank.png">    
+                                    <p class="bank-form">ธนาคารไทยพาณิชย์</p>
+                                    <p class="bank-form">ชื่อบัญชี บริษัท เรเซอร์การไฟฟ้า (ประเทศไทย) จำกัด</p>
+                                    <p class="bank-form">เลขที่บัญชี 321-303450-3</p>
+                                    <input type="radio" name="bank" value="scb" >
+                                    <span class="checkmark-bank" id="top-checkmark"></span>
+                                </label>
+                                <label class="container3">
+                                    <img class="image-bank" src="http://miu.orangeworkshop.info/racer/frontend/images/bkk-bank.png">
+                                    <p class="bank-form">ธนาคารกรุงเทพ</p>
+                                    <p class="bank-form">ชื่อบัญชี บริษัท เรเซอร์การไฟฟ้า (ประเทศไทย) จำกัด</p>
+                                    <p class="bank-form">เลขที่บัญชี 236-097051-7</p>
+                                    <input type="radio" name="bank" value="Bangkok" >
+                                    <span class="checkmark-bank" id="top-checkmark"></span>
+                                </label>
+
+                    <!-- <div class="row">
+              
+                  <div class="col-75" id="bank-select">
+                  <select id="country" name="country">
+                      <option value="australia">เลือกชื่อบัญชีธนาคาร</option>
+                      <option value="usa">ธนาคารกสิกรไทย</option>
+                      <option value="canada">ธนาคารไทยพาณิชย์</option>
+                      <option value="usa">ธนาคารกรุงเทพ</option>
+                    
+                    </select>
+                  </div>
+                </div> -->
+
+                                        <!-- <p class="bank-text">ชื่อบัญชี : xxxxxxxxx xxxxx</p> 
+                                        <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>-->
+                                        <p class="upload2" style="color:#00b9e9;">กรุณาส่งหลักฐานการชำระเงิน</p>
                                             {{-- <form action="#"> --}}
                                         <input type="file" id="desk_file" name="filename" class="upload" >
                                         <br>
@@ -1341,7 +1637,7 @@ text-align: left;
                                 <div id="home" class="tab-pane fade in active">
                                     <div class="col-50">            
                                         <img class="bank-img" src="{{asset('frontend/images/bank.jpg')}}">
-                                    </div>
+                                    </div> 
                                     <div class="col-50">
                                         <p class="bank-text">ชื่อบัญชี : xxxxxxxxx xxxxx</p>
                                         <p class="bank-text2">เลขที่บัญชี : 000-000000-0</p>
@@ -1417,74 +1713,7 @@ text-align: left;
 		
 	
 
-    <footer class="ftco-footer ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Vegefoods</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Menu</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Shop</a></li>
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Journal</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Help</h2>
-              <div class="d-flex">
-	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
-	              </ul>
-	              <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
-	                <li><a href="#" class="py-2 d-block">Contact</a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
-137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </footer>
-    <footer class="ftco-footer2 ftco-section2">
-        <div class="container">
-            <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright-text">
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
-						 
-						</p>
-          </div>
-        </div>
-        </div>
-        </footer>
+    @include('frontend.inc_footer')
   
 
   <!-- loader -->
@@ -1526,6 +1755,22 @@ text-align: left;
       $('.moblienew').click(function() {
         $('.mobiletax').css('display','none');
       });
+
+      ////////ใบกำกับภาษาีเต็มรูปแบบ
+      $('.personal').click(function() {
+        $('.inputpersonal').removeAttr('style');
+        $('.inputorganize').css('display','none');
+      });
+
+
+      $('.organize').click(function() {
+        $('.inputorganize').removeAttr('style');
+        $('.inputpersonal').css('display','none');
+      });
+
+
+
+
 
      $('.btncredit').click(function(){
             //$('.but').css('display','none');
@@ -1948,6 +2193,162 @@ text-align: left;
      });  
 
   </script>
+
+<script>
+$(".search-toggle").addClass("closed");
+
+$(".search-toggle .search-icon").click(function (e) {
+  if ($(".search-toggle").hasClass("closed")) {
+    $(".search-toggle").removeClass("closed").addClass("opened");
+    $(".search-toggle, .search-container03").addClass("opened");
+    $("#search-terms").focus();
+  } else {
+    $(".search-toggle").removeClass("opened").addClass("closed");
+    $(".search-toggle, .search-container03").removeClass("opened");
+  }
+});
+
+  //////cart
+  var taxRate = 0.00;
+  var shippingRate = 0.00; 
+  var fadeTime = 300;
+
+  ////get and change count
+  function count(id,type){
+            if(type == 'add'){
+                console.log($('#qy'+id) );
+                A = parseInt($('#qy'+id).text()) + 1;
+                $('#qy'+id).html(A);
+                $('#inputqy'+id).val(A);
+                updateQuantity(A,id);
+                countcart(id,type);
+            }else{
+                A = parseInt($('#qy'+id).text()) - 1;
+                if(A < 1){
+                    $('#qy'+id).html(1);
+                    $('#inputqy'+id).val(1);
+                    updateQuantity(1);
+                }else{
+                    $('#qy'+id).html(A);
+                    $('#inputqy'+id).val(A);
+                    updateQuantity(A,id);
+                    countcart(id,type);
+                }
+               
+            }
+
+           
+     }
+
+
+
+
+  
+  $('.product-removal button').click( function() {
+    removeItem(this);
+  });
+  
+  
+  /* Recalculate cart */
+  function recalculateCart()
+  {
+    var subtotal = 0;
+    
+    /* Sum up row totals */
+    $('.product').each(function () {
+      subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
+    });
+    
+    /* Calculate totals */
+    var tax = subtotal * taxRate;
+    var shipping = (subtotal > 0 ? shippingRate : 0);
+    var total = numberWithCommas(subtotal + tax + shipping);
+    
+    /* Update totals display */
+    $('.totals-value').fadeOut(fadeTime, function() {
+      $('#cart-subtotal').html(numberWithCommas(subtotal));
+      $('#cart-tax').html(tax);
+      $('#cart-shipping').html(shipping);
+      $('#cart-total').html(total);
+      $('#total').val(total);
+      if(total == 0){
+        $('.checkout').fadeOut(fadeTime);
+      }else{
+        $('.checkout').fadeIn(fadeTime);
+      }
+      $('.totals-value').fadeIn(fadeTime);
+    });
+  }
+  
+  
+  /* Update quantity */
+  function updateQuantity(quantityInput , id)
+  {
+    /* Calculate line price */
+    // var productRow = $(quantityInput).parent().parent();
+    // var price = parseInt(productRow.children('.product-price').text().replace(',',''));
+    var price = parseInt($('.price'+id).text().replace(',',''));
+    console.log(price);
+    var quantity = quantityInput;
+    var linePrice = numberWithCommas(price * quantity);
+    
+    /* Update line price display and recalc cart totals */
+    $('.totalitem'+id).each(function () {
+      $(this).fadeOut(fadeTime, function() {
+        $(this).text(linePrice);
+        recalculateCart();
+        $(this).fadeIn(fadeTime);
+      });
+    });  
+  }
+  
+  
+  /* Remove item from cart */
+  function removeItem(removeButton)
+  {
+    /* Remove row from DOM and recalc cart total */
+    var productRow = $(removeButton).parent().parent();
+    productRow.slideUp(fadeTime, function() {
+      productRow.remove();
+      recalculateCart();
+    });
+  }
+
+
+  //////////////////////convert to string with comma
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
+
+    ///////////////delitem
+    function delitem(item,id){
+        $.ajax({
+            url: '{{ url("deleteitemincart")}}',
+            type: 'GET',
+            data : {'item' : item , 'id' : id},
+            success: function(data) {
+                $(".countcart").load(location.href + " .countcart");
+                $(".showcart").load(location.href + " .showcart");
+            }
+        });
+    }
+
+    //////+- สินค้า
+
+    function countcart(value,type){
+    $.ajax({
+            url: '{{ url("countproduct")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id' : value , 'type' : type},
+            success: function(data) {
+                $(".countcart").load(location.href + " .countcart");
+            }
+        });
+    }
+ </script>
     
   </body>
 </html>

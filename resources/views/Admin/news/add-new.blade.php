@@ -50,7 +50,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form  action="{{url('savenew')}}" method="POST" enctype="multipart/form-data" id="savenews">
+                <form action="{{url('savenew')}}" method="POST" enctype="multipart/form-data" id="savenews">
                         @csrf
                         
                         <div class="row">
@@ -60,7 +60,7 @@
                             <div class="col-8">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                    <input type="file" style="display: none;"  name="filepath[0]" class="form-control chooseImage10" id="slidepicture0" multiple="multiple" onchange="readGalleryURL3(this,0)">
+                                    <input type="file" style="display: none;"  name="filepath" class="form-control chooseImage10" id="slidepicture0" multiple="multiple" onchange="readGalleryURL3(this,0)">
                                         <img id="gallerypreview20"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage1(0)" />
                                         {{-- <input type="text" name="sub_sort[2]" class="form-control text-center" required> --}}
                                         {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery(2)" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}

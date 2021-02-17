@@ -115,14 +115,14 @@
                                     <b>ราคาปกติ </b>
                                 </div>
                                 <div class="col-3">
-                                    <input type="number" class="form-control price" onchange="checknumber(this.value,'price')" name="product_normal_price" min="0" required>
+                                    <input type="number" class="form-control" name="product_normal_price" min="0" required>
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                                 <div class="col-1 text-right  mt-2">
                                     <b>ราคาพิเศษ</b>
                                 </div>
                                 <div class="col-3">
-                                    <input type="number" class="form-control specialprice" onchange="checknumber(this.value,'specialprice')" min="0" name="product_special_price" >
+                                    <input type="number" class="form-control specialprice" min="0" name="product_special_price" >
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                             </div>
@@ -147,7 +147,7 @@
                                     <b>จำนวนสินค้า </b>
                                 </div>
                                 <div class="col-3">
-                                    <input type="number" class="form-control count" name="product_count" onchange="checknumber(this.value,'count')" min="0" >
+                                    <input type="number" class="form-control" name="product_count" min="0" >
                                 </div>
                                 <div class="col-1 mt-2">ชิ้น</div>
                             </div>
@@ -343,7 +343,7 @@
                                     <b>ค่าส่ง </b>
                                 </div>
                                 <div class="col-1">
-                                    <input type="number" class="form-control shipping" name="product_distance_price" onchange="checknumber(this.value,'shipping')" required>
+                                    <input type="number" class="form-control" name="product_distance_price" required>
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                                 {{-- <div class="col-1  mt-2">
@@ -371,7 +371,7 @@
                                     <div class="col-sm-12">
                                     <input type="file" style="display: none;"  name="sub_gallery[1]" class="form-control chooseImage1" id="slidepicture1" multiple="multiple" onchange="readGalleryURL2(this,1)">
                                         <img id="gallerypreview1"  style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage(1)" />
-                                        <input type="text" id="vdo1" name="video[1]" class="form-control"  placeholder="youtube.com" onchange="insertvideo(1)">
+                                        {{-- <input type="text" id="vdo1" name="video[1]" class="form-control"  placeholder="youtube.com" onchange="insertvideo(1)"> --}}
                                         <br>
                                         <input type="text" name="sub_sort[1]" class="form-control text-center" required>
                                         {{-- <button  type="button" class="btn btn-danger" onclick="deletegallery({{$gallery}})" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button> --}}
@@ -453,6 +453,20 @@
                             <div id="delete"></div>
                             <div id="newgallery" class="row"></div>
                             <button type="button" class="btn btn-primary" onclick="addimagegallery()">{{Session::get('lang')=='th'?'เพิ่มภาพ ':'Add Image'}}</button>
+                            <br>
+                            <hr>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <h4>ไฟล์ (PDF)</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="file" class="form-control" name="filepdf" accept=".pdf">
+                                </div>
+                            </div>
+                            <br>
                             {{-- end --}}
                             <br>
                             <div class="row mt-5">
@@ -507,6 +521,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_method_en").summernote({
@@ -517,86 +534,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
-        });
-
-        $("#product_description_th").summernote({
-            height:300,
-            callbacks: {
-                onImageUpload: function(files, editor, welEditable) {
-                    
-                    sendFile(files[0], $(this), welEditable);
-                }
-            }
-        });
-
-        $("#product_description_en").summernote({
-            height:300,
-            callbacks: {
-                onImageUpload: function(files, editor, welEditable) {
-                    
-                    sendFile(files[0], $(this), welEditable);
-                }
-            }
-        });
-
-        $("#product_selling_th").summernote({
-            height:300,
-            callbacks: {
-                onImageUpload: function(files, editor, welEditable) {
-                    
-                    sendFile(files[0], $(this), welEditable);
-                }
-            }
-        });
-
-        $("#product_selling_en").summernote({
-            height:300,
-            callbacks: {
-                onImageUpload: function(files, editor, welEditable) {
-                    
-                    sendFile(files[0], $(this), welEditable);
-                }
-            }
-        });
-
-        $("#product_property_th").summernote({
-            height:300,
-            callbacks: {
-                onImageUpload: function(files, editor, welEditable) {
-                    
-                    sendFile(files[0], $(this), welEditable);
-                }
-            }
-        });
-
-        $("#product_property_en").summernote({
-            height:300,
-            callbacks: {
-                onImageUpload: function(files, editor, welEditable) {
-                    
-                    sendFile(files[0], $(this), welEditable);
-                }
-            }
-        });
-
-        $("#product_installation_th").summernote({
-            height:300,
-            callbacks: {
-                onImageUpload: function(files, editor, welEditable) {
-                    
-                    sendFile(files[0], $(this), welEditable);
-                }
-            }
-        });
-
-        $("#product_installation_en").summernote({
-            height:300,
-            callbacks: {
-                onImageUpload: function(files, editor, welEditable) {
-                    
-                    sendFile(files[0], $(this), welEditable);
-                }
-            }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_direction_th").summernote({
@@ -607,6 +547,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_direction_en").summernote({
@@ -617,6 +560,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
         
         $("#product_spec_th").summernote({
@@ -627,6 +573,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_spec_en").summernote({
@@ -637,6 +586,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         
@@ -648,6 +600,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_caution_en").summernote({
@@ -658,6 +613,87 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
+        });
+
+        $("#product_selling_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
+        });
+
+        $("#product_selling_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
+        });
+
+        $("#product_property_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
+        });
+
+        $("#product_property_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
+        });
+
+        $("#product_installation_th").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
+        });
+
+        $("#product_installation_en").summernote({
+            height:300,
+            callbacks: {
+                onImageUpload: function(files, editor, welEditable) {
+                    
+                    sendFile(files[0], $(this), welEditable);
+                }
+            }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_extra_th").summernote({
@@ -668,6 +704,9 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
 
         $("#product_extra_en").summernote({
@@ -678,7 +717,11 @@
                     sendFile(files[0], $(this), welEditable);
                 }
             }
+        }).on("summernote.enter", function(we, e) {
+                $(this).summernote("pasteHTML", "<br>");
+                e.preventDefault();
         });
+
 
     });
 
@@ -725,7 +768,6 @@
                 '<div class="col-sm-12">'+
                     '<input type="file" style="display: none;"  name="sub_gallery['+(gallery).toString()+']" class="form-control chooseImage'+gallery+'" id="slidepicture'+gallery+'" multiple="multiple" onchange="readGalleryURL2(this,'+gallery+')">'+
                     '<img id="gallerypreview'+gallery+'" style="max-height:250px ;" src="{{asset('images/brows.png')}}" onclick="browsImage('+gallery+')" />'+
-                    '<input type="text" id="vdo'+gallery+'" name="video['+(gallery).toString()+']" class="form-control"  placeholder="youtube.com" onchange="insertvideo('+gallery+')">'+
                     '<br>'+
                     '<input type="text" name="sub_sort['+(gallery).toString()+']" class="form-control text-center" required>'+
                     '<button  type="button" class="btn btn-danger" onclick="deletegallery('+gallery+')" style="position: absolute; top: 0px;"><i class="fas fa-trash"></i></button>'+
@@ -828,21 +870,6 @@
             $('#notidate').css('display','none');
           }  
     });
-
-
-      /////////check ว่าติดลบมั้ย
-      function checknumber(value,classname){
-        if(parseInt(value) < 0){
-            $('.'+classname).val("0");
-            swal.fire({
-                type:'warning',
-                text:'ห้ามกรอกข้อมูลน้อยกว่า 0',
-                confirmButtonColor: '#95ced4 ',
-
-            });
-            $('.'+classname).focus();
-        }   
-    }
 
 </script>
 

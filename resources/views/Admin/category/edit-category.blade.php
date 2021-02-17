@@ -53,7 +53,7 @@
                                     <div class="col-sm">
                                         <div class="form-group">
                                             <div class="col-sm-12">
-                                            <input type="file" style="display: none;"  name="filepath[{{$item->id_category}}]" class="form-control chooseImage2{{$item->id_category}}" value="{{$item->category_img}}" id="slidepicture{{$item->id_category}}" multiple="multiple" onchange="readGalleryURL3(this,{{$item->id_category}})">
+                                            <input type="file" style="display: none;"  name="filepath[{{$item->id_category}}]" class="form-control chooseImage2{{$item->id_category}}" id="slidepicture{{$item->id_category}}" multiple="multiple" onchange="readGalleryURL3(this,{{$item->id_category}})">
                                                @if(!empty($item->category_img))
                                                <img id="gallerypreview2{{$item->id_category}}"  style="max-height:250px ;" src="{{url('storage/app/'.$item->category_img)}}" onclick="browsImage1({{$item->id_category}})" />
                                                @else  

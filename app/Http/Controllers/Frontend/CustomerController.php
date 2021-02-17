@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
-use Mail;
 use App\Customer;
+use App\CustomerLogin;
 use Crypt;
+use Mail;
 
 class CustomerController extends Controller
 {
 
-    public function CustomerRegister(Request $request){
+    public function CustomerRegister(Request $request)
+    {
         $random = mt_rand(1000000000, 9999999999);
         $customer = new Customer;
         $customer->customer_id = $random;
@@ -62,6 +64,12 @@ class CustomerController extends Controller
             $customer->birthday = $request->birth;
         }
         $customer->save();
+      
+            // $NewLogin   = new CustomerLogin;
+            // $NewLogin->customer_id = $random ;
+            // $NewLogin->count=  1;
+            // $NewLogin->save();
+        
 
         return redirect('userlogin')->with('success','สมัครสมาชิกเรียบร้อยแล้ว กรุณาล็อคอิน');
     

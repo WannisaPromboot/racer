@@ -86,4 +86,10 @@ class PopularProductController extends Controller
 
     }
 
+    public function changedisplaypopular(Request $request){
+            $update = \App\Category::where('id_category',$request->id)->first();
+            $update->status = $request->check;
+            $update->save();
+    }
+
 }

@@ -34,7 +34,7 @@ class ProductController extends Controller
         $data = array(
             'cate'   =>  Category::all(),
             'product'  => Product::where('id_product',$id)->first(),
-            'imgs'  => ProductGallery::where('id_product',$id)->orderby('sort')->get(),   /// id_pro == id ของตาราง product 
+            'imgs'  => ProductGallery::where('id_product',$id)->get(),   /// id_pro == id ของตาราง product 
         );
 
 
@@ -81,6 +81,14 @@ class ProductController extends Controller
             $newProduct->product_img = $newimage;
         }
 
+
+        if($request["filepdf"] !== null){
+            $pdf = 'Productfile/'.time().$request["filepdf"]->getClientOriginalName();
+            Storage::put($pdf, file_get_contents($request["filepdf"]));
+            $newProduct->pdf = $pdf;
+        }
+
+
         $newProduct->save();
        
         //dd($request->file('sub_gallery') );
@@ -122,130 +130,57 @@ class ProductController extends Controller
     }
 
     public function UpdateProduct(Request $request,$id){
-      
-     
+
         $updateProduct = Product::where('id_product',$id)->first();
         
-        if(isset($request->sap_code)){
-            $updateProduct->sap_code   = $request->sap_code;
-        }
-
-        if(isset($request->product_name_th)){
-            $updateProduct->product_name_th   = $request->product_name_th;
-        }
-
         
-        if(isset($request->product_name_en)){
+            $updateProduct->sap_code   = $request->sap_code;
+            $updateProduct->product_name_th   = $request->product_name_th;
             $updateProduct->product_name_en   = $request->product_name_en;
-        }
-
-        if(isset($request->id_category)){
             $updateProduct->id_category   = $request->id_category;
-        }
-
-        if(isset($request->id_subcategory)){
             $updateProduct->id_subcategory   = $request->id_subcategory;
-        }
-
-
-        if(isset($request->product_normal_price)){
             $updateProduct->product_normal_price   = $request->product_normal_price;
-        }
-
-        if(isset($request->product_special_price)){
             $updateProduct->product_special_price   = $request->product_special_price;
-        }
-
-        if(isset($request->product_start)){
             $updateProduct->product_start   = $request->product_start;
-        }
-
-        if(isset($request->product_end)){
             $updateProduct->product_end   = $request->product_end;
-        }
-
-        if(isset($request->product_count)){
             $updateProduct->product_count   = $request->product_count;
-        }
-
-        if(isset($request->product_method_th)){
             $updateProduct->product_method_th   = $request->product_method_th;
-        }
-
-        if(isset($request->product_method_en)){
             $updateProduct->product_method_en   = $request->product_method_en;
-        }
-
-
-        if(isset($request->product_direction_th)){
             $updateProduct->product_direction_th   = $request->product_direction_th;
-        }
-
-        if(isset($request->product_direction_en)){
             $updateProduct->product_direction_en   = $request->product_direction_en;
-        }
-
-        if(isset($request->product_caution_th)){
             $updateProduct->product_caution_th   = $request->product_caution_th;
-        }
-
-        if(isset($request->product_caution_en)){
             $updateProduct->product_caution_en   = $request->product_caution_en;
-        }
-
-        if(isset($request->product_spec_th)){
             $updateProduct->product_spec_th   = $request->product_spec_th;
-        }
-
-        if(isset($request->product_spec_en)){
             $updateProduct->product_spec_en   = $request->product_spec_en;
-        }
-
-        if(isset($request->product_selling_th)){
             $updateProduct->product_selling_th   = $request->product_selling_th;
-        }
-
-        if(isset($request->product_selling_en)){
             $updateProduct->product_selling_en   = $request->product_selling_en;
-        }
-
-        if(isset($request->product_property_th)){
             $updateProduct->product_property_th   = $request->product_property_th;
-            
-        }
-        if(isset($request->product_property_en)){
             $updateProduct->product_property_en   = $request->product_property_en;
-            
-        }
-        if(isset($request->product_installation_th)){
             $updateProduct->product_installation_th   = $request->product_installation_th;
-        }
-        if(isset($request->product_installation_en)){
             $updateProduct->product_installation_en   = $request->product_installation_en;
-        }
-
-        if(isset($request->product_extra_th)){
             $updateProduct->product_extra_th   = $request->product_extra_th;
-        }
-        if(isset($request->product_extra_en)){
             $updateProduct->product_extra_en   = $request->product_extra_en;
-        }
-
-        if(isset($request->product_distance_price)){
             $updateProduct->product_distance_price   = $request->product_distance_price;
-        }
+        
 
-        // if(isset($request->product_distance_km)){
+        // if(!empty($request->product_distance_km)){
         //     $updateProduct->product_distance_km   = $request->product_distance_km;
         // }
 
        // dd(   $request->all());
 
-       if(isset($request["filepath"][$id])){
+       if(!empty($request["filepath"][$id])){
             $newimage = 'Product/'.time().$request["filepath"][$id]->getClientOriginalName();
             Storage::put($newimage, file_get_contents($request["filepath"][$id]));
             $updateProduct->product_img = $newimage;
-        }  
+        } 
+        
+        
+        if($request["filepdf"] !== null){
+            $pdf = 'Productfile/'.time().$request["filepdf"]->getClientOriginalName();
+            Storage::put($pdf, file_get_contents($request["filepdf"]));
+            $updateProduct->pdf = $pdf;
+        }
 
 
         $updateProduct->save();
@@ -267,7 +202,7 @@ class ProductController extends Controller
          if(isset($request->sub_gallery)){
             foreach($request->sub_gallery as $key => $value){
                 $updateGallery  = ProductGallery::where('id_product_gallery',$key)->first();
-
+               
                 if(!empty($updateGallery)){
                     $updateGallery->sap_code   = $request->sap_code;
                     $updateGallery->sort        = $request->sub_sort[$key];
@@ -279,8 +214,6 @@ class ProductController extends Controller
         
                     $updateGallery->save();
                 }else{
-
-                    if(!empty($request->sub_gallery[$key])){
                         $newGallery = new ProductGallery;
                         $newGallery->sap_code   = $request->sap_code;
                         $newGallery->id_product   = $updateProduct->id_product;
@@ -292,7 +225,6 @@ class ProductController extends Controller
                         $newGallery->filepath = $newFilename;
             
                         $newGallery->save();
-                    }
              
                 }
                
@@ -459,9 +391,22 @@ class ProductController extends Controller
 
 
     public function ShowProduct(Request $request){
-        $products = Product::where('id_subcategory',$request->id)->where('product_display',0)->get();
-        $subcate = \App\SubCategory::where('id_subcategory',$request->id)->first();
-        $cate = \App\Category::where('id_category',$subcate->id_category)->first();
+
+        if($request->sub == 'null'){
+            $products = Product::where('id_category',$request->main)->where('product_display',0)->get();
+        }else{
+            $products = Product::where('id_subcategory',$request->sub)->where('product_display',0)->get();
+        }
+      
+        $subcate = \App\SubCategory::where('id_subcategory',$request->sub)->first();
+        if(!empty($subcate)){
+            $catename = $subcate->subcategory_name_th;
+            $cate = \App\Category::where('id_category',$subcate->id_category)->first();
+        }else{
+            $cate = \App\Category::where('id_category',$request->main)->first();
+            $catename = $cate->category_name_th;
+           
+        }
         $html= '';
         $banner = '';
      //   dd($request->all());
@@ -470,7 +415,7 @@ class ProductController extends Controller
             $html.='
             <div class="card-header" id="accordion-tab-1-heading-1">
                 <h5>
-                    <button class="btn btn-link" type="button" data-toggle="collapse"  aria-expanded="false" >'.$subcate->subcategory_name_th.'</button>
+                    <button class="btn btn-link" type="button" data-toggle="collapse"  aria-expanded="false" >'.$catename.'</button>
                 </h5>
             </div>
             <div class="collapse show" id="accordion-tab-1-content-1" aria-labelledby="accordion-tab-1-heading-1" data-parent="#accordion-tab-1">

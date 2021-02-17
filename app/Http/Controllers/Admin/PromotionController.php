@@ -45,7 +45,13 @@ class PromotionController extends Controller
             $image = 'Promotion/'.time().$request->filepath->getClientOriginalName();
             Storage::put($image, file_get_contents($request->filepath));
         }
-        Promotion::insert(['promotion_image'=>$image,'promotion_link'=>$request->link]);
+        if(isset($request->link)){
+            Promotion::insert(['promotion_image'=>$image,'promotion_link'=>$request->link]);
+
+        }
+        Promotion::insert(['promotion_image'=>$image]);
+
+        
         
         return redirect('promotioncontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');
         
@@ -136,7 +142,7 @@ class PromotionController extends Controller
         }
         if(isset($request->link)){
            
-            Promotion::where('id_new_promotion',$id)->update(['promotion_link'=>$link]);
+            Promotion::where('id_new_promotion',$id)->update(['promotion_link'=>$request->link]);
         }
         
         return redirect('promotioncontent')->with('Save','บันทึกข้อมูลเรียบร้อยแล้ว');

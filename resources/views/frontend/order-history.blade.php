@@ -677,6 +677,11 @@ button:focus {
   width: 9%;
 }
 
+.product-product{
+  float: left;
+  width: 9%;
+}
+
 .product-line-price {
   float: left;
   width: 22%;
@@ -740,7 +745,8 @@ label {
 .column-labels .product-image, .column-labels .product-details, .column-labels .product-removal, .column-labels .product-price, .column-labels .product-quantity, .column-labels .product-line-price {
   text-indent: -9999px;
   color: #0000;
-  width: 185px;
+  /* width: 185px; */
+  width: 218px;
 }
 
 /* Product entries */
@@ -777,7 +783,7 @@ label {
 .product .product-quantity input {
   width: 40px;
 }
-.product .remove-product {
+.product .status-product {
   /* border: 0;
   padding: 4px 8px;
   background-color: #c66;
@@ -954,6 +960,381 @@ label {
 }
 
 /* -----end cart-------------- */
+/* -------------------cart----------------------- */
+.product-image {
+  float: left;
+  width: 20%;
+}
+
+.product-details {
+  float: left;
+  width: 37%;
+}
+
+.product-price {
+  float: left;
+  width: 12%;
+  color: #777;
+  font-family: 'Prompt', sans-serif;
+  clear: none;
+}
+
+.product-quantity {
+  float: left;
+  width: 10%;
+}
+
+.product-removal {
+  float: left;
+  width: 9%;
+}
+
+.product-line-price {
+  float: left;
+  /* width: 12%; */
+  width: 21%;
+  text-align: right;
+  color: #777;
+  font-family: 'Prompt', sans-serif;
+}
+
+/* This is used as the traditional .clearfix class */
+.group:before, .shopping-cart:before, .column-labels:before, .product:before, .totals-item:before,
+.group:after,
+.shopping-cart:after,
+.column-labels:after,
+.product:after,
+.totals-item:after {
+  content: '';
+  display: table;
+}
+
+.group:after, .shopping-cart:after, .column-labels:after, .product:after, .totals-item:after {
+  clear: both;
+}
+
+.group, .shopping-cart, .column-labels, .product, .totals-item {
+  zoom: 1;
+}
+
+/* Apply clearfix in a few places */
+/* Apply dollar signs */
+.product .product-price:before, .product .product-line-price:before, .totals-value:before {
+  content: '';
+}
+
+
+
+h1 {
+  font-weight: 100;
+}
+
+label {
+    color: #777;
+}
+
+.shopping-cart {
+  margin-top: -45px;
+}
+
+/* Column headers */
+.column-labels label {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #00b9eb;
+  font-weight: normal;
+  font-family: 'Prompt', sans-serif;
+}
+.column-labels .product-image, .column-labels .product-details, .column-labels .product-removal {
+  text-indent: -9999px;
+}
+
+/* Product entries */
+.product {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #00b9eb;
+}
+.product .product-image {
+  text-align: center;
+}
+/* .product .product-image img {
+  width: 140px;
+} */
+.product .product-details .product-title {
+  margin-right: 20px;
+  /* font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium"; */
+  font-family: 'Prompt', sans-serif;
+  color: #777;
+    text-align: left;
+    margin: 5px 50px 5px 0;
+    line-height: 1.4em;
+    font-weight: normal;
+}
+.product .product-details .product-description {
+  margin: 5px 20px 5px 0;
+  line-height: 1.4em;
+  color: #777;
+  font-family: 'Prompt', sans-serif;
+  text-align: left;
+    font-size: 15px !important;
+    font-weight: normal;
+}
+.product .product-quantity input {
+  width: 40px;
+}
+/* .product .remove-product {
+  border: 0;
+    padding: 2px 10px;
+    background-color: #d20b0b;
+    color: #fff;
+    font-family: 'Prompt', sans-serif;
+    font-size: 12px;
+    border-radius: 3px;
+    height: 2.5em;
+} */
+.product .remove-product:hover {
+  background-color: ##00b9eb;
+}
+
+/* Totals section */
+.totals .totals-item {
+  float: right;
+  clear: both;
+  width: 100%;
+  margin-bottom: 10px;
+  /* margin-bottom: -20px; */
+}
+.totals .totals-item label {
+  float: left;
+  clear: both;
+  width: 79%;
+  text-align: right;
+  font-weight: normal;
+    font-size: 16px;
+    font-family: 'Prompt', sans-serif;
+    font-weight: normal;
+}
+.totals .totals-item .totals-value {
+  float: right;
+  width: 21%;
+  text-align: right;
+  color: #777;
+  font-family: 'Prompt', sans-serif;
+  font-weight: normal;
+}
+.totals .totals-item-total {
+  font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
+}
+
+.checkout {
+  /* float: right;
+    border: 0;
+    margin-top: 20px;
+    padding: 2px 25px;
+    background-color: #0d3b98;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 3px;
+    border: 1px solid #0d3b98;
+    height: 2.5em;
+    margin-bottom: 50px; */
+    float: right;
+    border: 0;
+    margin-top: 20px;
+    padding: 3px 25px;
+    background-color: #00b9eb;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 3px;
+    border: 1px solid #00b9eb;
+    /* height: 2.5em; */
+    margin-bottom: 50px;
+    font-family: 'Prompt', sans-serif;
+}
+
+.checkout:hover {
+    /* background-color: #00b9eb;
+    border: 1px solid #00b9eb; */
+    background-color: #00b9eb00;
+    border: 1px solid #00b9eb;
+    color: #00b9eb;
+}
+
+/* Make adjustments for tablet */
+@media screen and (max-width: 800px) {
+  .shopping-cart {
+    margin: 0;
+    padding-top: 20px;
+    border-top: 1px solid #00b9eb;
+  }
+
+  .column-labels {
+    display: none;
+  }
+
+  .product-image {
+    float: right;
+    width: auto;
+  }
+  .product-image img {
+    margin: 0 0 10px 10px;
+  }
+
+  .product-details {
+    /* float: none;
+    margin-bottom: 10px;
+    width: auto; */
+    float: left;
+    width: 37%;
+  }
+
+  .product-price {
+    /* clear: both;
+    width: 70px; */
+    float: left;
+    width: 12%;
+    color: #777;
+    font-family: 'Prompt', sans-serif;
+    clear: none;
+  }
+
+  .product-quantity {
+    width: 100px;
+  }
+  .product-quantity input {
+    margin-left: 20px;
+  }
+
+  .product-quantity:before {
+    content: 'x';
+  }
+
+  .product-removal {
+    /* width: auto; */
+    float: left;
+    width: 9%;
+  }
+
+  .product-line-price {
+    /* float: right;
+    width: 70px; */
+    float: left;
+    /* width: 12%; */
+    width: 21%;
+    text-align: right;
+    color: #777;
+    font-family: 'Prompt', sans-serif;
+  }
+  /* .product .product-details .product-description {
+    margin: 5px 0px 5px 0;
+    line-height: 1.4em;
+    color: #777;
+    font-family: 'Prompt', sans-serif;
+    text-align: left;
+    font-size: 15px !important;
+    font-weight: normal;
+    padding: 0px 0px 0px 15px;
+}
+.product .product-details .product-title {
+    margin-right: 21px;
+    font-family: 'Prompt', sans-serif;
+    color: #777;
+    text-align: left;
+    padding: 0px 0px 0px 15px;
+} */
+.checkout {
+    font-size: 20px;
+}
+
+.quantity_button {
+  margin-top: -27px !important;
+    margin-left: 15px !important;
+}
+
+.product-image {
+    float: left;
+    width: 20%;
+}
+
+
+}
+/* Make more adjustments for phone */
+@media screen and (max-width: 700px) {
+  .product-details {
+    float: none;
+    width: auto;
+    margin-bottom: 10px;
+}
+.product-price {
+    clear: both;
+    width: 70px;
+}
+.product-removal {
+    width: auto;
+}
+
+
+}
+
+@media screen and (max-width: 350px) {
+  .product-removal {
+    float: right;
+  }
+
+  .product-line-price {
+    float: right;
+    clear: left;
+    width: auto;
+    margin-top: 10px;
+  }
+
+  /* .product .product-line-price:before {
+    content: 'Item Total: ฿';
+  } */
+
+  .totals .totals-item label {
+    width: 60%;
+  }
+  .totals .totals-item .totals-value {
+    width: 40%;
+  }
+}
+
+.title-cart {
+    color: #00b9eb !important;
+    font-weight: 400;
+    margin-top: 50px !important;
+    text-align: left;
+    font-family: 'Prompt', sans-serif;
+    font-size: 35px !important;
+}
+.totals-value2{
+    color: #00b9eb;
+    /* float: right;
+    margin-right: -366px;
+    text-align: right; */
+    background-color: #7d7e80;
+    padding: 5px 15px 5px 15px;
+    padding: 5px 15px 5px 15px;
+    width: 50%;
+    float: right;
+}
+.product {
+    display: block;
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+}
+
+/* -----end cart test-------------- */
+
 
 @media (max-width: 1024px){
     .column-labels .product-image, .column-labels .product-details, .column-labels .product-removal, .column-labels .product-price, .column-labels .product-quantity, .column-labels .product-line-price {
@@ -1075,97 +1456,338 @@ label {
 
 }
 
+.product #product-image {
+    text-align: center;
+    float: right;
+    width: auto;
+}
+#product-details {
+    float: left;
+    width: 37%;
+    float: none;
+    margin-bottom: 10px;
+    width: auto;
+}
+#product-price {
+    float: left;
+    width: 12%;
+    color: #777;
+    font-family: 'Prompt', sans-serif;
+    clear: none;
+    clear: both;
+    width: 70px;
+}
+#product-quantity {
+    float: left;
+    width: 100px;
+}
+#product-line-price {
+    float: right;
+    /* width: 12%; */
+    width: auto;
+    text-align: right;
+    color: #777;
+    font-family: 'Prompt', sans-serif;
+}
+#shopping-cart {
+    margin-top: 0px;
+}
+#product-quantity:before {
+    content: 'x';
+}
+.product #product-price::before, .product #product-line-price::before, .totals-value::before {
+    content: "฿";
+}
+.product #remove-product {
+    border: 0;
+    padding: 2px 10px;
+    background-color: #d20b0b;
+    color: #fff;
+    font-family: 'Prompt', sans-serif;
+    font-size: 12px;
+    border-radius: 3px;
+    height: 2.5em;
+}
+
       
   </style>
 
- 
+@include('frontend.inc_header')
   <body class="goto-here">
-		<div class="py-1 bg-primary">
-    	<div class="container">
-    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
-	    		<div class="col-lg-12 d-block">
-		    		<div class="row d-flex">
-
+    <div class="py-1 bg-primary">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+    
                         <div class="col-md-8 pr-4 d-flex topper align-items-center">
-					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : 02 811 1741 5</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon icon-envelope" style="color:#00b9e9"></span>
-							<span class="text"> : Racer.co.th</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
-                        </div>
+                        <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon-phone2" style="color:#00b9e9"></span>
+                                <span class="text"> : 0-2811-1741-5</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <span class="icon icon-envelope" style="color:#00b9e9"></span>
+                                <span class="text"> :  racer_official@racerlighting.com</span></div>
+                                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                                    <i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
+                                <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
+                            </div>
                         <div class="col-md-4">
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
-						   </div>
-
-					    </div>
-
-				    </div>
-			    </div>
-		    </div>
-		  </div>
+                        <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a target="blank" href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-01.png"></a>
+                                <a target="blank" href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-02.png"></a>
+                                <a target="blank" href="https://line.me/ti/p/~@racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-03.png"></a>
+                                <a target="blank" href="https://www.youtube.com/channel/UC8Af6KCm3uAnBeTya3rwuLA" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-04.png"></a>
+                                <a target="blank" href="https://www.tiktok.com/@racerlighting?" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-05.png"></a>
+                        </div>
+                            <!-- <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
+                            </div>
+                            <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+                            </div>
+                            <div class="icon mr-2 d-flex justify-content-center" id="social">
+                                <a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+                           </div> -->
+    
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+          </div>
     </div>
     {{-- start nav --}}
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	<div class="container">
-	  <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="oi oi-menu"></span> Menu
-	  </button>
+        <div class="container">
+            
+            <a class="navbar-brand" href="{{url('/')}}"><img class="img-logo" src="{{asset('frontend/images/logo-menu.png')}}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+    
+              <div class="collapse navbar-collapse" id="ftco-nav">
+    
+                <div class="col-md-8">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <?php $menu = \App\Category::orderby('sort')->get(); ?>
+                                    @foreach ($menu as $_menu)
+                                        <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
+                                    @endforeach
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
+                        <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
+                                <a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
+                        <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4" id="pay-nemu">
+                    <ul class="navbar-nav ml-auto">
+    
+    
+                    <li class="nav-item">
+              <div class="container03">
+      <div class="search-toggle">
+        <button class="search-icon icon-search"></button>
+        <button class="search-icon icon-close"></button>
+      </div>
+      <div class="search-container03">
+        <form action="{{url('searchproduct')}}" method="get">
+            @csrf
+          <input type="text" name="search" id="search-terms" placeholder="Search terms..."  autocomplete="off"/>
+          <button type="submit" class="search-icon"></button>
+        </form>
+    
+      </div>
+    </div>
+              </li>
+                
+                               
+                           
+                            <li class="nav-item cta-colored" id="mobile"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>
+                               
+                                <?php
+                                if(!empty(Session::get('product'))){
+                                    $qty = 0;
+                                        foreach (Session::get('product') as $key =>  $item) {
+                                            $qty += $item['qty'];
+                                        }
+                                }   
+                                
+                            ?>
+                                {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}
+                           
+                            <span class="menu-span-col"></span> </a></li>
+              <li class="nav-item dropdown" id="desk">
+                <a href="{{url('cart')}}" class="nav-link veiw" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="icon-shopping_cart"></span>
+                    <span class="countcart">
+                        <?php
+                        if(!empty(Session::get('product'))){
+                            $qty = 0;
+                                foreach (Session::get('product') as $key =>  $item) {
+                                    $qty += $item['qty'];
+                                }
+                        }   
+                        
+                    ?>
+                    {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}
+                    </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04" id="dropdown-menu-cart">
+                    <div class="showcart">
+                    @if(Session::get('product') && count(Session::get('product')) > 0 )
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="shopping-cart" id="shopping-cart" style="overflow: scroll;;
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 300px;">
+                                    <form  method="POST">
+                                        <input type="hidden" name="_token" value="rizEyrDsx29TVfoDQGwFU4xqrTTeJrmFUk89YMVO">    
+                                        <div class="column-labels">
+                                        </div>
+                                            {{-- product --}}
+                                            <?php $items = Session::get('product');  
+                                                    $sum  = 0;
+                                            ?>
+                                            @foreach ($items as $key => $item)
+                                            <?php $product = \App\Product::where('id_product',$item['product_id'])->first(); ?>
+                                            <div class="product">
+                                                <div class="product-image" id="product-image">
+                                                    <img src="{{url('storage/app/'.$product->product_img.'')}}">
+                                                </div>
+                                                <div class="product-details" id="product-details">
+                                                    <div class="product-title">{{$product->product_name_th}}</div>
+                                                    
+                                                </div>
+                                                @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                                    <div class="product-price price{{$product->id_product}}" id="product-price">{{number_format($product->product_special_price)}}</div>
+                                                    <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_special_price}}">
+                                                @else 
+                                                    <div class="product-price price{{$product->id_product}}" id="product-price">{{number_format($product->product_normal_price)}}</div>
+                                                    <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_normal_price}}">
+                                                @endif                                
+                                                <div class="product-quantity" id="product-quantity">
+                                                    <div class="quantity_button">
+                                                        <span class="qt" id="qy{{$product->id_product}}">{{$item['qty']}}</span>
+                                                        <span class="qt-plus" onclick="count('{{$product->id_product}}','add')">+</span>
+                                                        <span class="qt-minus" onclick="count('{{$product->id_product}}','sub')">-</span>
+                                                        <input type="hidden" class="text-center" id="inputqy{{$product->id_product}}" name="count[{{$item['product_id']}}]" value="{{$item['qty']}}" min="1">
+                                                    </div>
+                                                </div>
+                                                <div class="product-removal" id="product-removal">
+                                                    <button type="button" class="remove-product" id="remove-product" onclick="delitem({{$key}},{{$item['product_id']}})">Remove</button>
+                                                </div>
+                                                
+                                                @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                                    <div class="product-line-price totalitem{{$product->id_product}}" id="product-line-price">{{number_format($product->product_special_price * $item['qty'])}}</div>
+                                                    <?php  $sum +=  $product->product_special_price * $item['qty'];?>
+                                                    @else 
+                                                    <div class="product-line-price totalitem{{$product->id_product}}" id="product-line-price">{{number_format($product->product_normal_price * $item['qty'])}}</div>
+                                                    <?php  $sum +=  $product->product_normal_price * $item['qty'];?>
+                                                @endif
+                                            </div>
+                                            @endforeach
+                                            
+                                            {{-- total --}}
+                                                                    
+                                            <!-- <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a> -->
+                                    </form>
+                                    
+                                </div>
 
-	  <div class="collapse navbar-collapse" id="ftco-nav">
-
-		  <div class="col-md-8">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('/')}}" class="nav-link">หน้าหลัก <span class="menu-span-col">|</span> </a></li>
-		  <li class="nav-item dropdown">
-		  <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">สินค้า</a>
-		  <div class="dropdown-menu" aria-labelledby="dropdown04">
-            <?php $menu = \App\Category::orderby('sort')->get(); ?>
-                @foreach ($menu as $_menu)
-                    <a class="dropdown-item" href="{{url('product/'.$_menu->category_name_th.'')}}">{{strtoupper($_menu->category_name_th)}}</a>
-                @endforeach
-		  </div>
-		</li>
-		  <li class="nav-item"><a href="{{url('/about-us')}}" class="nav-link"><span class="menu-span-col">|</span> เกี่ยวกับเรา</a></li>
-		  <!-- <li class="nav-item"><a href="news.html" class="nav-link">ข่าวสารและโปรโมชั่น</a></li> -->
-		  <li class="nav-item dropdown ">
-			<a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ข่าวสารและโปรโมชั่น</a>
-			<div class="dropdown-menu" aria-labelledby="dropdown04">
-				<a class="dropdown-item" href="{{url('/news')}}">ข่าวสาร</a>
-				<a class="dropdown-item" href="{{url('/promotion')}}">โปรโมชั่น</a>
-			</div>
-		  </li>
-		  <li class="nav-item"><a href="{{url('/article')}}" class="nav-link"><span class="menu-span-col">|</span> บทความ</a></li>
-		  <li class="nav-item"><a href="{{url('/contact')}}" class="nav-link"><span class="menu-span-col">|</span> ติดต่อเรา</a></li>
-
-		</ul>
-	</div>
-	<div class="col-md-4" id="pay-nemu">
-		<ul class="navbar-nav ml-auto">
-		  <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
-		  <li class="nav-item cta-colored active"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : '' }}</a></li>
-		  <li class="nav-item"><a href="#" class="nav-link"><img src="{{asset('frontend/images/en.jpg')}}"></a></li>
-		</ul>
-	</div>
-
-
-	  </div>
-	</div>
-  </nav>
+                                <div class="totals">
+                                                <div class="totals-item">
+                                                    <label>ยอดรวม</label>
+                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            </div>
+                                            <div class="totals-item">
+                                                <label>ค่าส่ง</label>
+                                                <div class="totals-value" id="cart-shipping" style="">0</div>
+                                            </div>
+                                            <div class="totals-item totals-item-total">
+                                                <label>ยอดรวมทั้งสิ้น</label>
+                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                            </div>
+                                            </div>
+                                            {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
+                                            <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>
+                                
+                            </div>
+    
+                        </div>
+                    </div>
+                    @else 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                คุณยังไม่มีรายการสินค้าในตะกร้า
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    </div>
+                </div>
+               
+              </li>
+                       
+                        @if(empty(Session::get('customer_id')))
+                            <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Session::get('username')}}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                    <a class="dropdown-item" href="{{url('/order-history')}}">ประวัติการซื้อ</a>
+                                    <a class="dropdown-item" href="{{url('/logout')}}">ลงชื่อออก </a>
+                                </div>
+                            </li>
+                        @endif
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="menu-span-col">|</span> ภาษา</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown04">
+                                <a class="dropdown-item" href="#TH"><img src="{{asset('frontend/images/th.jpg')}}"> TH</a>
+                                <a class="dropdown-item" href="#EN"><img src="{{asset('frontend/images/england.png')}}"> EN</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+    
+    
+              </div>
+        </div>
+    </nav>
         <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
+    {{-- <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}}">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -1174,7 +1796,7 @@ label {
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
 
         
@@ -1199,68 +1821,47 @@ label {
                         </div>
                         
                         @foreach ($order as $_order)
+                        <?php $product = \App\Product::where('id_product',$_order->product_id)->first(); ?>
                         <div class="product">
                             <div class="product-image">
                             <p class="pro-sub">คำสั่งซื้อ {{$_order->id_order}}</p>
                             <p class="pro-sub">สั่งซื้อวันที่ {!! OrangeV1:: Date (date_create($_order->created_at)) !!} {{date_format($_order->created_at,'H:i:s')}}</p>
-                                <img  align="left" class="img-order-pro" src="{{asset('frontend/images/pro02.jpg')}}">
+                                <img  align="left" class="img-order-pro" src="{{url('storage/app/'.$product->product_img.'')}}">
                             </div>
                             <div class="product-details">
-                            <?php $product = \App\Product::where('id_product',$_order->product_id)->first(); ?>
+                           
                             <div class="product-title">{{$product->product_name_th}}</div>
                             <p class="product-description"></p>
                         </div>
                         <div class="product-price">Qty: {{$_order->count}}</div>
 
-                        <div class="product-removal">
-                                <button class="remove-product">
-                                ส่งสินค้าแล้ว
+                        <div class="product-product">
+                                <button class="status-product">
+                                    @if($_order->status_payment == 2)
+                                            @if($_order->status_delivery == 0)
+                                                เตรียมสินค้า
+                                            @elseif($_order->status_delivery == 1)
+                                                กำลังจัดส่งสินค้า
+
+                                            @elseif($_order->status_delivery == 2)
+                                                ส่งสินค้าเรียบร้อย
+                                            @else 
+                                                ชำระเงินแล้ว
+                                            @endif
+                                    @else 
+                                        @if($_order->status_payment == 0)
+                                                ยังไม่ชำระเงิน
+                                        @else 
+                                                รอการตรวจสอบ
+                                        @endif
+                                    @endif
+                               
                                 </button>
                             </div>
-                            <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
+                            <div class="product-line-price">{{!empty($_order->tracking) ? $_order->tracking : '' }}</div>
                         </div>
                         @endforeach
                         
-
-                        {{-- <div class="product">
-                            <div class="product-image">
-                                <p class="pro-sub">คำสั่งซื้อ 276637072504240</p>
-                                <p class="pro-sub">สั่งซื้อวันที่ 26 ม.ค. 2020 17:43:53</p>
-                                <img align="left" class="img-order-pro" src="{{asset('frontend/images/pro03.jpg')}}">
-                            </div>
-                            <div class="product-details">
-                                <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-                                <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-                            </div>
-                        <div class="product-price">Qty: 1</div>
-
-                        <div class="product-removal">
-                            <button class="remove-product">
-                            ส่งสินค้าแล้ว
-                            </button>
-                        </div>
-                            <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
-                        </div> --}}
-
-                        {{-- <div class="product">
-                            <div class="product-image">
-                            <p class="pro-sub">คำสั่งซื้อ 276637072504240</p>
-                            <p class="pro-sub">สั่งซื้อวันที่ 26 ม.ค. 2020 17:43:53</p>
-                            <img align="left" class="img-order-pro" src="{{asset('frontend/images/pro04.jpg')}}">
-                        </div>
-                        <div class="product-details">
-                            <div class="product-title">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบ</div>
-                            <p class="product-description">Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16</p>
-                        </div>
-                        <div class="product-price">Qty: 1</div>
-
-                        <div class="product-removal">
-                            <button class="remove-product">
-                            ส่งสินค้าแล้ว
-                            </button>
-                        </div>
-                            <div class="product-line-price">ได้รับวันที่ 05 ก.พ. 2020</div>
-                        </div> --}}
 
             </div>
         </div>
@@ -1275,74 +1876,7 @@ label {
 		
 	
 
-    <footer class="ftco-footer ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Vegefoods</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Menu</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Shop</a></li>
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Journal</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Help</h2>
-              <div class="d-flex">
-	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
-	              </ul>
-	              <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
-	                <li><a href="#" class="py-2 d-block">Contact</a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
-137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </footer>
-    <footer class="ftco-footer2 ftco-section2">
-        <div class="container">
-            <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright-text">
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
-						 
-						</p>
-          </div>
-        </div>
-        </div>
-        </footer>
+    @include('frontend.inc_footer')
   
 
   <!-- loader -->
@@ -1366,6 +1900,164 @@ label {
   <script src="{{asset('frontend/js/google-map.js')}}"></script>
   <script src="{{asset('frontend/js/main.js')}}"></script>
 
+
+  <script>
+
+
+$(".search-toggle").addClass("closed");
+
+$(".search-toggle .search-icon").click(function (e) {
+  if ($(".search-toggle").hasClass("closed")) {
+    $(".search-toggle").removeClass("closed").addClass("opened");
+    $(".search-toggle, .search-container03").addClass("opened");
+    $("#search-terms").focus();
+  } else {
+    $(".search-toggle").removeClass("opened").addClass("closed");
+    $(".search-toggle, .search-container03").removeClass("opened");
+  }
+});
+
+        //////cart
+  var taxRate = 0.00;
+  var shippingRate = 0.00; 
+  var fadeTime = 300;
+
+  ////get and change count
+  function count(id,type){
+            if(type == 'add'){
+                console.log($('#qy'+id) );
+                A = parseInt($('#qy'+id).text()) + 1;
+                $('#qy'+id).html(A);
+                $('#inputqy'+id).val(A);
+                updateQuantity(A,id);
+                countcart(id,type);
+            }else{
+                A = parseInt($('#qy'+id).text()) - 1;
+                if(A < 1){
+                    $('#qy'+id).html(1);
+                    $('#inputqy'+id).val(1);
+                    updateQuantity(1);
+                }else{
+                    $('#qy'+id).html(A);
+                    $('#inputqy'+id).val(A);
+                    updateQuantity(A,id);
+                    countcart(id,type);
+                }
+               
+            }
+
+           
+     }
+
+
+
+
+  
+  $('.product-removal button').click( function() {
+    removeItem(this);
+  });
+  
+  
+  /* Recalculate cart */
+  function recalculateCart()
+  {
+    var subtotal = 0;
+    
+    /* Sum up row totals */
+    $('.product').each(function () {
+      subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
+    });
+    
+    /* Calculate totals */
+    var tax = subtotal * taxRate;
+    var shipping = (subtotal > 0 ? shippingRate : 0);
+    var total = numberWithCommas(subtotal + tax + shipping);
+    
+    /* Update totals display */
+    $('.totals-value').fadeOut(fadeTime, function() {
+      $('#cart-subtotal').html(numberWithCommas(subtotal));
+      $('#cart-tax').html(tax);
+      $('#cart-shipping').html(shipping);
+      $('#cart-total').html(total);
+      $('#total').val(total);
+      if(total == 0){
+        $('.checkout').fadeOut(fadeTime);
+      }else{
+        $('.checkout').fadeIn(fadeTime);
+      }
+      $('.totals-value').fadeIn(fadeTime);
+    });
+  }
+  
+  
+  /* Update quantity */
+  function updateQuantity(quantityInput , id)
+  {
+    /* Calculate line price */
+    // var productRow = $(quantityInput).parent().parent();
+    // var price = parseInt(productRow.children('.product-price').text().replace(',',''));
+    var price = parseInt($('.price'+id).text().replace(',',''));
+    console.log(price);
+    var quantity = quantityInput;
+    var linePrice = numberWithCommas(price * quantity);
+    
+    /* Update line price display and recalc cart totals */
+    $('.totalitem'+id).each(function () {
+      $(this).fadeOut(fadeTime, function() {
+        $(this).text(linePrice);
+        recalculateCart();
+        $(this).fadeIn(fadeTime);
+      });
+    });  
+  }
+  
+  
+  /* Remove item from cart */
+  function removeItem(removeButton)
+  {
+    /* Remove row from DOM and recalc cart total */
+    var productRow = $(removeButton).parent().parent();
+    productRow.slideUp(fadeTime, function() {
+      productRow.remove();
+      recalculateCart();
+    });
+  }
+
+
+  //////////////////////convert to string with comma
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+
+
+    ///////////////delitem
+    function delitem(item,id){
+        $.ajax({
+            url: '{{ url("deleteitemincart")}}',
+            type: 'GET',
+            data : {'item' : item , 'id' : id},
+            success: function(data) {
+                $(".countcart").load(location.href + " .countcart");
+                $(".showcart").load(location.href + " .showcart");
+            }
+        });
+    }
+
+    //////+- สินค้า
+
+    function countcart(value,type){
+    $.ajax({
+            url: '{{ url("countproduct")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id' : value , 'type' : type},
+            success: function(data) {
+                $(".countcart").load(location.href + " .countcart");
+            }
+        });
+    }
+  </script>
     
   </body>
 </html>

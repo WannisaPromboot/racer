@@ -211,6 +211,7 @@ div {
   width: 12%;
   color: #777;
   font-family: 'Prompt', sans-serif;
+  clear: none;
 }
 
 .product-quantity {
@@ -254,6 +255,15 @@ div {
 /* Apply dollar signs */
 .product .product-price:before, .product .product-line-price:before, .totals-value:before {
   content: '฿';
+}
+
+ .promotion-discount:before {
+  content: '- ฿';
+  
+}
+
+.promotion-discount{
+    color: red;
 }
 
 
@@ -469,6 +479,12 @@ label {
     font-size: 20px;
 }
 
+.quantity_button {
+  margin-top: -27px !important;
+    margin-left: 15px !important;
+}
+
+
 }
 /* Make more adjustments for phone */
 @media screen and (max-width: 350px) {
@@ -529,10 +545,63 @@ label {
 
 /* -----end cart-------------- */
 
+.product_quantity {
+				float: left; 
+				width: 100px; 
+				height: 100px
+			}
+			
+			.quantity_button {
+        margin: 0px 0;
+    height: 26px;
+    width: 70px;
+    text-align: center;
+    padding: 0px;
+        background-color: #ECF0F1;
+			}
+			
+		.qt {
+      width: 40px;
+      float: left;
+      height: 26px;
+      line-height: 30px;
+      font-size: 1.25em;
+      background-color: #f9f9f9;
+      color: #7F8C8D;
+		}
+		
+		.add_sub {
+			float: left;
+      width: 25px;
+		}
+		
+		.qt-plus {
+			line-height: 13px;
+      width: 100%;
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      display: block;
+		}
+		
+		.qt-minus {
+			line-height: 13px;
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
+      display: block;
+		}
+
       
   </style>
 
-
+  <?php use App\Http\Controllers\Frontend\GetdataController; ?>
+  @include('frontend.inc_header')
   <body class="goto-here">
 		<div class="py-1 bg-primary">
     	<div class="container">
@@ -540,27 +609,34 @@ label {
 	    		<div class="col-lg-12 d-block">
 		    		<div class="row d-flex">
 
-                        <div class="col-md-8 pr-4 d-flex topper align-items-center">
+              <div class="col-md-8 pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon-phone2" style="color:#00b9e9"></span>
-							<span class="text"> : 02 811 1741 5</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<span class="icon icon-envelope" style="color:#00b9e9"></span>
-							<span class="text"> : Racer.co.th</span></div>
-							<div class="icon mr-2 d-flex justify-content-center align-items-center">
-								<i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
-						    <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
-                        </div>
-                        <div class="col-md-4">
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
-							</div>
-							<div class="icon mr-2 d-flex justify-content-center" id="social">
-								<a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
-						   </div>
+                  <span class="icon-phone2" style="color:#00b9e9"></span>
+                <span class="text"> : 0-2811-1741-5</span></div>
+                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                  <span class="icon icon-envelope" style="color:#00b9e9"></span>
+                <span class="text"> :  racer_official@racerlighting.com</span></div>
+                <div class="icon mr-2 d-flex justify-content-center align-items-center">
+                  <i class="fa fa-clock-o" style="color:#00b9e9" aria-hidden="true"></i>
+                  <span class="text"> : วันจันทร์ - วันศุกร์ : 08.00น. - 17.00น.</span></div>
+              </div>
+              <div class="col-md-4">
+                <!-- <div class="icon mr-2 d-flex justify-content-center" id="social">
+                  <a href="https://line.me/ti/p/~@racerlighting" style="color: white;"><i class="fab fa-line"></i></a>
+                </div>
+                <div class="icon mr-2 d-flex justify-content-center" id="social">
+                  <a href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><span class="icon-facebook"></span></a>
+                </div>
+                <div class="icon mr-2 d-flex justify-content-center" id="social">
+                  <a href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><span class="icon-instagram"></span></a>
+                </div> -->
+                <div class="icon mr-2 d-flex justify-content-center" id="social">
+                            <a target="blank" href="https://www.facebook.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-01.png"></a>
+                            <a target="blank" href="https://www.instagram.com/racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-02.png"></a>
+                            <a target="blank" href="https://line.me/ti/p/~@racerlighting" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-03.png"></a>
+                            <a target="blank" href="https://www.youtube.com/channel/UC8Af6KCm3uAnBeTya3rwuLA" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-04.png"></a>
+                            <a target="blank" href="https://www.tiktok.com/@racerlighting?" style="color: #00b9e9;"><img class="img-icon" src="http://miu.orangeworkshop.info/racer/frontend/images/BG web - Icon-05.png"></a>
+                    </div>
 
 					    </div>
 
@@ -607,7 +683,35 @@ label {
 	</div>
 	<div class="col-md-4" id="pay-nemu">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span>{{!empty(Session::get('product')) ? '['.count(Session::get('product')).']' : ''}}<span class="menu-span-col">|</span> </a></li>
+
+    <li class="nav-item">
+		  <div class="container03">
+  <div class="search-toggle">
+    <button class="search-icon icon-search"></button>
+    <button class="search-icon icon-close"></button>
+  </div>
+  <div class="search-container03">
+    <form action="{{url('searchproduct')}}" method="get">
+        @csrf
+      <input type="text" name="search" id="search-terms" placeholder="Search terms..."  autocomplete="off"/>
+      <button type="submit" class="search-icon"></button>
+    </form>
+  </div>
+</div>
+		  </li>
+      
+    
+      <li class="nav-item cta-colored"><a href="{{url('cart')}}" class="nav-link" id="cart-col"><span class="icon-shopping_cart"></span><span class="menu-span-col" id="addcart">
+        <?php
+        if(!empty(Session::get('product'))){
+           $qty = 0;
+               foreach (Session::get('product') as $key =>  $item) {
+                   $qty += $item['qty'];
+               }
+        }   
+       
+  ?>  
+        {{!empty(Session::get('product')) ? '['.$qty.']' : ''}}</span> </a></li>
       @if(empty(Session::get('customer_id')))
         <li class="nav-item"><a href="{{url('userlogin')}}" class="nav-link" id="but-login">ลงชื่อเข้าใช้</a></li>
       @else
@@ -635,16 +739,16 @@ label {
   </nav>
     <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/banner-detail.jpg')}})">
+    <!--div class="hero-wrap hero-bread" style="background-image: url({{asset('frontend/images/BANNER-cart.jpg')}})">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-0 bread">ตะกร้าสินค้า</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>ตะกร้าสินค้า</span></p>
+            {{-- <h1 class="mb-0 bread">ตะกร้าสินค้า</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="{{url('/')}}">หน้าหลัก</a></span>/ <span>ตะกร้าสินค้า</span></p> --}}
           </div>
         </div>
       </div>
-    </div>
+    </div-->
 
     <!-- <section class="ftco-section ftco-no-pb ftco-no-pt bg-light" id="pro-top">
 			<div class="container">
@@ -664,95 +768,177 @@ label {
 
                         <h1 class="title-cart"><span class="icon-shopping_cart"></span>ตะกร้า</h1>
     
-    <div class="shopping-cart">
-    <form action="{{url('storeorder')}}" method="POST">
-    @csrf
-    <div class="column-labels">
-        <label class="product-image">Image</label>
-        <label class="product-details">Product</label>
-        <label class="product-price" style="    color: #00b9eb;">ราคา</label>
-        <label class="product-quantity">จำนวน</label>
-        <label class="product-removal">Remove</label>
-        <label class="product-line-price" style="    color: #00b9eb;">รวม</label>
-        </div>
-
-        @if(!empty(Session::get('product')))
-        <?php $items = Session::get('product');  
-            $sum  = 0;
-        ?>
-        @foreach ($items as $key => $item)
-        <?php $product = \App\Product::where('id_product',$item['product_id'])->first(); ?>
-        <div class="product">
-            <div class="product-image">
-                <img src="{{url('storage/app/'.$product->product_img.'')}}">
-            </div>
-            <div class="product-details">
-                <div class="product-title">{{$product->product_name_th}}</div>
-                {{-- <p class="product-description">{!! $product->product_description_th !!}</p> --}}
-            </div>
-            @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-            <div class="product-price">{{number_format($product->product_special_price)}}</div>
-            <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_special_price}}">
-            @else 
-            <div class="product-price">{{number_format($product->product_normal_price)}}</div>
-            <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_normal_price}}">
-            @endif
-            
-                <div class="product-quantity">
-                <input type="number" class="text-center" name="count[{{$item['product_id']}}]" value="{{$item['qty']}}" min="1">
-            </div>
-            <div class="product-removal">
-                <button type="button" class="remove-product" onclick="delitem({{$key}})">Remove</button>
-            </div>
-            @if(($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
-            <div class="product-line-price">{{number_format($product->product_special_price * $item['qty'])}}</div>
-            <?php  $sum +=  $product->product_special_price * $item['qty'];?>
-            @else 
-            <div class="product-line-price">{{number_format($product->product_normal_price * $item['qty'])}}</div>
-            <?php  $sum +=  $product->product_normal_price * $item['qty'];?>
-            @endif
-        </div>
-    
-        @endforeach
-        @endif
-    
-        <div class="totals">
-            <div class="totals-item">
-                <label>ยอดรวม</label>
-            <div class="totals-value" id="cart-subtotal">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
-        </div>
-        <!-- <div class="totals-item">
-        <label>Tax (5%)</label>
-        <div class="totals-value" id="cart-tax">3.60</div>
-        </div> -->
-        <div class="totals-item">
-            <label>ค่าส่ง</label>
-            <div class="totals-value" id="cart-shipping">0</div>
-        </div>
-        <!-- <div class="totals-item">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-6"></div>
-            <div class="col-md-4 col-lg-4">
-                <input class="w3-input w3-border" type="text" placeholder="ระบุโค้ดส่วนลด">
-            </div>
-            <div class="col-md-2 col-lg-2">
-                <a href="#"><div class="totals-value2" id="">ยืนยัน</div></a>
-            </div>
-            </div>
-        </div>
-        </div> -->
-        <div class="totals-item totals-item-total">
-            <label>ยอดรวมทั้งสิน</label>
-            <div class="totals-value" id="cart-total">{{Session::get('product')? number_format($sum) : '0'}}</div>
-            <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
-        </div>
-        </div>
-        @if(!empty(Session::get('product')))
-            <a href="javascript:void(0)"><button type="submit" class="checkout">ชำระเงิน</button></a>
-        @endif
-    </form>
-    </div>
+                        <div class="shopping-cart">
+                            <form action="{{url('storeorder')}}" method="POST">
+                            @csrf
+                            <div class="column-labels">
+                                <label class="product-image">Image</label>
+                                <label class="product-details">Product</label>
+                                <label class="product-price" style="    color: #00b9eb;">ราคา</label>
+                                <label class="product-quantity" id="product-quantity">จำนวน</label>
+                                <label class="product-removal">Remove</label>
+                                <label class="product-line-price" style="    color: #00b9eb;">รวม</label>
+                                </div>
+                                    @if(!empty(Session::get('product')) && count(Session::get('product')) > 0)
+                                    <?php $items = Session::get('product');  
+                                        $sum  = 0;
+                                    ?>
+                                        @foreach ($items as $key => $item)
+                                        <?php $product = \App\Product::where('id_product',$item['product_id'])->first(); ?>
+                                        <div class="product">
+                                            <div class="product-image">
+                                                <img src="{{url('storage/app/'.$product->product_img.'')}}">
+                                            </div>
+                                            <div class="product-details">
+                                                <div class="product-title">{{$product->product_name_th}}</div>
+                                                <?php  $checkpromotion = \App\PromotionProduct::join('promotion_item','promotion_item.id_promotion','=','promotion.id_promotion')
+                                                                                                ->where('product_1',$item['product_id'])
+                                                                                                ->where('type',1)
+                                                                                                ->where('datefrom','<=',date('Y-m-d'))
+                                                                                                ->where('dateto','>=',date('Y-m-d'))
+                                                                                                ->first();
+                                                        
+                                                ?>
+                                                {{-- สินค้า promotion --}}
+                                                <div>
+                                                @if(!empty($checkpromotion ) && $item['qty'] >=  $checkpromotion->count_1)
+                                                    <?php  $promotion_product = \App\Product::where('id_product',$checkpromotion->product_2)->first();  ?>
+                                                    <p class="product-description">
+                                                        <div class="row">
+                                                            <?php  $count  = (floor($item['qty'] / $checkpromotion->count_1))*$checkpromotion->count_2;   ?>
+                                                            <div class="col-3">แถมฟรี {{$count}} ชิ้น</div>
+                                                            <div class="col-2">
+                                                                <img src="{{url('storage/app/'.$promotion_product->product_img.'')}}" width="100%">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="product-title">{{$promotion_product->product_name_th}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </p>
+                                                @endif
+                                                </div>
+                                                {{-- end promotion --}}
+                                            </div>
+                                            @if( !empty($product->product_special_price) && ($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                                <div class="product-price price{{$product->id_product}}" >{{number_format($product->product_special_price)}}</div>
+                                                <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_special_price}}">
+                                            @else 
+                                                <div class="product-price price{{$product->id_product}}">{{number_format($product->product_normal_price)}}</div>
+                                                <input type="hidden" name="price_item[{{$item['product_id']}}]" value="{{$product->product_normal_price}}">
+                                            @endif
+                                            
+                                                <!-- <div class="product-quantity">
+                                                <input type="number" class="text-center" name="count[{{$item['product_id']}}]" value="{{$item['qty']}}" min="1">
+                                            </div> -->
+                                            <div class='product-quantity'>
+                                            <div class='quantity_button'>
+                                                <span class="qt" id="qy{{$product->id_product}}">{{$item['qty']}}</span>
+                                                <span class="qt-plus" onclick="count('{{$product->id_product}}','add')">+</span>
+                                                <span class="qt-minus" onclick="count('{{$product->id_product}}','sub')">-</span>
+                                                <input type="hidden" class="text-center" id="inputqy{{$product->id_product}}" name="count[{{$item['product_id']}}]" value="{{$item['qty']}}" min="1">
+                                            </div>
+                                            </div>
+                                            <div class="product-removal">
+                                                <button type="button" class="remove-product" onclick="delitem({{$key}},{{$item['product_id']}})">Remove</button>
+                                            </div>
+                                            @if(  !empty($product->product_special_price) && ($product->product_start <= date('Y-m-d') && $product->product_start != NULL) && ($product->product_end >= date('Y-m-d') && $product->product_end != NULL))
+                                            <div class="product-line-price totalitem{{$product->id_product}}" >{{number_format($product->product_special_price * $item['qty'])}}</div>
+                                            <?php  $sum +=  $product->product_special_price * $item['qty'];?>
+                                            @else 
+                                            <div class="product-line-price totalitem{{$product->id_product}}">{{number_format($product->product_normal_price * $item['qty'])}}</div>
+                                            <?php  $sum +=  $product->product_normal_price * $item['qty'];?>
+                                            @endif
+                                        </div>
+                                    
+                                        @endforeach
+                                   
+                                        {{-- ส่วนลด --}}
+                                        <?php $result  = $sum - GetdataController::checkprice($sum)['discount']; 
+                                                $checkpromotion_dis = \App\PromotionProduct::where('promotion.type',2)
+                                                                                            ->where('datefrom','<=',date('Y-m-d'))
+                                                                                            ->where('dateto','>=',date('Y-m-d'))
+                                                                                            ->first();
+                                        
+                                        ?>
+                                        @if(count(GetdataController::checkprice($sum)['promotion']) > 0  || !empty($checkpromotion_dis ))
+                                        <h1 class="title-cart"><span class="icon-shopping_cart"></span>ส่วนลด</h1>
+                                        <div class="product ml-2">
+                                            @foreach (GetdataController::checkprice($sum)['promotion'] as $_pro)
+                                                <?php      $pro  = \App\PromotionProduct::where('id_promotion',$_pro['id_promotion'])->first(); ?>
+                                                <div class="row mb-2">
+                                                    <div class="col-9 ">{{$pro->promotion_title}}</div>
+                                                    <input type="hidden" name="promotion[{{$_pro['id_promotion']}}]" value="{{$_pro['id_promotion']}}" >
+                                                    <div class="col-3 text-right promotion-discount">{{number_format($_pro['total'],2,'.',',')}}</div>
+                                                    <input type="hidden" name="total[{{$_pro['id_promotion']}}]" value="{{$_pro['total']}}" >
+                                                </div>
+                                            @endforeach
+                                            @if(!empty( $checkpromotion_dis) && $result >= $checkpromotion_dis->total)
+                                            <div class="row mb-2">
+                                                <div class="col-9 mb-2">{{$checkpromotion_dis->promotion_title}}
+                                                    <div class="row">
+                                                        <?php $pro_free = \App\Product::where('id_product', $checkpromotion_dis->product)->first(); ?>
+                                                        <div class="col-2">แถมฟรี</div>
+                                                        <input type="hidden" name="promotion[{{ $checkpromotion_dis->id_promotion}}]" value="{{ $checkpromotion_dis->id_promotion}}" >
+                                                        <input type="hidden" name="total[{{ $checkpromotion_dis->id_promotion}}]" value="0" >
+                                                        <div class="col-2">
+                                                            <img src="{{url('storage/app/'.$pro_free->product_img.'')}}" width="100%">
+                                                        </div>
+                                                        <div class="col-8">{{$pro_free->product_name_th}}</div>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="col-3 text-right promotion-discount">{{number_format($_pro['total'],2,'.',',')}}</div> --}}
+                                            </div>
+                                            @endif
+                                            
+                                        </div>
+                                        @endif
+                                    @endif
+                                    {{-- total --}}
+                            
+                                    <div class="totals">
+                                        <div class="totals-item">
+                                            <label>ยอดรวม</label>
+                                        <div class="totals-value" id="cart-subtotal">{{!empty(Session::get('product'))?number_format($sum,2,'.',',') : '0'}}</div>
+                                    </div>
+                                    <!-- <div class="totals-item">
+                                    <label>Tax (5%)</label>
+                                    <div class="totals-value" id="cart-tax">3.60</div>
+                                    </div> -->
+                                    <div class="totals-item">
+                                        <label>ส่วนลด</label>
+                                        <div class="totals-value" id="cart-discount">{!! Session::get('product') ?  number_format(GetdataController::checkprice($sum)['discount'],'2','.',',') :'0' !!}</div>
+                                        <input type="hidden" name="price_discount" id="discount" value="{{Session::get('product') ? GetdataController::checkprice($sum)['discount'] : '0'}}">
+                                    </div>
+                                    <div class="totals-item">
+                                        <label>ค่าส่ง</label>
+                                        <div class="totals-value" id="cart-shipping">0</div>
+                                    </div>
+                                  
+                                    <!-- <div class="totals-item">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-6"></div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <input class="w3-input w3-border" type="text" placeholder="ระบุโค้ดส่วนลด">
+                                        </div>
+                                        <div class="col-md-2 col-lg-2">
+                                            <a href="#"><div class="totals-value2" id="">ยืนยัน</div></a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div> -->
+                                  
+                                    <div class="totals-item totals-item-total">
+                                        <label>ยอดรวมทั้งสิ้น</label>
+                                        <div class="totals-value" id="cart-total">{{Session::get('product')? number_format($result,2,'.',',') : '0'}}</div>
+                                        <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $result : '0'}}">
+                                    </div>
+                                </div>
+                                @if(!empty(Session::get('product')))
+                                    <a href="javascript:void(0)"><button type="submit" class="checkout">ชำระเงิน</button></a>
+                                @endif
+                            </form>
+                        </div>
                         
                     </div>
 
@@ -769,85 +955,7 @@ label {
 		
 	
 
-    <footer class="ftco-footer ftco-section">
-      <div class="container">
-      	<!-- <div class="row">
-      		<div class="mouse">
-						<a href="#" class="mouse-icon">
-							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-						</a>
-					</div>
-      	</div> -->
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Vegefoods</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-              <!-- <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul> -->
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Menu</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Shop</a></li>
-                <li><a href="#" class="py-2 d-block">About</a></li>
-                <li><a href="#" class="py-2 d-block">Journal</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Help</h2>
-              <div class="d-flex">
-	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-	                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-	                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-	                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-	                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
-	              </ul>
-	              <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">FAQs</a></li>
-	                <li><a href="#" class="py-2 d-block">Contact</a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">บริษัท เรเซอร์การไฟฟ้า ประเทศไทย จำกัด
-137 หมู่9 ซอยเพชรเกษม91 ถนนเพชรเกษม ตำบลสวนหลวง อำเภอกระทุ่มแบน สมุทรสาคร 74110</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">02 811 1741 5</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Racer_official@Racerlighting.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </footer>
-    <footer class="ftco-footer2 ftco-section2">
-        <div class="container">
-            <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright-text">
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
-						 
-						</p>
-          </div>
-        </div>
-        </div>
-        </footer>
+        @include('frontend.inc_footer')
   
 
   <!-- loader -->
@@ -880,19 +988,52 @@ label {
   
   
   /* Assign actions */
-  $('.product-quantity input').change( function() {
-    if(this.value < 1 ){
-            Swal.fire({
-                text: 'กรุณากรอกจำนวนสินค้ามากกว่า 0 ',
-                type: "warning",
-                confirmButtonColor: '#41c8f5',
-            });
-            $(this).val(1); 
+//   $('.product-quantity input').change( function() {
+//     if(this.value < 1 ){
+//             Swal.fire({
+//                 text: 'กรุณากรอกจำนวนสินค้ามากกว่า 0 ',
+//                 type: "warning",
+//                 confirmButtonColor: '#41c8f5',
+//             });
+//             $(this).val(1); 
 
-            return false    
-    }
-        updateQuantity(this);
-  });
+//             return false    
+//     }
+//         updateQuantity(this);
+//   });
+
+////get and change count
+     function count(id,type){
+            if(type == 'add'){
+                console.log($('#qy'+id) );
+                A = parseInt($('#qy'+id).text()) + 1;
+                $('#qy'+id).html(A);
+                $('#inputqy'+id).val(A);
+                updateQuantity(A,id);
+                countcart(id,type);
+            }else{
+                A = parseInt($('#qy'+id).text()) - 1;
+                if(A < 1){
+                    $('#qy'+id).html(1);
+                    $('#inputqy'+id).val(1);
+                    updateQuantity(1);
+                }else{
+                    $('#qy'+id).html(A);
+                    $('#inputqy'+id).val(A);
+                    updateQuantity(A,id);
+                    countcart(id,type);
+                }
+               
+            }
+
+      
+            
+           
+     }
+
+
+
+
   
   $('.product-removal button').click( function() {
     removeItem(this);
@@ -906,17 +1047,25 @@ label {
     
     /* Sum up row totals */
     $('.product').each(function () {
-      subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
+       
+      if($(this).children('.product-line-price').text() != ''){
+        subtotal += parseFloat($(this).children('.product-line-price').text().replace(',',''));
+      }
+     
     });
     
+   
     /* Calculate totals */
     var tax = subtotal * taxRate;
     var shipping = (subtotal > 0 ? shippingRate : 0);
-    var total = numberWithCommas(subtotal + tax + shipping);
+    var discount = $('#discount').val();
+    var total = numberWithCommas((subtotal + tax + shipping)-discount);
+ 
     
     /* Update totals display */
     $('.totals-value').fadeOut(fadeTime, function() {
       $('#cart-subtotal').html(numberWithCommas(subtotal));
+     // $('#cart-discount').html(numberWithCommas(discount));
       $('#cart-tax').html(tax);
       $('#cart-shipping').html(shipping);
       $('#cart-total').html(total);
@@ -928,27 +1077,31 @@ label {
       }
       $('.totals-value').fadeIn(fadeTime);
     });
+
+    $('.section-back').load(location.href + " .section-back");
   }
   
   
   /* Update quantity */
-  function updateQuantity(quantityInput)
+  function updateQuantity(quantityInput , id)
   {
     /* Calculate line price */
-    var productRow = $(quantityInput).parent().parent();
-    var price = parseInt(productRow.children('.product-price').text().replace(',',''));
+    // var productRow = $(quantityInput).parent().parent();
+    // var price = parseInt(productRow.children('.product-price').text().replace(',',''));
+    var price = parseInt($('.price'+id).text().replace(',',''));
     console.log(price);
-    var quantity = $(quantityInput).val();
+    var quantity = quantityInput;
     var linePrice = numberWithCommas(price * quantity);
     
     /* Update line price display and recalc cart totals */
-    productRow.children('.product-line-price').each(function () {
+    $('.totalitem'+id).each(function () {
       $(this).fadeOut(fadeTime, function() {
         $(this).text(linePrice);
         recalculateCart();
         $(this).fadeIn(fadeTime);
       });
     });  
+    
   }
   
   
@@ -972,18 +1125,46 @@ label {
 
 
     ///////////////delitem
-    function delitem(item){
+    function delitem(item,id){
         $.ajax({
             url: '{{ url("deleteitemincart")}}',
             type: 'GET',
-            data : {'item' : item},
+            data : {'item' : item , 'id' : id},
             success: function(data) {
-                
+                $('.section-back').load(location.href + " .section-back");
             }
         });
     }
 
     </script>
+
+<script>
+$(".search-toggle").addClass("closed");
+
+$(".search-toggle .search-icon").click(function (e) {
+  if ($(".search-toggle").hasClass("closed")) {
+    $(".search-toggle").removeClass("closed").addClass("opened");
+    $(".search-toggle, .search-container03").addClass("opened");
+    $("#search-terms").focus();
+  } else {
+    $(".search-toggle").removeClass("opened").addClass("closed");
+    $(".search-toggle, .search-container03").removeClass("opened");
+  }
+});
+
+
+function countcart(value,type){
+    $.ajax({
+            url: '{{ url("countproduct")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'id' : value , 'type' : type},
+            success: function(data) {
+                $("#addcart").load(location.href + " #addcart");
+            }
+        });
+    }
+ </script>
     
   </body>
 </html>

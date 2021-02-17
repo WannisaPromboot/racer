@@ -36,6 +36,19 @@
   </head>
 
   <style>
+    :focus {
+        outline: -webkit-focus-ring-color auto 0px;
+    }
+    .form-control {
+    height: 52px !important;
+    background: #fff !important;
+    color: #777 !important;
+    font-size: 15px;
+    border-radius: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    font-weight: 400;
+}
         #mobile{
     display: none;
   }
@@ -735,7 +748,7 @@ a:hover {
       
   </style>
 
-
+@include('frontend.inc_header')
   <body class="goto-here">
 	<div class="py-1 bg-primary">
         <div class="container">
@@ -1083,12 +1096,20 @@ a:hover {
                                   <input type="text" id="zipcode" name="postal" placeholder="Postal code" readonly>
                                 </div>
                               </div>
-              
-                              <!-- <div class="row">
+                              <div class="row">
                                 <div class="col-75">
-                                  <input type="text" name="facebook" placeholder="Facebook">
+                                  <input type="date"  name="birth" placeholder="Date of birth" class="form-control">
                                 </div>
-                              </div> -->
+                              </div>
+                              <div class="row">
+                                <div class="col-75">
+                                 <select class="form-control" name="gender">
+                                   <option>กรุณาเลือก</option>
+                                   <option>ชาย</option>
+                                   <option>หญิง</option>
+                                 </select>
+                                </div>
+                              </div> 
               
                           </div>
             
@@ -1138,7 +1159,7 @@ a:hover {
                               
                               <!-- <div class="row">
                                 <div class="col-75">
-                                  <input type="text" name="lineid" placeholder="Line ID">
+                                  <input type="number" name="age" placeholder="Age" class="form-control">
                                 </div>
                               </div> -->
 

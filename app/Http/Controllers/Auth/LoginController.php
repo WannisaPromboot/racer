@@ -41,6 +41,7 @@ class LoginController extends Controller
 
             $authUser = $this->findOrCreate($input,$provider,$user->getId(),$random );
             Session::put('username',$user->getName()); 
+            $this->customerlogin(Session::get('customer_id'));
             // Session::put('currency','THB');
 
             // $this->getIP( Session::get('customer_id'),$request->getClientIp());
@@ -72,7 +73,7 @@ class LoginController extends Controller
             return $checkIfExist;
         }else{
             Session::put('customer_id',$id);
-            return Customer::create($input);
+            return Customer::insert($input);
         }
 	}
 
@@ -90,6 +91,7 @@ class LoginController extends Controller
                 $CustomerModel::where('email',$request->email)->update(['count'=> 0]);
             
                 // $this->getIP($emailuser->customer_id,$request->getClientIp());
+                $this->customerlogin($emailuser->customer_id);
 
                 if(!empty(Session::get('product'))){
                     return redirect('cart');
@@ -131,15 +133,15 @@ class LoginController extends Controller
         return Redirect::to('userlogin'); 
       }
 
-      public static function getIP($user,$ip){
+    //   public static function getIP($user,$ip){
 
-        Session::put('customer_ip',$ip);
-        $NewLogin   = new CustomerLogin;
-        $NewLogin->customer_id = $user;
-        $NewLogin->ip =  $ip;
-        $NewLogin->save();
+    //     Session::put('customer_ip',$ip);
+    //     $NewLogin   = new CustomerLogin;
+    //     $NewLogin->customer_id = $user;
+    //     $NewLogin->ip =  $ip;
+    //     $NewLogin->save();
          
-     }
+    //  }
 
      /////คำนวณระยะเวลา
      function diff2time($time_a,$time_b){
@@ -151,5 +153,22 @@ class LoginController extends Controller
         $time_diff_s=($time_diff%3600)%60; // จำนวนวินาทีที่ต่างกัน
         return $time_diff_h." ชั่วโมง ".$time_diff_m." นาที ".$time_diff_s." วินาที";
     }
+
+    public static function customerlogin($user){
+        $updateLogin  = CustomerLogin::where('customer_id',$user)->first();
+
+        if(!empty($updateLogin)){        
+            $updateLogin->count=  $updateLogin->count+1;
+            $updateLogin->save();
+        }else{       
+            $NewLogin   = new CustomerLogin;
+            $NewLogin->customer_id = $user;
+            $NewLogin->count=  1;
+            $NewLogin->save();
+        }
+
+    }
+
+
      
 }

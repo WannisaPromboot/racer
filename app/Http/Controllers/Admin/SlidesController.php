@@ -53,7 +53,6 @@ class SlidesController extends Controller
             Storage::put($newFilename, file_get_contents($request->filepath));
             $SlideContent->slide_image = $newFilename;
         }
-        $SlideContent->page = 1;
 
         $SlideContent->save();
 

@@ -52,7 +52,7 @@
             <div class="col-sm">
 
                  {{-- language --}}
-                 <div class="dropdown d-inline-block">
+                 {{-- <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item waves-effect"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if(Session::get('lang')=='th')
@@ -75,10 +75,10 @@
                             <img src="{{asset('assets/images/flags/us.jpg')}}" class="mr-1" height="12"> <span class="align-middle">English</span>
                         </a>
                     </div>
-                </div>
+                </div> --}}
 
 
-                <div class="dropdown d-inline-block">
+                {{-- <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="opennoti()">
                         <i class="bx bx-bell bx-tada"></i>
@@ -95,7 +95,7 @@
                                     <a href="{{url('allnotification')}}" class="small">ทั้งหมด</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- <div style="max-height: auto;" id="notification"> 
                             @if(count($noti) != 0)
                                 @foreach ($noti as $item)
@@ -128,20 +128,20 @@
                             @endif
                            
                         </div> --}}
-                        <div class="p-2 border-top">
-                            <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
+                        {{-- <div class="p-2 border-top">
+                            <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)"> --}}
                                 {{-- <i class="mdi mdi-arrow-right-circle mr-1"></i> View More.. --}}
-                            </a>
+                            {{-- </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="dropdown d-inline-block">
                     <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{-- <img class="rounded-circle header-profile-user" src="{{asset('assets/images/users/avatar-1.jpg')}}"
                             alt="Header Avatar"> --}} 
-                        <span class="d-none d-xl-inline-block ml-1">{{!empty(Session::get('admin_name')) ? Session::get('admin_name') :''}}</span>
+                        <span class="d-none d-xl-inline-block ml-1">Admin</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
