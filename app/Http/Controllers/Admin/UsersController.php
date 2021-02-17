@@ -22,23 +22,11 @@ class UsersController extends Controller
     } 
 
     public function LogoutAdmin(){
-
-        if(!empty(Session::get('admin_id')) && !empty(Session::get('admin_ip')) ){
-            $update = AdminLogin::where('admin_id',Session::get('admin_id'))
-                                    ->where('ip',Session::get('admin_ip'))
-                                    ->orderBy('created_at','desc')
-                                    ->first();
-            
-            $update->duration = $this->diff2time($update->created_at,date('Y-m-d H:i:s'));
-
-            $update->save();
-        }
-
-
         Session::forget('admin_id');
         Session::forget('admin_name');
         Session::forget('admin_status');  
-        return redirect('Login_admin');
+        
+        return redirect('admin');
     }
 
     public function AddUser(){
@@ -47,7 +35,7 @@ class UsersController extends Controller
     } 
     
     public function EditUser($id){
-        $user = Admin::where('id',$id)->first();
+        $user = Admin::where('id_staff',$id)->first();
         return view('Admin.users.edit-users',['user' => $user ]);
     } 
 
@@ -157,25 +145,25 @@ class UsersController extends Controller
     }
 
 
-    public static function getIP($user,$ip){
-        Session::put('admin_ip',$ip);
-        $NewLogin   = new AdminLogin;
-        $NewLogin->admin_id = $user;
-        $NewLogin->ip =  $ip;
-        $NewLogin->save();
+    // public static function getIP($user,$ip){
+    //     Session::put('admin_ip',$ip);
+    //     $NewLogin   = new AdminLogin;
+    //     $NewLogin->admin_id = $user;
+    //     $NewLogin->ip =  $ip;
+    //     $NewLogin->save();
          
-     }
+    //  }
 
-     /////คำนวณระยะเวลา
-     function diff2time($time_a,$time_b){
-        $now_time1=strtotime($time_a);
-        $now_time2=strtotime($time_b);
-        $time_diff=abs($now_time2-$now_time1);
-        $time_diff_h=floor($time_diff/3600); // จำนวนชั่วโมงที่ต่างกัน
-        $time_diff_m=floor(($time_diff%3600)/60); // จำวนวนนาทีที่ต่างกัน
-        $time_diff_s=($time_diff%3600)%60; // จำนวนวินาทีที่ต่างกัน
-        return $time_diff_h." ชั่วโมง ".$time_diff_m." นาที ".$time_diff_s." วินาที";
-    }
+    //  /////คำนวณระยะเวลา
+    //  function diff2time($time_a,$time_b){
+    //     $now_time1=strtotime($time_a);
+    //     $now_time2=strtotime($time_b);
+    //     $time_diff=abs($now_time2-$now_time1);
+    //     $time_diff_h=floor($time_diff/3600); // จำนวนชั่วโมงที่ต่างกัน
+    //     $time_diff_m=floor(($time_diff%3600)/60); // จำวนวนนาทีที่ต่างกัน
+    //     $time_diff_s=($time_diff%3600)%60; // จำนวนวินาทีที่ต่างกัน
+    //     return $time_diff_h." ชั่วโมง ".$time_diff_m." นาที ".$time_diff_s." วินาที";
+    // }
 
 
 }

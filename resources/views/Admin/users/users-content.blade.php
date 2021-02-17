@@ -21,11 +21,14 @@
 </style>
     <!-- start page title -->
     <div class="row">
-        <div class="col-12">
+        <div class="col-sm">
             <div class="page-title-box d-flex align-items-center justify-content-between">
             <h4 class="mb-0 font-size-18">{{Session::get('lang')=='th'?'ข้อมูลผู้ดูแลระบบ ' :'Admin'}}</h4>
             </div>
         </div>
+        <div class="col-sm text-right">
+            <a href="{{url('adduser')}}" class="btn" style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มผู้ดูแลระบบ ' :'+ Add Admin'}}</a>
+        </div>  
     </div>     
     <!-- end page title -->
 
@@ -36,11 +39,9 @@
                     <div class="row mb-4">
                         <div class="col-sm">
                         </div class="col-sm">
-                        <div>
-                            <a href="{{url('adduser')}}" class="btn" style="background-color: #03dc74 !important;color:white !important;">{{Session::get('lang')=='th'?'+ เพิ่มผู้ดูแลระบบ ' :'+ Add Admin'}}</a>
-                        </div>   
+                        
                     </div>
-
+                    <?php dd(Session::all()); ?>
                     <table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
@@ -62,21 +63,16 @@
                                 <td>{{$item->name_staff}} {{$item->lastname_staff}}</td>       
                                 <td>
                                     @if($item->role == 1) 
-                                      admin
+                                      ผู้ดูแลระบบ 1
                                     @elseif($item->role == 2)
-                                      supervisor
-                                    @elseif($item->role == 3)
-                                       staff
-                                    @elseif($item->role == 4)
-                                        accountant
+                                    ผู้ดูแลระบบ 2
                                     @endif
                                 </td>                  
                                 <td>
-                                    <a href="{{url('edituser/'.$item->id.'')}}" class="btn btn-warning">{{Session::get('lang')=='th'?'แก้ไข' :'Edit'}}</a>
+                                    <a href="{{url('edituser/'.$item->id_staff.'')}}" class="btn btn-warning">แก้ไข</a>
                                 </td>
                                 <td>
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">{{Session::get('lang')=='th'?'ลบ' :'Delete'}}</button>
+                                    <button type="submit" class="btn btn-danger" onclick="deldata({{$item->id_staff}})">ลบ</button>
                                 </td>
                             </tr>
                             <?php $i++; ?>
@@ -114,6 +110,37 @@
         swal(A);
     }else if(B){
         swal(B);
+    }
+
+    
+    function deldata(id){
+        Swal.fire({
+        text: "คุณต้องการลบข้อมูลใช่หรือไม่",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'yes'
+        }).then((result)=>{
+            if (result.value) {
+                $.ajax({
+                        url: '{{ url("delete1table")}}/Admin/'+ id +'/NULL',
+                        type: 'GET',
+                        dataType: 'HTML',
+                        success: function(data) {
+                            Swal.fire({
+                            html: "<h1>ลบข้อมูลเรียบร้อย</h1>",
+                            type: 'success',
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            });
+
+                            window.location.reload();
+                        }
+                    });
+                }
+        });
+
     }
 </script>
 

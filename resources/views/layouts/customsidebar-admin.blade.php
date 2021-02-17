@@ -22,20 +22,24 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
+                @if(Session::get('admin_status') == 1 || Session::get('admin_status') == 2)
                 <li>
                     <a href="{{url('home')}}"  class="waves-effect">
                         <img src="{{asset('assets/images/racer/icon/home-run.png')}}">
                         <span>หน้าแรก</span>
                     </a> 
                 </li>
+                @endif
+                @if(Session::get('admin_status') == 1 )
                 <li>
-                    <a href="javascript:void(0)" class="waves-effect">
+                    <a href="{{url('usercontent')}}" class="waves-effect">
                         <img src="{{asset('assets/images/racer/icon/contact-us.png')}}">
                         <span>การจัดการสิทธิ์และบทบาท</span>
                     </a> 
                 </li>
+                @endif
                
-
+                @if(Session::get('admin_status') == 1 )
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/racer/icon/grid.png')}}">
@@ -53,6 +57,7 @@
                         <span>การจัดการบทความ</span>
                     </a>
                 </li>
+              
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/racer/icon/grid.png')}}">
@@ -63,6 +68,8 @@
                         <li><a href="{{url('promotioncontent')}}">โปรโมชั่น</a></li>
                     </ul> 
                 </li>
+                @endif
+                @if(Session::get('admin_status') == 1 )
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/racer/icon/grid.png')}}">
@@ -80,6 +87,8 @@
                         <span>สินค้า</span>
                     </a> 
                 </li>
+                @endif
+                @if(Session::get('admin_status') == 1 || Session::get('admin_status') == 2)
                 <li>
                     <a href="{{url('ordercontent')}}" class=" waves-effect">
                         <img src="{{asset('assets/images/racer/icon/box.png')}}">
@@ -110,6 +119,7 @@
                         <span>รายงาน</span>
                     </a>
                 </li>
+                @endif
                 {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <img src="{{asset('assets/images/racer/icon/seo-report.png')}}">

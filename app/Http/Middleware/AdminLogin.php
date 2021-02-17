@@ -15,12 +15,22 @@ class AdminLogin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,...$list)
     {
-        if (!empty(Session::get('admin_id')) && Session::get('admin_status') == 1 ) {
-            return $next($request);
+
+        if(!empty(Session::get('admin_id'))){
+            $auth_role = Session::get('admin_status');
+            $result = in_array($auth_role, $list);
+            
+            if(!$result){
+                abort(404);
+            }else{
+                return $next($request);
+            }
         }else{
-            return redirect('Login_admin');
+            return redirect('admin');
         }
+  
+       
     }
 }
