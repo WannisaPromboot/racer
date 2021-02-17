@@ -749,6 +749,9 @@ a:hover {
   </style>
 
 @include('frontend.inc_header')
+<?php
+    use App\Http\Controllers\Frontend\GetdataController; 
+?>
   <body class="goto-here">
 	<div class="py-1 bg-primary">
         <div class="container">
