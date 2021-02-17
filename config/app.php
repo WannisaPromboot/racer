@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
+     
+     
         /*
          * Package Service Providers...
          */
@@ -182,7 +184,12 @@ return [
         ////excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Overtrue\LaravelShoppingCart\ServiceProvider::class,
+        
+        ///pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
 
+        ///agent
+        Jenssegers\Agent\AgentServiceProvider::class,
     ],
 
     /*
@@ -237,6 +244,8 @@ return [
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'ShoppingCart'      => Overtrue\LaravelShoppingCart\Facade::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

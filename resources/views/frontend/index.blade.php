@@ -381,8 +381,28 @@ a:hover, a:focus {
 }
 
 </style>
-<?php use App\Http\Controllers\Frontend\GetdataController; ?>
+<?php use App\Http\Controllers\Frontend\GetdataController; 
+      use Jenssegers\Agent\Agent;
+        $agent = new Agent();
+        $device  = $agent->device();
+        $browser = $agent->browser();
+        $UpdateDevice  = \App\CustomerDevice::where('device', $device)->where('browser',$browser)->first();
+
+        if(!empty($UpdateDevice)){
+            $UpdateDevice->count  =  $UpdateDevice->count  +1 ;
+            $UpdateDevice->save();
+
+        }else{
+            $NewDevice = New \App\CustomerDevice;
+            $NewDevice->device  = $device;
+            $NewDevice->browser  = $browser;
+            $NewDevice->count  = 1;
+            $NewDevice->save();
+        }
+
+?>
 @include('frontend.inc_header')
+<?php $page = 'index'; ?>
   <body class="goto-here">
 	<div class="py-1 bg-primary">
 	<div class="container">
@@ -704,13 +724,6 @@ a:hover, a:focus {
 		<div class="container">
 			<div class="row">
                 @foreach($subbanner as $sub)
-
-                    <div class="col-md-6" >
-                        <a href="{{!(empty($sub->subbanner_link))?$sub->subbanner_link:'javascript:void(0)'}}"><img class="pro-img" src="{{url('storage/app/'.$sub->subbanner_image)}}"></a>
-                    </div>
-                    
-                @endforeach
-				
 
                     <div class="col-md-6" >
                         <a href="{{!(empty($sub->subbanner_link))?$sub->subbanner_link:'javascript:void(0)'}}"><img class="pro-img" src="{{url('storage/app/'.$sub->subbanner_image)}}"></a>

@@ -1,3 +1,13 @@
+<?php 
+        if(!empty($page)){
+            $newPage  = new \App\CustomerPage;
+            $newPage->page = $page;
+            $newPage->count = 1;
+            $newPage->save();
+        }
+      
+
+?>
 <div id="cookies-eu-banner" style="display: none;" data-wait-remove="1200">
       Wir verwenden Cookies zur anonymisierten Website Analyse. Das hilft uns bei der Verbesserung dieser Seite.
       <!-- <a href="https://alex-d.github.io/Cookies-EU-banner/" id="cookies-eu-more" target="_blank">read our cookie polic</a> -->

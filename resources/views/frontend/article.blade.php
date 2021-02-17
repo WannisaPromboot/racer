@@ -528,6 +528,7 @@ a:hover {
   </style>
 
 @include('frontend.inc_header')
+<?php $page = 'article'; ?>
   <body class="goto-here">
 	<div class="py-1 bg-primary">
         <div class="container">

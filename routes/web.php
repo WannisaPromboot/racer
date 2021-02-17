@@ -53,7 +53,7 @@ Route::get('/contact', function(){
 Route::post('sendcontact','Frontend\CustomerController@Customersendmail');
 
 
-Route::get('/privacy', function(){
+Route::get('privacy', function(){
     return view('frontend.privacy');
 });
 
@@ -459,6 +459,8 @@ Route::get('addnewsome','Admin\PromotionProductController@addnewsome');
 Route::get('/report/{id}', 'Admin\ReportController@ReportContent');
 Route::get('/report-content', 'Admin\ReportController@ReportContent');
 Route::get('/getreport', 'Admin\ReportController@GetReport');
+
+Route::get('/exportPDF', 'Admin\ReportController@exportPDF');
 
 
 ////////////////////Home///////////////////////////
