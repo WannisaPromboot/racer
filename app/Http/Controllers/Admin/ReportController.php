@@ -109,23 +109,18 @@ class ReportController extends Controller
                                             <th>ชื่อ-นามสกุลลูกค้า</th>
                                             <th>อีเมลลูกค้า</th>
                                             <th>เบอร์โทรศัพท์ลูกค้า</th>
-                                            <th>ชื่อสินค้า</th>
                                             <th>วันที่ซื้อ</th>
-                                            <th>ราคา</th>
                                         </tr>
                                     </thead>
                                     <tbody>';
                                     foreach($sql as $_item){
                                         $cus = Customer::where('customer_id',$_item->customer_id)->first();
-                                        $pro = OrderItem::leftJoin('product','product_order_item.product_id','=','product.id_product')->where('id_order',$_item->id_order)->first();
                             echo       '<tr>
                                             <td>'.$i.'</td>
                                             <td>'.$cus->name.'   '.$cus->lastname.'</td>
                                             <td>'.$cus->email.'</td>
                                             <td>'.$cus->phone.'</td>
-                                            <td>'.$pro->product_name_th.'</td>
                                             <td>'.$_item->created_at.'</td>
-                                            <td>'.$_item->total.'</td>
                                         </tr>';
                                         $i =$i+1;
                                     }

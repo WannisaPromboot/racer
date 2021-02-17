@@ -62,6 +62,8 @@ Route::get('/detail-article/{id}', function($id){
     $data = array(
         'data' => \App\Blog::where('id_blog',$id)->first(),
         'img' => \App\Blog_gallery::where('id_blog',$id)->get(),
+        'banner' => App\Slide::where('page',5)->first(),
+
     );
     return view('frontend.detail-article',$data);
 });

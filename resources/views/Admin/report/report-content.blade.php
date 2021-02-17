@@ -196,11 +196,9 @@
 
         }
       
- 
         $json_name  = json_encode( $name);
         $json_count = json_encode( $count);
         $json_color = json_encode( $color);
-
 
         /////bar 
         $bar = \App\CustomerPage::select(DB::raw('count(id) as count'),'page')
@@ -273,36 +271,43 @@
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='none';
             document.getElementById('startend').style.display='';
+            $('#new').removeAttr('style');
 
         }else if($(this).val()==2){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';
             document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
+            document.getElementById('textselect').style.display='';
+            $('#new').removeAttr('style');
 
         }else if($(this).val()==5){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';
             document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
+            document.getElementById('textselect').style.display='';
+            $('#new').removeAttr('style');
 
         }else if($(this).val()==11){
             document.getElementById('m').style.display='';
             document.getElementById('dmy').style.display='none';
             document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
+            document.getElementById('textselect').style.display='';
+            $('#new').removeAttr('style');
 
         }else if($(this).val()==8){
 
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
             window.open('https://analytics.google.com/analytics/web/?authuser=2#/p262553732/realtime/overview?params=_u..nav%3Ddefault%26_u..comparisons%3D%5B%7B%22name%22:%22All%20Users%22,%22filters%22:%5B%7B%22isCaseSensitive%22:true,%22expression%22:%220%22,%22fieldName%22:%22audience%22%7D%5D%7D%5D%26_u.comparisonOption%3Ddisabled%26_u.dateOption%3Dlast30Days', '_blank');
+        
         }else if($(this).val()==7){  ////bar
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
            
             $('#new').css('display','none');
-
             $.ajax({
                 url: '{{ url("getreport")}}',
                 type: 'GET',
@@ -316,8 +321,6 @@
                         $('#barchart').removeAttr('style');
                         $('#barchart_excel').html(data);
                     }
-                  
-                
                 }
             });
         
@@ -326,7 +329,6 @@
             document.getElementById('textselect').style.display='none';
            
             $('#new').css('display','none');
-
             $.ajax({
                 url: '{{ url("getreport")}}',
                 type: 'GET',
@@ -340,8 +342,6 @@
                         $('#chart').removeAttr('style');
                         $('#chart_excel').html(data);
                     }
-                  
-                
                 }
             });
 
@@ -351,6 +351,7 @@
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
             window.open('https://analytics.google.com/analytics/web/?authuser=2#/p262553732/reports/dashboard?params=_u..nav%3Ddefault%26_u..comparisons%3D%5B%7B%22name%22:%22All%20Users%22,%22filters%22:%5B%7B%22isCaseSensitive%22:true,%22expression%22:%220%22,%22fieldName%22:%22audience%22%7D%5D%7D%5D%26_u.comparisonOption%3Ddisabled%26_u.dateOption%3Dtoday&r=user-demographics-overview', '_blank');
+        
         }else if($(this).val()==17 || $(this).val()==3  || $(this).val()==4  || $(this).val()==14 ){
             $('.selectall').attr('disabled',true);
             document.getElementById('startend').style.display='none';
@@ -378,8 +379,6 @@
                             ]
                         });
                     }
-                  
-                
                 }
             });
         }
