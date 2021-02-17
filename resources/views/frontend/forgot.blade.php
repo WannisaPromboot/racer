@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    @include('frontend.inc_header')
+
     <title>Racer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -1072,11 +1074,6 @@ a:hover {
             </div>
         
         </div> 
-
-		
-
-		
-	
 
         @include('frontend.inc_footer')
   

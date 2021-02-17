@@ -107,6 +107,30 @@
                         </div>
                         <input type="hidden" id="report" value="">
                     
+                    <div class="col-4" id="m" style="display:none"> 
+                        <select class="form-control selectall" id="monthselect" >
+                            <option value="">กรุณาเลือกเดือนที่ต้องการ</option>
+                            <option value="01">1</option>
+                            <option value="02">2</option>
+                            <option value="03">3</option>
+                            <option value="04">4</option>
+                            <option value="05">5</option>
+                            <option value="06">6</option>
+                            <option value="07">7</option>
+                            <option value="08">8</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    
+                  
+                    <div class="col-6 form-inline" id="startend" style="display:none">
+                        <input type="date" name="datestart" id="datestart" class="form-control">&nbsp;&nbsp;&nbsp;
+                        <input type="date" name="dateend" id="dateend" class="form-control">
+                    </div>
+                   
                 </div>
                 <br>
           
@@ -245,19 +269,27 @@
             $('#barchart').css('display','none');
         }
 
-        if($(this).val()==2){
+        if($(this).val()==1){
+            document.getElementById('m').style.display='none';
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('startend').style.display='';
+
+        }else if($(this).val()==2){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';
+            document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
 
         }else if($(this).val()==5){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';
+            document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
 
         }else if($(this).val()==11){
             document.getElementById('m').style.display='';
             document.getElementById('dmy').style.display='none';
+            document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
 
         }else if($(this).val()==8){
@@ -321,6 +353,7 @@
             window.open('https://analytics.google.com/analytics/web/?authuser=2#/p262553732/reports/dashboard?params=_u..nav%3Ddefault%26_u..comparisons%3D%5B%7B%22name%22:%22All%20Users%22,%22filters%22:%5B%7B%22isCaseSensitive%22:true,%22expression%22:%220%22,%22fieldName%22:%22audience%22%7D%5D%7D%5D%26_u.comparisonOption%3Ddisabled%26_u.dateOption%3Dtoday&r=user-demographics-overview', '_blank');
         }else if($(this).val()==17 || $(this).val()==3  || $(this).val()==4  || $(this).val()==14 ){
             $('.selectall').attr('disabled',true);
+            document.getElementById('startend').style.display='none';
             document.getElementById('dmy').style.display='none';
             document.getElementById('textselect').style.display='none';
             // document.getElementsByClassName('form-control').disabled = true;
@@ -403,6 +436,34 @@
     // $('#datefrom').change(function(){
     //         $('#dateto').removeAttr('disabled');
     // });
+    $('#dateend').change(function(){
+        var dateend = $(this).val();
+        var datestart = document.getElementById('datestart').value;
+        var report = document.getElementById('selectreport').value;
+        $.ajax({
+            url: '{{ url("getreport")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'report' :report,'datestart':datestart,'dateend':dateend},
+            success: function(data) {
+                if(data==1){
+                    alert('ไม่พบข้อมูล');
+                }else{
+                    $('#new').html(data);
+                    var table = $('#table').DataTable( {
+                        "scrollX": true,
+                        //scrollCollapse: true,
+                        'responsive': true,
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'excel'
+                        ]
+                    });
+                }
+               
+            }
+        });
+    });
 
 
 
