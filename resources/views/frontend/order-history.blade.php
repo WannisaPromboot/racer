@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     @include('class.OrangeV1')
+    @include('frontend.inc_header')
+
     <title>Racer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

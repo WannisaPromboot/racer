@@ -88,6 +88,11 @@ Route::get('/userlogin', function(){
     return view('frontend.login');
 });
 
+Route::get('/forgot', function(){
+    return view('frontend.forgot');
+});
+
+
 Route::get('/news', function(){
     $data = array(
         'data' => \App\News::orderBy('id_new','DESC')->where('status_new',NULL)->get(),
@@ -225,7 +230,7 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 //////normal login
 Route::post('createcustomer/{id}/{model}', 'Auth\RegisterController@CreatedCustomer')->name('createCustomer');
 Route::post('logincustomer/{model}', 'Auth\LoginController@LogIn')->name('LogIn');
-// Route::post('forgotpassword/{model}','Auth\ForgotPasswordController@ForgotPassword')->name('ForgotPassword');
+Route::post('forgotpassword','Auth\ForgotPasswordController@ForgotPassword');
 
 /////login
 

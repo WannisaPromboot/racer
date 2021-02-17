@@ -595,7 +595,7 @@ a:hover {
 }
 .re-col {
     color: #235bf7;
-    font-size: 12px;
+    font-size: 16px;
     text-align: center;
     font-family: 'Prompt', sans-serif;
 }
@@ -849,11 +849,8 @@ a:hover {
                   <div class="row">
                     <div class="col-md-12 col-lg-12 mb-12" >
                       <div class="block__35630">
-                        <h3 class="mb-3">เข้าสู่ระบบ</h3>
-                        <p class="about-title">Login</p>
-                        {{-- <hr class="line-re"> --}}
-                        
-                        <center><a href="{{route('redirectToProvider','facebook')}}" class="boxed-btn3-white-2"> <span class="icon-facebook2"></span> Continue with facebook</a></center>
+                        <h3 class="mb-3">ลืมรหัสผ่าน</h3>
+                        <p class="about-title">Forgot Password</p>
                       </div>
                     </div>
           
@@ -861,7 +858,7 @@ a:hover {
                 </div>
 
 
-                <form action="{{url('logincustomer','Customer')}}" method="POST">
+                <form action="{{url('forgotpassword')}}" method="POST">
                   @csrf
                   <div class="container">
                     <div class="row">
@@ -875,12 +872,7 @@ a:hover {
                               <input type="text" name="email" placeholder="email">
                             </div>
                           </div>
-                          <div class="row">
-                        
-                            <div class="col-75">
-                              <input type="password" name="password" placeholder="password">
-                            </div>
-                          </div>
+                          
                       </div>
                       <div class="col-md-3 col-lg-3 mb-3" >
                       </div>
@@ -892,7 +884,7 @@ a:hover {
                     <div class="row" id="">
             
                       <div class="col-md-12 col-lg-12 mb-12" >
-                        <p class="text-re"><a href="{{url('userregister')}}"><span class="re-col">Register/สมัครสมาชิก</span></a></p>
+                        <p class="text-re"><span class="re-col">ระบบจะส่งรหัสผ่านของคุณให้ทางอีเมล</span></p>
                         <center></center>
                     
             
@@ -906,7 +898,7 @@ a:hover {
                       <div class="col-md-12 col-lg-12 mb-12" >
                         
                           <div class="but">
-                            <center><button type="submit" class="submit2">เข้าสู่ระบบ</button></center>
+                            <center><button type="submit" class="submit2">ยืนยัน</button></center>
                           </div>
                     
             

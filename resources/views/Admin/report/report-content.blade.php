@@ -10,23 +10,20 @@
          <!-- Sweertalert -->
          <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}">
 
-           {{-- tag input --}}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
-
-            {{-- <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/Datatable/datatables.min.css')}}">
-            <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/Datatable/datatables.css')}}"> --}}
+        {{-- tag input --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
 
         {{-- datatable --}}
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.23/b-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/datatables.min.css"/>
 
-            <style>
-                #table_wrapper{
-                    width: 100%;
-                }
-                td,th{
-                    text-align: center !important;
-                }
-            </style>
+        <style>
+            #table_wrapper{
+                width: 100%;
+            }
+            td,th{
+                text-align: center !important;
+            }
+        </style>
 
 @endsection
 
@@ -73,29 +70,37 @@
                             <option value="21">รายงานสินค้าที่ลูกค้าเข้าชมแบ่งตามเพศและอายุ</option>
                         </select>
                     </div>
-                   
-                        <div class="col-1 text-right mt-2">กรุณาเลือก : </div>
-                        <div class="col-4" id="m" style="display:none"> 
-                            <select class="form-control selectall" id="monthselect" >
-                                <option value="">กรุณาเลือกเดือนที่ต้องการ</option>
-                                <option value="01">1</option>
-                                <option value="02">2</option>
-                                <option value="03">3</option>
-                                <option value="04">4</option>
-                                <option value="05">5</option>
-                                <option value="06">6</option>
-                                <option value="07">7</option>
-                                <option value="08">8</option>
-                                <option value="09">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                            </select>
-                        </div>
-                        <div class="col-4" id="dmy" style="display:">
-                            <input type="date" name="date" id="dateselect" class="form-control selectall">
-                        </div>
+                
+                    <div class="col-1 text-right mt-2">กรุณาเลือก </div>
+
+                    <div class="col-4" id="dmy" style="display:">
+                        <input type="date" name="date" id="dateselect" class="form-control selectall">
+                    </div>
                     
+                    <div class="col-4" id="m" style="display:none"> 
+                        <select class="form-control selectall" id="monthselect" >
+                            <option value="">กรุณาเลือกเดือนที่ต้องการ</option>
+                            <option value="01">1</option>
+                            <option value="02">2</option>
+                            <option value="03">3</option>
+                            <option value="04">4</option>
+                            <option value="05">5</option>
+                            <option value="06">6</option>
+                            <option value="07">7</option>
+                            <option value="08">8</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    
+                  
+                    <div class="col-6 form-inline" id="startend" style="display:none">
+                        <input type="date" name="datestart" id="datestart" class="form-control">&nbsp;&nbsp;&nbsp;
+                        <input type="date" name="dateend" id="dateend" class="form-control">
+                    </div>
+                   
                 </div>
                 <br>
                
@@ -118,9 +123,11 @@
 @endsection
 
 @section('script')
-{{-- <script src="{{ URL::asset('assets/Datatable/datatables.min.js')}}"></script>  
-<script src="{{ URL::asset('assets/Datatable/datatables.js')}}"></script> --}}
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.23/b-1.6.5/b-flash-1.6.5/b-html5-1.6.5/b-print-1.6.5/datatables.min.js"></script>
+
 <!-- form mask -->
 <script src="{{ URL::asset('assets/libs/jquery-repeater/jquery-repeater.min.js')}}"></script>
 
@@ -141,42 +148,53 @@
 <script>
 
     $('#selectreport').change(function(){
-        if($(this).val()==2){
+        if($(this).val()==1){
+            document.getElementById('m').style.display='none';
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('startend').style.display='';
+
+        }else if($(this).val()==2){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';
+            document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
 
         }else if($(this).val()==5){
             document.getElementById('m').style.display='none';
             document.getElementById('dmy').style.display='';
+            document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
 
         }else if($(this).val()==11){
             document.getElementById('m').style.display='';
             document.getElementById('dmy').style.display='none';
+            document.getElementById('startend').style.display='none';
             $('.selectall').attr('disabled',false);
             
         }else if($(this).val()==17){
             $('.selectall').attr('disabled',true);
-            // document.getElementsByClassName('form-control').disabled = true;
+            document.getElementById('startend').style.display='none';
             $.ajax({
                 url: '{{ url("getreport")}}',
                 type: 'GET',
                 dataType: 'HTML',
                 data : {'report' :17},
                 success: function(data) {
-                    var table = $('#table').DataTable( {
-                        "scrollX": true,
-                        //scrollCollapse: true,
-                    'responsive': true,
-                        dom: 'Bfrtip',
-                        buttons: [
-                        'excel'
-                        ]
-                    });
-                    $('#new').html(data);
-                    
-                    // console.log(report);
+                    if(data==1){
+                        alert('ไม่พบข้อมูล');
+                    }else{
+                        $('#new').html(data);
+                        var table = $('#table').DataTable( {
+                            "scrollX": true,
+                            //scrollCollapse: true,
+                            'responsive': true,
+                            dom: 'Bfrtip',
+                            buttons: [
+                            'excel'
+                            ]
+                        });
+                    }
+                  
                 
                 }
             });
@@ -193,18 +211,49 @@
             dataType: 'HTML',
             data : {'report' :report,'monthselect':monthselect},
             success: function(data) {
-                var table = $('#table').DataTable( {
-                    "scrollX": true,
-                    //scrollCollapse: true,
-                   'responsive': true,
-                    dom: 'Bfrtip',
-                    buttons: [
-                    'excel'
-                    ]
-                });
-                $('#new').html(data);
-                
-                // console.log(report);
+                if(data==1){
+                    alert('ไม่พบข้อมูล');
+                }else{
+                    $('#new').html(data);
+                    var table = $('#table').DataTable( {
+                        "scrollX": true,
+                        //scrollCollapse: true,
+                        'responsive': true,
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'excel'
+                        ]
+                    });
+                }
+               
+            }
+        });
+    });
+
+    $('#dateend').change(function(){
+        var dateend = $(this).val();
+        var datestart = document.getElementById('datestart').value;
+        var report = document.getElementById('selectreport').value;
+        $.ajax({
+            url: '{{ url("getreport")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'report' :report,'datestart':datestart,'dateend':dateend},
+            success: function(data) {
+                if(data==1){
+                    alert('ไม่พบข้อมูล');
+                }else{
+                    $('#new').html(data);
+                    var table = $('#table').DataTable( {
+                        "scrollX": true,
+                        //scrollCollapse: true,
+                        'responsive': true,
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'excel'
+                        ]
+                    });
+                }
                
             }
         });
@@ -221,18 +270,20 @@
             dataType: 'HTML',
             data : {'report' :report,'dateselect':dateselect},
             success: function(data) {
-                var table = $('#table').DataTable( {
-                    "scrollX": true,
-                    //scrollCollapse: true,
-                   'responsive': true,
-                    dom: 'Bfrtip',
-                    buttons: [
-                    'excel'
-                    ]
-                });
-                $('#new').html(data);
-                
-                // console.log(report);
+                if(data==1){
+                    alert('ไม่พบข้อมูล');
+                }else{
+                    $('#new').html(data);
+                    var table = $('#table').DataTable( {
+                        "scrollX": true,
+                        //scrollCollapse: true,
+                        'responsive': true,
+                        dom: 'Bfrtip',
+                        buttons: [
+                        'excel'
+                        ]
+                    });
+                }
                
             }
         });
