@@ -58,7 +58,7 @@
                             <th>เวลาเริ่มต้น</th>
                             <th>เวลาสิ้นสุด</th>
                             <th>ชื่อโปรโมชั่น</th>
-                            <th>รายละเอียด</th>
+                            {{-- <th>รายละเอียด</th> --}}
                             <th>แก้ไข</th>
                             <th>ลบ</th>
                         </tr>
@@ -70,9 +70,9 @@
                                     <td>{{date_format(date_create($item->datefrom),'d-m-Y')}}</td>
                                     <td>{{date_format(date_create($item->dateto),'d-m-Y')}}</td>
                                     <td>{{$item->promotion_title}}</td>
-                                    <td>
+                                    {{-- <td>
                                         <button type="button" class="btn btn-secondary">รายละเอียด</button>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a type="button" class="btn btn-warning" href="{{url('editpromotionproduct/'.$item->id_promotion.'')}}">แก้ไข</a>
                                     </td>
@@ -93,7 +93,7 @@
                             <th>เวลาเริ่มต้น</th>
                             <th>เวลาสิ้นสุด</th>
                             <th>ชื่อโปรโมชั่น</th>
-                            <th>รายละเอียด</th>
+                            {{-- <th>รายละเอียด</th> --}}
                             <th>แก้ไข</th>
                             <th>ลบ</th>
                         </tr>
@@ -105,9 +105,9 @@
                                     <td>{{date_format(date_create($item->datefrom),'d-m-Y')}}</td>
                                     <td>{{date_format(date_create($item->dateto),'d-m-Y')}}</td>
                                     <td>{{$item->promotion_title}}</td>
-                                    <td>
+                                    {{-- <td>
                                         <button type="button" class="btn btn-secondary">รายละเอียด</button>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a type="button" class="btn btn-warning" href="{{url('editpromotionproduct/'.$item->id_promotion.'')}}">แก้ไข</a>
                                     </td>
@@ -129,7 +129,7 @@
                             <th>เวลาเริ่มต้น</th>
                             <th>เวลาสิ้นสุด</th>
                             <th>ชื่อโปรโมชั่น</th>
-                            <th>รายละเอียด</th>
+                            {{-- <th>รายละเอียด</th> --}}
                             <th>แก้ไข</th>
                         </tr>
                         </thead>
@@ -140,9 +140,9 @@
                                     <td>{{date_format(date_create($item->datefrom),'d-m-Y')}}</td>
                                     <td>{{date_format(date_create($item->dateto),'d-m-Y')}}</td>
                                     <td>{{$item->promotion_title}}</td>
-                                    <td>
+                                    {{-- <td>
                                         <button type="button" class="btn btn-secondary">รายละเอียด</button>
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a type="button" class="btn btn-warning" href="{{url('editpromotionproduct/'.$item->id_promotion.'')}}">แก้ไข</a>
                                     </td>

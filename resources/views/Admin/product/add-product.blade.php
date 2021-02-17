@@ -115,14 +115,14 @@
                                     <b>ราคาปกติ </b>
                                 </div>
                                 <div class="col-3">
-                                    <input type="number" class="form-control" name="product_normal_price" min="0" required>
+                                    <input type="number" class="form-control normalprice" onchange="checknumber(this.value,'normalprice')" name="product_normal_price" min="0" required>
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                                 <div class="col-1 text-right  mt-2">
                                     <b>ราคาพิเศษ</b>
                                 </div>
                                 <div class="col-3">
-                                    <input type="number" class="form-control specialprice" min="0" name="product_special_price" >
+                                    <input type="number" class="form-control specialprice" onchange="checknumber(this.value,'specialprice')" min="0" name="product_special_price" >
                                 </div>
                                 <div class="col-1  mt-2">บาท</div>
                             </div>
@@ -870,6 +870,21 @@
             $('#notidate').css('display','none');
           }  
     });
+
+
+        ////check 
+    function checknumber(value,classname){
+        if(parseInt(value) < 1){
+        $('.'+classname).val("");
+        swal.fire({
+            type:'warning',
+            text:'ห้ามกรอกข้อมูลน้อยกว่า 1',
+            confirmButtonColor: '#3085d6',
+
+        });
+        $('.'+classname).focus();
+        }
+    }
 
 </script>
 

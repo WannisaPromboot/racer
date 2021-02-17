@@ -236,7 +236,9 @@ div {
   </style>
 
 @include('frontend.inc_header')
-<?php $page = 'product'; ?>
+<?php $page = 'product';
+use App\Http\Controllers\Frontend\GetdataController; 
+?>
   <body class="goto-here">
 	<div class="py-1 bg-primary">
         <div class="container">
@@ -449,19 +451,25 @@ div {
                                 </div>
 
                                 <div class="totals">
-                                                <div class="totals-item">
-                                                    <label>ยอดรวม</label>
-                                                <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
-                                            </div>
-                                            <div class="totals-item">
-                                                <label>ค่าส่ง</label>
-                                                <div class="totals-value" id="cart-shipping" style="">0</div>
-                                            </div>
-                                            <div class="totals-item totals-item-total">
-                                                <label>ยอดรวมทั้งสิ้น</label>
-                                                <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
-                                                <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
-                                            </div>
+                                    <div class="totals-item">
+                                        <label>ยอดรวม</label>
+                                    <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum , '2' ,'.',',') : '0'}}</div>
+                                </div>
+                                <div class="totals-item">
+                                    <label>ส่วนลด</label>
+                                    <div class="totals-value" id="cart-shipping" style="">{!! Session::get('product') ?  number_format(GetdataController::checkprice($sum)['discount'],'2','.',',') :'0' !!}</div>
+                                    <input type="hidden"  id="discount" value="{{Session::get('product') ? GetdataController::checkprice($sum)['discount'] : '0'}}">
+                                    
+                                </div>
+                                <div class="totals-item">
+                                    <label>ค่าส่ง</label>
+                                    <div class="totals-value" id="cart-shipping" style="">0</div>
+                                </div>
+                                <div class="totals-item totals-item-total">
+                                    <label>ยอดรวมทั้งสิ้น</label>
+                                    <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum,'2','.',',') : '0'}}</div>
+                                    <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
+                                </div>
                                             </div>
                                             {{-- <a href="javascript:void(0)"><button type="submit" class="checkout">payment</button></a> --}}
                                             <a href="{{url('cart')}}"><button type="button" class="checkout">view cart</button></a>

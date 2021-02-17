@@ -130,6 +130,16 @@
                         <input type="date" name="datestart" id="datestart" class="form-control">&nbsp;&nbsp;&nbsp;
                         <input type="date" name="dateend" id="dateend" class="form-control">
                     </div>
+
+                    <div class="col-6 form-inline" id="datem" style="display:none">
+                        <select class="form-control selectdatem">
+                            <option value="">กรุณาเลือกช่วงที่ต้องการ</option>
+                            <option value="3">3 เดือน</option>
+                            <option value="6">6 เดือน</option>
+                            <option value="9">9 เดือน</option>
+                            <option value="12">12 เดือน</option>
+                        </select>
+                    </div>
                    
                 </div>
                 <br>
@@ -288,6 +298,12 @@
             $('.selectall').attr('disabled',false);
             document.getElementById('textselect').style.display='';
             $('#new').removeAttr('style');
+        }else if($(this).val()==6){
+            document.getElementById('m').style.display='none';
+            document.getElementById('dmy').style.display='none';
+            document.getElementById('startend').style.display='none';
+            $('.selectall').attr('disabled',false);
+            $('#datem').removeAttr('style');
 
         }else if($(this).val()==11){
             document.getElementById('m').style.display='';
@@ -435,6 +451,8 @@
     // $('#datefrom').change(function(){
     //         $('#dateto').removeAttr('disabled');
     // });
+
+
     $('#dateend').change(function(){
         var dateend = $(this).val();
         var datestart = document.getElementById('datestart').value;
@@ -495,6 +513,35 @@
     });
 
 
+    $('.selectdatem').change(function(){
+        var dateselect = $(this).val();
+        var report = document.getElementById('selectreport').value;
+        $.ajax({
+            url: '{{ url("getreport")}}',
+            type: 'GET',
+            dataType: 'HTML',
+            data : {'report' :report,'dateselect':dateselect},
+            success: function(data) {
+                if(data==1){
+                    alert('ไม่พบข้อมูล');
+                }else{
+                    $('#new').html(data);
+                    var table = $('#table').DataTable( {
+                        "scrollX": true,
+                        //scrollCollapse: true,
+                        'responsive': true,
+                        dom: 'Bfrtip',
+                        buttons: [
+                        'excel'
+                        ]
+                    });
+                }
+               
+            }
+        });
+    });
+
+
     ///chart
     var ctx = document.getElementById("piechart").getContext('2d');
     var myBarChart = new Chart(ctx, {
@@ -517,6 +564,11 @@
     var ctx = document.getElementById("bar").getContext('2d');
     var myBarChart = new Chart(ctx, {
         type: 'bar',
+        options: {
+            legend: {
+            display: false,
+            }
+        },
         data: {
                 labels: <?php echo  $json_barname ?>,
                 label: false,
