@@ -200,6 +200,45 @@ class ReportController extends Controller
                 }else{
                     return 1;
                 }
+            }else if($request->report == 6){
+                $sql = \App\Product::where('product_display',0)->orderby('id_category')->get();
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>สินค้า</th>
+                                        <th>คำสั่งซื้อล่าสุด</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                                    $order  = \App\OrderItem::where('product_id',$_item->id_product)->Orderby('created_at','desc')->first();
+                                    if(!empty($order)){
+                                        $date = date_format(date_create($order->created_at),'Y-m-d');
+                                        $effectiveDate = date('Y-m-d', strtotime("-".$request->dateselect." months", strtotime(date('Y-m-d'))));        
+                                            if( $date <=  $effectiveDate ){
+                                            echo        '<tr>
+                                                            <td>'.$_item->product_name_th.'</td>
+                                                            <td>'.$date.'</td>
+                                                        </tr>';
+                                            }
+                                    }else{
+                                            echo        '<tr>
+                                                            <td>'.$_item->product_name_th.'</td>
+                                                            <td>ไม่มีการสั่งซื้อ</td>
+                                                        </tr>';
+                                            
+                                    }
+                                   
+                        
+                                }
+                                            
+                    echo    '</tbody>
+                    </table>';
+                }else{
+                    return 1;
+                }
+
             }elseif($request->report == 7){
                 $i =1;
                 $sql = \App\CustomerPage::select(DB::raw('count(id) as count'),'page')

@@ -217,7 +217,6 @@ class GetdataController extends Controller
             $discount_last = 0;
         }
 
-        
 
         $data = array(
             'promotion'   => $arr_promotion,

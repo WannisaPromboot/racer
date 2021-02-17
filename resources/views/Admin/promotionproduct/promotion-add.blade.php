@@ -486,7 +486,7 @@
     ////check 
     function checknumber(value,classname){
         if(parseInt(value) < 0){
-        $('.'+classname).val("0");
+        $('.'+classname).val("");
         swal.fire({
             type:'warning',
             text:'ห้ามกรอกข้อมูลน้อยกว่า 0',

@@ -783,6 +783,8 @@ label {
                                     @if(!empty(Session::get('product')) && count(Session::get('product')) > 0)
                                     <?php $items = Session::get('product');  
                                         $sum  = 0;
+                                        $arr_cate = array();
+                                        $arr_cate_id = array();
                                     ?>
                                         @foreach ($items as $key => $item)
                                         <?php $product = \App\Product::where('id_product',$item['product_id'])->first(); ?>
@@ -850,7 +852,35 @@ label {
                                             <?php  $sum +=  $product->product_normal_price * $item['qty'];?>
                                             @endif
                                         </div>
-                                    
+
+                                        {{-- จับ --}}
+                                        <?php 
+                                        
+                                            if(!empty($product->product_special_price)){
+                                                        $total = $item['qty'] * $product->product_special_price ;
+                                                    }else{
+                                                        $total = $item['qty'] * $product->product_normal_price ;
+                                                    }
+
+                                                //  dd($total);
+                                                    if(in_array($product->id_category,  $arr_cate_id) == false){
+                                                        $data  = array(
+                                                            'category_id'    =>  $product->id_category,
+                                                            'total'           =>  $total
+                                                        );
+                                                        array_push($arr_cate, $data);
+                                                        array_push($arr_cate_id, $product->id_category);
+
+                                                    }else{
+                                                        foreach($arr_cate as $key => $_item){
+                                                            if($_item['category_id'] == $product->id_category){
+                                                                $total =  $_item['total']+$total;
+                                                                $arr_cate[$key]['total'] =   $total;
+                                                            }
+                                                        
+                                                        }
+                                                    }
+                                        ?>
                                         @endforeach
                                    
                                         {{-- ส่วนลด --}}
@@ -874,21 +904,86 @@ label {
                                                 </div>
                                             @endforeach
                                             @if(!empty( $checkpromotion_dis) && $result >= $checkpromotion_dis->total)
-                                            <div class="row mb-2">
-                                                <div class="col-9 mb-2">{{$checkpromotion_dis->promotion_title}}
-                                                    <div class="row">
-                                                        <?php $pro_free = \App\Product::where('id_product', $checkpromotion_dis->product)->first(); ?>
-                                                        <div class="col-2">แถมฟรี</div>
-                                                        <input type="hidden" name="promotion[{{ $checkpromotion_dis->id_promotion}}]" value="{{ $checkpromotion_dis->id_promotion}}" >
-                                                        <input type="hidden" name="total[{{ $checkpromotion_dis->id_promotion}}]" value="0" >
-                                                        <div class="col-2">
-                                                            <img src="{{url('storage/app/'.$pro_free->product_img.'')}}" width="100%">
+                                                @if($checkpromotion_dis->group == 'all')
+                                                    @if($price >= $checkpromotion_dis->total)  
+                                                    <div class="row mb-2">
+                                                        <div class="col-9 mb-2">{{$checkpromotion_dis->promotion_title}}
+                                                            <div class="row">
+                                                                <?php $pro_free = \App\Product::where('id_product', $checkpromotion_dis->product)->first(); ?>
+                                                                <div class="col-2">แถมฟรี</div>
+                                                                <input type="hidden" name="promotion[{{ $checkpromotion_dis->id_promotion}}]" value="{{ $checkpromotion_dis->id_promotion}}" >
+                                                                <input type="hidden" name="total[{{ $checkpromotion_dis->id_promotion}}]" value="0" >
+                                                                <div class="col-2">
+                                                                    <img src="{{url('storage/app/'.$pro_free->product_img.'')}}" width="100%">
+                                                                </div>
+                                                                <div class="col-8">{{$pro_free->product_name_th}}</div>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-8">{{$pro_free->product_name_th}}</div>
+                                                        {{-- <div class="col-3 text-right promotion-discount">{{number_format($_pro['total'],2,'.',',')}}</div> --}}
                                                     </div>
-                                                </div>
-                                                {{-- <div class="col-3 text-right promotion-discount">{{number_format($_pro['total'],2,'.',',')}}</div> --}}
-                                            </div>
+                                                    @endif
+                                                @elseif($checkpromotion_dis->group == 'item')
+                                                    <?php 
+                                                    $promotionitem = \App\PromotionProductItem::where('id_promotion',$checkpromotion_dis->id_promotion)->get();
+                                                        foreach($promotionitem as $_promotionitem){
+                                                            if(in_array($_promotionitem->product_1,  Session::get('product_arr')) == true){
+                                                                $product_item =  \App\Product::where('id_product',$_promotionitem->product_1)->first(); 
+                                                                $key = array_search($_promotionitem->product_1, Session::get('product_arr')); // ค้นหา index
+                                                                if(!empty( $product_item->product_special_price)){
+                                                                    $result_item +=  Session::get('product.'.$key.'.qty') * $product_item->product_special_price; 
+                                                                }else{
+                                                                    $result_item +=  Session::get('product.'.$key.'.qty') * $product_item->product_normal_price; 
+                                                                }
+                                                            }
+                                                        }
+                                                    ?>
+
+                                                       @if($result_item >= $checkpromotion_dis->total)  
+                                                        <div class="row mb-2">
+                                                            <div class="col-9 mb-2">{{$checkpromotion_dis->promotion_title}}
+                                                                <div class="row">
+                                                                    <?php $pro_free = \App\Product::where('id_product', $checkpromotion_dis->product)->first(); ?>
+                                                                    <div class="col-2">แถมฟรี</div>
+                                                                    <input type="hidden" name="promotion[{{ $checkpromotion_dis->id_promotion}}]" value="{{ $checkpromotion_dis->id_promotion}}" >
+                                                                    <input type="hidden" name="total[{{ $checkpromotion_dis->id_promotion}}]" value="0" >
+                                                                    <div class="col-2">
+                                                                        <img src="{{url('storage/app/'.$pro_free->product_img.'')}}" width="100%">
+                                                                    </div>
+                                                                    <div class="col-8">{{$pro_free->product_name_th}}</div>
+                                                                </div>
+                                                            </div>
+                                                            {{-- <div class="col-3 text-right promotion-discount">{{number_format($_pro['total'],2,'.',',')}}</div> --}}
+                                                        </div>
+                                                        @endif  
+
+
+                                                @else 
+
+                                                @foreach($arr_cate as $_cate)
+                                                    @if($_cate['category_id'] == $checkpromotion_dis->group)
+                                                        @if($_cate['total'] >= $checkpromotion_dis->total)
+                                                            <div class="row mb-2">
+                                                                <div class="col-9 mb-2">{{$checkpromotion_dis->promotion_title}}
+                                                                    <div class="row">
+                                                                        <?php $pro_free = \App\Product::where('id_product', $checkpromotion_dis->product)->first(); ?>
+                                                                        <div class="col-2">แถมฟรี</div>
+                                                                        <input type="hidden" name="promotion[{{ $checkpromotion_dis->id_promotion}}]" value="{{ $checkpromotion_dis->id_promotion}}" >
+                                                                        <input type="hidden" name="total[{{ $checkpromotion_dis->id_promotion}}]" value="0" >
+                                                                        <div class="col-2">
+                                                                            <img src="{{url('storage/app/'.$pro_free->product_img.'')}}" width="100%">
+                                                                        </div>
+                                                                        <div class="col-8">{{$pro_free->product_name_th}}</div>
+                                                                    </div>
+                                                                </div>
+                                                                {{-- <div class="col-3 text-right promotion-discount">{{number_format($_pro['total'],2,'.',',')}}</div> --}}
+                                                            </div>
+                                                       @endif
+                                                    @endif
+                                              
+                                                @endforeach
+
+                                                @endif
+                                         
                                             @endif
                                             
                                         </div>

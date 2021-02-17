@@ -1172,7 +1172,13 @@ textarea.form-control {
                             <div class="totals">
                                             <div class="totals-item">
                                                 <label>ยอดรวม</label>
-                                            <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            <div class="totals-value" id="cart-subtotal" style="">{{!empty(Session::get('product'))?number_format($sum , '2' ,'.',',') : '0'}}</div>
+                                        </div>
+                                        <div class="totals-item">
+                                            <label>ส่วนลด</label>
+                                            <div class="totals-value" id="cart-shipping" style="">{!! Session::get('product') ?  number_format(GetdataController::checkprice($sum)['discount'],'2','.',',') :'0' !!}</div>
+                                            <input type="hidden"  id="discount" value="{{Session::get('product') ? GetdataController::checkprice($sum)['discount'] : '0'}}">
+                                            
                                         </div>
                                         <div class="totals-item">
                                             <label>ค่าส่ง</label>
@@ -1180,7 +1186,7 @@ textarea.form-control {
                                         </div>
                                         <div class="totals-item totals-item-total">
                                             <label>ยอดรวมทั้งสิ้น</label>
-                                            <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum) : '0'}}</div>
+                                            <div class="totals-value" id="cart-total" style="">{{!empty(Session::get('product'))?number_format($sum,'2','.',',') : '0'}}</div>
                                             <input type="hidden" name="price_total" id="total" value="{{Session::get('product') ? $sum : '0'}}">
                                         </div>
                                         </div>
