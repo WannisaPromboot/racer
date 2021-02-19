@@ -418,10 +418,10 @@ class ReportController extends Controller
                                     $customer = \App\Customer::where('customer_id',$_item->customer_id)->first();
                         echo        '<tr>
                                         <td>'.$i.'</td>
-                                        <td>'.$customer->name.'</td>
-                                        <td>'.$customer->lastname.'</td>
-                                        <td>'.$customer->email.'</td>
-                                        <td>'.$_item->count.'</td>
+                                        <td>'.(!empty($customer->name ) ? $customer->name : '').'</td>
+                                        <td>'.( !empty($customer->lastname ) ? $customer->lastname : '').'</td>
+                                        <td>'.(!empty($customer->email )  ? $customer->email : '').'</td>
+                                        <td>'.(!empty($_item->count ) ? $_item->count : '').'</td>
                                     </tr>';
                                     $i =$i+1;
                                 }

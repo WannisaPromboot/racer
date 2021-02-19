@@ -769,6 +769,8 @@ use App\Http\Controllers\Frontend\GetdataController;
                 
                  text = JSON.parse(data);   
 
+                 console.log(text );
+
                 $('#showhtml').html(text['html']);
                 $('#bannernew').html(text['banner']);
                 ///////add cart

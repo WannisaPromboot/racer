@@ -41,7 +41,6 @@
                         </div class="col-sm">
                         
                     </div>
-                    <?php dd(Session::all()); ?>
                     <table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
