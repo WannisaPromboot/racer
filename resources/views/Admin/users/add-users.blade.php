@@ -33,7 +33,7 @@
                     <div data-repeater-list="outer-group" class="outer">
                         <div data-repeater-item class="outer">
                             <div class="row pb-2">
-                                <div class="form-gruop col-sm">
+                                <div class="form-gruop col-6">
                                     <label>{{Session::get('lang')=='th'?'อีเมล ' :'Email'}} :</label>
                                     <input type="email"  class="form-control" name="email_regis" required> 
                                 </div>
@@ -65,7 +65,7 @@
                             </div> 
                             <div class="row m-t-4" style="color: red;">
                                 <div class="col-12">
-                                    <span id="err_txt">{{ isset($error_pass) ? $error_pass : '' }}</span> 
+                                    <span id="err_txt text-danger">{{ isset($error_pass) ? $error_pass : '' }}</span> 
                                 </div>
                             </div>
                             <div class="row pb-2">
@@ -73,10 +73,8 @@
                                     <label>บทบาท :</label>
                                     <select class="form-control" name="role" required>
                                         <option>-เลือกหน้าที่-</option>
-                                        <option value="1">{{Session::get('lang')=='th'?'ผู้ดูแลระบบ ' :'Admin'}}</option>
-                                        <option value="2">Supervisor</option>
-                                        <option value="3">Staff</option>
-                                        <option value="4">{{Session::get('lang')=='th'?'บัญชี ' :'Accountant'}}</option>
+                                        <option value="1">ผู้ดูแลระบบ 1</option>
+                                        <option value="2">ผู้ดูแลระบบ 2</option>
                                     </select>
                                 </div>
                             </div> 

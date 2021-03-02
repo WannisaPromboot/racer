@@ -427,14 +427,15 @@ class ProductController extends Controller
                 $html.=              '<div class="col-md-4 col-lg-4 mb-4" >
                                             <a href="'.url('detail-product/'.$product->id_product.'').'"><img class="pro-img" src="'.url('storage/app/'.$product->product_img).'"></a>
                                         
-                                        <center><p class="name-pro">'.$product->product_name_th.'</p><center>';
+                                        <center><p class="name-pro" style="height: 84px;">'.$product->product_name_th.'</p>';
                                         if(!empty(	$item->product_special_price)){
                                             $html.=    '<center><p class="price-line">฿'.number_format($product->product_normal_price,2).'</p><center>';
                                         }
+                                        $html .= '<center>';
                                         if(!empty(	$product->product_special_price)){
                                             $html.= '<center><p class="price-pro">฿'.number_format($product->product_special_price,2).'</p><center>';
                                         }else{ 
-                                            $html.= '<center><p class="price-pro">฿'.number_format($product->product_normal_price,2).'</p><center>';
+                                            $html.= '<center><p class="price-pro">'.($product->product_normal_price != 0 ? '฿'.number_format($product->product_normal_price,2) : '').'</p><center>';
                                         }
                                         $html.=  '<center><a href="javascript:void(0)" onclick="addcart('.$product->id_product.')"><p class="button"><span class="icon-shopping_cart"></span> เพิ่มในตะกร้า</p></a></center>';
                         $html.=       '</div>';

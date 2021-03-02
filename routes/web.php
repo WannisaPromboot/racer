@@ -298,184 +298,200 @@ Route::get('logout', 'Auth\LoginController@LogOut');
 
 ///////////////////////// ///////////////////////////////////////////backend////////////////////////////////////////////////////
 Route::get('admin','Admin\UsersController@LoginAdmin');
-  
-Route::get('/adduser', 'Admin\UsersController@AddUser');
-Route::get('/edituser/{id}', 'Admin\UsersController@EditUser');
-Route::get('/usercontent', 'Admin\UsersController@ShowUserContent');
-Route::post('/updateUser', 'Admin\UsersController@updateUser');
-Route::get('Logoutadmin','Admin\UsersController@LogoutAdmin');
 Route::post('checkLoginadmin','Admin\UsersController@CheckLoginAdmin');
-Route::post('createuser', 'Admin\UsersController@CreatedUser');
+
+Route::group(['middleware'=>['AdminLogin:1']],function(){ 
+
+    Route::get('/adduser', 'Admin\UsersController@AddUser');
+    Route::get('/edituser/{id}', 'Admin\UsersController@EditUser');
+    Route::get('/usercontent', 'Admin\UsersController@ShowUserContent');
+    Route::post('/updateUser', 'Admin\UsersController@updateUser');
+
+    Route::post('createuser', 'Admin\UsersController@CreatedUser');
+    
+        ////silde
+    Route::get('/addslide', 'Admin\SlidesController@AddSlide');
+    Route::get('/editslide/{id}', 'Admin\SlidesController@EditSlide');
+    Route::get('/slidecontent', 'Admin\SlidesController@ShowSlideContent');
+    Route::get('change_sortslide','Admin\SlidesController@change_sortslide');
+    Route::get('change_select','Admin\SlidesController@change_select');
+    Route::get('viewslide/{id}','Admin\SlidesController@ViewSlide');
+
+    Route::post('/saveslide', 'Admin\SlidesController@SaveSlide')->name('SaveSlide');
+    Route::post('/updateslide', 'Admin\SlidesController@UpdateSlide');
+
+    //////product categoryController
+    /////->categoryController1
+    Route::get('/addcategory', 'Admin\categoryController@Addcategory');
+    Route::get('/categorycontent', 'Admin\categoryController@ShowcategoryContent');
+    Route::get('/editcategory/{id}', 'Admin\categoryController@Editcategory');
+    Route::post('/savecategory', 'Admin\categoryController@Savecategory');
+    Route::post('/updatecategory/{id}', 'Admin\categoryController@Updatecategory');
+    Route::get('/changsortcate', 'Admin\categoryController@changsortcate');
+    Route::get('/viewcategory', 'Admin\categoryController@ViewCategory');
+    Route::get('/iewvcategory', 'Admin\categoryController@ViewCategory');
+
+    /////->type2
+    Route::get('/addsubcategory', 'Admin\categoryController@Addsubcategory');
+    Route::get('/subcategorycontent', 'Admin\categoryController@ShowsubcategoryContent');
+    Route::get('/editsubcategory/{id}', 'Admin\categoryController@Editsubcategory');
+    Route::post('/savesubcategory', 'Admin\categoryController@SaveSubcategory');
+    Route::post('/updatesubcategory/{id}', 'Admin\categoryController@UpdateSubcategory');
+    Route::get('/getcategory', 'Admin\categoryController@Getcategory');
+    Route::get('/viewsubcategory', 'Admin\categoryController@ViewSubCategory');
+
+    /////////////banner of category
+    Route::get('/addbanner', 'Admin\BannerController@Addbanner');
+    Route::get('/editbanner/{id}', 'Admin\BannerController@Editbanner');
+    Route::get('/bannercontent', 'Admin\BannerController@ShowbannerContent');
+    Route::get('change_sortbanner','Admin\BannerController@change_sortbanner');
+    Route::get('change_select','Admin\BannerController@change_select');
+    Route::get('viewbanner/{id}','Admin\BannerController@Viewbanner');
+
+    Route::post('/savebanner', 'Admin\BannerController@Savebanner');
+    Route::post('/updatebanner', 'Admin\BannerController@Updatebanner');
+
+    ///////////////product
+    Route::get('/productcontent', 'Admin\ProductController@ProductContent');
+    Route::get('/addproduct', 'Admin\ProductController@AddProduct');
+    Route::get('/editproduct/{id}', 'Admin\ProductController@EditProduct');
+    Route::post('/saveproduct', 'Admin\ProductController@SaveProduct');
+    Route::post('/updateproduct/{id}', 'Admin\ProductController@UpdateProduct');
+    Route::get('/getsubcate', 'Admin\ProductController@GetSubCate');
+    Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
+    Route::get('/viewproduct', 'Admin\ProductController@ViewProduct');
+    Route::get('/showproduct', 'Admin\ProductController@ShowProduct');
+    Route::get('deleteproduct/{id}','Admin\ProductController@DeleteProduct');
+
+    ////////////////////blog///////////////////////////
+    Route::get('/addblog', 'Admin\BlogController@AddBlog');
+    Route::get('/deleteblog/{id}', 'Admin\BlogController@DeleteBlog');
+    Route::get('/editblog/{id}', 'Admin\BlogController@EditBlog');
+    Route::get('/blogcontent', 'Admin\BlogController@ShowBlogContent');
+    Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
+    Route::get('/detailblog/{id}', 'Admin\BlogController@DetailBlog');
+
+    Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
 
 
-////silde
-Route::get('/addslide', 'Admin\SlidesController@AddSlide');
-Route::get('/editslide/{id}', 'Admin\SlidesController@EditSlide');
-Route::get('/slidecontent', 'Admin\SlidesController@ShowSlideContent');
-Route::get('change_sortslide','Admin\SlidesController@change_sortslide');
-Route::get('change_select','Admin\SlidesController@change_select');
-Route::get('viewslide/{id}','Admin\SlidesController@ViewSlide');
+    Route::post('/saveviewblog', 'Admin\BlogController@SaveViewBlog');
+    Route::post('/saveblog', 'Admin\BlogController@SaveBlog');
+    Route::post('/updateblog/{id}', 'Admin\BlogController@UpdateBlog');
+    Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
+    Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
+    Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
 
-Route::post('/saveslide', 'Admin\SlidesController@SaveSlide')->name('SaveSlide');
-Route::post('/updateslide', 'Admin\SlidesController@UpdateSlide');
+        ////pagebanner
+    Route::get('pagecontent',function(){
+        return view('Admin.pagebanner.page-content');
+    });
+    Route::get('banner/{id}', 'Admin\PageBannerController@AddPagebanner');
+    Route::post('savepagebanner', 'Admin\PageBannerController@Savepagebanner');
 
-//////product categoryController
-/////->categoryController1
-Route::get('/addcategory', 'Admin\categoryController@Addcategory');
-Route::get('/categorycontent', 'Admin\categoryController@ShowcategoryContent');
-Route::get('/editcategory/{id}', 'Admin\categoryController@Editcategory');
-Route::post('/savecategory', 'Admin\categoryController@Savecategory');
-Route::post('/updatecategory/{id}', 'Admin\categoryController@Updatecategory');
-Route::get('/changsortcate', 'Admin\categoryController@changsortcate');
-Route::get('/viewcategory', 'Admin\categoryController@ViewCategory');
-Route::get('/iewvcategory', 'Admin\categoryController@ViewCategory');
-
-/////->type2
-Route::get('/addsubcategory', 'Admin\categoryController@Addsubcategory');
-Route::get('/subcategorycontent', 'Admin\categoryController@ShowsubcategoryContent');
-Route::get('/editsubcategory/{id}', 'Admin\categoryController@Editsubcategory');
-Route::post('/savesubcategory', 'Admin\categoryController@SaveSubcategory');
-Route::post('/updatesubcategory/{id}', 'Admin\categoryController@UpdateSubcategory');
-Route::get('/getcategory', 'Admin\categoryController@Getcategory');
-Route::get('/viewsubcategory', 'Admin\categoryController@ViewSubCategory');
-
-/////////////banner of category
-Route::get('/addbanner', 'Admin\BannerController@Addbanner');
-Route::get('/editbanner/{id}', 'Admin\BannerController@Editbanner');
-Route::get('/bannercontent', 'Admin\BannerController@ShowbannerContent');
-Route::get('change_sortbanner','Admin\BannerController@change_sortbanner');
-Route::get('change_select','Admin\BannerController@change_select');
-Route::get('viewbanner/{id}','Admin\BannerController@Viewbanner');
-
-Route::post('/savebanner', 'Admin\BannerController@Savebanner');
-Route::post('/updatebanner', 'Admin\BannerController@Updatebanner');
-
-///////////////product
-Route::get('/productcontent', 'Admin\ProductController@ProductContent');
-Route::get('/addproduct', 'Admin\ProductController@AddProduct');
-Route::get('/editproduct/{id}', 'Admin\ProductController@EditProduct');
-Route::post('/saveproduct', 'Admin\ProductController@SaveProduct');
-Route::post('/updateproduct/{id}', 'Admin\ProductController@UpdateProduct');
-Route::get('/getsubcate', 'Admin\ProductController@GetSubCate');
-Route::get('/displayproduct', 'Admin\ProductController@DisplayProduct');
-Route::get('/viewproduct', 'Admin\ProductController@ViewProduct');
-Route::get('/showproduct', 'Admin\ProductController@ShowProduct');
-Route::get('deleteproduct/{id}','Admin\ProductController@DeleteProduct');
-
-/////////////////////popularproduct
-Route::get('/populatproductcontent', 'Admin\PopularProductController@popularContent');
-Route::get('/editpoppularproduct/{id}', 'Admin\PopularProductController@Editpopular');
-Route::get('/selectproduct', 'Admin\PopularProductController@selectproduct');
-Route::get('/removeproduct', 'Admin\PopularProductController@removeproduct');
-Route::get('/viewpopular', 'Admin\PopularProductController@viewpopular');
-Route::get('/changedisplaypopular', 'Admin\PopularProductController@changedisplaypopular');
+    Route::get('subbanner',function(){
+        return view('Admin.pagebanner.sub-banner');
+    });
+    Route::get('editsub/{id}', 'Admin\PageBannerController@EditSubbanner');
+    Route::post('savesubbanner', 'Admin\PageBannerController@SaveSubbanner');
 
 
-///////////////production
-Route::get('/production', 'Admin\ProductionController@productioncontent');
-Route::get('/updateproduction', 'Admin\ProductionController@updateproduction');
+    ////////////////////new///////////////////////////
+    Route::get('/addnew', 'Admin\NewsController@Addnew');
+    Route::get('/deletenew/{id}', 'Admin\NewsController@Deletenew');
+    Route::get('/editnew/{id}', 'Admin\NewsController@Editnew');
+    Route::get('/newcontent', 'Admin\NewsController@ShownewContent');
+    Route::get('/detailnew/{id}', 'Admin\NewsController@Detailnew');
+    Route::post('/savenew', 'Admin\NewsController@Savenew');
+    Route::post('/updatenew/{id}', 'Admin\NewsController@Updatenew');
+    Route::get('/changestatusnew', 'Admin\NewsController@ChangeStatusNew');
 
-////////////////////blog///////////////////////////
-Route::get('/addblog', 'Admin\BlogController@AddBlog');
-Route::get('/deleteblog/{id}', 'Admin\BlogController@DeleteBlog');
-Route::get('/editblog/{id}', 'Admin\BlogController@EditBlog');
-Route::get('/blogcontent', 'Admin\BlogController@ShowBlogContent');
-Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
-Route::get('/detailblog/{id}', 'Admin\BlogController@DetailBlog');
+    ////////////////////promotion///////////////////////////
+    Route::get('/addpromotion', 'Admin\PromotionController@Addpromotion');
+    Route::get('/deletepromotion/{id}', 'Admin\PromotionController@Deletepromotion');
+    Route::get('/editpromotion/{id}', 'Admin\PromotionController@Editpromotion');
+    Route::get('/promotioncontent', 'Admin\PromotionController@ShowpromotionContent');
+    // Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
+    Route::get('/detailpromotion/{id}', 'Admin\PromotionController@Detailpromotion');
 
-Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
-
-
-Route::post('/saveviewblog', 'Admin\BlogController@SaveViewBlog');
-Route::post('/saveblog', 'Admin\BlogController@SaveBlog');
-Route::post('/updateblog/{id}', 'Admin\BlogController@UpdateBlog');
-Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
-Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
-Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
+    // Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
 
 
-////////////////order
-Route::get('/ordercontent', 'Admin\OrderController@ShowOrder');
-Route::get('/orederdetail/{id}', 'Admin\OrderController@OrederDetail');
-Route::get('receipt','Admin\OrderController@receipt');
-Route::get('changestatus','Admin\OrderController@changestatus');
-Route::get('changeshipping','Admin\OrderController@changeshipping');
-
-////review
-Route::get('/reviewcontent', 'Admin\ReviewController@ReviewContent');
-Route::get('/reviewdetail/{id}', 'Admin\ReviewController@ReviewDetail');
-Route::get('/changedisplay', 'Admin\ReviewController@changedisplay');
-
-
-////pagebanner
-Route::get('pagecontent',function(){
-    return view('Admin.pagebanner.page-content');
- });
-Route::get('banner/{id}', 'Admin\PageBannerController@AddPagebanner');
-Route::post('savepagebanner', 'Admin\PageBannerController@Savepagebanner');
-
-Route::get('subbanner',function(){
-    return view('Admin.pagebanner.sub-banner');
- });
-Route::get('editsub/{id}', 'Admin\PageBannerController@EditSubbanner');
-Route::post('savesubbanner', 'Admin\PageBannerController@SaveSubbanner');
-
-
-////////////////////new///////////////////////////
-Route::get('/addnew', 'Admin\NewsController@Addnew');
-Route::get('/deletenew/{id}', 'Admin\NewsController@Deletenew');
-Route::get('/editnew/{id}', 'Admin\NewsController@Editnew');
-Route::get('/newcontent', 'Admin\NewsController@ShownewContent');
-Route::get('/detailnew/{id}', 'Admin\NewsController@Detailnew');
-Route::post('/savenew', 'Admin\NewsController@Savenew');
-Route::post('/updatenew/{id}', 'Admin\NewsController@Updatenew');
-Route::get('/changestatusnew', 'Admin\NewsController@ChangeStatusNew');
+    // Route::post('/saveviewblog', 'Admin\BlogController@SaveViewBlog');
+    Route::post('/savepromotion', 'Admin\PromotionController@Savepromotion');
+    Route::post('/updatepromotion/{id}', 'Admin\PromotionController@Updatepromotion');
+    // Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
+    // Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
+    // Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
 
 
 
-////////////////////promotion///////////////////////////
-Route::get('/addpromotion', 'Admin\PromotionController@Addpromotion');
-Route::get('/deletepromotion/{id}', 'Admin\PromotionController@Deletepromotion');
-Route::get('/editpromotion/{id}', 'Admin\PromotionController@Editpromotion');
-Route::get('/promotioncontent', 'Admin\PromotionController@ShowpromotionContent');
-// Route::get('/viewblog/{id}', 'Admin\BlogController@ViewBlog');
-Route::get('/detailpromotion/{id}', 'Admin\PromotionController@Detailpromotion');
 
-// Route::get('/viewaddblog/{id}', 'Admin\BlogController@viewaddblog');
+});
 
 
-// Route::post('/saveviewblog', 'Admin\BlogController@SaveViewBlog');
-Route::post('/savepromotion', 'Admin\PromotionController@Savepromotion');
-Route::post('/updatepromotion/{id}', 'Admin\PromotionController@Updatepromotion');
-// Route::post('/viewupdateblog/{id}', 'Admin\BlogController@ViewUpdateBlog');
-// Route::get('/viewsaveblog/{id}', 'Admin\BlogController@ViewSaveBlog');
-// Route::get('/viewblogascustomer/{id}', 'Admin\BlogController@ViewBlogAscustomer');
+Route::group(['middleware'=>['AdminLogin:1,2']],function(){ 
 
-////////////////////promotionproduct///////////////////////////
-Route::get('/addpromotionproduct', 'Admin\PromotionProductController@Addpromotionproduct');
-Route::get('/editpromotionproduct/{id}', 'Admin\PromotionProductController@Editpromotionproduct');
-Route::get('/promotionproductcontent', 'Admin\PromotionProductController@ShowpromotionproductContent');
-Route::post('/savepromotionproduct', 'Admin\PromotionProductController@savepromotionproduct');
-Route::post('/updatepromotionproduct/{id}', 'Admin\PromotionProductController@updatepromotionproduct');
-Route::get('/getsecondproduct', 'Admin\PromotionProductController@getsecondproduct');
+        Route::get('Logoutadmin','Admin\UsersController@LogoutAdmin');
 
-Route::get('/addproductpromotion', 'Admin\PromotionProductController@addproductpromotion');
-Route::get('addnewsome','Admin\PromotionProductController@addnewsome');
+                
+        /////////////////////popularproduct
+        Route::get('/populatproductcontent', 'Admin\PopularProductController@popularContent');
+        Route::get('/editpoppularproduct/{id}', 'Admin\PopularProductController@Editpopular');
+        Route::get('/selectproduct', 'Admin\PopularProductController@selectproduct');
+        Route::get('/removeproduct', 'Admin\PopularProductController@removeproduct');
+        Route::get('/viewpopular', 'Admin\PopularProductController@viewpopular');
+        Route::get('/changedisplaypopular', 'Admin\PopularProductController@changedisplaypopular');
 
 
-////////////////////Report///////////////////////////
-Route::get('/report/{id}', 'Admin\ReportController@ReportContent');
-Route::get('/report-content', 'Admin\ReportController@ReportContent');
-Route::get('/getreport', 'Admin\ReportController@GetReport');
-
-Route::get('/exportPDF', 'Admin\ReportController@exportPDF');
+        ///////////////production
+        Route::get('/production', 'Admin\ProductionController@productioncontent');
+        Route::get('/updateproduction', 'Admin\ProductionController@updateproduction');
 
 
-////////////////////Home///////////////////////////
-Route::get('/home', 'Admin\HomeController@Home');
-Route::get('/bookingall', 'Admin\HomeController@BookingAll');
 
 
+        ////////////////order
+        Route::get('/ordercontent', 'Admin\OrderController@ShowOrder');
+        Route::get('/orederdetail/{id}', 'Admin\OrderController@OrederDetail');
+        Route::get('receipt','Admin\OrderController@receipt');
+        Route::get('changestatus','Admin\OrderController@changestatus');
+        Route::get('changeshipping','Admin\OrderController@changeshipping');
+
+        ////review
+        Route::get('/reviewcontent', 'Admin\ReviewController@ReviewContent');
+        Route::get('/reviewdetail/{id}', 'Admin\ReviewController@ReviewDetail');
+        Route::get('/changedisplay', 'Admin\ReviewController@changedisplay');
+
+
+
+        ////////////////////promotionproduct///////////////////////////
+        Route::get('/addpromotionproduct', 'Admin\PromotionProductController@Addpromotionproduct');
+        Route::get('/editpromotionproduct/{id}', 'Admin\PromotionProductController@Editpromotionproduct');
+        Route::get('/promotionproductcontent', 'Admin\PromotionProductController@ShowpromotionproductContent');
+        Route::post('/savepromotionproduct', 'Admin\PromotionProductController@savepromotionproduct');
+        Route::post('/updatepromotionproduct/{id}', 'Admin\PromotionProductController@updatepromotionproduct');
+        Route::get('/getsecondproduct', 'Admin\PromotionProductController@getsecondproduct');
+
+        Route::get('/addproductpromotion', 'Admin\PromotionProductController@addproductpromotion');
+        Route::get('addnewsome','Admin\PromotionProductController@addnewsome');
+
+
+        ////////////////////Report///////////////////////////
+        Route::get('/report/{id}', 'Admin\ReportController@ReportContent');
+        Route::get('/report-content', 'Admin\ReportController@ReportContent');
+        Route::get('/getreport', 'Admin\ReportController@GetReport');
+
+        Route::get('/exportPDF', 'Admin\ReportController@exportPDF');
+
+
+        ////////////////////Home///////////////////////////
+        Route::get('/home', 'Admin\HomeController@Home');
+        Route::get('/bookingall', 'Admin\HomeController@BookingAll');
+
+
+
+
+});
 
 
 

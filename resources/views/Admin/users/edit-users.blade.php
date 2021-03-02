@@ -33,9 +33,9 @@
                     <div data-repeater-list="outer-group" class="outer">
                         <div data-repeater-item class="outer">
                             <div class="row pb-2">
-                                <div class="form-gruop col-sm">
+                                <div class="form-gruop col-6">
                                     <label>อีเมล :</label>
-                                    <input type="email"  class="form-control" name="email_regis" value="{{$user->email}}" required> 
+                                    <input type="email"  class="form-control" name="email_regis" value="{{$user->email_staff}}" required> 
                                 </div>
                             </div> 
                             <div class="row m-t-4" style="color: red;">
@@ -46,17 +46,17 @@
                             <div class="row pb-2">
                                 <div class="form-gruop col-sm">
                                     <label>ชื่อ :</label>
-                                    <input type="text"  class="form-control" name="fname_regis" value="{{$user->firstname}}" required> 
+                                    <input type="text"  class="form-control" name="fname_regis" value="{{$user->name_staff}}" required> 
                                 </div>
                                 <div class="form-gruop col-sm">
                                     <label>นามสกุล :</label>
-                                    <input type="text" class="form-control" name="lname_regis" value="{{$user->lastname}}" required> 
+                                    <input type="text" class="form-control" name="lname_regis" value="{{$user->lastname_staff}}" required> 
                                 </div>
                             </div> 
                             <div class="row pb-2">
                                 <div class="form-gruop col-6">
                                     <label>รหัสผ่าน :</label>
-                                    <?php $password = Crypt::decryptString($user->password); ?>
+                                    <?php $password = Crypt::decryptString($user->password_staff); ?>
                                     <input type="password" class="form-control" name="password_regis" value="{{$password}}" required> 
                                 </div>
                             </div> 
@@ -64,10 +64,8 @@
                                 <div class="form-gruop col-6">
                                     <label>บทบาท :</label>
                                     <select class="form-control" name="role">
-                                        <option value="1" {{$user->role == 1 ? 'selected' : ''}}>Admin</option>
-                                        <option value="2" {{$user->role == 2 ? 'selected' : ''}}>Supervisor</option>
-                                        <option value="3" {{$user->role == 3 ? 'selected' : ''}}>Staff</option>
-                                        <option value="4" {{$user->role == 4 ? 'selected' : ''}}>Accountant</option>
+                                        <option value="1" {{$user->role == 1 ? 'selected' : ''}}>ผู้ดูแลระบบ 1</option>
+                                        <option value="2" {{$user->role == 2 ? 'selected' : ''}}>ผู้ดูแลระบบ 2</option>
                                     </select>
                                 </div>
                             </div> 

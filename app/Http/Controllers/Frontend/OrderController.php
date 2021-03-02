@@ -12,8 +12,7 @@ use Session;
 
 class OrderController extends Controller
 {
-   public function StoreOrder(Request $request){
-       
+   public function StoreOrder(Request $request){       
         $A = mt_rand( 1000000000, 9999999999);
         // dd($A);
         $newOrder = New Order;
@@ -33,7 +32,7 @@ class OrderController extends Controller
             $newOrderItem->count = $request->count[$key];
             $newOrderItem->save();
         }
-        
+
         if(!empty($request->promotion)){
 
             foreach($request->promotion as $key => $promotion){
