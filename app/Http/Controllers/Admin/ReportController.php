@@ -15,21 +15,11 @@ use PDF;
 class ReportController extends Controller
 {
     public function ReportContent(){
-        // $sql = '';
-        // if($id==5){
-        //     $sql = Customer::orderBy('created_at','DESC')->get();
-        // }elseif($id==11){
-        //     $sql = Customer::orderBy('birthday','DESC')->get();
-
-        // }
-        // $data = array(
-        //     'data'   => $sql,
-        // );
+      
         return view('Admin.report.report-content');
     }
 
     public function GetReport(Request $request){
-
         
             if($request->report == 1){
                 $i =1;
@@ -44,6 +34,7 @@ class ReportController extends Controller
                                             <th>ลำดับที่</th>
                                             <th>ชื่อสินค้า</th>
                                             <th>จำนวน(ชิ้น)</th>
+                                            <th>ราคารวม(บาท)</th>
                                         </tr>
                                     </thead>
                                     <tbody>';
@@ -53,6 +44,7 @@ class ReportController extends Controller
                                         <td>'.$i.'</td>
                                         <td>'.$pro->product_name_th.'</td>
                                         <td>'.$_item->count.'</td>
+                                        <td>'.number_format($_item->count*$pro->product_normal_price).'</td>
                                     </tr>';
                                     $i =$i+1;
                                 }
@@ -72,6 +64,7 @@ class ReportController extends Controller
                                     <thead>
                                         <tr>
                                             <th>ลำดับที่</th>
+                                            <th>รายการสินค้า</th>
                                             <th>ชื่อ-นามสกุลลูกค้า</th>
                                             <th>อีเมลลูกค้า</th>
                                             <th>เบอร์โทรศัพท์ลูกค้า</th>
@@ -81,9 +74,16 @@ class ReportController extends Controller
                                     <tbody>';
                                     foreach($sql as $_item){
                                         $cus = Customer::where('customer_id',$_item->customer_id)->first();
+                                        $ori = OrderItem::where('id_order',$_item->id_order)->get();
                             echo       '<tr>
                                             <td>'.$i.'</td>
-                                            <td>'.$cus->name.'   '.$cus->lastname.'</td>
+                                            <td style="float:left">';
+                                                foreach($ori as $item){
+                                                    $pro = Product::where('id_product',$item->product_id)->first();
+                                                    echo '<br>'.$pro->product_name_th;
+                                                }
+                                            echo '</td> ';
+                                    echo    '<td>'.$cus->name.'   '.$cus->lastname.'</td>
                                             <td>'.$cus->email.'</td>
                                             <td>'.$cus->phone.'</td>
                                             <td>'.$_item->created_at.'</td>
@@ -367,6 +367,8 @@ class ReportController extends Controller
 
             }elseif($request->report == 13){
                 $effectiveDate = date('Y-m-d', strtotime("-".$request->dateselect." months", strtotime(date('Y-m-d'))));        
+                $date = date_format(date_create($order->created_at),'Y-m-d');
+
                 $sql = Customer::whereNotBetween(DB::raw('DATE(lastlogin)'), [$effectiveDate,date('Y-m-d')])->get();
                 $i =1;
                 if(count($sql)>0){
@@ -382,15 +384,17 @@ class ReportController extends Controller
                                 </thead>
                                 <tbody>';
                                 foreach($sql as $_item){
-                        echo        '<tr>
-                                        <td>'.$i.'</td>
-                                        <td>'.$_item->name.'</td>
-                                        <td>'.$_item->lastname.'</td>
-                                        <td>'.$_item->email.'</td>
-                                        <td>'.$_item->lastlogin.'</td>
-                                    </tr>';
-                                    $i =$i+1;
-                                }
+                                    if( $sql->lastlogin <= $effectiveDate ){
+                                        echo    '<tr>
+                                            <td>'.$i.'</td>
+                                            <td>'.$_item->name.'</td>
+                                            <td>'.$_item->lastname.'</td>
+                                            <td>'.$_item->email.'</td>
+                                            <td>'.$_item->lastlogin.'</td>
+                                        </tr>';
+                                        $i =$i+1;
+                                    }
+                            }
                                             
                     echo    '</tbody>
                     </table>';
@@ -519,6 +523,42 @@ class ReportController extends Controller
                     return 1;
                 }
                 
+            }elseif($request->report == 20){
+                $i =1;
+                $sql = Customer::select(DB::raw('COUNT(age) as count'),'age')->groupBy('age')->where('age','!=',NULL)->get();
+                $sql1 = Customer::where('age','=',NULL)->get();
+                if(count($sql)>0){
+                    echo    '<table id="table" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับที่</th>
+                                        <th>อายุ</th>
+                                        <th>จำนวนรวม</th>
+                                    </tr>
+                                </thead>
+                                <tbody>';
+                                foreach($sql as $_item){
+                        echo       '<tr>
+                                        <td>'.$i.'</td>
+                                        <td>'.$_item->age.'</td>
+                                        <td>'.$_item->count.'</td>
+                                    </tr>';
+                                    $i =$i+1;
+                                }
+                                if(count($sql1)>0){
+                                    echo    '<tr>
+                                                <td>'.$i.'</td>
+                                                <td>ไม่ระบุ</td>
+                                                <td>'.count($sql1).'</td>
+                                            </tr>';
+                                }
+                                                
+                    echo    '</tbody>
+                        </table>';
+                }else{
+                    return 1;
+                }
+                
             }
 
     }
@@ -528,7 +568,6 @@ class ReportController extends Controller
     public function Price($price,$code){
 
         $sql = \App\Coupon::where('code_id',$code)->first();
-
         $vat = $price*0.07;
         
         if($sql != null ){
@@ -537,7 +576,6 @@ class ReportController extends Controller
             }else{
                 $discount_code = $price - ($price*($sql->percent / 100));
             }
-          
         }
         
     }
@@ -549,7 +587,6 @@ class ReportController extends Controller
         $result = $price*($com/100);
         return $result;
         
-        
     }
 
     public function exportPDF(){
@@ -557,7 +594,6 @@ class ReportController extends Controller
         $pdf = PDF::loadView('Admin.report.device_chart', $data);
         return $pdf->download('customer_device.pdf');
 
-        //return view('Admin.report.device_chart');
     }
 
 }

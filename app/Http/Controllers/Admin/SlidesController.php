@@ -59,6 +59,7 @@ class SlidesController extends Controller
             $SlideContent->url = $request->link;
 
         }
+        $SlideContent->page = 1;
 
         $SlideContent->save();
 

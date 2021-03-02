@@ -71,7 +71,7 @@
                         </select>
                     </div>
                    
-                        <div class="col-1 text-right mt-2" id="textselect" >กรุณาเลือก : </div>
+                        <div class="col-1 text-right mt-2" id="textselect" >กรุณาเลือก </div>
                         <div class="col-4" id="m" style="display:none"> 
                             <select class="form-control selectall" id="monthselect" >
                                 <option value="">กรุณาเลือกเดือนที่ต้องการ</option>
@@ -191,6 +191,7 @@
         </div>
     </div>
 </div>
+
 <!-- end row -->
 {{-- chart --}}
 <?php  $graph =  \App\CustomerDevice::all();
@@ -438,7 +439,7 @@
             document.getElementById('textselect').style.display='none';
             window.open('https://analytics.google.com/analytics/web/?authuser=2#/p262553732/reports/dashboard?params=_u..nav%3Ddefault%26_u..comparisons%3D%5B%7B%22name%22:%22All%20Users%22,%22filters%22:%5B%7B%22isCaseSensitive%22:true,%22expression%22:%220%22,%22fieldName%22:%22audience%22%7D%5D%7D%5D%26_u.comparisonOption%3Ddisabled%26_u.dateOption%3Dtoday&r=user-demographics-overview', '_blank');
         
-        }else if($(this).val()==17 || $(this).val()==3  || $(this).val()==4  || $(this).val()==14 ){
+        }else if($(this).val()==17 || $(this).val()==3  || $(this).val()==4  || $(this).val()==14  || $(this).val()==20 ){
             $('.selectall').attr('disabled',true);
             document.getElementById('startend').style.display='none';
             document.getElementById('dmy').style.display='none';
